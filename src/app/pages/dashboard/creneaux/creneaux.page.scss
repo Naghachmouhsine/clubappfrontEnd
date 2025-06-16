@@ -1,0 +1,31 @@
+ion-badge[disponible="oui"] {
+  background-color: #10dc60;
+}
+ion-badge[disponible="non"] {
+  background-color: #f04141;
+}
+
+.creneaux-row {
+  border-radius: 12px;
+  margin-bottom: 10px;
+  padding: 12px 0;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+
+  &.disponible-oui {
+    background-color: #2ecc7099;
+  }
+
+  &.disponible-non {
+    background-color: #e74c3c66;
+  }
+
+  &.disponible-inconnu {
+    background-color: rgba(200, 200, 200, 0.2);
+  }
+}
+
+.creneaux-cell {
+  font-weight: bold;
+  color: #000;
+}

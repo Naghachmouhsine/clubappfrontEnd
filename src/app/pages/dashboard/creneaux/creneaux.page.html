@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard - Créneaux</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Liste des créneaux</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="block" color="success" (click)="addCreneau()">
+        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+        Ajouter un créneau
+      </ion-button>
+
+      <ion-grid>
+        <ion-row class="ion-text-center" style="font-weight: bold;">
+          <ion-col>Date</ion-col>
+          <ion-col>Heure Début</ion-col>
+          <ion-col>Heure Fin</ion-col>
+          <ion-col>Installation</ion-col>
+          <ion-col>Disponible</ion-col>
+          <ion-col>Actions</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let creneau of creneaux" class="ion-text-center creneaux-row" [ngClass]="getDisponibiliteClass(creneau.disponible)">
+          <ion-col class="creneaux-cell">{{ creneau.date | date:'dd/MM/yyyy' }}</ion-col>
+          <ion-col class="creneaux-cell">{{ creneau.heure_debut }}</ion-col>
+          <ion-col class="creneaux-cell">{{ creneau.heure_fin }}</ion-col>
+          
+          <ion-col class="creneaux-cell">{{ creneau.installation_nom }} - {{creneau.installation_type }}</ion-col>
+          <ion-col class="creneaux-cell">{{ creneau.disponible === 'oui' || creneau.disponible === true ? 'Oui' : 'Non' }}</ion-col>
+          <ion-col>
+            <ion-button size="small" fill="outline" color="primary" (click)="detailCreneau(creneau.id)">
+              <ion-icon name="eye-outline" slot="start"></ion-icon>
+              Détails
+            </ion-button>
+            <ion-button size="small" fill="outline" color="warning" (click)="editCreneau(creneau.id)">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              Éditer
+            </ion-button>
+            <ion-button size="small" fill="outline" color="danger" (click)="deleteCreneau(creneau.id)">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              Supprimer
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

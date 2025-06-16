@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>Réservation pour {{ reservation.activite }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="reservation-content">
+
+  <!-- Club name -->
+  <div class="club-name">
+    <ion-chip>
+      <ion-label>Mon Club Sportif</ion-label>
+    </ion-chip>
+  </div>
+
+  <!-- Date selector -->
+  <div class="date-carousel">
+    <ion-icon name="chevron-back-outline" (click)="prevDates()"></ion-icon>
+    <div class="date-list">
+      <div
+        *ngFor="let date of weekDates"
+        [class.active]="selectedDate === date"
+        (click)="selectDate(date)"
+        class="date-item"
+      >
+        <div class="day">{{ date | date: 'dd' }}</div>
+        <div class="weekday">{{ date | date: 'EEE' }}</div>
+      </div>
+    </div>
+    <ion-icon name="chevron-forward-outline" (click)="nextDates()"></ion-icon>
+  </div>
+
+  <!-- Date choisie -->
+  <div class="subtitle">
+    {{ selectedDate | date: 'fullDate' }}
+  </div>
+
+  <!-- Détail activité -->
+  <p class="activite-detail">Activité sélectionnée : {{ reservation.activite }}</p>
+
+  <!-- Exemple créneaux -->
+  <ion-list>
+    <ion-item *ngFor="let session of sessions" lines="none" class="session-card">
+      <ion-thumbnail slot="start">
+        <img [src]="session.imageUrl" />
+      </ion-thumbnail>
+      <ion-label>
+        <div class="time">{{ session.time }}</div>
+        <div class="title">{{ session.title }}</div>
+        <div class="trainer" [class.canceled]="session.canceled">
+          {{ session.canceled ? 'Cours annulé' : session.trainer }}
+        </div>
+        <div class="room">{{ session.room }}</div>
+      </ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

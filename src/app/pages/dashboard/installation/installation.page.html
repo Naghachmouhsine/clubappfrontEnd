@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard - Installations</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Liste des installations</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="block" color="success" (click)="addInstallation()">
+        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+        Ajouter une installation
+      </ion-button>
+
+      <ion-grid *ngIf="installations.length > 0">
+        <ion-row class="ion-text-center title-row">
+          <ion-col>Nom</ion-col>
+          <ion-col>Type</ion-col>
+          <ion-col>Capacité</ion-col>
+          <ion-col>Disponibilité</ion-col>
+          <ion-col>Actions</ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let installation of installations"
+                 class="ion-text-center installation-row"
+                 [ngClass]="getDisponibiliteClass(installation.disponible)">
+          <ion-col class="installation-cell">{{ installation.nom }}</ion-col>
+          <ion-col class="installation-cell">{{ installation.type }}</ion-col>
+          <ion-col class="installation-cell">{{ installation.capacite }}</ion-col>
+          <ion-col class="installation-cell">{{ installation.disponible }}</ion-col>
+          <ion-col>
+            <ion-button size="small" fill="outline" color="primary" (click)="detailInstallation(installation.id)">
+              <ion-icon name="eye-outline" slot="start"></ion-icon>
+              Détails
+            </ion-button>
+            <ion-button size="small" fill="outline" color="warning" (click)="editInstallation(installation.id)">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              Éditer
+            </ion-button>
+            <ion-button size="small" fill="outline" color="danger" (click)="deleteInstallation(installation.id)">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              Supprimer
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="installations.length === 0" class="ion-text-center empty-state">
+        <p>Aucune installation enregistrée pour le moment.</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

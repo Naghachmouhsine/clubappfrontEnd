@@ -1,0 +1,48 @@
+<ion-content class="ion-padding login-page" color="dark">
+  <div class="login-container options">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Bienvenue</ion-card-title>
+        <ion-card-subtitle class="ion-text-center">Connectez-vous à votre compte</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form (ngSubmit)="onLogin()">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Mot de passe</ion-label>
+            <ion-input
+              type="password"
+              [(ngModel)]="password"
+              name="password"
+              required
+            ></ion-input>
+          
+          </ion-item>
+          
+          <a href="/forgot-password">Mot de passe oublié ?</a>
+          <span> | </span>
+          <a href="/register">Créer un compte</a>
+          <ion-button
+            expand="block"
+            type="submit"
+            [disabled]="!email || !password"
+            class="ion-margin-top"
+            color="primary"
+          >
+            Se connecter
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

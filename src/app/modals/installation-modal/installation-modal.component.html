@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{ mode === 'add' ? 'Ajouter une installation' : mode === 'edit' ? 'Modifier une installation' : 'Détails de l\'installation' }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="installationForm" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label position="floating">Nom</ion-label>
+      <ion-input formControlName="nom"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Type</ion-label>
+      <ion-input formControlName="type"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Capacité</ion-label>
+      <ion-input type="number" formControlName="capacite"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Disponible</ion-label>
+      <ion-toggle formControlName="disponibilite"></ion-toggle>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" color="success" 
+                *ngIf="mode !== 'detail'" 
+                [disabled]="installationForm.invalid">
+      {{ mode === 'edit' ? 'Mettre à jour' : 'Ajouter' }}
+    </ion-button>
+  </form>
+</ion-content>

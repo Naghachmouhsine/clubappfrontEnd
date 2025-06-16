@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-padding">Dashboard - Réservations</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-padding">Liste des Réservations</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="ion-text-center" style="font-weight: bold;">
+          <ion-col>Nom Utilisateur</ion-col>
+          <ion-col>Email</ion-col>
+          <ion-col>Date de Réservation</ion-col>
+          <ion-col>Date du Créneau</ion-col>
+          <ion-col>Début du Créneau </ion-col>
+          <ion-col>Fin du Créneau</ion-col>
+          <ion-col>Statut</ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let res of reservations" class="ion-text-center reservations-row"
+          [ngClass]="getStatutColor(res.statut)">
+          <ion-col>{{ res.utilisateur_nom }}</ion-col>
+          <ion-col>{{ res.utilisateur_email }}</ion-col>
+          <ion-col>{{ res.date_jour_reservation | date:'dd/MM/yyyy HH:mm:s' }}</ion-col>
+          <ion-col>{{ res.creneau_date | date:'dd/MM/yyyy' }}</ion-col>
+          <ion-col>{{ res.heure_debut }}</ion-col>
+          <ion-col>{{ res.heure_fin }}</ion-col>
+
+          <ion-col>
+            <ion-select [value]="res.statut" (ionChange)="onStatutChange(res, $event.detail.value)"
+              interface="popover">
+              <ion-select-option value="en attente">En attente</ion-select-option>
+              <ion-select-option value="confirmée">Confirmée</ion-select-option>
+              <ion-select-option value="annulée">Annulée</ion-select-option>
+            </ion-select>
+          </ion-col>
+
+
+        </ion-row>
+
+        <ion-row *ngIf="!reservations.length" class="ion-text-center">
+          <ion-col size="12">Aucune réservation trouvée.</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,27 @@
+/* Assure-toi que ton image a un z-index plus élevé */
+ion-avatar {
+    z-index: 10; /* Assurez-vous que l'image reste au-dessus du menu */
+  }
+  
+  /* Assurez-vous que le menu a un z-index plus bas que l'image */
+  ion-menu {
+    z-index: 1;
+  }
+  
+
+  /* Lorsqu'un menu est ouvert, le contenu principal doit se déplacer */
+ion-menu[contentId="main-content"]:opened ~ #main-content {
+    transform: translateX(270px); /* Ou la largeur de ton menu latéral */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Ajuster l'image ou le contenu de la page */
+  #main-content {
+    transition: transform 0.3s ease-in-out;
+    padding-top: 20px; /* Ajuste selon ton besoin */
+  }
+  .submenu {
+  padding-left: 16px;
+  background: #f8f8f8;
+  border-left: 2px solid #3880ff;
+}

@@ -1,0 +1,33 @@
+<!-- date-r.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Réservation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Activité</ion-label>
+    <ion-select [(ngModel)]="activiteSelectionnee" (ionChange)="onActiviteChange()">
+      <ion-select-option *ngFor="let act of activites" [value]="act">{{ act.nom }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="activiteSelectionnee">
+    <ion-label>Date</ion-label>
+    <ion-select [(ngModel)]="dateSelectionnee" (ionChange)="onDateChange()">
+      <ion-select-option *ngFor="let date of datesDisponibles" [value]="date">{{ date }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="dateSelectionnee">
+    <ion-label>Créneau</ion-label>
+    <ion-select [(ngModel)]="creneauSelectionne">
+      <ion-select-option *ngFor="let creneau of creneauxDisponibles" [value]="creneau">
+        {{ creneau.heure_debut }} - {{ creneau.heure_fin }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="block" (click)="reserver()">Réserver</ion-button>
+</ion-content>

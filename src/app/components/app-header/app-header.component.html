@@ -1,0 +1,10 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button (click)="toggleMenu()"> <!-- Bouton pour ouvrir le menu -->
+      <ion-icon slot="icon-only" name="menu-outline"></ion-icon> <!-- Icône du menu -->
+    </ion-button>
+  </ion-buttons>
+  <ion-title>
+    <ng-content></ng-content> <!-- Le contenu dynamique du titre -->
+  </ion-title>
+</ion-toolbar>

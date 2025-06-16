@@ -1,0 +1,48 @@
+ion-badge[color="success"] {
+  background-color: #10dc60;
+}
+ion-badge[color="warning"] {
+  background-color: #ffce00;
+}
+ion-badge[color="danger"] {
+  background-color: #f04141;
+}
+
+.user-row {
+  border-radius: 12px;
+  margin-bottom: 10px;
+  // padding: 8px;
+  transition: background-color 0.3s ease;
+
+  color: #000;           // Texte noir
+  font-weight: bold;     // Texte en gras
+
+  &.role-adherent {
+    background-color: #2ecc7099;
+  }
+
+  &.role-coach {
+    background-color: #f1c40f66;
+  }
+
+  &.role-responsable {
+    background-color: #3498db55;
+  }
+
+  &.role-admin {
+    background-color: #e74c3c66;
+  }
+
+  &.role-user {
+    background-color: #95a5a655;
+  }
+}
+.user-row {
+  // padding: 12px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-cell {
+  font-weight: bold;
+  color: #000;
+}

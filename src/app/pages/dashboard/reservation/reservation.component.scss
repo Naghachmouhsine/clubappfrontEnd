@@ -1,0 +1,24 @@
+.reservations-row {
+  border-radius: 12px;
+  margin-bottom: 10px;
+  padding: 8px;
+  transition: background-color 0.3s ease;
+
+  color: #000;           // Texte noir
+  font-weight: bold;     // Texte en gras
+
+  &.confirme{
+    background-color: #2ecc7099;
+  }
+
+  &.en_attente {
+    background-color: #f1c40f66;
+  }
+  &.annuler {
+    background-color: #95a5a655;
+  }
+}
+.reservations-row {
+  padding: 12px 0;
+  border-bottom: 1px solid #ccc;
+}

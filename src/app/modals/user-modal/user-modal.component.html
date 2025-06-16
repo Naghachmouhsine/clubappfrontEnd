@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ mode === 'edit' ? 'Éditer' : mode === 'detail' ? 'Détails' : 'Ajouter' }} l'utilisateur</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Fermer</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">ID</ion-label>
+      <ion-input [value]="user.id" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Nom</ion-label>
+      <ion-input [(ngModel)]="user.nom" [readonly]="mode === 'detail'"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Prénom</ion-label>
+      <ion-input [(ngModel)]="user.prenom" [readonly]="mode === 'detail'"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]="user.email" [readonly]="mode === 'detail'"></ion-input>
+      <!--- <ion-input [value]="user.email" [readonly]="mode === 'detail'"></ion-input> -->
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Téléphone</ion-label>
+      <ion-input [(ngModel)]="user.telephone" [readonly]="mode === 'detail'"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Rôle</ion-label>
+      <ion-select [(ngModel)]="user.role" [disabled]="mode === 'detail'">
+        <ion-select-option value="adherent">Adhérent</ion-select-option>
+        <ion-select-option value="coach">Coach</ion-select-option>
+        <ion-select-option value="responsable">Responsable</ion-select-option>
+        <ion-select-option value="admin">Admin</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-button *ngIf="mode === 'edit'" expand="block" color="success" (click)="save()">
+    Sauvegarder
+  </ion-button>
+
+  <ion-button *ngIf="mode === 'add'" expand="block" color="success" (click)="save()">
+    Ajouter
+  </ion-button>
+</ion-content>

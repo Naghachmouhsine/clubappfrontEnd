@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{ mode === 'add' ? 'Ajouter un créneau' : (mode === 'edit' ? 'Éditer un créneau' : 'Détails du créneau') }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Annuler</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="creneauForm" (ngSubmit)="submit()">
+
+    <ion-item>
+      <ion-label position="floating">Date</ion-label>
+      <ion-input
+        type="date"
+        formControlName="date"
+        required
+        [attr.aria-invalid]="creneauForm.get('date')?.invalid ? 'true' : 'false'"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Heure début</ion-label>
+      <ion-input
+        type="time"
+        formControlName="heure_debut"
+        required
+        [attr.aria-invalid]="creneauForm.get('heure_debut')?.invalid ? 'true' : 'false'"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Heure fin</ion-label>
+      <ion-input
+        type="time"
+        formControlName="heure_fin"
+        required
+        [attr.aria-invalid]="
+          creneauForm.get('heure_fin')?.invalid || creneauForm.hasError('invalidTime') ? 'true' : 'false'
+        "
+      ></ion-input>
+      <ion-note slot="error" color="danger" *ngIf="creneauForm.hasError('invalidTime')">
+        L'heure de fin doit être après l'heure de début.
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Installation (id actuel : {{ creneauForm.value.installation_id }})</ion-label>
+      <ion-select formControlName="installation_id" interface="popover" required>
+        <ion-select-option *ngFor="let inst of installations" [value]="inst.id">{{ inst.nom }} - {{ inst.type }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Disponible</ion-label>
+      <ion-toggle formControlName="disponible"></ion-toggle>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" color="primary" [disabled]="creneauForm.invalid || mode === 'detail'">
+      {{ mode === 'add' ? 'Ajouter' : 'Modifier' }}
+    </ion-button>
+  </form>
+</ion-content>

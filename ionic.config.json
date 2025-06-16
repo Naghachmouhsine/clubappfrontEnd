@@ -1,0 +1,7 @@
+{
+  "name": "clubapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

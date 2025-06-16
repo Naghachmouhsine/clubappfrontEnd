@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard - Utilisateurs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Liste des utilisateurs</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-button expand="block" color="success" (click)="addUser()">
+          <ion-icon slot="start" name="person-add-outline"></ion-icon>
+          Ajouter un utilisateur
+        </ion-button>
+        <ion-row class="ion-text-center" style="font-weight: bold;">
+          <ion-col>Nom</ion-col>
+          <ion-col>Email</ion-col>
+          <ion-col>Téléphone</ion-col>
+          <ion-col>Rôle</ion-col>
+          <ion-col>Actions</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let user of utilisateurs" class="ion-text-center user-row" [ngClass]="getRoleClass(user.role)">
+          <ion-col class="user-cell">{{ user.nom }} {{ user.prenom }}</ion-col>
+          <ion-col class="user-cell">{{ user.email }}</ion-col>
+          <ion-col class="user-cell">{{ user.telephone }}</ion-col>
+          <ion-col class="user-cell">
+            <ion-badge [color]="getRoleClass(user.role)">
+              {{ user.role }}
+            </ion-badge>
+          </ion-col>
+          <ion-col>
+            <ion-button size="small" fill="outline" color="primary" (click)="detailUser(user.id)">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              Details
+            </ion-button>
+            <ion-button size="small" fill="outline" color="warning" (click)="editUser(user.id)">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              Éditer
+            </ion-button>
+            <ion-button size="small" fill="outline" color="danger" (click)="deleteUser(user.id)">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              Supprimer
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

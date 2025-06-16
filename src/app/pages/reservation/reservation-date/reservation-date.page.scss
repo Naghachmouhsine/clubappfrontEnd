@@ -1,0 +1,136 @@
+:host {
+  --ion-background-color: #121212;
+  --ion-text-color: #ffffff;
+}
+
+.reservation-content {
+  --background: #121212;
+  padding: 12px;
+  color: #fff;
+}
+
+.club-name {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0;
+
+  ion-chip {
+    background-color: #1e1e1e;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: bold;
+    padding: 4px 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.date-carousel {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: #1e1e1e;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin-bottom: 10px;
+
+  .date-list {
+    display: flex;
+    flex: 1;
+    gap: 12px;
+  }
+
+  .date-item {
+    background: #2a2a2a;
+    color: #ccc;
+    padding: 10px 8px;
+    border-radius: 10px;
+    min-width: 55px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .date-item.active {
+    background: #00c896;
+    color: #000;
+  }
+
+  .day {
+    font-size: 1em;
+  }
+
+  .weekday {
+    font-size: 0.75em;
+    color: #aaa;
+  }
+}
+
+.subtitle {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin: 10px 0;
+  color: #00c896;
+}
+
+.activite-detail {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 14px;
+  color: #bbb;
+}
+
+.session-card {
+  background: #1e1e1e;
+  margin: 12px 8px;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  ion-thumbnail {
+    border-radius: 12px;
+    width: 60px;
+    height: 60px;
+    background: #333;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .time {
+    font-weight: bold;
+    background: #00c896;
+    color: black;
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+  }
+
+  .title {
+    font-size: 1em;
+    font-weight: 600;
+  }
+
+  .trainer {
+    font-size: 0.85em;
+    color: #999;
+  }
+
+  .trainer.canceled {
+    color: red;
+    font-weight: bold;
+  }
+
+  .room {
+    font-size: 0.85em;
+    color: #888;
+  }
+}
