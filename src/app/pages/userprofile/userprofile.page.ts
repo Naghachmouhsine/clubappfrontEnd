@@ -11,21 +11,13 @@ import { CommonModule } from '@angular/common';  // Importez CommonModule pour l
 })
 export class UserprofilePage implements OnInit {
 
-  user = {
-    name: 'John Smith',
-    email: 'test@gmail.com',
-    phone: '987 654 3210',
-    skills: [
-      { name: 'Web Applications', percentage: 85 },
-      { name: 'Website Design', percentage: 78 },
-      { name: 'Automation & Testing', percentage: 47 },
-      { name: 'UI/UX', percentage: 65 }
-    ]
-  };
-
-  constructor() { }
+ user: any = {};
 
   ngOnInit() {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      this.user = JSON.parse(userData);
+    }
   }
 
 }

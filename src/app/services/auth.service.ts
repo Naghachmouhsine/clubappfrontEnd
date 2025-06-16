@@ -7,6 +7,10 @@ interface LoginResponse {
   user: {
     id: number;
     email: string;
+    role: string;
+    nom: string;
+    prenom: string;
+    telephone: string;
   };
 }
 

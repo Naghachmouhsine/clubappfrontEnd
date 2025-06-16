@@ -1,40 +1,74 @@
 <ion-app>
   <!-- Menu latéral -->
   <ion-menu contentId="main-content" type="reveal">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Fes Country Club</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Fes Country Club</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-  <ion-content class="ion-padding">
-    <ion-list>
+    <ion-content class="ion-padding">
+      <ion-list>
 
-      <ion-item (click)="navigateTo('/home')">Home</ion-item>
+        <ion-item button (click)="navigateTo('/home')">
+          <ion-icon name="home-outline" slot="start"></ion-icon>
+          <ion-label class="ion-margin" >Accueil</ion-label>
+        </ion-item>
 
-      <!-- DASHBOARD avec sous-menu -->
-      <ion-item button (click)="toggleDashboardSubmenu()">
-        <ion-label>Dashboard</ion-label>
-        <ion-icon [name]="isDashboardOpen ? 'chevron-up-outline' : 'chevron-down-outline'" slot="end"></ion-icon>
-      </ion-item>
+        <!-- DASHBOARD avec sous-menu -->
+        <ion-item button (click)="toggleDashboardSubmenu()">
+          <ion-icon name="grid-outline" slot="start"></ion-icon>
+          <ion-label class="ion-margin" >Dashboard</ion-label>
+          <ion-icon [name]="isDashboardOpen ? 'chevron-up-outline' : 'chevron-down-outline'" slot="end"></ion-icon>
+        </ion-item>
 
-      <ion-list *ngIf="isDashboardOpen" class="submenu">
-        <ion-item lines="none" (click)="navigateTo('/dashboard/utilisateur')">Dashboard Utilisateur</ion-item>
-        <ion-item lines="none" (click)="navigateTo('/dashboard/activites')">Activités</ion-item>
-        <ion-item lines="none" (click)="navigateTo('/dashboard/reservations')">Réservations</ion-item>
-        <ion-item lines="none" (click)="navigateTo('/dashboard/installation')">Installation</ion-item>
-        <ion-item lines="none" (click)="navigateTo('/dashboard/creneaux')">Creneaux</ion-item>
+        <ion-list *ngIf="isDashboardOpen" class="submenu">
+          <ion-item lines="none" button (click)="navigateTo('/dashboard/utilisateur')">
+            <ion-icon name="people-outline" slot="start"></ion-icon>
+            <ion-label  class="ion-margin" >Utilisateurs</ion-label>
+          </ion-item>
+          <ion-item lines="none" button (click)="navigateTo('/dashboard/activites')">
+            <ion-icon name="bicycle-outline" slot="start"></ion-icon>
+            <ion-label   class="ion-margin" >Activités</ion-label>
+          </ion-item>
+          <ion-item lines="none" button (click)="navigateTo('/dashboard/reservations')">
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-label   class="ion-margin">Réservations</ion-label>
+          </ion-item>
+          <ion-item lines="none" button (click)="navigateTo('/dashboard/installation')">
+            <ion-icon name="business-outline" slot="start"></ion-icon>
+            <ion-label  class="ion-margin" >Installations</ion-label>
+          </ion-item>
+          <ion-item lines="none" button (click)="navigateTo('/dashboard/creneaux')">
+            <ion-icon name="time-outline" slot="start"></ion-icon>
+            <ion-label  class="ion-margin" >Créneaux</ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ion-item button (click)="navigateTo('/reservation/home')">
+          <ion-icon name="clipboard-outline" slot="start"></ion-icon>
+          <ion-label  class="ion-margin" >Réservation</ion-label>
+        </ion-item>
+
+        <ion-item button (click)="navigateTo('/contact')">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-label  class="ion-margin" >Contact</ion-label>
+        </ion-item>
+
+        <ion-item button (click)="navigateTo('/userprofile')">
+          <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+          <ion-label   class="ion-margin" >Profil Utilisateur</ion-label>
+        </ion-item>
+
+        <ion-item button (click)="navigateTo('/login')">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          <ion-label  class="ion-margin" >Se déconnecter</ion-label>
+        </ion-item>
+
       </ion-list>
+    </ion-content>
+  </ion-menu>
 
-      <ion-item (click)="navigateTo('/reservation/home')">Reservation</ion-item>
-      <!-- Autres liens -->
-      <ion-item (click)="navigateTo('/contact')">Contact</ion-item>
-
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-
-  <!-- Contenu principal de l'application -->
+  <!-- Contenu principal -->
   <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

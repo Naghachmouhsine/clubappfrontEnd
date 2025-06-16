@@ -7,7 +7,7 @@ ion-avatar {
   ion-menu {
     z-index: 1;
   }
-  
+
 
   /* Lorsqu'un menu est ouvert, le contenu principal doit se déplacer */
 ion-menu[contentId="main-content"]:opened ~ #main-content {
@@ -24,4 +24,16 @@ ion-menu[contentId="main-content"]:opened ~ #main-content {
   padding-left: 16px;
   background: #f8f8f8;
   border-left: 2px solid #3880ff;
+}
+
+ion-button ion-icon {
+  margin-right: 5px;
+}
+
+ion-item ion-icon[slot="start"] {
+  margin-right: 10px;
+}
+
+ion-item ion-icon[slot="end"] {
+  margin-left: 10px;
 }

@@ -16,6 +16,7 @@ import { ConfirmationRPage } from './pages/reservation/confirmation-r/confirmati
 import { HomeRPage } from './pages/reservation/home-r/home-r.page';
 import { ReservationDatePage } from './pages/reservation/reservation-date/reservation-date.page';
 import { ReservationComponent } from './pages/dashboard/reservation/reservation.component';
+import { AuthGuard } from './services/authgard.service';
 
 export const routes: Routes = [
   {
@@ -47,41 +48,54 @@ export const routes: Routes = [
   {
     path: 'userprofile',
     component:UserprofilePage,
+    canActivate: [AuthGuard],
   },
-  
   {
     path: 'dashboard/activites',  
     component:ActivitesPage,
+    canActivate: [AuthGuard],
   },
   
   {
     path: 'dashboard/utilisateur',
     component:UtilisateurPage,
+    canActivate: [AuthGuard],
+
   },
   {
     path: 'dashboard/reservations',
-    component:ReservationComponent
+    component:ReservationComponent,
+    canActivate: [AuthGuard],
+
   },
   {
     path: 'dashboard/installation',
     component:InstallationPage,
+    canActivate: [AuthGuard],
+
   },
   {
     path: 'dashboard/creneaux',
     component:CreneauxPage,
+    canActivate: [AuthGuard],
   },
   // Reservations : 
   {
     path: 'reservation/activite',
     component:ActiviteRPage,
+    canActivate: [AuthGuard],
+
   },
   {
     path: 'reservation/date',
     component:DateRPage,
+    canActivate: [AuthGuard],
+
   },
   {
     path: 'reservation/creneau',
     component:CreneauRPage,
+    canActivate: [AuthGuard],
   },
   {
     path: 'reservation/confirmation',

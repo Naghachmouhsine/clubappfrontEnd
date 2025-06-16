@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   ToastController,
   MenuController
@@ -23,16 +23,32 @@ import { HttpClientModule } from '@angular/common/http'; // <-- pour l'import
 export class LoginPage {
   email: string = '';
   password: string = '';
-
+  messageAuthRequire: string = ''; // Message d'erreur pour l'authentification requise
+  to="home" // Variable pour stocker l'URL de redirection après la connexion (par défaut 'home')
   constructor(
     private router: Router,
     private menuCtrl: MenuController,
     private toastController: ToastController,
-    private authService: AuthService
+    private authService: AuthService,
+    private route:ActivatedRoute
   ) {}
+
+
+    ionViewDidEnter() {
+      console.log('ionViewDidEnter LoginPage');
+      this.route.queryParams.subscribe(params => {
+        console.log('Query Params:', params);
+        if (params['error'] === 'auth_required') {
+          this.presentToast(params["message"], 'danger', 6000);
+          this.to= params['to'] || 'home';
+        }
+      });
+    }
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
+
+
   }
 
   async onLogin() {
@@ -47,8 +63,11 @@ export class LoginPage {
       if (response && response.token) {
         // Stocker le token dans le localStorage
         localStorage.setItem('token', response.token);
+        if (response.user) {
+          localStorage.setItem('user', JSON.stringify(response.user));
+        }
         await this.presentToast('Connexion réussie', 'success');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/'+this.to]);
       } else {
         await this.presentToast('Réponse invalide du serveur', 'danger');
       }
@@ -60,10 +79,10 @@ export class LoginPage {
   }
   
 
-  private async presentToast(message: string, color: 'success' | 'danger') {
+  private async presentToast(message: string, color: 'success' | 'danger',duration: number = 2000) {
     const toast = await this.toastController.create({
       message,
-      duration: 2000,
+      duration: duration,
       color,
       position: 'top',
     });
