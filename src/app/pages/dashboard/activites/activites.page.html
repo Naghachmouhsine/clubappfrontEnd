@@ -1,13 +1,50 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>activites</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-padding">Dashboard - Activités</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">activites</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-padding">Liste des activités</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button class="ion-margin" expand="block" color="success" (click)="addActivite()">
+        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+        Ajouter une activité
+      </ion-button>
+
+      <ion-grid>
+        <ion-row class="ion-text-center ion-padding" style="font-weight: bold;">
+          <ion-col>Titre</ion-col>
+          <ion-col>Description</ion-col>
+          <ion-col>Type</ion-col>
+          <ion-col>Coach Assigné</ion-col>
+          <ion-col>Actions</ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let activite of activites" class="ion-text-center activites-row">
+          <ion-col class="activites-cell">{{ activite.titre }}</ion-col>
+          <ion-col class="activites-cell">{{ activite.description }}</ion-col>
+          <ion-col class="activites-cell">{{ activite.type }}</ion-col>
+          <ion-col class="activites-cell">{{ activite.coach_assigne }}</ion-col>
+          
+          <ion-col>
+            <ion-button fill="clear" color="primary" (click)="detailActivite(activite.id)">
+              <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+
+            <ion-button fill="clear" color="warning" (click)="editActivite(activite.id)">
+              <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+
+            <ion-button fill="clear" color="danger" (click)="deleteActivite(activite.id)">
+              <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
