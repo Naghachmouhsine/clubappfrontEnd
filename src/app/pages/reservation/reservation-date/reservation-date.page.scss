@@ -24,46 +24,90 @@
   }
 }
 
+// .date-carousel {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 8px;
+//   padding: 12px;
+//   background: #1e1e1e;
+//   border-radius: 10px;
+//   overflow-x: auto;
+//   margin-bottom: 10px;
+
+//   .date-list {
+//     display: flex;
+//     justify-content: center;
+//     flex: 1;
+//     gap: 12px;
+//   }
+
+//   .date-item {
+//     background: #2a2a2a;
+//     color: #ccc;
+//     padding: 10px 8px;
+//     border-radius: 10px;
+//     min-width: 55px;
+//     text-align: center;
+//     cursor: pointer;
+//     transition: background 0.3s ease, color 0.3s ease;
+//   }
+
+//   .date-item.active {
+//     background: #00c896;
+//     color: #000;
+//   }
+
+//   .day {
+//     font-size: 1em;
+//   }
+
+//   .weekday {
+//     font-size: 0.75em;
+//     color: #aaa;
+//   }
+// }
+
+
 .date-carousel {
   display: flex;
   align-items: center;
-  padding: 12px;
-  background: #1e1e1e;
-  border-radius: 10px;
-  overflow-x: auto;
-  margin-bottom: 10px;
-
-  .date-list {
-    display: flex;
-    flex: 1;
-    gap: 12px;
-  }
-
-  .date-item {
-    background: #2a2a2a;
-    color: #ccc;
-    padding: 10px 8px;
-    border-radius: 10px;
-    min-width: 55px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-
-  .date-item.active {
-    background: #00c896;
-    color: #000;
-  }
-
-  .day {
-    font-size: 1em;
-  }
-
-  .weekday {
-    font-size: 0.75em;
-    color: #aaa;
-  }
+  justify-content: center;
+  gap: 8px; /* petit espacement entre les éléments */
+  margin: 16px 0;
 }
+
+.date-list {
+  display: flex;
+  gap: 4px; /* espace entre les dates */
+  overflow-x: auto;
+  padding: 0 8px;
+}
+
+.date-item {
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.date-item.active {
+  background-color: #00c896; /* couleur principale Ionic */
+  color: white;
+}
+
+.day, .weekday {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+ion-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
 
 .subtitle {
   text-align: center;
@@ -106,7 +150,7 @@
   .time {
     font-weight: bold;
     background: #00c896;
-    color: black;
+    color: rgb(247, 243, 243);
     display: inline-block;
     padding: 3px 8px;
     border-radius: 4px;
@@ -134,3 +178,35 @@
     color: #888;
   }
 }
+
+.css-modal {
+  --width: 50%;
+  --max-width: 400px;
+  --height: auto;
+  --border-radius: 16px;
+  --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  align-self: center;
+  justify-self: center;
+}
+
+.instruction-text {
+  text-align: center;
+  color: #00c896;
+  font-weight: 500;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.session-card {
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: 8px;
+}
+
+.session-card:hover {
+  background-color: #00c896;
+}
+

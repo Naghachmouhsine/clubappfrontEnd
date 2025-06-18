@@ -48,4 +48,11 @@ export class ReservationCService {
   getCreneauxDisponibles(activite: string, date: string): Observable<any[]> {
     return this.http.get<any[]>(`http://localhost:3000/api/creneaux?activite=${activite}&date=${date}`);
   }
+  getCreneauxDisponiblesByActivite(activite: string): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:3000/api/creneaux?activite=${activite}`);
+  }
+  reserver(reservation: any): Observable<{ message: string; id: number }> {
+    console.log(reservation)
+    return this.http.post<{ message: string; id: number }>('http://localhost:3000/api/reservations', reservation);
+  }
 }

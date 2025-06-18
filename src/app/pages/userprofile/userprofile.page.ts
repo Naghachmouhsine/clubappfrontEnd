@@ -18,6 +18,7 @@ export class UserprofilePage implements OnInit {
     if (userData) {
       this.user = JSON.parse(userData);
     }
+    console.log(this.user)
   }
 
 }

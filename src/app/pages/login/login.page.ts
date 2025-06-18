@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   ToastController,
@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedIonicModule } from '../../shared/shared-ionic.module';
 import { AuthService } from '../../services/auth.service'; // <-- importer le service
 import { HttpClientModule } from '@angular/common/http'; // <-- pour l'import
+import {  ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http'; // <-- pour l'import
   styleUrls: ['./login.page.scss']
 })
 export class LoginPage {
+  isModal=false;//true dans le cas d'afficher comme modal
+  msg="" // message sera afficher lorsque  adherant diot reserver
   email: string = '';
   password: string = '';
   messageAuthRequire: string = ''; // Message d'erreur pour l'authentification requise
@@ -30,11 +33,16 @@ export class LoginPage {
     private menuCtrl: MenuController,
     private toastController: ToastController,
     private authService: AuthService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private modalCntrl:ModalController
   ) {}
 
-
+  async close() {
+    await this.modalCntrl.dismiss();
+  }
     ionViewDidEnter() {
+      if(this.isModal)
+        this.msg="pour reserver un creneaux"
       console.log('ionViewDidEnter LoginPage');
       this.route.queryParams.subscribe(params => {
         console.log('Query Params:', params);
@@ -47,8 +55,6 @@ export class LoginPage {
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
-
-
   }
 
   async onLogin() {
@@ -67,7 +73,10 @@ export class LoginPage {
           localStorage.setItem('user', JSON.stringify(response.user));
         }
         await this.presentToast('Connexion réussie', 'success');
-        this.router.navigate(['/'+this.to]);
+        if(!this.isModal)
+          this.router.navigate(['/'+this.to]);
+        else
+          this.modalCntrl.dismiss({user : response.user,loginValide:true})
       } else {
         await this.presentToast('Réponse invalide du serveur', 'danger');
       }
