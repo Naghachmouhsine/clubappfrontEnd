@@ -3,7 +3,7 @@
   <ion-menu contentId="main-content" type="reveal">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Fes Country Club</ion-title>
+        <ion-title class="ion-padding" >Fes Country Club</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -53,16 +53,6 @@
         <ion-item button (click)="navigateTo('/contact')">
           <ion-icon name="mail-outline" slot="start"></ion-icon>
           <ion-label  class="ion-margin" >Contact</ion-label>
-        </ion-item>
-
-        <ion-item button (click)="navigateTo('/userprofile')">
-          <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-          <ion-label   class="ion-margin" >Profil Utilisateur</ion-label>
-        </ion-item>
-
-        <ion-item button (click)="navigateTo('/login')">
-          <ion-icon name="log-out-outline" slot="start"></ion-icon>
-          <ion-label  class="ion-margin" >Se déconnecter</ion-label>
         </ion-item>
 
       </ion-list>

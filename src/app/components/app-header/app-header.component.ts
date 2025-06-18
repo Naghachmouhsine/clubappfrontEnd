@@ -1,6 +1,7 @@
 
 import { IonicModule, MenuController } from '@ionic/angular'; // 👈 Import IonicModule
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +11,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app-header.component.scss'],
 })
 export class AppHeaderComponent {
-
-  constructor(private menuCtrl: MenuController) {} // Injection de MenuController
+  @Input() nomPage='Home'
+  constructor(private menuCtrl: MenuController,private route:Router) {} // Injection de MenuController
 
   toggleMenu() {
     this.menuCtrl.toggle(); // Ouvre ou ferme le menu
+  }
+
+  profile(){
+    this.route.navigate(['/userprofile'])
+  }
+  logout(){
+     localStorage.removeItem('token');
+     localStorage.removeItem("user");
+     this.route.navigate(["/login"])
   }
 }

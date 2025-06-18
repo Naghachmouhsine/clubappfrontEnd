@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-padding">
+       <!-- {{ mode === 'add' ? 'Ajouter une activité' : (mode === 'edit' ? 'Éditer une activité' : 'Détails') }} -->
+      Nombre d'installations à réserver
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Annuler</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="nbrForm" (ngSubmit)="submit()">
+    <ion-item>
+      <ion-label position="floating">Nombre d'installations à réserver</ion-label>
+      <ion-input
+        type="number"
+        min="1"
+        formControlName="nombre_installations"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-button  type="submit"  class="ion-margin" [disabled]="nbrForm.invalid">
+      <!-- {{ mode === 'add' ? 'Ajouter' : 'Modifier' }} -->
+        Reserver
+    </ion-button>
+  </form>
+</ion-content>

@@ -35,3 +35,12 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+
+.custom-modal-size .modal-wrapper {
+  width: 90%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+  background-color: aliceblue;
+}

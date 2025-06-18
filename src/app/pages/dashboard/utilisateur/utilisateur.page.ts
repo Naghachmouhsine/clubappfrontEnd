@@ -4,6 +4,7 @@ import { AlertController, ToastController, IonicModule, ModalController } from '
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserModalComponent } from 'src/app/modals/user-modal/user-modal.component';
+import { AppHeaderComponent } from "../../../components/app-header/app-header.component";
 
 @Component({
   selector: 'app-utilisateur',
@@ -13,8 +14,9 @@ import { UserModalComponent } from 'src/app/modals/user-modal/user-modal.compone
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
-  ]
+    IonicModule,
+    AppHeaderComponent
+]
 })
 export class UtilisateurPage implements OnInit {
 

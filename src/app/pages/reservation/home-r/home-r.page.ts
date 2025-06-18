@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ReservationCService } from 'src/app/services/reservation-c.service';
 
 import { IonicModule } from '@ionic/angular';
+import { AppHeaderComponent } from 'src/app/components/app-header/app-header.component';
 
 @Component({
   selector: 'app-home-r',
@@ -15,7 +16,7 @@ import { IonicModule } from '@ionic/angular';
     CommonModule,
     FormsModule,
     IonicModule,
-
+    AppHeaderComponent
   ]
 })
 export class HomeRPage implements OnInit {

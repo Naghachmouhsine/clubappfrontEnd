@@ -210,3 +210,10 @@ ion-icon {
   background-color: #00c896;
 }
 
+::ng-deep .custom-modal-size .modal-wrapper {
+  width: 90%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+  background-color: #fff;
+}

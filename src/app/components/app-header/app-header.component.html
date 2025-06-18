@@ -1,10 +1,26 @@
-<ion-toolbar>
+<ion-toolbar  color="success" >
+  <!-- Bouton menu à gauche -->
   <ion-buttons slot="start">
-    <ion-button (click)="toggleMenu()"> <!-- Bouton pour ouvrir le menu -->
-      <ion-icon slot="icon-only" name="menu-outline"></ion-icon> <!-- Icône du menu -->
+    <ion-button (click)="toggleMenu()">
+      <ion-icon slot="icon-only" name="menu-outline" color="light"></ion-icon>
     </ion-button>
   </ion-buttons>
-  <ion-title>
-    <ng-content></ng-content> <!-- Le contenu dynamique du titre -->
+
+  <!-- Titre centré -->
+  <ion-title class="ion-text-start" style="color: aliceblue;">
+    {{nomPage}}
   </ion-title>
+
+  <!-- Boutons à droite -->
+  <ion-buttons slot="end">
+    <!-- Profil -->
+    <ion-button (click)="profile()">
+      <ion-icon name="person-circle-outline" slot="icon-only" color="light"></ion-icon>
+    </ion-button>
+
+    <!-- Déconnexion -->
+    <ion-button (click)="logout()">
+      <ion-icon name="log-out-outline" slot="icon-only" color="light"></ion-icon>
+    </ion-button>
+  </ion-buttons>
 </ion-toolbar>

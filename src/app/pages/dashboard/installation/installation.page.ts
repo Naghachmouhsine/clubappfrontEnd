@@ -4,6 +4,7 @@ import { AlertController, ToastController, ModalController, IonicModule } from '
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InstallationModalComponent } from 'src/app/modals/installation-modal/installation-modal.component';
+import { AppHeaderComponent } from "../../../components/app-header/app-header.component";
 
 @Component({
   selector: 'app-installation',
@@ -13,8 +14,9 @@ import { InstallationModalComponent } from 'src/app/modals/installation-modal/in
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
-  ]
+    IonicModule,
+    AppHeaderComponent
+]
 })
 export class InstallationPage implements OnInit {
 

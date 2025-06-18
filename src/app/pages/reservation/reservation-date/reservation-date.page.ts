@@ -6,12 +6,14 @@ import { ModalController } from '@ionic/angular';
 import { ReservationCService, ReservationData } from 'src/app/services/reservation-c.service';
 import {ToastController} from '@ionic/angular';
 import { LoginPage } from '../../login/login.page';
+import { NbrInstallationModalComponent } from 'src/app/modals/nbr-installation-modal/nbr-installation-modal.component';
+import { AppHeaderComponent } from "../../../components/app-header/app-header.component";
 @Component({
   selector: 'app-reservation-date',
   templateUrl: './reservation-date.page.html',
   styleUrls: ['./reservation-date.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, AppHeaderComponent]
 })
 export class ReservationDatePage implements OnInit {
 
@@ -76,8 +78,31 @@ export class ReservationDatePage implements OnInit {
     this.selectDate(this.weekDates[0]);
   }
 
+  async opemModalNbrInstallation(reservation:any){
+      const modal = await this.modal.create({
+      component: NbrInstallationModalComponent,
+      componentProps : {nbrMax:reservation.nbr},
+      cssClass: 'custom-modal-size'
+    });
+    modal.onDidDismiss().then((result) => {
+      console.log(result)
+      if (result.data) {
+          const token = localStorage.getItem('token');
+          const user = JSON.parse(localStorage.getItem('user') || '{}');
+          console.log(user)
+          if(!token) // verfier si l'adherant est connecté
+            this.loginModal(reservation,result.data.nombre_installations)
+          else // adhrerant deja connecter
+            this.reserver(reservation,user.id,result.data.nombre_installations)
 
-   async openConfirmationModal(reservation: any) { // doit faire la connexion pour reserver
+      }
+    });
+    return await modal.present();
+  }
+
+   async loginModal(reservation: any,nbrDinstallation:number) { // doit faire la connexion pour reserver
+    
+    
     const modal = await this.modal.create({
       component: LoginPage,
       componentProps : {isModal:true}      
@@ -85,7 +110,7 @@ export class ReservationDatePage implements OnInit {
     modal.onDidDismiss().then((result) => {
       console.log(result)
       if (result.data && result.data.loginValide) {
-        this.reserver(reservation,result.data.user.id)
+        this.reserver(reservation,result.data.user.id,nbrDinstallation)
       }
     });
     return await modal.present();
@@ -149,10 +174,10 @@ export class ReservationDatePage implements OnInit {
   }
 
 
-  reserver(session: any,adherantId:number) {
+  reserver(session: any,adherantId:number,nbrDinstallation:number) {
     const reservation = {
       "id_installation" : session.id_installation,
-      "nbr_installation_reserver" : session.nbr-2,//modification nombre d'installation apres reservation
+      "nbr_installation_reserver" : session.nbr-nbrDinstallation,//modification nombre d'installation apres reservation
       "id_utilisateur": adherantId, //doit remplacer par id user authentifier
       "id_creneau": session.id,
       "statut": "en attente"  // par defaut en attente

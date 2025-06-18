@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedIonicModule } from 'src/app/shared/shared-ionic.module';
 import { ModalController } from '@ionic/angular';
 import { ActiviteModalComponent } from 'src/app/modals/activite-modal/activite-modal.component';
+import { AppHeaderComponent } from "../../../components/app-header/app-header.component";
 interface Activite {
   id: number;
   titre: string;
@@ -13,7 +14,7 @@ interface Activite {
 
 @Component({
   selector: 'app-activites',
-  imports: [CommonModule, SharedIonicModule],
+  imports: [CommonModule, SharedIonicModule, AppHeaderComponent],
   templateUrl: './activites.page.html',
   styleUrls: ['./activites.page.scss'],
 })
