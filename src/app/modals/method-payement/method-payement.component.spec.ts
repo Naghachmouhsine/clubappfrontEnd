@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { InformationReservationModalComponent } from './information-reservation-modal.component';
+import { MethodPayementComponent } from './method-payement.component';
 
-describe('NbrInstallationModalComponent', () => {
-  let component: InformationReservationModalComponent;
-  let fixture: ComponentFixture<InformationReservationModalComponent>;
+describe('MethodPayementComponent', () => {
+  let component: MethodPayementComponent;
+  let fixture: ComponentFixture<MethodPayementComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ InformationReservationModalComponent ],
+      declarations: [ MethodPayementComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(InformationReservationModalComponent);
+    fixture = TestBed.createComponent(MethodPayementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

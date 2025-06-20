@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -31,7 +32,8 @@ export class AuthGuard implements CanActivate {
 
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-
+    console.log(token)
+    console.log(user)
     if (!token) {
       this.router.navigate(['/login'],
           { queryParams: { error: 'auth_required',message:"Vous devez être connecté pour accéder" } }
@@ -40,19 +42,21 @@ export class AuthGuard implements CanActivate {
     }
 
     //route actuelle
-    const currentPath = state.url.startsWith('/') ? state.url.slice(1) : state.url;
+    const curentPath = state.url.startsWith('/') ? state.url.slice(1) : state.url;
+    const cleanPath = state.url.split('?')[0].replace(/^\/+/, ''); //supprimer les parametres de route
 
     // les rôles autorisés pour la route actuelle
-    const roles = this.routes_roles[currentPath];
+    const roles = this.routes_roles[cleanPath];
 
-    console.log('Current Path:', currentPath);
+    console.log('Current Path:', curentPath);
     console.log('User Role:', user); 
     console.log('Required Roles:', roles);
+    console.log(cleanPath)
     if (roles && user && user.role && roles.includes(user.role)) {
       return true;
     } else {
       this.router.navigate(['/login'],
-        { queryParams: { error: 'auth_required',message: "Vous n'avez pas accès à cette page",to:currentPath} }
+        { queryParams: { error: 'auth_required',message: "Vous n'avez pas accès à cette page",to:curentPath} }
       );
       return false;
     }

@@ -43,7 +43,10 @@ activites = [
 
   choisirActivite(a: any) {
     this.reservationService.setReservation('activite', a.nom);
-    this.router.navigateByUrl('/reservation/reservation-date');
+    // this.router.navigateByUrl('/reservation/reservation-date',);
+    this.router.navigate(['/reservation/reservation-date'],
+      {queryParams : {"activiter" : a.nom } }
+    )
 
   }
 }

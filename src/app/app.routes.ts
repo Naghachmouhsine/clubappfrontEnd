@@ -109,6 +109,11 @@ export const routes: Routes = [
   {
     path: 'reservation/reservation-date',
     component:ReservationDatePage,
-    //loadComponent: () => import('./pages/reservation/reservation-date/reservation-date.page').then( m => m.ReservationDatePage)
+    canActivate : [AuthGuard]
   },
+  {
+    path : 'resultPayement',
+    component : ReservationDatePage,
+  }
+
 ];

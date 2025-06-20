@@ -1,0 +1,38 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title class="ion-padding" >Choisissez votre méthode de paiement </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-radio-group [(ngModel)]="methode">
+      <ion-item>
+        <ion-label class="ion-margin">Stripe</ion-label>
+        <ion-radio slot="start" value="stripe"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="ion-margin">PayPal</ion-label>
+        <ion-radio slot="start" value="paypal"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="ion-margin">CMI</ion-label>
+        <ion-radio slot="start" value="cmi"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="ion-margin">Cache</ion-label>
+        <ion-radio slot="start" value="cache"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+<ion-card-content>
+  <div style="display: flex; flex-direction: row; gap: 10px;">
+    <ion-button expand="full" (click)="close(true)">
+      Confirmer Paiement
+    </ion-button>
+    <ion-button expand="full" color="medium" (click)="close(false)">
+      Annuler
+    </ion-button>
+  </div>
+</ion-card-content>
+
+
+
+  </ion-card-content>
+</ion-card>

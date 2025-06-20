@@ -8,10 +8,10 @@ import { SharedIonicModule } from 'src/app/shared/shared-ionic.module';
   selector: 'app-nbr-installation-modal',
   standalone: true,
   imports: [CommonModule, IonicModule, SharedIonicModule,FormsModule,ReactiveFormsModule],
-  templateUrl: './nbr-installation-modal.component.html',
-  styleUrls: ['./nbr-installation-modal.component.scss'],
+  templateUrl: './information-reservation-modal.component.html',
+  styleUrls: ['./information-reservation-modal.component..scss'],
 })
-export class NbrInstallationModalComponent implements OnInit {
+export class InformationReservationModalComponent implements OnInit {
   // @Input() mode = 'add';
   @Input() nbrMax=20;// nombre maximale qui doit user ne pas depaaser
 

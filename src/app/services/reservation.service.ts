@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
+import { loadStripe } from '@stripe/stripe-js';
 
 export interface Reservation {
   id: number;
@@ -36,8 +37,15 @@ export class ReservationService {
   update(id: number, data: Reservation) : Observable<Reservation[]> {
     return this.http.put<Reservation[]>(`${this.apiUrl}/${id}`, data);
   }
-
   delete(id: number) {
     return firstValueFrom(this.http.delete(`${this.apiUrl}/${id}`));
+  }
+  async checkout() {
+    const stripe = await loadStripe('pk_test_51RbpAT01dh9aAuAOVBYaFOAre88uGrhqLCIivOCjR3s4SVkYW7foe8gIJsN9G82LtIlmoLUj1C3Qa5Fm5ugGXK3c001ntOZj4j');
+
+    this.http.post<{ id: string }>('http://localhost:3000/payementStrip', {montant : 200,infoReservatio:'test'})
+      .subscribe(async (res) => {
+        await stripe?.redirectToCheckout({ sessionId: res.id });
+      });
   }
 }

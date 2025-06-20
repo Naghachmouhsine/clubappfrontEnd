@@ -4,10 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { ReservationCService, ReservationData } from 'src/app/services/reservation-c.service';
-import {ToastController} from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { LoginPage } from '../../login/login.page';
-import { NbrInstallationModalComponent } from 'src/app/modals/nbr-installation-modal/nbr-installation-modal.component';
+import { InformationReservationModalComponent } from 'src/app/modals/nbr-installation-modal/information-reservation-modal.component';
 import { AppHeaderComponent } from "../../../components/app-header/app-header.component";
+import { loadStripe } from '@stripe/stripe-js';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MethodPayementComponent } from 'src/app/modals/method-payement/method-payement.component';
 @Component({
   selector: 'app-reservation-date',
   templateUrl: './reservation-date.page.html',
@@ -33,17 +37,39 @@ export class ReservationDatePage implements OnInit {
   loading = false;
 
   constructor(private reservationService: ReservationCService,
-              private modal: ModalController,
-              private toastController: ToastController,
-
+    private modal: ModalController,
+    private toastController: ToastController,
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    // Swal.fire('Test Swal fonctionne ?');
-    this.reservation = this.reservationService.getReservation();
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    console.log(token)
+    console.log(user)
+    this.route.queryParams.subscribe(params => {
+      const status = params['status'];
+    if(params['status']){
+      if (status === 'success') {
+        this.presentToast("Votre paiement a été enregistré avec succès.", "success");
+      } else if (status === 'cancel') {
+        this.presentToast("Le paiement a été annulé par l'utilisateur.", "danger");
+      } else {
+        this.presentToast("Statut de paiement inconnu. Veuillez réessayer.", "danger");
+      }
+    }if(params["activiter"]){
+      this.reservation.activite=params["activiter"]
+    }
+    });
+
+
+    // this.reservation = this.reservationService.getReservation();
     this.generateWeekDates();
     // this.loadSessionsForDate(this.selectedDate);
     this.loadSession(); //charger tout les creneaux disponible pour un ativites 
+
   }
 
   generateWeekDates() {
@@ -78,45 +104,76 @@ export class ReservationDatePage implements OnInit {
     this.selectDate(this.weekDates[0]);
   }
 
-  async opemModalNbrInstallation(reservation:any){
-      const modal = await this.modal.create({
-      component: NbrInstallationModalComponent,
-      componentProps : {nbrMax:reservation.nbr},
+  async stripPayement() {
+    const stripe = await loadStripe('pk_test_51RbpAT01dh9aAuAOVBYaFOAre88uGrhqLCIivOCjR3s4SVkYW7foe8gIJsN9G82LtIlmoLUj1C3Qa5Fm5ugGXK3c001ntOZj4j');
+
+    this.http.post<{ id: string }>('http://localhost:3000/api/payementStrip', { montant: 200, infoReservation: 'test' })
+      .subscribe(async (res) => {
+        await stripe?.redirectToCheckout({ sessionId: res.id.toString() });
+      });
+  }
+
+  async openModalPyement(){
+    const modal = await this.modal.create({
+      component: MethodPayementComponent
+    });
+    modal.onDidDismiss().then((result) => {
+      console.log(result)
+      if(result.data && result.data.isValide){
+    
+          if (result.data.method=== 'stripe') {
+            this.stripPayement()
+            
+          } else if (result.data.method === 'paypal') {
+           
+          } else if (result.data.method=== 'cmi') {
+           
+          }
+      }
+
+    });
+    return await modal.present();
+  }
+
+  async opemModalInformationReservation(reservation: any) {
+    const modal = await this.modal.create({
+      component: InformationReservationModalComponent,
+      componentProps: { nbrMax: reservation.nbr },
       cssClass: 'custom-modal-size'
     });
     modal.onDidDismiss().then((result) => {
       console.log(result)
       if (result.data) {
-          const token = localStorage.getItem('token');
-          const user = JSON.parse(localStorage.getItem('user') || '{}');
-          console.log(user)
-          if(!token) // verfier si l'adherant est connecté
-            this.loginModal(reservation,result.data.nombre_installations)
-          else // adhrerant deja connecter
-            this.reserver(reservation,user.id,result.data.nombre_installations)
-
+        const token = localStorage.getItem('token');
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        console.log(user)
+        this.openModalPyement()
+        if (!token) // verfier si l'adherant est connecté
+          this.loginModal(reservation, result.data.nombre_installations)
+        else // adhrerant deja connecter
+          this.reserver(reservation, user.id, result.data.nombre_installations)
       }
     });
     return await modal.present();
   }
 
-   async loginModal(reservation: any,nbrDinstallation:number) { // doit faire la connexion pour reserver
-    
-    
+  async loginModal(reservation: any, nbrDinstallation: number) { // doit faire la connexion pour reserver
+
+
     const modal = await this.modal.create({
       component: LoginPage,
-      componentProps : {isModal:true}      
+      componentProps: { isModal: true }
     });
     modal.onDidDismiss().then((result) => {
       console.log(result)
       if (result.data && result.data.loginValide) {
-        this.reserver(reservation,result.data.user.id,nbrDinstallation)
+        this.reserver(reservation, result.data.user.id, nbrDinstallation)
       }
     });
     return await modal.present();
   }
 
- private async presentToast(message: string, color: 'success' | 'danger') {
+  private async presentToast(message: string, color: 'success' | 'danger') {
     const toast = await this.toastController.create({
       message,
       duration: 2000,
@@ -174,10 +231,10 @@ export class ReservationDatePage implements OnInit {
   }
 
 
-  reserver(session: any,adherantId:number,nbrDinstallation:number) {
+  reserver(session: any, adherantId: number, nbrDinstallation: number) {
     const reservation = {
-      "id_installation" : session.id_installation,
-      "nbr_installation_reserver" : session.nbr-nbrDinstallation,//modification nombre d'installation apres reservation
+      "id_installation": session.id_installation,
+      "nbr_installation_reserver": session.nbr - nbrDinstallation,//modification nombre d'installation apres reservation
       "id_utilisateur": adherantId, //doit remplacer par id user authentifier
       "id_creneau": session.id,
       "statut": "en attente"  // par defaut en attente
@@ -186,13 +243,13 @@ export class ReservationDatePage implements OnInit {
       next: (response) => {
         console.log(response)
         // alert("Votre réservation a été enregistrée.")
-        this.presentToast("Votre réservation a été enregistrée",'success')
+        this.presentToast("Votre réservation a été enregistrée", 'success')
         this.loadSession()
       },
       error: (err) => {
         console.error("Erreur lors de la réservation :", err);
         // alert("La réservation n'a pas pu être effectuée. Veuillez réessayer.")
-        this.presentToast("La réservation n'a pas pu être effectuée. Veuillez réessayer.",'danger')
+        this.presentToast("La réservation n'a pas pu être effectuée. Veuillez réessayer.", 'danger')
 
       }
     });
