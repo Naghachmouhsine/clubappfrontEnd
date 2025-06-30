@@ -1,3 +1,5 @@
+declare var paypal: any;
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -32,7 +34,8 @@ export class ReservationDatePage implements OnInit {
   weekDates: Date[] = [];
   sessions: any[] = []; //tout les crenaux
   sessionsByDate: any[] = []; //les crenaux filitre par date
-
+  token = ""
+  user: any = {}
 
   loading = false;
 
@@ -45,23 +48,33 @@ export class ReservationDatePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    console.log(token)
-    console.log(user)
+
+    this.token = localStorage.getItem('token') || "";
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.route.queryParams.subscribe(params => {
-      const status = params['status'];
-    if(params['status']){
-      if (status === 'success') {
-        this.presentToast("Votre paiement a été enregistré avec succès.", "success");
-      } else if (status === 'cancel') {
-        this.presentToast("Le paiement a été annulé par l'utilisateur.", "danger");
-      } else {
-        this.presentToast("Statut de paiement inconnu. Veuillez réessayer.", "danger");
+      if (params['status']) {
+        const status = params['status'];
+        if(params['idRes']){
+          const idRes=params["idRes"] //idReservation pour modifier etat reservation en confirme si status payement succus
+          let etatReservation="en attente"
+          if (status === 'success') {
+          // this.presentToast("Votre paiement a été enregistré avec succès.", "success");
+          etatReservation="confirmée"
+          this.presentToast("Votre réservation a été enregistrée", 'success')
+           this.reservationService.updateStatus(idRes,etatReservation).subscribe({
+      next: (res) => this.presentToast("Votre réservation a été enregistrée", 'success'),
+      error: err => console.error('Erreur mise à jour statut :', err)
+    });
+        } else if (status === 'cancel') {
+          this.presentToast("Le paiement a été annulé par l'utilisateur.", "danger");
+        } else {
+          this.presentToast("Statut de paiement inconnu. Veuillez réessayer.", "danger");
+        }
+        }
+ 
+      } if (params["activiter"]) {
+        this.reservation.activite = params["activiter"]
       }
-    }if(params["activiter"]){
-      this.reservation.activite=params["activiter"]
-    }
     });
 
 
@@ -71,6 +84,39 @@ export class ReservationDatePage implements OnInit {
     this.loadSession(); //charger tout les creneaux disponible pour un ativites 
 
   }
+
+    async reservervation(session: any) { // processus de reservation cote frontEnd
+    if (!this.token) { // verfier la connextion user
+      const loginResult = await this.loginModal();
+      if (!loginResult || !loginResult.loginValide) return;
+      this.token = loginResult.token;
+      this.user = loginResult.user;
+    }
+
+    const infoResult = await this.openModalConfirmerReservation(session);
+    // if (!infoResult || !infoResult.valid) return;*   
+    const reservation = {
+      "id_installation": session.id_installation,
+      "nbr_installation_reserver": session.nbr - infoResult.nombre_installations,//modification nombre d'installation apres reservation
+      "id_utilisateur": this.user.id,
+      "id_creneau": session.id,
+      "nbr_personn": infoResult.nombre_personne,
+      "statut": "en attente", // par defaut en attente
+      "infoReservation": "reservation test",
+      "activite": this.reservation.activite
+    }
+    const payResult = await this.openModalPyement(); // modal pour choisir user la methode de payement
+    if (payResult) {
+      if (payResult.method === "stripe")
+        this.stripPayement(reservation)
+      if(payResult.method==="paypal")
+        this.paypalePayement(reservation)
+    }
+    if (payResult && payResult.method === 'cache') {
+      this.reserver(reservation)
+    }
+  }
+
 
   generateWeekDates() {
     const today = new Date();
@@ -104,73 +150,116 @@ export class ReservationDatePage implements OnInit {
     this.selectDate(this.weekDates[0]);
   }
 
-  async stripPayement() {
-    const stripe = await loadStripe('pk_test_51RbpAT01dh9aAuAOVBYaFOAre88uGrhqLCIivOCjR3s4SVkYW7foe8gIJsN9G82LtIlmoLUj1C3Qa5Fm5ugGXK3c001ntOZj4j');
 
-    this.http.post<{ id: string }>('http://localhost:3000/api/payementStrip', { montant: 200, infoReservation: 'test' })
-      .subscribe(async (res) => {
-        await stripe?.redirectToCheckout({ sessionId: res.id.toString() });
-      });
+  async stripPayement(reservation:any) {
+    const stripe = await loadStripe('pk_test_51RbpAT01dh9aAuAOVBYaFOAre88uGrhqLCIivOCjR3s4SVkYW7foe8gIJsN9G82LtIlmoLUj1C3Qa5Fm5ugGXK3c001ntOZj4j');
+    this.reserver(reservation, stripe)
   }
 
-  async openModalPyement(){
+async paypalePayement(reservation:any) {
+
+ const amount=12
+ console.log(1)
+  // 1. Créer une commande PayPal via backend
+  const response = await this.http.post<any>('http://localhost:3000/api/create-paypal-order', { amount }).toPromise();
+ console.log(2)
+
+  // 2. Intégrer le bouton PayPal dans le DOM (par exemple via modal ou div dédiée)
+  paypal.Buttons({
+    createOrder: () => {
+      return response.orderID;
+    },
+    onApprove: async (data: any, actions: any) => {
+      // 3. Capturer la commande
+      const capture = await this.http.post<any>('http://localhost:3000/api/capture-paypal-order', {
+        orderID: data.orderID
+      }).toPromise();
+
+      console.log("✅ Paiement capturé :", capture);
+   
+      this.reserver(reservation);
+    },
+    onError: (err: any) => {
+      console.error("❌ Erreur de paiement PayPal :", err);
+    }
+  }).render("#paypal-button-container");
+}
+
+
+  // async openModalPyement(){
+  //   const modal = await this.modal.create({
+  //     component: MethodPayementComponent
+  //   });
+  //   modal.onDidDismiss().then((result) => {
+  //     console.log(result)
+  //     if(result.data && result.data.isValide){
+
+  //         if (result.data.method=== 'stripe') {
+  //           this.stripPayement()
+
+  //         } else if (result.data.method === 'paypal') {
+
+  //         } else if (result.data.method=== 'cmi') {
+
+  //         }else if(result.data.method="cache"){
+
+  //         }
+  //     }
+
+  //   });
+  //   return await modal.present();
+  // }
+
+  // async openModalConfirmerReservation(reservation: any) {
+  //   if (this.token) // verfier si l'adherant est connecté
+  //         this.loginModal()
+  //   const modal = await this.modal.create({
+  //     component: InformationReservationModalComponent,
+  //     componentProps: { nbrMax: reservation.nbr, nombre_personne : reservation.capacite},
+  //     cssClass: 'custom-modal-size'
+  //   });
+  //   modal.onDidDismiss().then((result) => {
+
+  //     if (result.data) {
+
+  //     }
+  //   });
+  //   return await modal.present();
+  // }
+  async openModalPyement(): Promise<any> {
     const modal = await this.modal.create({
       component: MethodPayementComponent
     });
-    modal.onDidDismiss().then((result) => {
-      console.log(result)
-      if(result.data && result.data.isValide){
-    
-          if (result.data.method=== 'stripe') {
-            this.stripPayement()
-            
-          } else if (result.data.method === 'paypal') {
-           
-          } else if (result.data.method=== 'cmi') {
-           
-          }
-      }
 
-    });
-    return await modal.present();
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    return data;
   }
-
-  async opemModalInformationReservation(reservation: any) {
+  async openModalConfirmerReservation(session: any) {
     const modal = await this.modal.create({
       component: InformationReservationModalComponent,
-      componentProps: { nbrMax: reservation.nbr },
+      componentProps: {
+        nbrMax: session.nbr,
+        nombre_personne: session.capacite
+      },
       cssClass: 'custom-modal-size'
     });
-    modal.onDidDismiss().then((result) => {
-      console.log(result)
-      if (result.data) {
-        const token = localStorage.getItem('token');
-        const user = JSON.parse(localStorage.getItem('user') || '{}');
-        console.log(user)
-        this.openModalPyement()
-        if (!token) // verfier si l'adherant est connecté
-          this.loginModal(reservation, result.data.nombre_installations)
-        else // adhrerant deja connecter
-          this.reserver(reservation, user.id, result.data.nombre_installations)
-      }
-    });
-    return await modal.present();
+
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    return data;
   }
 
-  async loginModal(reservation: any, nbrDinstallation: number) { // doit faire la connexion pour reserver
-
-
+ 
+  async loginModal(): Promise<any> {
     const modal = await this.modal.create({
       component: LoginPage,
       componentProps: { isModal: true }
     });
-    modal.onDidDismiss().then((result) => {
-      console.log(result)
-      if (result.data && result.data.loginValide) {
-        this.reserver(reservation, result.data.user.id, nbrDinstallation)
-      }
-    });
-    return await modal.present();
+
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    return data;
   }
 
   private async presentToast(message: string, color: 'success' | 'danger') {
@@ -230,20 +319,20 @@ export class ReservationDatePage implements OnInit {
       });
   }
 
-
-  reserver(session: any, adherantId: number, nbrDinstallation: number) {
-    const reservation = {
-      "id_installation": session.id_installation,
-      "nbr_installation_reserver": session.nbr - nbrDinstallation,//modification nombre d'installation apres reservation
-      "id_utilisateur": adherantId, //doit remplacer par id user authentifier
-      "id_creneau": session.id,
-      "statut": "en attente"  // par defaut en attente
-    }
+  reserver(reservation: any, stripe: any = NaN) {
     this.reservationService.reserver(reservation).subscribe({
       next: (response) => {
         console.log(response)
-        // alert("Votre réservation a été enregistrée.")
-        this.presentToast("Votre réservation a été enregistrée", 'success')
+        reservation.id=response.id
+        console.log(reservation)
+        if (stripe) {
+          this.http.post<{ id: string }>('http://localhost:3000/api/payementStripe', { reservation })
+            .subscribe(async (res) => {
+              await stripe?.redirectToCheckout({ sessionId: res.id.toString() });
+            });
+        }
+        else
+             this.presentToast("Votre réservation a été enregistrée", 'success')
         this.loadSession()
       },
       error: (err) => {
@@ -254,6 +343,7 @@ export class ReservationDatePage implements OnInit {
       }
     });
   }
+
   getIconName(installation: string): string {
     switch (installation.toLowerCase()) {
       case 'foot':

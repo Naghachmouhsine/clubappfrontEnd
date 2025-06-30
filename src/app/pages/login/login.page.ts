@@ -76,7 +76,7 @@ export class LoginPage {
         if(!this.isModal)
           this.router.navigate(['/'+this.to]);
         else
-          this.modalCntrl.dismiss({user : response.user,loginValide:true})
+          this.modalCntrl.dismiss({user : response.user,token : response.token,loginValide:true})
       } else {
         await this.presentToast('Réponse invalide du serveur', 'danger');
       }

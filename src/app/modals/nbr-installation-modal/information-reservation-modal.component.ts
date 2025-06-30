@@ -14,7 +14,7 @@ import { SharedIonicModule } from 'src/app/shared/shared-ionic.module';
 export class InformationReservationModalComponent implements OnInit {
   // @Input() mode = 'add';
   @Input() nbrMax=20;// nombre maximale qui doit user ne pas depaaser
-
+  @Input() nbrPersonMax=22; //nombre  maxs de personne qui doit reserver selon l'activité (Foot, Basket...)
   nbrForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private modalCtrl: ModalController) {}
@@ -22,6 +22,7 @@ export class InformationReservationModalComponent implements OnInit {
   ngOnInit() {
     this.nbrForm = this.fb.group({
       nombre_installations: [1, [Validators.required, Validators.min(1),Validators.max(this.nbrMax)]],
+      nombre_personne : [1,[Validators.required,Validators.min(1),Validators.max(this.nbrPersonMax)]]
     });
   }
 
@@ -31,6 +32,7 @@ export class InformationReservationModalComponent implements OnInit {
 
   submit() {
     if (this.nbrForm.valid) {
+      console.log(this.nbrForm.value)
       this.modalCtrl.dismiss(this.nbrForm.value);
     }
   }

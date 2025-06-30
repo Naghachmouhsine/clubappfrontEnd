@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
   private routes_roles: { [key: string]: string[] } = {
     'userprofile': ['admin','user','responsable', 'coach', 'adherent'],
     'dashboard/activites': ['admin', 'responsable', 'coach'],
-    'dashboard/utilisateur': ['admin','user'],
+    'dashboard/utilisateur': ['admin'],
     'dashboard/installation': ['admin', 'responsable'],
     'dashboard/creneaux': ['admin', 'responsable'],
     'reservation/activite-r': ['admin', 'responsable', 'coach'],

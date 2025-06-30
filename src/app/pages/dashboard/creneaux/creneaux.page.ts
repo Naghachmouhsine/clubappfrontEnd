@@ -45,8 +45,8 @@ export class CreneauxPage implements OnInit {
   }
 
   loadCreneaux() {
-    this.http.get<any[]>('http://localhost:3000/api/creneaux').subscribe({
-      next: (data) => (this.creneaux = data),
+    this.http.get<any[]>('http://localhost:3000/api/Allcreneaux').subscribe({
+      next: (data) => {this.creneaux = data;console.log(this.creneaux)},
       error: (err) => console.error('Erreur chargement créneaux', err),
     });
   }

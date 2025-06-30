@@ -28,6 +28,8 @@ export class DateService {
     return this.http.put(`${this.apiUrl}/${id}`, dateSlot);
   }
 
+
+
   deleteDate(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }

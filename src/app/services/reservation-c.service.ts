@@ -46,15 +46,18 @@ export class ReservationCService {
     return this.http.get<any[]>('http://localhost:3000/installations'); // modifie l’URL selon ton backend
   }
   getCreneauxDisponibles(activite: string, date: string): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:3000/api/creneaux?activite=${activite}&date=${date}`);
+    return this.http.get<any[]>(`http://localhost:3000/api/creneauxDisponibles?activite=${activite}&date=${date}`);
   }
   getCreneauxDisponiblesByActivite(activite: string): Observable<any[]> {
     console.log("good")
     console.log(activite)
-    return this.http.get<any[]>(`http://localhost:3000/api/creneaux?activite=${activite}`);
+    return this.http.get<any[]>(`http://localhost:3000/api/creneauxDisponibles?activite=${activite}`);
   }
   reserver(reservation: any): Observable<{ message: string; id: number }> {
     console.log(reservation)
     return this.http.post<{ message: string; id: number }>('http://localhost:3000/api/reservations', reservation);
+  }
+    updateStatus(id:number,status:string) : Observable<any>{
+    return this.http.put("http://localhost:3000/api/updateStatus",{id,status})
   }
 }

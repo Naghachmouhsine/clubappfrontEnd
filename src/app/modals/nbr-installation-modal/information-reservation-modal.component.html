@@ -21,6 +21,15 @@
         required
       ></ion-input>
     </ion-item>
+     <ion-item>
+      <ion-label position="floating">Nombre de personne</ion-label>
+      <ion-input
+        type="number"
+        min="1"
+        formControlName="nombre_personne"
+        required
+      ></ion-input>
+    </ion-item>
 
     <ion-button  type="submit"  class="ion-margin" [disabled]="nbrForm.invalid">
       <!-- {{ mode === 'add' ? 'Ajouter' : 'Modifier' }} -->

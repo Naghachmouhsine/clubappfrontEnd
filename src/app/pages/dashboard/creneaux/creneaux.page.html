@@ -1,8 +1,3 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title class="ion-padding" >Dashboard - Créneaux</ion-title>
-  </ion-toolbar>
-</ion-header>
 <app-header nomPage="Dashboard - Créneaux" ></app-header>
 
 <ion-content class="ion-padding">
@@ -31,7 +26,7 @@
           <ion-col class="creneaux-cell">{{ creneau.heure_fin }}</ion-col>
           
           <ion-col class="creneaux-cell">{{ creneau.installation_nom }} - {{creneau.installation_type }}</ion-col>
-          <ion-col class="creneaux-cell">{{ creneau.disponible === 'oui' || creneau.disponible === true ? 'Oui' : 'Non' }}</ion-col>
+          <ion-col class="creneaux-cell">{{ creneau.disponible === 'oui' ? 'Oui' : 'Non' }}</ion-col>
           <ion-col  >
             <ion-button fill="clear" color="primary" (click)="detailCreneau(creneau.id)">
               <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
