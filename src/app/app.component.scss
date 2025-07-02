@@ -1,26 +1,32 @@
-/* Assure-toi que ton image a un z-index plus élevé */
-ion-avatar {
-    z-index: 10; /* Assurez-vous que l'image reste au-dessus du menu */
-  }
-  
-  /* Assurez-vous que le menu a un z-index plus bas que l'image */
-  ion-menu {
-    z-index: 1;
-  }
+/* Supprimez les styles conflictuels */
+ion-menu.menu-sport {
+  --width: 270px; /* Largeur du menu */
+  z-index: 1000 !important; /* Assurez-vous que le menu est au-dessus */
+}
 
+ion-toolbar {
+  z-index: 1001 !important; /* Toolbar au-dessus du menu */
+} 
 
-  /* Lorsqu'un menu est ouvert, le contenu principal doit se déplacer */
-ion-menu[contentId="main-content"]:opened ~ #main-content {
-    transform: translateX(270px); /* Ou la largeur de ton menu latéral */
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  /* Ajuster l'image ou le contenu de la page */
-  #main-content {
-    transition: transform 0.3s ease-in-out;
-    padding-top: 20px; /* Ajuste selon ton besoin */
-  }
-  .submenu {
+.main-content-adapt {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.menu-sport .menu-toolbar {
+  background: var(--color-green) !important;
+  color: var(--color-gold) !important;
+}
+
+.menu-content {
+  background: var(--color-light);
+}
+
+.submenu {
   padding-left: 16px;
   background: #f8f8f8;
   border-left: 2px solid #3880ff;
@@ -36,4 +42,14 @@ ion-item ion-icon[slot="start"] {
 
 ion-item ion-icon[slot="end"] {
   margin-left: 10px;
+}
+
+.menu-sport .menu-toolbar img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid var(--color-gold);
+  background: #fff;
+  vertical-align: middle;
 }

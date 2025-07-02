@@ -9,6 +9,7 @@ import { SharedIonicModule } from '../../shared/shared-ionic.module';
 import { AuthService } from '../../services/auth.service'; // <-- importer le service
 import { HttpClientModule } from '@angular/common/http'; // <-- pour l'import
 import {  ModalController } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ import {  ModalController } from '@ionic/angular';
     SharedIonicModule,
     FormsModule,
     HttpClientModule // <-- important !
+    ,TranslateModule
   ],
   styleUrls: ['./login.page.scss']
 })

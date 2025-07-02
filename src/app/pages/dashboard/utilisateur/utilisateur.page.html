@@ -4,52 +4,47 @@
   </ion-toolbar>
 </ion-header> -->
 
-<app-header nomPage="Dashboard - Utilisateurs" ></app-header>
+<app-header [nomPage]="'utilisateur.title' | translate"></app-header>
 
 
-<ion-content class="ion-padding">
-  <ion-card>
+<ion-content class="ion-padding section-alt">
+  <ion-card class="card-royal p-4">
     <ion-card-header>
-      <ion-card-title>Liste des utilisateurs</ion-card-title>
+      <ion-card-title class="services-title display-6 mb-3">👤 {{ 'utilisateur.list' | translate }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
-        <ion-button expand="block" color="success" (click)="addUser()">
-          <ion-icon slot="start" name="person-add-outline"></ion-icon>
-          Ajouter un utilisateur
-        </ion-button>
-        <ion-row class="ion-text-center" style="font-weight: bold;">
-          <ion-col>Nom</ion-col>
-          <ion-col>Email</ion-col>
-          <ion-col>Téléphone</ion-col>
-          <ion-col>Rôle</ion-col>
-          <ion-col>Actions</ion-col>
+        <ion-row class="mb-3">
+          <ion-col size="12">
+            <ion-button expand="block" class="btn-gold btn-lg shadow" (click)="addUser()">
+              <ion-icon slot="start" name="person-add-outline"></ion-icon>
+              {{ 'utilisateur.add' | translate }}
+            </ion-button>
+          </ion-col>
         </ion-row>
-        <ion-row *ngFor="let user of utilisateurs" class="ion-text-center user-row" [ngClass]="getRoleClass(user.role)">
-          <ion-col class="user-cell">{{ user.nom }} {{ user.prenom }}</ion-col>
+        <ion-row class="ion-text-center fw-bold bg-white rounded-3 shadow-sm mb-2 py-2">
+          <ion-col>{{ 'utilisateur.name' | translate }}</ion-col>
+          <ion-col>{{ 'utilisateur.email' | translate }}</ion-col>
+          <ion-col>{{ 'utilisateur.phone' | translate }}</ion-col>
+          <ion-col>{{ 'utilisateur.role' | translate }}</ion-col>
+          <ion-col>{{ 'utilisateur.actions' | translate }}</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let user of utilisateurs" class="ion-text-center user-row align-items-center bg-light rounded-3 mb-2 py-2" [ngClass]="getRoleClass(user.role)">
+          <ion-col class="user-cell fw-semibold">{{ user.nom }} {{ user.prenom }}</ion-col>
           <ion-col class="user-cell">{{ user.email }}</ion-col>
           <ion-col class="user-cell">{{ user.telephone }}</ion-col>
           <ion-col class="user-cell">
-            <ion-badge [color]="getRoleClass(user.role)">
-              {{ user.role }}
+            <ion-badge [color]="getRoleClass(user.role)" class="px-3 py-2 rounded-pill text-uppercase">
+              {{ ('utilisateur.roles.' + user.role) | translate }}
             </ion-badge>
           </ion-col>
           <ion-col>
-            <ion-button size="small" fill="outline" color="primary" (click)="detailUser(user.id)">
+            <ion-button size="small" fill="outline" color="primary" (click)="detailUser(user.id)" class="rounded-pill">
               <ion-icon name="create-outline" slot="start"></ion-icon>
-              Details
-            </ion-button>
-            <ion-button size="small" fill="outline" color="warning" (click)="editUser(user.id)">
-              <ion-icon name="create-outline" slot="start"></ion-icon>
-              Éditer
-            </ion-button>
-            <ion-button size="small" fill="outline" color="danger" (click)="deleteUser(user.id)">
-              <ion-icon name="trash-outline" slot="start"></ion-icon>
-              Supprimer
+              Détails
             </ion-button>
           </ion-col>
         </ion-row>
-        
       </ion-grid>
     </ion-card-content>
   </ion-card>

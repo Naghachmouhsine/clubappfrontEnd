@@ -1,11 +1,26 @@
 <ion-list>
-    <ion-item button (click)="navigateTo('/profile')">
-      View Profile
+  <ng-container *ngIf="isLoggedIn; else notLogged">
+    <ion-item button (click)="navigateTo('/userprofile')">
+      <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+      {{ 'profile.view_profile' | translate }}
     </ion-item>
     <ion-item button (click)="navigateTo('/settings')">
-      Settings
+      <ion-icon name="settings-outline" slot="start"></ion-icon>
+      {{ 'profile.settings' | translate }}
     </ion-item>
-    <ion-item button (click)="logout()">
-      Logout
+    <ion-item button (click)="confirmLogout()">
+      <ion-icon name="log-out-outline" slot="start"></ion-icon>
+      {{ 'profile.logout' | translate }}
     </ion-item>
-  </ion-list>
+  </ng-container>
+  <ng-template #notLogged>
+    <ion-item button (click)="navigateTo('/login')">
+      <ion-icon name="log-in-outline" slot="start"></ion-icon>
+      {{ 'profile.login' | translate }}
+    </ion-item>
+    <ion-item button (click)="navigateTo('/register')">
+      <ion-icon name="person-add-outline" slot="start"></ion-icon>
+      {{ 'profile.register' | translate }}
+    </ion-item>
+  </ng-template>
+</ion-list>

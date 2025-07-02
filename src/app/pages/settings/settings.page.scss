@@ -1,0 +1,80 @@
+.bg-light {
+  background: #f8f9fa !important;
+}
+.settings-card {
+  max-width: 480px;
+  width: 100%;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, #f8f9fa 60%, #e0eafc 100%);
+  box-shadow: 0 4px 24px rgba(30,86,49,0.10), 0 1.5px 8px #FFD70033;
+  border: 2px solid var(--color-gold, #FFD700);
+}
+.settings-container {
+  min-height: 90vh;
+  background: linear-gradient(120deg, #e0eafc 0%, #f8f9fa 100%);
+}
+.text-gold {
+  color: var(--color-gold, #FFD700) !important;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+.list-group-item {
+  font-size: 1.08rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(30,86,49,0.04);
+}
+.btn {
+  font-weight: 600;
+  border-radius: 8px;
+  transition: box-shadow 0.2s;
+}
+.btn-outline-warning {
+  border-color: var(--color-gold, #FFD700);
+  color: var(--color-gold, #FFD700);
+}
+.btn-outline-warning:hover {
+  background: var(--color-gold, #FFD700);
+  color: #fff;
+}
+.btn-outline-primary {
+  border-color: #1e5631;
+  color: #1e5631;
+}
+.btn-outline-primary:hover {
+  background: #1e5631;
+  color: #fff;
+}
+.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+.btn-outline-danger:hover {
+  background: #dc3545;
+  color: #fff;
+}
+.btn-outline-success {
+  border-color: #28a745;
+  color: #28a745;
+}
+.btn-outline-success:hover {
+  background: #28a745;
+  color: #fff;
+}
+.btn-outline-info {
+  border-color: #17a2b8;
+  color: #17a2b8;
+}
+.btn-outline-info:hover {
+  background: #17a2b8;
+  color: #fff;
+}
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+}
+.btn-outline-secondary:hover {
+  background: #6c757d;
+  color: #fff;
+}

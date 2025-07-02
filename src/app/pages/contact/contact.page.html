@@ -2,89 +2,27 @@
  
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <app-header>
-    <h2>Contacts</h2>
-  </app-header>
-
-  <div class="container-fluid">
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30"></div>
-    <!-- Contact Card Example -->
-    <div class="row">
-      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
-        <div class="contact_blog">
-          <h4 class="brief">Digital Strategist</h4>
-          <div class="contact_inner">
-            <div class="left">
-              <h3>John Smith</h3>
-              <p><strong>About: </strong>Frontend Developer</p>
-              <ul class="list-unstyled">
-                <li><i class="fa fa-envelope-o"></i> : test&#64;gmail.com</li>
-                <li><i class="fa fa-phone"></i> : 987 654 3210</li>
-              </ul>
-            </div>
-            <div class="right">
-              <div class="profile_contacts">
-                <img class="img-responsive" src="assets/img/msg2.png" alt="#" />
-              </div>
-            </div>
-            <div class="bottom_list">
-              <div class="left_rating">
-                <p class="ratings">
-                  <a href="#"><span class="fa fa-star"></span></a>
-                  <a href="#"><span class="fa fa-star"></span></a>
-                  <a href="#"><span class="fa fa-star"></span></a>
-                  <a href="#"><span class="fa fa-star"></span></a>
-                  <a href="#"><span class="fa fa-star-o"></span></a>
-                </p>
-              </div>
-              <div class="right_button">
-                <button type="button" class="btn btn-success btn-xs"><i class="fa fa-user"></i><i class="fa fa-comments-o"></i></button>
-                <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-user"></i> View Profile</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
-        <div class="contact_blog">
-          <h4 class="brief">Digital Strategist</h4>
-          <div class="contact_inner">
-            <div class="left">
-              <h3>John Smith</h3>
-              <p><strong>About: </strong>Frontend Developer</p>
-              <ul class="list-unstyled">
-                <li><i class="fa fa-envelope-o"></i> : test&#64;gmail.com</li>
-                <li><i class="fa fa-phone"></i> : 987 654 3210</li>
-              </ul>
-            </div>
-            <div class="right">
-              <div class="profile_contacts">
-                <img class="img-responsive" src="assets/img/msg2.png" alt="#" />
-              </div>
-            </div>
-            <div class="bottom_list">
-              <div class="left_rating">
-                <p class="ratings">
-                  <a href="#"><span class="fa fa-star"></span></a>
-                  <a href="#"><span class="fa fa-star"></span></a>
-                  <a href="#"><span class="fa fa-star"></span></a>
-                  <a href="#"><span class="fa fa-star"></span></a>
-                  <a href="#"><span class="fa fa-star-o"></span></a>
-                </p>
-              </div>
-              <div class="right_button">
-                <button type="button" class="btn btn-success btn-xs"><i class="fa fa-user"></i><i class="fa fa-comments-o"></i></button>
-                <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-user"></i> View Profile</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
-      </div>
-    </div>
-  </div>
+<ion-content [fullscreen]="true" class="section-alt">
+  <ion-card class="card-royal p-4 mx-auto" style="max-width:600px;">
+    <ion-card-header>
+      <ion-card-title class="services-title display-6 mb-3">📞 Contact</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form>
+        <ion-item class="mb-3">
+          <ion-label position="floating">Nom</ion-label>
+          <ion-input type="text" required></ion-input>
+        </ion-item>
+        <ion-item class="mb-3">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" required></ion-input>
+        </ion-item>
+        <ion-item class="mb-3">
+          <ion-label position="floating">Message</ion-label>
+          <ion-textarea rows="4" required></ion-textarea>
+        </ion-item>
+        <ion-button expand="block" class="btn-gold btn-lg shadow">Envoyer</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

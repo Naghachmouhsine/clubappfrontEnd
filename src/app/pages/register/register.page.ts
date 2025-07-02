@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { SharedIonicModule } from '../../shared/shared-ionic.module';
 import { HttpClientModule } from '@angular/common/http'; // <-- pour l'import
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http'; // <-- pour l'import
       SharedIonicModule,
       FormsModule,
       HttpClientModule, // <-- important !
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      TranslateModule
     ],
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],

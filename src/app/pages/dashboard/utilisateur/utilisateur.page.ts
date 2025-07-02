@@ -4,7 +4,8 @@ import { AlertController, ToastController, IonicModule, ModalController } from '
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserModalComponent } from 'src/app/modals/user-modal/user-modal.component';
-import { AppHeaderComponent } from "../../../components/app-header/app-header.component";
+import { AppHeaderComponent } from '../../../components/app-header/app-header.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-utilisateur',
@@ -15,7 +16,8 @@ import { AppHeaderComponent } from "../../../components/app-header/app-header.co
     CommonModule,
     FormsModule,
     IonicModule,
-    AppHeaderComponent
+    AppHeaderComponent,
+    TranslateModule
 ]
 })
 export class UtilisateurPage implements OnInit {

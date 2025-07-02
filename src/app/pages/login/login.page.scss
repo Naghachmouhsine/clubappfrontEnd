@@ -3,11 +3,27 @@
   color: #fff;
 }
 
+.login-content {
+  min-height: 100vh;
+}
+
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+  max-width: 400px;
+}
+
+.login-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  background: var(--color-white);
+  box-shadow: 0 2px 8px rgba(0,66,37,0.08);
+  margin-bottom: 1rem;
 }
 
 ion-card {
@@ -31,4 +47,15 @@ ion-card {
 
 .options a:hover {
   text-decoration: underline;
+}
+.login-title {
+  color: var(--color-green);
+  margin-bottom: 3px;
+}
+.text-muted {
+  margin-top: 3px;
+}
+.form-control:focus {
+  border: 2px solid var(--color-gold) !important;
+  box-shadow: 0 0 0 0.2rem rgba(255,215,0,0.15);
 }

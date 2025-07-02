@@ -5,7 +5,8 @@ import { CreneauModalComponent } from '../../../modals/creneau-modal/creneau-mod
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AppHeaderComponent } from "../../../components/app-header/app-header.component";
+import { AppHeaderComponent } from '../../../components/app-header/app-header.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-creneaux',
@@ -17,11 +18,10 @@ import { AppHeaderComponent } from "../../../components/app-header/app-header.co
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    AppHeaderComponent
-]
+    AppHeaderComponent,
+    TranslateModule
+  ]
 })
-
-
 
 export class CreneauxPage implements OnInit {
   creneaux: any[] = [];

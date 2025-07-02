@@ -1,0 +1,217 @@
+{
+  "header": {
+    "club_full": "النادي الملكي للتنس بفاس",
+    "services": "★ خدماتنا",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "theme": "المظهر"
+  },
+  "home": {
+    "title": "الرئيسية",
+    "hero": {
+      "title": "مرحبا بكم في النادي الملكي للتنس بفاس",
+      "subtitle": "التميز الرياضي في إطار ملكي",
+      "cta": "اكتشف النادي"
+    },
+    "services": {
+      "title": "خدماتنا",
+      "reservation_title": "الحجز",
+      "reservation_desc": "احجز ملاعبك بسهولة عبر الإنترنت.",
+      "cours_title": "الدروس",
+      "cours_desc": "دروس لجميع المستويات مع مدربين معتمدين.",
+      "events_title": "الفعاليات",
+      "events_desc": "شارك في بطولاتنا وفعالياتنا الحصرية.",
+      "clubhouse_title": "كلوب هاوس",
+      "clubhouse_desc": "مساحة ودية للاسترخاء بعد الجهد."
+    },
+    "about": {
+      "title": "من نحن",
+      "desc": "النادي الملكي للتنس بفاس هو مكان للتميز الرياضي والتقاليد والود. يرحب نادينا بالصغار والكبار لممارسة التنس وأنشطة رياضية أخرى في إطار ملكي وأخضر.",
+      "logo_alt": "شعار النادي"
+    },
+    "gallery": {
+      "title": "معرض الصور"
+    },
+    "contact": {
+      "title": "اتصل بنا",
+      "name": "الاسم",
+      "name_placeholder": "اسمك",
+      "email": "البريد الإلكتروني",
+      "email_placeholder": "بريدك الإلكتروني",
+      "message": "رسالة",
+      "message_placeholder": "رسالتك"
+    }
+  },
+  "register": {
+    "title": "إنشاء حساب",
+    "subtitle": "تسجيل عضو جديد",
+    "join": "انضم إلى النادي الملكي للتنس بفاس",
+    "nom": "الاسم",
+    "nom_placeholder": "اسمك",
+    "prenom": "اللقب",
+    "prenom_placeholder": "لقبك",
+    "email": "البريد الإلكتروني",
+    "email_placeholder": "بريدك الإلكتروني",
+    "password": "كلمة المرور",
+    "password_placeholder": "كلمة المرور",
+    "telephone": "الهاتف",
+    "telephone_placeholder": "رقم هاتفك",
+    "already_member": "عضو بالفعل؟ تسجيل الدخول",
+    "signup": "تسجيل"
+  },
+  "login": {
+    "title": "تسجيل الدخول إلى حسابك",
+    "subtitle": "مرحبًا بكم في النادي الملكي للتنس بفاس",
+    "email": "البريد الإلكتروني",
+    "email_placeholder": "بريدك الإلكتروني",
+    "password": "كلمة المرور",
+    "password_placeholder": "كلمة المرور",
+    "forgot": "نسيت كلمة المرور؟",
+    "create_account": "إنشاء حساب جديد",
+    "login": "تسجيل الدخول"
+  },
+  "home_r": {
+    "title": "حجز نشاط",
+    "card_title": "حجز نشاط",
+    "activities": {
+      "Tennis": "تنس",
+      "Padel": "بادل",
+      "Piscine": "مسبح",
+      "Football": "كرة القدم",
+      "Fitness": "لياقة بدنية",
+      "Basket": "كرة السلة",
+      "Volley": "كرة الطائرة",
+      "Pétanque": "كرة الحديد",
+      "Athlétisme": "ألعاب القوى",
+      "Arts Martiaux": "فنون قتالية"
+    }
+  },
+  "creneaux": {
+    "title": "لوحة التحكم - الفترات الزمنية",
+    "list": "قائمة الفترات الزمنية",
+    "add": "إضافة فترة زمنية",
+    "date": "التاريخ",
+    "start_time": "بداية الوقت",
+    "end_time": "نهاية الوقت",
+    "installation": "المنشأة",
+    "available": "متاح",
+    "actions": "إجراءات",
+    "yes": "نعم",
+    "no": "لا"
+  },
+  "utilisateur": {
+    "title": "لوحة التحكم - المستخدمون",
+    "list": "قائمة المستخدمين",
+    "add": "إضافة مستخدم",
+    "name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "role": "الدور",
+    "actions": "إجراءات",
+    "roles": {
+      "adherent": "عضو",
+      "coach": "مدرب",
+      "responsable": "مسؤول",
+      "admin": "مشرف",
+      "user": "مستخدم"
+    }
+  },
+  "menu": {
+    "title": "نادي التنس الملكي بفاس",
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "users": "المستخدمون",
+    "activities": "الأنشطة",
+    "reservations": "الحجوزات",
+    "installations": "المنشآت",
+    "slots": "الفترات الزمنية",
+    "reservation": "الحجز",
+    "contact": "اتصل بنا"
+  },
+  "about": {
+    "title": "من نحن",
+    "description": "النادي الملكي للتنس بفاس هو مكان للتميز الرياضي، والتقاليد، والود. يرحب نادينا بالصغار والكبار لممارسة التنس وأنشطة رياضية أخرى في إطار ملكي وأخضر.",
+    "logo_alt": "شعار النادي"
+  },
+  "services": {
+    "title": "خدماتنا"
+  },
+  "gallery": {
+    "title": "معرض الصور"
+  },
+  "contact": {
+    "title": "اتصل بنا",
+    "name": "الاسم",
+    "name_placeholder": "اسمك",
+    "email": "البريد الإلكتروني",
+    "email_placeholder": "بريدك الإلكتروني",
+    "message": "رسالة",
+    "message_placeholder": "رسالتك",
+    "send": "إرسال"
+  },
+  "footer": {
+    "club": "النادي الملكي للتنس بفاس",
+    "address": ":العنوان ...",
+    "phone": ":الهاتف ...",
+    "email": ":البريد الإلكتروني ...",
+    "home": "الرئيسية",
+    "services": "الخدمات",
+    "contact": "اتصل بنا",
+    "copyright": "© 2025 النادي الملكي للتنس بفاس. جميع الحقوق محفوظة."
+  },
+  "SIDEBAR": {
+    "LOGOUT": "تسجيل الخروج",
+    "PREMIUM": "مميز",
+    "ROLE_MEMBER": "عضو",
+    "HOME": "الرئيسية",
+    "RESERVATIONS": "الحجوزات",
+    "PROFILE": "الملف الشخصي",
+    "SETTINGS": "الإعدادات",
+    "THEME": "المظهر",
+    "LANGUAGE": "اللغة"
+  },
+  "profile": {
+    "view_profile": "عرض الملف الشخصي",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "logout_title": "تسجيل الخروج",
+    "logout_confirm": "هل تريد حقًا تسجيل الخروج؟",
+    "cancel": "إلغاء",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "role": "الدور",
+    "personal_info": "المعلومات الشخصية",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "profession": "المهنة",
+    "birth_date": "تاريخ الميلاد",
+    "edit": "تعديل الملف الشخصي",
+    "change_password": "تغيير كلمة المرور",
+    "delete_account": "حذف الحساب",
+    "nom": "الاسم",
+    "prenom": "اللقب"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "account": "الحساب",
+    "edit": "تعديل",
+    "change_password": "تغيير كلمة المرور",
+    "theme": "المظهر",
+    "theme_light": "فاتح",
+    "theme_dark": "داكن",
+    "theme_auto": "تلقائي",
+    "language": "اللغة",
+    "notifications": "الإشعارات",
+    "security": "الأمان",
+    "delete_account": "حذف الحساب",
+    "old_password": "كلمة المرور القديمة",
+    "new_password": "كلمة المرور الجديدة",
+    "confirm_password": "تأكيد كلمة المرور",
+    "passwords_no_match": "كلمتا المرور غير متطابقتين.",
+    "save": "حفظ"
+  },
+  "profil": {
+    "nom": "الاسم",
+    "prenom": "اللقب"
+  }
+}

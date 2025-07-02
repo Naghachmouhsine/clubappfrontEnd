@@ -1,0 +1,217 @@
+{
+  "header": {
+    "club_full": "Royal Tennis Club de Fès",
+    "services": "★ Nos Services",
+    "profile": "Profil",
+    "logout": "Déconnexion",
+    "theme": "Thème"
+  },
+  "home": {
+    "title": "Accueil",
+    "hero": {
+      "title": "Bienvenue au Royal Tennis Club de Fès",
+      "subtitle": "L’excellence sportive dans un cadre royal",
+      "cta": "Découvrir le club"
+    },
+    "services": {
+      "title": "Nos Services",
+      "reservation_title": "Réservation",
+      "reservation_desc": "Réservez vos courts facilement en ligne.",
+      "cours_title": "Cours",
+      "cours_desc": "Des cours pour tous les niveaux avec des coachs certifiés.",
+      "events_title": "Événements",
+      "events_desc": "Participez à nos tournois et événements exclusifs.",
+      "clubhouse_title": "Club House",
+      "clubhouse_desc": "Un espace convivial pour se détendre après l’effort."
+    },
+    "about": {
+      "title": "À propos de nous",
+      "desc": "Le Royal Tennis Club de Fès est un lieu d’excellence sportive, de convivialité et de tradition. Notre club accueille petits et grands pour la pratique du tennis et d’autres activités sportives dans un cadre royal et verdoyant.",
+      "logo_alt": "Logo du club"
+    },
+    "gallery": {
+      "title": "Galerie"
+    },
+    "contact": {
+      "title": "Contactez-nous",
+      "name": "Nom",
+      "name_placeholder": "Votre nom",
+      "email": "Email",
+      "email_placeholder": "Votre email",
+      "message": "Message",
+      "message_placeholder": "Votre message"
+    }
+  },
+  "register": {
+    "title": "Créer un compte",
+    "subtitle": "Inscription membre",
+    "join": "Rejoignez le Royal Tennis Club de Fès",
+    "nom": "Nom",
+    "nom_placeholder": "Votre nom",
+    "prenom": "Prénom",
+    "prenom_placeholder": "Votre prénom",
+    "email": "Email",
+    "email_placeholder": "Votre email",
+    "password": "Mot de passe",
+    "password_placeholder": "Mot de passe",
+    "telephone": "Téléphone",
+    "telephone_placeholder": "Votre téléphone",
+    "already_member": "Déjà membre ? Connexion",
+    "signup": "S'inscrire"
+  },
+  "login": {
+    "title": "Connexion à votre espace",
+    "subtitle": "Bienvenue au Royal Tennis Club de Fès",
+    "email": "Email",
+    "email_placeholder": "Votre email",
+    "password": "Mot de passe",
+    "password_placeholder": "Mot de passe",
+    "forgot": "Mot de passe oublié ?",
+    "create_account": "Créer un compte",
+    "login": "Se connecter"
+  },
+  "home_r": {
+    "title": "Réserver une activité",
+    "card_title": "Réserver une activité",
+    "activities": {
+      "Tennis": "Tennis",
+      "Padel": "Padel",
+      "Piscine": "Piscine",
+      "Football": "Football",
+      "Fitness": "Fitness",
+      "Basket": "Basket",
+      "Volley": "Volley",
+      "Pétanque": "Pétanque",
+      "Athlétisme": "Athlétisme",
+      "Arts Martiaux": "Arts Martiaux"
+    }
+  },
+  "creneaux": {
+    "title": "Dashboard - Créneaux",
+    "list": "Liste des créneaux",
+    "add": "Ajouter un créneau",
+    "date": "Date",
+    "start_time": "Heure Début",
+    "end_time": "Heure Fin",
+    "installation": "Installation",
+    "available": "Disponible",
+    "actions": "Actions",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "utilisateur": {
+    "title": "Dashboard - Utilisateurs",
+    "list": "Liste des utilisateurs",
+    "add": "Ajouter un utilisateur",
+    "name": "Nom complet",
+    "email": "Email",
+    "phone": "Téléphone",
+    "role": "Rôle",
+    "actions": "Actions",
+    "roles": {
+      "adherent": "Adhérent",
+      "coach": "Coach",
+      "responsable": "Responsable",
+      "admin": "Admin",
+      "user": "Utilisateur"
+    }
+  },
+  "menu": {
+    "title": "Royal Tennis Club de Fès",
+    "home": "Accueil",
+    "dashboard": "Dashboard",
+    "users": "Utilisateurs",
+    "activities": "Activités",
+    "reservations": "Réservations",
+    "installations": "Installations",
+    "slots": "Créneaux",
+    "reservation": "Réservation",
+    "contact": "Contact"
+  },
+  "about": {
+    "title": "À propos de nous",
+    "description": "Le Royal Tennis Club de Fès est un lieu d’excellence sportive, de convivialité et de tradition. Notre club accueille petits et grands pour la pratique du tennis et d’autres activités sportives dans un cadre royal et verdoyant.",
+    "logo_alt": "Logo du club"
+  },
+  "services": {
+    "title": "Nos Services"
+  },
+  "gallery": {
+    "title": "Galerie"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "name": "Nom",
+    "name_placeholder": "Votre nom",
+    "email": "Email",
+    "email_placeholder": "Votre email",
+    "message": "Message",
+    "message_placeholder": "Votre message",
+    "send": "Envoyer"
+  },
+  "footer": {
+    "club": "Royal Tennis Club de Fès",
+    "address": "Adresse : ...",
+    "phone": "Tél : ...",
+    "email": "Email : ...",
+    "home": "Accueil",
+    "services": "Services",
+    "contact": "Contact",
+    "copyright": "© 2025 Royal Tennis Club de Fès. Tous droits réservés."
+  },
+  "SIDEBAR": {
+    "LOGOUT": "Déconnexion",
+    "PREMIUM": "Premium",
+    "ROLE_MEMBER": "Membre",
+    "HOME": "Accueil",
+    "RESERVATIONS": "Réservations",
+    "PROFILE": "Profil",
+    "SETTINGS": "Paramètres",
+    "THEME": "Thème",
+    "LANGUAGE": "Langue"
+  },
+  "profile": {
+    "view_profile": "Voir le profil",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "logout_title": "Déconnexion",
+    "logout_confirm": "Voulez-vous vraiment vous déconnecter ?",
+    "cancel": "Annuler",
+    "login": "Se connecter",
+    "register": "Créer un compte",
+    "role": "Rôle",
+    "personal_info": "Informations personnelles",
+    "email": "Email",
+    "phone": "Téléphone",
+    "profession": "Profession",
+    "birth_date": "Date de naissance",
+    "edit": "Modifier le profil",
+    "change_password": "Changer le mot de passe",
+    "delete_account": "Supprimer le compte",
+    "nom": "Nom",
+    "prenom": "Prénom"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "account": "Compte",
+    "edit": "Modifier",
+    "change_password": "Changer le mot de passe",
+    "theme": "Thème",
+    "theme_light": "Clair",
+    "theme_dark": "Sombre",
+    "theme_auto": "Automatique",
+    "language": "Langue",
+    "notifications": "Notifications",
+    "security": "Sécurité",
+    "delete_account": "Supprimer le compte",
+    "old_password": "Ancien mot de passe",
+    "new_password": "Nouveau mot de passe",
+    "confirm_password": "Confirmer le mot de passe",
+    "passwords_no_match": "Les mots de passe ne correspondent pas.",
+    "save": "Enregistrer"
+  },
+  "profil": {
+    "nom": "Nom",
+    "prenom": "Prénom"
+  }
+}

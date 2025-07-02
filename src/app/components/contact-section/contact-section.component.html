@@ -1,0 +1,20 @@
+<section class="py-5">
+  <div class="container">
+    <h2 class="contact-title text-center mb-5 fw-bold">{{ 'contact.title' | translate }}</h2>
+    <form class="mx-auto form-max">
+      <div class="mb-3">
+        <label class="form-label">{{ 'contact.name' | translate }}</label>
+        <input type="text" class="form-control rounded-pill" required placeholder="{{ 'contact.name_placeholder' | translate }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'contact.email' | translate }}</label>
+        <input type="email" class="form-control rounded-pill" required placeholder="{{ 'contact.email_placeholder' | translate }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'contact.message' | translate }}</label>
+        <textarea class="form-control rounded-4" rows="4" required placeholder="{{ 'contact.message_placeholder' | translate }}"></textarea>
+      </div>
+      <button type="submit" class="btn btn-gold btn-lg w-100">{{ 'contact.send' | translate }}</button>
+    </form>
+  </div>
+</section>
