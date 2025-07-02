@@ -25,7 +25,7 @@
           <ion-col class="creneaux-cell">{{ creneau.heure_debut }}</ion-col>
           <ion-col class="creneaux-cell">{{ creneau.heure_fin }}</ion-col>
           
-          <ion-col class="creneaux-cell">{{ creneau.installation_nom }} - {{creneau.installation_type }}</ion-col>
+          <ion-col class="creneaux-cell">{{ creneau.type }}</ion-col>
           <ion-col class="creneaux-cell">{{ creneau.disponible === 'oui' ? 'Oui' : 'Non' }}</ion-col>
           <ion-col  >
             <ion-button fill="clear" color="primary" (click)="detailCreneau(creneau.id)">
