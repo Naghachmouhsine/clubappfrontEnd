@@ -1,0 +1,25 @@
+<div class="popup-modal">
+  <button class="close-btn" (click)="close()" aria-label="Fermer">
+    <ion-icon name="close-outline"></ion-icon>
+  </button>
+  <div class="avatar-premium mb-2 mx-auto">
+    <ion-icon name="language" class="gold-avatar"></ion-icon>
+  </div>
+  <ion-list lines="none">
+    <ion-radio-group [(ngModel)]="selectedLang">
+      <ion-item>
+        <ion-label>🇫🇷 Français</ion-label>
+        <ion-radio slot="end" value="fr"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>🇬🇧 English</ion-label>
+        <ion-radio slot="end" value="en"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>🇲🇦 العربية</ion-label>
+        <ion-radio slot="end" value="ar"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <ion-button expand="block" (click)="save()" class="mt-3 gold-btn">{{ 'settings.save' | translate }}</ion-button>
+</div>

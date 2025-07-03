@@ -1,0 +1,60 @@
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--color-gold, #FFD700);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  margin-bottom: 1rem;
+  background: #fff;
+}
+.profile-name {
+  color: var(--color-green, #1e5631);
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+.profile-role {
+  color: #888;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+.ion-card {
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background: #fff;
+}
+.ion-item {
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  background: #f8f9fa;
+}
+.ion-label strong {
+  color: var(--color-gold, #FFD700);
+}
+.bg-light {
+  background: #f8f9fa !important;
+}
+.profile-card {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 1.5rem;
+}
+.profile-container {
+  min-height: 90vh;
+}
+@media (max-width: 600px) {
+  .profile-name {
+    font-size: 1.3rem;
+  }
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+}

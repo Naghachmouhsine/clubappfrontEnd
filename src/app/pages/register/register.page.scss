@@ -1,0 +1,27 @@
+.register-content {
+  min-height: 100vh;
+}
+
+.register-container {
+  max-width: 500px;
+}
+
+.register-title {
+  color: var(--color-green);
+}
+
+.form-control:focus {
+  border: 2px solid var(--color-gold) !important;
+  box-shadow: 0 0 0 0.2rem rgba(255,215,0,0.15);
+}
+
+.login-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  background: var(--color-white);
+  box-shadow: 0 2px 8px rgba(0,66,37,0.08);
+  margin-bottom: 1rem;
+}

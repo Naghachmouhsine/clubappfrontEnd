@@ -1,0 +1,16 @@
+.hero {
+  min-height: 70vh;
+  background: 
+    linear-gradient(rgba(0, 34, 19, 0.82), rgba(0, 66, 37, 0.82)),
+    url('/assets/images/hero-bg.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.7), 0 1px 0 #222;
+}
+
+.hero h1, .hero p, .hero a {
+  color: #fff !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 1px 0 #222;
+}

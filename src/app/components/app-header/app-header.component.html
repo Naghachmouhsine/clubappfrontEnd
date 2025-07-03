@@ -1,26 +1,31 @@
-<ion-toolbar  color="success" >
-  <!-- Bouton menu à gauche -->
+<ion-toolbar color="success">
   <ion-buttons slot="start">
-    <ion-button (click)="toggleMenu()">
-      <ion-icon slot="icon-only" name="menu-outline" color="light"></ion-icon>
-    </ion-button>
+    <ion-menu-button menuId="main-content" color="light"></ion-menu-button>
   </ion-buttons>
-
-  <!-- Titre centré -->
-  <ion-title class="ion-text-start" style="color: aliceblue;">
-    {{nomPage}}
+  <ion-title class="ion-text-start header-title" (click)="goHome()" style="cursor:pointer;">
+    {{ t('header.club_full') }}
   </ion-title>
-
-  <!-- Boutons à droite -->
   <ion-buttons slot="end">
-    <!-- Profil -->
-    <ion-button (click)="profile()">
-      <ion-icon name="person-circle-outline" slot="icon-only" color="light"></ion-icon>
+    <ion-button (click)="cycleTheme()" class="theme-toggle-btn" title="Changer le thème">
+      <ion-icon [name]="themeIcon" slot="icon-only"></ion-icon>
     </ion-button>
-
-    <!-- Déconnexion -->
-    <ion-button (click)="logout()">
-      <ion-icon name="log-out-outline" slot="icon-only" color="light"></ion-icon>
+    <ion-select interface="popover" [(ngModel)]="lang" (ionChange)="setLang($event.detail.value)" class="lang-select" placeholder="Langue">
+      <ion-select-option value="fr">🇫🇷</ion-select-option>
+      <ion-select-option value="en">🇬🇧</ion-select-option>
+      <ion-select-option value="ar">🇲🇦</ion-select-option>
+    </ion-select>
+    <ion-button *ngIf="showServicesText" (click)="scrollToServices()" class="services-btn">
+      <ion-icon name="star-outline" slot="start" color="warning"></ion-icon>
+      <span>{{ t('header.services') }}</span>
+    </ion-button>
+    <ion-button *ngIf="showProfilePicture" (click)="openProfileMenu($event)" class="profile-btn">
+      <span class="profile-btn-img-wrapper">
+        <img [src]="profilePictureUrl" alt="Profil" class="header-profile-img" />
+      </span>
+    </ion-button>
+    <ion-button *ngIf="showProfileText && !showProfilePicture" (click)="openProfileMenu($event)" class="profile-btn">
+      <ion-icon name="person-circle-outline" slot="icon-only" color="light"></ion-icon>
+      <span class="d-none d-md-inline text-lower">{{ t('header.profile') }}</span>
     </ion-button>
   </ion-buttons>
 </ion-toolbar>

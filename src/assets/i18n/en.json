@@ -1,0 +1,215 @@
+{
+  "header": {
+    "club_full": "Royal Tennis Club of Fès",
+    "services": "★ Our Services",
+    "profile": "Profile",
+    "logout": "Logout",
+    "theme": "Theme"
+  },
+  "home": {
+    "title": "Home",
+    "hero": {
+      "title": "Welcome to Royal Tennis Club of Fès",
+      "subtitle": "Sporting excellence in a royal setting",
+      "cta": "Discover the club"
+    },
+    "services": {
+      "title": "Our Services",
+      "reservation_title": "Reservation",
+      "reservation_desc": "Book your courts easily online.",
+      "cours_title": "Lessons",
+      "cours_desc": "Lessons for all levels with certified coaches.",
+      "events_title": "Events",
+      "events_desc": "Take part in our exclusive tournaments and events.",
+      "clubhouse_title": "Club House",
+      "clubhouse_desc": "A friendly space to relax after the effort."
+    },
+    "about": {
+      "title": "About us",
+      "desc": "The Royal Tennis Club of Fès is a place of sporting excellence, conviviality and tradition. Our club welcomes young and old for tennis and other sports activities in a royal and green setting.",
+      "logo_alt": "Club logo"
+    },
+    "gallery": {
+      "title": "Gallery"
+    },
+    "contact": {
+      "title": "Contact us",
+      "name": "Name",
+      "name_placeholder": "Your name",
+      "email": "Email",
+      "email_placeholder": "Your email",
+      "message": "Message",
+      "message_placeholder": "Your message"
+    }
+  },
+  "register": {
+    "title": "Create an account",
+    "subtitle": "Member registration",
+    "join": "Join the Royal Tennis Club of Fès",
+    "nom": "Last name",
+    "nom_placeholder": "Your last name",
+    "prenom": "First name",
+    "prenom_placeholder": "Your first name",
+    "email": "Email",
+    "email_placeholder": "Your email",
+    "password": "Password",
+    "password_placeholder": "Password",
+    "telephone": "Phone",
+    "telephone_placeholder": "Your phone number",
+    "already_member": "Already a member? Login",
+    "signup": "Sign up"
+  },
+  "login": {
+    "title": "Login to your account",
+    "subtitle": "Welcome to Royal Tennis Club of Fès",
+    "email": "Email",
+    "email_placeholder": "Your email",
+    "password": "Password",
+    "password_placeholder": "Password",
+    "forgot": "Forgot password?",
+    "create_account": "Create an account",
+    "login": "Login"
+  },
+  "home_r": {
+    "title": "Book an activity",
+    "card_title": "Book an activity",
+    "activities": {
+      "Tennis": "Tennis",
+      "Padel": "Padel",
+      "Piscine": "Swimming pool",
+      "Football": "Football",
+      "Fitness": "Fitness",
+      "Basket": "Basketball",
+      "Volley": "Volleyball",
+      "Pétanque": "Pétanque",
+      "Athlétisme": "Athletics",
+      "Arts Martiaux": "Martial Arts"
+    }
+  },
+  "creneaux": {
+    "title": "Dashboard - Slots",
+    "list": "List of slots",
+    "add": "Add a slot",
+    "date": "Date",
+    "start_time": "Start time",
+    "end_time": "End time",
+    "installation": "Facility",
+    "available": "Available",
+    "actions": "Actions",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "utilisateur": {
+    "title": "Dashboard - Users",
+    "list": "List of users",
+    "add": "Add a user",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "role": "Role",
+    "actions": "Actions",
+    "roles": {
+      "adherent": "Member",
+      "coach": "Coach",
+      "responsable": "Manager",
+      "admin": "Admin",
+      "user": "User"
+    }
+  },
+  "menu": {
+    "title": "Royal Tennis Club de Fès",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "activities": "Activities",
+    "reservations": "Reservations",
+    "installations": "Facilities",
+    "slots": "Slots",
+    "reservation": "Reservation",
+    "contact": "Contact"
+  },
+  "about": {
+    "title": "About us",
+    "description": "The Royal Tennis Club of Fès is a place of sporting excellence, conviviality and tradition. Our club welcomes young and old for tennis and other sports activities in a royal and green setting.",
+    "logo_alt": "Club logo"
+  },
+  "services": {
+    "title": "Our Services"
+  },
+  "gallery": {
+    "title": "Gallery"
+  },
+  "contact": {
+    "title": "Contact us",
+    "name": "Name",
+    "name_placeholder": "Your name",
+    "email": "Email",
+    "email_placeholder": "Your email",
+    "message": "Message",
+    "message_placeholder": "Your message",
+    "send": "Send"
+  },
+  "footer": {
+    "club": "Royal Tennis Club of Fès",
+    "address": "Address: ...",
+    "phone": "Phone: ...",
+    "email": "Email: ...",
+    "home": "Home",
+    "services": "Services",
+    "contact": "Contact",
+    "copyright": "© 2025 Royal Tennis Club de Fès. All rights reserved."
+  },
+  "SIDEBAR": {
+    "LOGOUT": "Logout",
+    "PREMIUM": "Premium",
+    "ROLE_MEMBER": "Member",
+    "HOME": "Home",
+    "RESERVATIONS": "Reservations",
+    "PROFILE": "Profile",
+    "SETTINGS": "Settings",
+    "THEME": "Theme",
+    "LANGUAGE": "Language"
+  },
+  "profile": {
+    "view_profile": "View profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "logout_title": "Logout",
+    "logout_confirm": "Do you really want to logout?",
+    "cancel": "Cancel",
+    "login": "Login",
+    "register": "Register",
+    "role": "Role",
+    "personal_info": "Personal information",
+    "email": "Email",
+    "phone": "Phone",
+    "profession": "Profession",
+    "birth_date": "Birth date",
+    "edit": "Edit profile",
+    "change_password": "Change password",
+    "delete_account": "Delete account"
+  },
+  "settings": {
+    "title": "Settings",
+    "account": "Account",
+    "edit": "Edit",
+    "change_password": "Change password",
+    "theme": "Theme",
+    "theme_light": "Light",
+    "theme_dark": "Dark",
+    "theme_auto": "Auto",
+    "language": "Language",
+    "notifications": "Notifications",
+    "security": "Security",
+    "delete_account": "Delete account",
+    "old_password": "Old password",
+    "new_password": "New password",
+    "confirm_password": "Confirm password",
+    "passwords_no_match": "Passwords do not match.",
+    "save": "Save"
+  },
+  "profil": {
+    "nom": "Last name",
+    "prenom": "First name"
+  }
+}

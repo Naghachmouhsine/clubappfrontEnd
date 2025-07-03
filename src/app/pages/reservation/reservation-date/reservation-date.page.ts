@@ -9,7 +9,7 @@ import { ReservationCService, ReservationData } from 'src/app/services/reservati
 import { ToastController } from '@ionic/angular';
 import { LoginPage } from '../../login/login.page';
 import { InformationReservationModalComponent } from 'src/app/modals/nbr-installation-modal/information-reservation-modal.component';
-import { AppHeaderComponent } from "../../../components/app-header/app-header.component";
+import { AppHeaderComponent } from '../../../components/app-header/app-header.component';
 import { loadStripe } from '@stripe/stripe-js';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';

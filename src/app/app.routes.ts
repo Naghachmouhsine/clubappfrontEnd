@@ -20,100 +20,91 @@ import { AuthGuard } from './services/authgard.service';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    component:HomePage,
-  },
-  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
   },
   {
+    path: 'home',
+    component: HomePage,
+  },
+  {
     path: 'login',
-    component:LoginPage,
+    component: LoginPage,
   },
   {
     path: 'register',
-    component:RegisterPage,
+    component: RegisterPage,
   },
   {
     path: 'settings',
-    component:SettingsPage,
+    component: SettingsPage,
   },
-  
   {
     path: 'contact',
-    component:ContactPage,
+    component: ContactPage,
   },
   {
     path: 'userprofile',
-    component:UserprofilePage,
+    component: UserprofilePage,
     canActivate: [AuthGuard],
   },
   {
-    path: 'dashboard/activites',  
-    component:ActivitesPage,
+    path: 'dashboard/activites',
+    component: ActivitesPage,
     canActivate: [AuthGuard],
   },
-  
   {
     path: 'dashboard/utilisateur',
-    component:UtilisateurPage,
+    component: UtilisateurPage,
     canActivate: [AuthGuard],
-
   },
   {
     path: 'dashboard/reservations',
-    component:ReservationComponent,
+    component: ReservationComponent,
     canActivate: [AuthGuard],
-
   },
   {
     path: 'dashboard/installation',
-    component:InstallationPage,
+    component: InstallationPage,
     canActivate: [AuthGuard],
-
   },
   {
     path: 'dashboard/creneaux',
-    component:CreneauxPage,
+    component: CreneauxPage,
     canActivate: [AuthGuard],
   },
   // Reservations : 
   {
     path: 'reservation/activite',
-    component:ActiviteRPage,
+    component: ActiviteRPage,
     canActivate: [AuthGuard],
-
   },
   {
     path: 'reservation/date',
-    component:DateRPage,
+    component: DateRPage,
     canActivate: [AuthGuard],
-
   },
   {
     path: 'reservation/creneau',
-    component:CreneauRPage,
+    component: CreneauRPage,
     canActivate: [AuthGuard],
   },
   {
     path: 'reservation/confirmation',
-    component:ConfirmationRPage,
+    component: ConfirmationRPage,
   },
   {
     path: 'reservation/home',
-    component:HomeRPage,
+    component: HomeRPage,
   },
- 
   {
     path: 'reservation/reservation-date',
     component:ReservationDatePage,
     // canActivate : [AuthGuard]
   },
   {
-    path : 'resultPayement',
-    component : ReservationDatePage,
+    path: 'resultPayement',
+    component: ReservationDatePage,
   }
-
 ];

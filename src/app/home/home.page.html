@@ -1,14 +1,10 @@
-
-<ion-header [translucent]="true">
-
-  <app-header nomPage="Home" ></app-header>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  
-  <iframe
-    src="https://royaltennisclubdefes.com/"
-    style="width: 100%; height: 100vh; border: none;"
-  ></iframe>
-
+<ion-content>
+  <app-hero-section></app-hero-section>
+  <div id="services">
+    <app-services-section></app-services-section>
+  </div>
+  <app-about-section></app-about-section>
+  <app-gallery-section></app-gallery-section>
+  <app-contact-section></app-contact-section>
+  <app-footer-dark></app-footer-dark>
 </ion-content>

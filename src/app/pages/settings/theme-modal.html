@@ -1,0 +1,25 @@
+<div class="popup-modal">
+  <button class="close-btn" (click)="close()" aria-label="Fermer">
+    <ion-icon name="close-outline"></ion-icon>
+  </button>
+  <div class="avatar-premium mb-2 mx-auto">
+    <ion-icon name="color-palette" class="gold-avatar"></ion-icon>
+  </div>
+  <ion-list lines="none">
+    <ion-radio-group [(ngModel)]="selectedTheme">
+      <ion-item>
+        <ion-label>🌞 {{ 'settings.theme_light' | translate }}</ion-label>
+        <ion-radio slot="end" value="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>🌙 {{ 'settings.theme_dark' | translate }}</ion-label>
+        <ion-radio slot="end" value="dark"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>⚡ {{ 'settings.theme_auto' | translate }}</ion-label>
+        <ion-radio slot="end" value="auto"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <ion-button expand="block" (click)="save()" class="mt-3 gold-btn">{{ 'settings.save' | translate }}</ion-button>
+</div>

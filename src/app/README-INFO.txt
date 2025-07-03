@@ -1,0 +1,1 @@
+Le composant sidebareuser (sidebar premium) a été supprimé car il faisait doublon avec le menu principal Ionic (hamburger menu). Navigation et expérience utilisateur sont désormais centralisées via le menu natif Ionic.

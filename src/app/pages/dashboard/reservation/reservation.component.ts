@@ -3,10 +3,11 @@ import { Reservation, ReservationService } from 'src/app/services/reservation.se
 import IonicModule from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { SharedIonicModule } from 'src/app/shared/shared-ionic.module';
-import { AppHeaderComponent } from "../../../components/app-header/app-header.component";
+import { AppHeaderComponent } from '../../../components/app-header/app-header.component';
 
 @Component({
   selector: 'app-reservation',
+  standalone: true,
   imports: [CommonModule, SharedIonicModule, AppHeaderComponent],
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.scss'],

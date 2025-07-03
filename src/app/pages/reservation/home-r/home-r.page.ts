@@ -6,18 +6,14 @@ import { ReservationCService } from 'src/app/services/reservation-c.service';
 
 import { IonicModule } from '@ionic/angular';
 import { AppHeaderComponent } from 'src/app/components/app-header/app-header.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-r',
   templateUrl: './home-r.page.html',
   styleUrls: ['./home-r.page.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    AppHeaderComponent
-  ]
+  imports: [CommonModule, FormsModule, IonicModule, AppHeaderComponent, TranslateModule]
 })
 export class HomeRPage implements OnInit {
 

@@ -1,0 +1,16 @@
+<section id="services" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold services-title">{{ 'home.services.title' | translate }}</h2>
+    <div class="row g-4">
+      <div class="col-md-3 col-sm-6" *ngFor="let service of services">
+        <div class="card card-royal h-100 text-center p-3">
+          <div class="mb-3">
+            <i [class]="service.icon" style="font-size:2.5rem;color:var(--color-gold)"></i>
+          </div>
+          <h5 class="fw-bold">{{ service.title | translate }}</h5>
+          <p class="text-muted">{{ service.desc | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

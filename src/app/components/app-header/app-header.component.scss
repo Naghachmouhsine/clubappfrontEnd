@@ -4,3 +4,168 @@
   --border-color: #002244; /* si tu veux une bordure */
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
 }
+
+.header-title {
+  color: aliceblue;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+ion-toolbar {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ion-buttons[slot="end"] {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.3rem; /* espace très réduit entre les éléments */
+  align-items: center;
+}
+
+ion-buttons[slot="end"] ion-button span {
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  min-width: unset;
+  display: inline-block;
+  line-height: 1.2;
+}
+
+.text-capitalize {
+  text-transform: lowercase !important;
+}
+
+.theme-select, .lang-select {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0 2px;
+}
+
+.profile-btn-img-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.header-profile-img { 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50% !important;
+  display: block;
+}
+
+.header-logout-emoji {
+  font-size: 1.5em;
+}
+
+ion-button.services-btn {
+  padding: 0 8px;
+  min-width: unset;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+ion-button.services-btn span {
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.theme-toggle-btn, .lang-select {
+  margin: 0;
+  padding: 0 2px;
+  min-width: unset;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+ion-button.theme-toggle-btn {
+  font-size: 1.6em;
+  min-width: 38px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: none !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+  margin: 0 2px;
+}
+
+ion-button.theme-toggle-btn ion-icon {
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.lang-select {
+  min-width: 32px;
+  height: 32px;
+  font-size: 1.2em;
+  padding: 0 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: none !important;
+  box-shadow: none !important;
+  margin: 0 2px;
+}
+
+ion-button[ng-reflect-ng-if][ng-reflect-ng-if="true"] {
+  min-width: 42px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  background: none !important;
+  box-shadow: none !important;
+  margin: 0 4px;
+}
+
+ion-button[ng-reflect-ng-if][ng-reflect-ng-if="true"] ion-icon {
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+ion-button.profile-btn {
+  min-width: 42px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none !important;
+  border: 2px solid var(--color-gold, #FFD700);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  margin: 0 4px;
+  padding: 0;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+
+ion-button.profile-btn ion-icon {
+  font-size: 2em;
+  color: var(--color-gold, #FFD700);
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
