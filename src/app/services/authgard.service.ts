@@ -18,8 +18,8 @@ export class AuthGuard implements CanActivate {
     'reservation/date-r': ['admin', 'responsable', 'coach'],
     'reservation/creneau-r': ['admin', 'responsable', 'coach'],
     'reservation/confirmation-r': ['admin', 'responsable', 'coach'],
-    'reservation/home-r': ['admin', 'user', 'responsable', 'coach', 'adherent'],
-    'reservation/reservation-date': ['admin', 'responsable', 'coach', 'adherent'],
+    // 'reservation/home-r': ['admin', 'user', 'responsable', 'coach', 'adherent'],
+    // 'reservation/reservation-date': ['admin', 'responsable', 'coach', 'adherent'],
     'dashboard/reservations': ['admin', 'responsable','user'],
   };
 

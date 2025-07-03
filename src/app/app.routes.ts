@@ -100,8 +100,8 @@ export const routes: Routes = [
   },
   {
     path: 'reservation/reservation-date',
-    component: ReservationDatePage,
-    canActivate: [AuthGuard],
+    component:ReservationDatePage,
+    // canActivate : [AuthGuard]
   },
   {
     path: 'resultPayement',

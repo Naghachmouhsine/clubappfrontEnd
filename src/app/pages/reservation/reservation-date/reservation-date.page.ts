@@ -29,7 +29,7 @@ export class ReservationDatePage implements OnInit {
     creneau: '',
     installation: ''
   };
-
+  buttonPypale=true
   selectedDate: Date = new Date();
   weekDates: Date[] = [];
   sessions: any[] = []; //tout les crenaux
@@ -156,35 +156,51 @@ export class ReservationDatePage implements OnInit {
     this.reserver(reservation, stripe)
   }
 
-async paypalePayement(reservation:any) {
+async paypalePayement(reservation: any) {
+  const amount = "10.00"; // ou dynamique
+  console.log(paypal)
+  try {
+  
+const order = await this.http.post<any>('http://localhost:3000/api/create-paypal-order',{ amount }).toPromise();
 
- const amount=12
- console.log(1)
-  // 1. Créer une commande PayPal via backend
-  const response = await this.http.post<any>('http://localhost:3000/api/create-paypal-order', { amount }).toPromise();
- console.log(2)
-
-  // 2. Intégrer le bouton PayPal dans le DOM (par exemple via modal ou div dédiée)
-  paypal.Buttons({
-    createOrder: () => {
-      return response.orderID;
-    },
-    onApprove: async (data: any, actions: any) => {
-      // 3. Capturer la commande
-      const capture = await this.http.post<any>('http://localhost:3000/api/capture-paypal-order', {
-        orderID: data.orderID
-      }).toPromise();
-
-      console.log("✅ Paiement capturé :", capture);
-   
-      this.reserver(reservation);
-    },
-    onError: (err: any) => {
-      console.error("❌ Erreur de paiement PayPal :", err);
+    const container = document.getElementById('paypal-container');
+    if (!container) {
+      console.error("Le conteneur PayPal n'existe pas dans le DOM.");
+      return;
     }
-  }).render("#paypal-button-container");
-}
+    container.innerHTML = '';
+paypal.Buttons({
+  createOrder: (data: any, actions: any) => {
 
+    return order.orderID;
+  },
+  onApprove: async (data: any) => {
+    console.log("[4] onApprove déclenché, data:", data);
+    const capture = await this.http.post<any>('http://localhost:3000/api/capture-paypal-order', {
+      orderID: data.orderID
+    }).toPromise();
+    // payement succus
+    reservation.statut="confirmée"
+    this.reserver(reservation)
+  },
+  onCancel: (data: any) => console.warn("[!] paiement annulé", data),
+  onError: (err: any) => console.error("[!] erreur PayPal", err)
+})
+.render(container);
+  // setTimeout(() => {
+  //     const button = container.querySelector('iframe')?.parentElement as HTMLElement;
+  //     if (button) {
+  //       console.log("➡️ Clic simulé sur le bouton PayPal");
+  //       button.click();
+  //     } else {
+  //       console.error("❌ Bouton PayPal non trouvé dans le DOM");
+  //     }
+  //   }, 1000);
+
+  } catch (err) {
+    console.error("Erreur lors du processus PayPal :", err);
+  }
+}
 
   // async openModalPyement(){
   //   const modal = await this.modal.create({
@@ -331,8 +347,10 @@ async paypalePayement(reservation:any) {
               await stripe?.redirectToCheckout({ sessionId: res.id.toString() });
             });
         }
-        else
+        else{
+             this.buttonPypale=false
              this.presentToast("Votre réservation a été enregistrée", 'success')
+        }
         this.loadSession()
       },
       error: (err) => {

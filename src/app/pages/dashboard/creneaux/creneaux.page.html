@@ -19,16 +19,21 @@
           <ion-col>{{ 'creneaux.disponibilite' | translate }}</ion-col>
           <ion-col>{{ 'creneaux.actions' | translate }}</ion-col>
         </ion-row>
-        <ion-row *ngFor="let creneau of creneaux" class="ion-text-center creneaux-row align-items-center bg-light rounded-3 mb-2 py-2" [ngClass]="getDisponibiliteClass(creneau.disponible)">
+        <ion-row *ngFor="let creneau of creneaux"
+          class="ion-text-center creneaux-row align-items-center bg-light rounded-3 mb-2 py-2"
+          [ngClass]="getDisponibiliteClass(creneau.disponible)">
           <ion-col class="creneaux-cell fw-semibold">{{ creneau.date | date:'dd/MM/yyyy' }}</ion-col>
           <ion-col class="creneaux-cell">{{ creneau.heure_debut }}</ion-col>
           <ion-col class="creneaux-cell">{{ creneau.heure_fin }}</ion-col>
-          <ion-col class="creneaux-cell">{{ creneau.installation_nom }} - {{creneau.installation_type }}</ion-col>
+          <ion-col class="creneaux-cell">{{ creneau.type }}</ion-col>
+
           <ion-col class="creneaux-cell">
-            <ion-badge [color]="getDisponibiliteClass(creneau.disponible)" class="px-3 py-2 rounded-pill text-uppercase">
+            <ion-badge [color]="getDisponibiliteClass(creneau.disponible)"
+              class="px-3 py-2 rounded-pill text-uppercase">
               {{ creneau.disponible === 'oui' ? ('creneaux.yes' | translate) : ('creneaux.no' | translate) }}
             </ion-badge>
           </ion-col>
+
           <ion-col>
             <ion-button fill="clear" color="primary" (click)="detailCreneau(creneau.id)" class="rounded-pill">
               <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
@@ -41,6 +46,7 @@
             </ion-button>
           </ion-col>
         </ion-row>
+
       </ion-grid>
     </ion-card-content>
   </ion-card>
