@@ -1,4 +1,4 @@
-<ion-toolbar color="success">
+<ion-toolbar>
   <ion-buttons slot="start">
     <ion-menu-button menuId="main-content" color="light"></ion-menu-button>
   </ion-buttons>
@@ -10,9 +10,9 @@
       <ion-icon [name]="themeIcon" slot="icon-only"></ion-icon>
     </ion-button>
     <ion-select interface="popover" [(ngModel)]="lang" (ionChange)="setLang($event.detail.value)" class="lang-select" placeholder="Langue">
-      <ion-select-option value="fr">🇫🇷</ion-select-option>
-      <ion-select-option value="en">🇬🇧</ion-select-option>
-      <ion-select-option value="ar">🇲🇦</ion-select-option>
+      <ion-select-option value="fr">fr</ion-select-option>
+      <ion-select-option value="en">en</ion-select-option>
+      <ion-select-option value="ar">ar</ion-select-option>
     </ion-select>
     <ion-button *ngIf="showServicesText" (click)="scrollToServices()" class="services-btn">
       <ion-icon name="star-outline" slot="start" color="warning"></ion-icon>
@@ -20,7 +20,7 @@
     </ion-button>
     <ion-button *ngIf="showProfilePicture" (click)="openProfileMenu($event)" class="profile-btn">
       <span class="profile-btn-img-wrapper">
-        <img [src]="profilePictureUrl" alt="Profil" class="header-profile-img" />
+        <img [src]="getProfilePictureUrl()" alt="Profil" class="header-profile-img" />
       </span>
     </ion-button>
     <ion-button *ngIf="showProfileText && !showProfilePicture" (click)="openProfileMenu($event)" class="profile-btn">

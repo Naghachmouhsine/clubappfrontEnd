@@ -1,24 +1,179 @@
-.reservations-row {
-  border-radius: 12px;
-  margin-bottom: 10px;
-  padding: 8px;
-  transition: background-color 0.3s ease;
-
-  color: #000;           // Texte noir
-  font-weight: bold;     // Texte en gras
-
-  &.confirme{
-    background-color: #2ecc7099;
-  }
-
-  &.en_attente {
-    background-color: #f1c40f66;
-  }
-  &.annuler {
-    background-color: #95a5a655;
-  }
+/* Design premium sportif harmonisé pour Réservations */
+ion-card {
+  background: #c9d1d9 !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  border-radius: 2rem;
+  border: 1.5px solid rgba(63, 167, 255, 0.13);
+  -webkit-backdrop-filter: blur(8px); /* Compatibilité Safari/iOS */
+  backdrop-filter: blur(8px);
+  padding: 2rem 1.5rem;
+}
+body.theme-dark ion-card.card-royal,
+body.theme-dark ion-card,
+body.theme-dark ion-card-title,
+body.theme-dark .ion-text-center[style*="font-weight: bold;"],
+body.theme-dark .reservations-row {
+  background: linear-gradient(90deg, #2d2d2d 0%, #1a1a1a 100%) !important;
+  color: #ffd700 !important;
+  -webkit-text-fill-color: #ffd700 !important;
+  border-color: #ffd70099 !important;
+}
+body.theme-dark ion-card-title,
+body.theme-dark .ion-text-center[style*="font-weight: bold;"] {
+  color: #ffd700 !important;
+  -webkit-text-fill-color: #ffd700 !important;
+  text-shadow: 0 2px 8px #ffd70044;
+}
+body.theme-dark ion-badge,
+body.theme-dark ion-badge.user-data {
+  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
+  color: #222 !important;
+  box-shadow: 0 2px 8px 0 #ffd70033;
+}
+body.theme-dark .reservations-row {
+  color: #ffd700 !important;
+}
+body.theme-dark ion-button.btn-gold {
+  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
+  color: #222 !important;
+}
+body.theme-dark ion-button.btn-gold:hover {
+  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%) !important;
+  color: #222 !important;
+}
+body.theme-dark ion-button[fill="outline"] {
+  border: 2px solid #ffd700 !important;
+  color: #ffd700 !important;
+}
+body.theme-dark ion-button[fill="outline"]:hover {
+  border: 2px solid #3fa7ff !important;
+  color: #3fa7ff !important;
+}
+body.theme-dark ion-card {
+  background: rgba(30, 34, 54, 0.92) !important;
+  border: 1.5px solid rgba(255, 215, 0, 0.12);
+}
+ion-card-title {
+  color: #3fa7ff !important;
+  font-size: 2.2rem !important;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900 !important;
+  letter-spacing: 1px;
+  text-align: center !important;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 8px rgba(63, 167, 255, 0.18);
+  transition: color 0.3s;
+}
+.reservation-title {
+  font-size: 2.2rem !important;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900 !important;
+  letter-spacing: 1px;
+  text-align: center !important;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #ffd700 0%, #fffbe6 60%, #23272f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0 2px 8px #ffd70033;
+  transition: color 0.3s;
+}
+.ion-text-center[style*="font-weight: bold;"] {
+  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%);
+  color: #222 !important;
+  font-weight: 900;
+  font-size: 1.1rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px 0 rgba(63, 167, 255, 0.07);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.7rem;
+  padding: 0.7rem 0;
 }
 .reservations-row {
-  padding: 12px 0;
-  border-bottom: 1px solid #ccc;
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(63, 167, 255, 0.07);
+  background: rgba(255,255,255,0.85);
+  border-radius: 1.2rem;
+  margin-bottom: 0.7rem;
+  align-items: center;
+  font-size: 1.08rem;
+  color: #222;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  letter-spacing: 0.2px;
+  font-weight: bold;
+}
+body.theme-dark .reservations-row {
+  background: rgba(30,34,54,0.92);
+  color: #f5f5f5;
+}
+.reservations-row:hover {
+  box-shadow: 0 4px 16px 0 rgba(63, 167, 255, 0.18);
+  background: linear-gradient(90deg, #3fa7ff11 0%, #ffd70011 100%);
+}
+.reservations-row.confirme {
+  background: linear-gradient(90deg, #2ecc70cc 0%, #3fa7ff33 100%) !important;
+}
+.reservations-row.en_attente {
+  background: linear-gradient(90deg, #f1c40fcc 0%, #ffd70033 100%) !important;
+}
+.reservations-row.annuler {
+  background: linear-gradient(90deg, #95a5a6cc 0%, #3fa7ff33 100%) !important;
+}
+ion-select, ion-select-option {
+  font-weight: bold;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+}
+.reservation-header-row {
+  font-size: 1.05rem !important;
+  padding: 0.45rem 0 !important;
+  background: linear-gradient(90deg, #fffbe6 0%, #ffe066 100%) !important;
+  color: #23272f !important;
+  font-weight: 800;
+  border-radius: 0.9rem;
+  box-shadow: 0 1px 4px 0 #ffd70022;
+  letter-spacing: 0.3px;
+  margin-bottom: 0.6rem;
+  text-transform: none;
+  border: 1px solid #ffe06655;
+  transition: background 0.3s, color 0.3s;
+}
+
+@media (max-width: 900px) {
+  ion-card {
+    padding: 1.2rem 0.5rem;
+  }
+  .reservations-row {
+    font-size: 0.98rem;
+    padding: 0.5rem 0;
+  }
+  ion-card-title {
+    font-size: 1.3rem !important;
+  }
+  .reservation-header-row {
+    font-size: 0.95rem !important;
+    padding: 0.3rem 0 !important;
+  }
+  .reservation-title {
+    font-size: 1.5rem !important;
+  }
+}
+@media (max-width: 600px) {
+  ion-card {
+    padding: 0.5rem 0.1rem;
+  }
+  .reservations-row {
+    font-size: 0.92rem;
+    padding: 0.3rem 0;
+  }
+  ion-card-title {
+    font-size: 1.1rem !important;
+  }
+  .reservation-header-row {
+    font-size: 0.88rem !important;
+    padding: 0.18rem 0 !important;
+  }
+  .reservation-title {
+    font-size: 1.1rem !important;
+  }
 }

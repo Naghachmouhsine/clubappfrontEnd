@@ -1,35 +1,181 @@
-.title-row {
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
-  padding: 8px 0;
+/* Design premium sportif harmonisé pour Installations */
+ion-card.card-royal {
+  background: #c9d1d9 !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  border-radius: 2rem;
+  border: 1.5px solid rgba(63, 167, 255, 0.13);
+  -webkit-backdrop-filter: blur(8px); /* Compatibilité Safari/iOS */
+  backdrop-filter: blur(8px);
+  padding: 2rem 1.5rem;
 }
-
-.installation-row {
-  border-radius: 12px;
-  margin-bottom: 10px;
-  padding: 12px 0;
-  transition: background-color 0.3s ease;
-  font-weight: bold;
-
-  &.disponible-oui {
-    background-color: #2ecc7099;
-  }
-
-  &.disponible-non {
-    background-color: #e74c3c66;
-  }
-
-  &.disponible-inconnu {
-    background-color: rgba(200, 200, 200, 0.2);
-  }
+body.theme-dark ion-card.card-royal,
+body.theme-dark ion-card,
+body.theme-dark ion-card-title.services-title,
+body.theme-dark ion-row.title-row,
+body.theme-dark ion-row.installation-row {
+  background: linear-gradient(90deg, #2d2d2d 0%, #1a1a1a 100%) !important;
+  color: #ffd700 !important;
+  -webkit-text-fill-color: #ffd700 !important;
+  border-color: #ffd70099 !important;
 }
-
+body.theme-dark ion-card-title.services-title,
+body.theme-dark ion-row.title-row {
+  color: #ffd700 !important;
+  -webkit-text-fill-color: #ffd700 !important;
+  text-shadow: 0 2px 8px #ffd70044;
+}
+body.theme-dark ion-badge,
+body.theme-dark ion-badge.user-data {
+  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
+  color: #222 !important;
+  box-shadow: 0 2px 8px 0 #ffd70033;
+}
+ion-card-title.services-title {
+  color: #3fa7ff !important;
+  font-size: 2.2rem !important;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900 !important;
+  letter-spacing: 1px;
+  text-align: center !important;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 8px rgba(63, 167, 255, 0.18);
+  transition: color 0.3s;
+}
+ion-row.title-row {
+  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%);
+  color: #222 !important;
+  font-weight: 900;
+  font-size: 1.1rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px 0 rgba(63, 167, 255, 0.07);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.7rem;
+  padding: 0.7rem 0;
+}
+ion-row.installation-row {
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(63, 167, 255, 0.07);
+  background: rgba(255,255,255,0.85);
+  border-radius: 1.2rem;
+  margin-bottom: 0.7rem;
+  align-items: center;
+  font-size: 1.08rem;
+  color: #222;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  letter-spacing: 0.2px;
+  font-weight: bold;
+}
+body.theme-dark ion-row.installation-row {
+  background: rgba(30,34,54,0.92);
+  color: #f5f5f5;
+}
+ion-row.installation-row:hover {
+  box-shadow: 0 4px 16px 0 rgba(63, 167, 255, 0.18);
+  background: linear-gradient(90deg, #3fa7ff11 0%, #ffd70011 100%);
+}
+.installation-row.disponible-oui {
+  background: linear-gradient(90deg, #2ecc70cc 0%, #3fa7ff33 100%) !important;
+}
+.installation-row.disponible-non {
+  background: linear-gradient(90deg, #e74c3ccc 0%, #ffd70033 100%) !important;
+}
+.installation-row.disponible-inconnu {
+  background: linear-gradient(90deg, #95a5a6cc 0%, #3fa7ff33 100%) !important;
+}
 .installation-cell {
-  color: #000;
+  font-size: 1.08rem;
+  color: #222;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  letter-spacing: 0.2px;
+  transition: color 0.3s;
 }
-
+body.theme-dark .installation-cell {
+  color: #ffd700 !important;
+}
+ion-button.btn-gold {
+  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%);
+  color: #222 !important;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px 0 rgba(255, 215, 0, 0.13);
+  letter-spacing: 0.5px;
+  border: none;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+body.theme-dark ion-button.btn-gold {
+  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
+  color: #222 !important;
+}
+ion-button.btn-gold:hover {
+  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%);
+  color: #222 !important;
+}
+body.theme-dark ion-button.btn-gold:hover {
+  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%) !important;
+  color: #222 !important;
+}
+ion-button[fill="outline"] {
+  border: 2px solid #3fa7ff;
+  color: #3fa7ff !important;
+  font-weight: 600;
+  border-radius: 2rem;
+  transition: border 0.3s, color 0.3s;
+}
+body.theme-dark ion-button[fill="outline"] {
+  border: 2px solid #ffd700 !important;
+  color: #ffd700 !important;
+}
+ion-button[fill="outline"]:hover {
+  border: 2px solid #ffd700;
+  color: #ffd700 !important;
+}
+body.theme-dark ion-button[fill="outline"]:hover {
+  border: 2px solid #3fa7ff !important;
+  color: #3fa7ff !important;
+}
 .empty-state {
   margin-top: 20px;
   font-style: italic;
   color: #666;
 }
+@media (max-width: 900px) {
+  ion-card.card-royal {
+    padding: 1.2rem 0.5rem;
+  }
+  ion-row.title-row, ion-row.installation-row {
+    font-size: 0.98rem;
+    padding: 0.5rem 0;
+  }
+  ion-card-title.services-title {
+    font-size: 1.3rem !important;
+  }
+}
+@media (max-width: 600px) {
+  ion-card.card-royal {
+    padding: 0.5rem 0.1rem;
+  }
+  ion-row.title-row, ion-row.installation-row {
+    font-size: 0.92rem;
+    padding: 0.3rem 0;
+  }
+  ion-card-title.services-title {
+    font-size: 1.1rem !important;
+  }
+}
+
+
+// Style premium sportif pour tous les boutons .button-solid sur la page Activités
+:host ::ng-deep .button-solid, :host ::ng-deep ion-button.button-solid {
+  --background: linear-gradient(90deg, #FFD700 0%, #23272F 100%);
+  --color: #23272F;
+  --box-shadow: 0 2px 12px 0 #FFD70055, 0 0 8px 0 #23272F22;
+  --border-radius: 2rem;
+  --border: none;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 8px #fffbe6cc;
+  font-size: 1.1rem;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+} 

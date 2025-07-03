@@ -4,11 +4,12 @@ import IonicModule from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { SharedIonicModule } from 'src/app/shared/shared-ionic.module';
 import { AppHeaderComponent } from '../../../components/app-header/app-header.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reservation',
   standalone: true,
-  imports: [CommonModule, SharedIonicModule, AppHeaderComponent],
+  imports: [CommonModule, SharedIonicModule, AppHeaderComponent, TranslateModule],
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.scss'],
 })
@@ -63,6 +64,22 @@ export class ReservationComponent implements OnInit {
   }
 }
 
- 
+  viewReservation(res: Reservation) {
+    // TODO: Afficher un modal ou une page de détails
+    alert('Voir la réservation : ' + res.id);
+  }
+
+  editReservation(res: Reservation) {
+    // TODO: Ouvrir un modal ou une page d’édition
+    alert('Modifier la réservation : ' + res.id);
+  }
+
+  deleteReservation(res: Reservation) {
+    // TODO: Confirmer et supprimer la réservation
+    if (confirm('Supprimer la réservation ?')) {
+      // Appeler le service de suppression ici
+      alert('Suppression (à implémenter) : ' + res.id);
+    }
+  }
 
 }

@@ -1,13 +1,68 @@
+/* Design premium sportif et dark mode pour la page register */
 .register-content {
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #c9d1d9 0%, #eaf5ef 100%);
+}
+
+body.theme-dark .register-content,
+body.dark-theme .register-content,
+html[class*='dark'] .register-content {
+  background: linear-gradient(120deg, #181818 0%, #232323 100%) !important;
 }
 
 .register-container {
   max-width: 500px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-royal {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  border-radius: 2rem;
+  border: 1.5px solid rgba(63, 167, 255, 0.13);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 2.2rem 1.5rem;
+  margin: 2rem 0;
+  transition: background 0.3s;
+}
+
+body.theme-dark .card-royal,
+body.dark-theme .card-royal,
+html[class*='dark'] .card-royal {
+  background: linear-gradient(120deg, #232323 0%, #181818 100%) !important;
+  color: #ffd700 !important;
+  border: 1.5px solid #ffd70099 !important;
+}
+
+.login-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  background: var(--color-white);
+  box-shadow: 0 2px 8px rgba(0,66,37,0.08);
+  margin-bottom: 1rem;
 }
 
 .register-title {
   color: var(--color-green);
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+body.theme-dark .register-title,
+body.dark-theme .register-title,
+html[class*='dark'] .register-title {
+  color: #ffd700 !important;
 }
 
 .form-control:focus {
@@ -15,13 +70,108 @@
   box-shadow: 0 0 0 0.2rem rgba(255,215,0,0.15);
 }
 
-.login-logo {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid var(--color-gold);
-  background: var(--color-white);
-  box-shadow: 0 2px 8px rgba(0,66,37,0.08);
-  margin-bottom: 1rem;
+.btn-gold {
+  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%);
+  color: #222 !important;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px 0 rgba(255, 215, 0, 0.13);
+  letter-spacing: 0.5px;
+  border: none;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%);
+  color: #222 !important;
+  box-shadow: 0 4px 16px 0 rgba(63, 167, 255, 0.18);
+}
+
+body.theme-dark .btn-gold,
+body.dark-theme .btn-gold,
+html[class*='dark'] .btn-gold {
+  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
+  color: #222 !important;
+}
+
+body.theme-dark .btn-gold:hover,
+body.dark-theme .btn-gold:hover,
+html[class*='dark'] .btn-gold:hover {
+  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%) !important;
+  color: #222 !important;
+}
+
+.text-gold {
+  color: var(--color-gold) !important;
+}
+
+.border-gold {
+  border: 2px solid var(--color-gold) !important;
+}
+
+/* WOW background sportif premium pour register (même que login) */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a1833 0%, #3fa7ff 60%, #ffd700 100%);
+  padding: 2.5rem 1rem;
+  position: relative;
+  z-index: 1;
+}
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;
+  opacity: 0.16;
+  z-index: 0;
+}
+body.theme-dark .auth-container,
+body.dark-theme .auth-container,
+html[class*='dark'] .auth-container {
+  background: linear-gradient(135deg, #181818 0%, #232323 60%, #ffd700 100%) !important;
+}
+.register-container.d-flex.align-items-center.justify-content-center {
+  min-height: 100vh;
+}
+
+/* Header/Menu design sportif et premium WOW pour login/register */
+ion-header, ion-toolbar.section-alt {
+  background: linear-gradient(90deg, #232323 0%, #3fa7ff 100%) !important;
+  box-shadow: 0 4px 24px 0 rgba(63, 167, 255, 0.13);
+  border-bottom: 2.5px solid #ffd700;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+.services-title, .register-title, .header-title {
+  color: #ffd700 !important;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #3fa7ff44;
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+}
+body.theme-dark ion-header, body.theme-dark ion-toolbar.section-alt,
+body.dark-theme ion-header, body.dark-theme ion-toolbar.section-alt,
+html[class*='dark'] ion-header, html[class*='dark'] ion-toolbar.section-alt {
+  background: linear-gradient(90deg, #181818 0%, #232323 100%) !important;
+  border-bottom: 2.5px solid #ffd700;
+}
+body.theme-dark .services-title, body.theme-dark .register-title, body.theme-dark .header-title,
+body.dark-theme .services-title, body.dark-theme .register-title, body.dark-theme .header-title,
+html[class*='dark'] .services-title, html[class*='dark'] .register-title, html[class*='dark'] .header-title {
+  color: #ffd700 !important;
+  text-shadow: 0 2px 8px #ffd70044;
 }

@@ -91,5 +91,8 @@ export class SettingsPage implements OnInit {
   deleteAccount() {
     alert('Fonctionnalité à venir : suppression du compte');
   }
+  goBack() {
+    window.history.back();
+  }
 
 }

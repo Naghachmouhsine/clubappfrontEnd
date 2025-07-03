@@ -1,7 +1,7 @@
 {
   "header": {
     "club_full": "النادي الملكي للتنس بفاس",
-    "services": "★ خدماتنا",
+    "services": "خدماتنا",
     "profile": "الملف الشخصي",
     "logout": "تسجيل الخروج",
     "theme": "المظهر"
@@ -213,5 +213,32 @@
   "profil": {
     "nom": "الاسم",
     "prenom": "اللقب"
+  },
+  "user": {
+    "add_title": "إضافة مستخدم",
+    "edit_title": "تعديل المستخدم",
+    "detail_title": "تفاصيل المستخدم",
+    "close": "إغلاق",
+    "save": "حفظ",
+    "add": "إضافة",
+    "role_adherent": "عضو",
+    "role_coach": "مدرب",
+    "role_responsable": "مسؤول",
+    "role_admin": "مدير"
+  },
+  "reservation": {
+    "list": "قائمة الحجوزات",
+    "utilisateur_nom": "اسم المستخدم",
+    "utilisateur_email": "البريد الإلكتروني",
+    "date_reservation": "تاريخ الحجز",
+    "date_creneau": "تاريخ الفترة",
+    "heure_debut": "بداية الفترة",
+    "heure_fin": "نهاية الفترة",
+    "statut": "الحالة",
+    "actions": "إجراءات",
+    "statut_en_attente": "قيد الانتظار",
+    "statut_confirmee": "مؤكد",
+    "statut_annulee": "ملغى",
+    "empty": "لا توجد حجوزات."
   }
 }

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InstallationModalComponent } from 'src/app/modals/installation-modal/installation-modal.component';
 import { AppHeaderComponent } from '../../../components/app-header/app-header.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-installation',
@@ -15,7 +16,8 @@ import { AppHeaderComponent } from '../../../components/app-header/app-header.co
     CommonModule,
     FormsModule,
     IonicModule,
-    AppHeaderComponent
+    AppHeaderComponent,
+    TranslateModule
 ]
 })
 export class InstallationPage implements OnInit {

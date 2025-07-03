@@ -3,13 +3,14 @@ import { IonicModule, ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-modal',
   templateUrl: './user-modal.component.html',
   styleUrls: ['./user-modal.component.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule, CommonModule],
+  imports: [IonicModule, FormsModule, CommonModule, TranslateModule],
 })
 export class UserModalComponent {
   @Input() userId!: number;

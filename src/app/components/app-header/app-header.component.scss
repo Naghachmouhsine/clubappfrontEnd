@@ -1,65 +1,120 @@
-.header {
-  --background:#30ee0a ;
-  --color: #ffffff; /* couleur du texte */
-  --border-color: #002244; /* si tu veux une bordure */
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+.header, ion-header, ion-toolbar, ion-toolbar.section-alt {
+  background: linear-gradient(90deg, #0a1833 0%, #3fa7ff 60%, #ffd700 100%) !important;
+  box-shadow: 0 4px 24px 0 rgba(63, 167, 255, 0.13);
+  border-bottom: 3px solid #ffd700;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  /* Glassmorphism effect */
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%); // style premium, non bloquant si non supporté
+  background: linear-gradient(90deg, rgba(10,24,51,0.85) 0%, rgba(63,167,255,0.85) 60%, rgba(255,215,0,0.85) 100%) !important;
+  border-radius: 0 0 24px 24px;
 }
 
-.header-title {
-  color: aliceblue;
-  margin-left: 12px;
-  cursor: pointer;
+.header-title, .services-title, .register-title {
+  color: #ffd700 !important;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #3fa7ff44;
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
 }
 
 ion-toolbar {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+  /* Add subtle border-glow for wow effect */
+  box-shadow: 0 0 16px 0 #ffd70055, 0 4px 24px 0 rgba(63, 167, 255, 0.13);
 }
 
 ion-buttons[slot="end"] {
   display: flex;
   flex-wrap: nowrap;
-  gap: 0.3rem; /* espace très réduit entre les éléments */
+  gap: 0.5rem;
   align-items: center;
 }
 
-ion-buttons[slot="end"] ion-button span {
-  font-size: 0.98rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-transform: none;
-  min-width: unset;
-  display: inline-block;
-  line-height: 1.2;
+.theme-toggle-btn, .lang-select {
+  background: #232323 !important;
+  color: #ffd700 !important;
+  border: 2px solid #ffd700 !important;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px 0 #ffd70022;
+  font-size: 1.3em;
+  margin: 0 2px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 8px 0 #ffd70044;
 }
 
-.text-capitalize {
-  text-transform: lowercase !important;
+.theme-toggle-btn:hover, .lang-select:hover {
+  background: #ffd700 !important;
+  color: #232323 !important;
+  box-shadow: 0 0 12px 2px #ffd70099, 0 1px 8px 0 #ffd70044;
 }
 
-.theme-select, .lang-select {
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0 2px;
+ion-title.header-title {
+  font-family: 'Orbitron', 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-size: 2.3rem;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  background: none;
+  color: #181818 !important;
+  text-shadow: none;
+  padding: 0.5rem 0;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+
+body.theme-dark ion-title.header-title {
+  color: #fff !important;
+}
+
+ion-toolbar, ion-header {
+  background: #181818 !important;
+  border-bottom: 2px solid #ffd700;
+}
+
+body.theme-dark ion-toolbar, body.theme-dark ion-header {
+  background: #181818 !important;
+  border-bottom: 2px solid #ffd700;
+}
+
+ion-button.services-btn {
+  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
+  color: #232323 !important;
+  font-weight: bold;
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px 0 #ffd70033;
+  letter-spacing: 0.5px;
+  border: none;
+  padding: 0 12px;
+  margin-left: 0.5rem;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+ion-button.services-btn:hover {
+  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%) !important;
+  color: #232323 !important;
+  box-shadow: 0 4px 16px 0 #3fa7ff33;
 }
 
 .profile-btn-img-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 50%;
+  border: 2px solid #ffd700 !important;
+  box-shadow: 0 1px 4px 0 #ffd70022;
 }
 
-.header-profile-img { 
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.header-profile-img {
   border-radius: 50% !important;
-  display: block;
+  border: 2px solid #ffd700 !important;
 }
 
 .header-logout-emoji {
@@ -168,4 +223,75 @@ ion-button.profile-btn ion-icon {
   margin: 0;
   padding: 0;
   vertical-align: middle;
+}
+
+/* Menu latéral sportif premium */
+.sidebar-premium {
+  background: linear-gradient(135deg, #0a1833 80%, #3fa7ff 100%, #ffd700 120%) !important;
+  color: #fff;
+  border-right: 3px solid #ffd700;
+  box-shadow: 0 0 32px 0 rgba(63,167,255,0.18);
+}
+
+.sidebar-premium .sidebar-header {
+  border-bottom: 2px solid #ffd70044;
+}
+
+.sidebar-premium .user-role, .sidebar-premium .badge-premium, .sidebar-premium .menu-badge, .sidebar-premium .arrow {
+  color: #ffd700 !important;
+  background: #232323 !important;
+  font-weight: 700;
+}
+
+.sidebar-premium .avatar-premium {
+  border: 3px solid #ffd700 !important;
+  box-shadow: 0 2px 16px 0 #ffd70033;
+}
+
+.sidebar-premium .sidebar-menu li.active, .sidebar-premium .sidebar-menu li:hover {
+  background: linear-gradient(90deg, #ffd70022 0%, #3fa7ff22 100%) !important;
+}
+
+.sidebar-premium .sidebar-footer {
+  border-top: 2px solid #ffd70044;
+}
+
+.sidebar-premium .theme-btn, .sidebar-premium .lang-btn, .sidebar-premium .logout-btn {
+  color: #ffd700 !important;
+  background: #232323 !important;
+  border: 2px solid #ffd700 !important;
+  box-shadow: 0 1px 4px 0 #ffd70022;
+}
+
+.sidebar-premium .theme-btn:hover, .sidebar-premium .lang-btn:hover, .sidebar-premium .logout-btn:hover {
+  background: #ffd700 !important;
+  color: #232323 !important;
+}
+
+/* Dark mode premium */
+.theme-dark .header, .theme-dark ion-header, .theme-dark ion-toolbar, .theme-dark ion-toolbar.section-alt {
+  background: linear-gradient(90deg, rgba(10,24,51,0.95) 0%, rgba(63,167,255,0.85) 60%, rgba(255,215,0,0.85) 100%) !important;
+  border-bottom: 3px solid #ffd700;
+  color: #ffd700 !important;
+}
+
+.theme-dark ion-title.header-title {
+  color: #ffd700 !important;
+  text-shadow: 0 2px 16px #3fa7ff99, 0 0 8px #ffd70099;
+}
+
+ion-menu-button {
+  --color: #0a1833 !important; /* bleu foncé premium par défaut */
+}
+
+body.theme-dark ion-menu-button {
+  --color: #ffd700 !important; /* doré premium en dark mode */
+}
+
+ion-menu-button::part(icon) {
+  color: #0a1833 !important;
+}
+
+body.theme-dark ion-menu-button::part(icon) {
+  color: #ffd700 !important;
 }

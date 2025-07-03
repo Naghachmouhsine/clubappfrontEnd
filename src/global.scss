@@ -52,6 +52,12 @@
   --color-light: #f9f9f9;
   --color-footer: #222;
   --font-main: 'Poppins', 'Roboto', Arial, sans-serif;
+  --ion-color-success: #FFD700 !important; /* gold */
+  --ion-color-success-rgb: 255, 215, 0 !important;
+  --ion-color-success-contrast: #232323 !important; /* texte foncé pour accessibilité */
+  --ion-color-success-contrast-rgb: 35, 35, 35 !important;
+  --ion-color-success-shade: #FFC300 !important;
+  --ion-color-success-tint: #FFF2CC !important;
 }
 
 body {
@@ -123,6 +129,12 @@ body.dark-theme {
   --color-white: #232323; // noir 90% pour fond principal
   --color-light: #232323; // noir 90% pour fond secondaire
   --color-footer: #111;
+  --ion-color-success: #FFD700 ;
+  --ion-color-success-rgb: 255, 215, 0 !important;
+  --ion-color-success-contrast: #181818 !important;
+  --ion-color-success-contrast-rgb: 24, 24, 24 !important;
+  --ion-color-success-shade: #FFC300 !important;
+  --ion-color-success-tint: #FFF2CC !important;
   background: var(--color-light) !important;
   color: var(--color-gold) !important;
 }
@@ -186,7 +198,7 @@ body.light-theme {
 
 body.dark-theme {
   background: #181818 !important;
-  color: var(--color-gold) !important;
+  color: #ffd700 !important;
 }
 
 body.dark-theme .card-royal,
@@ -196,7 +208,7 @@ body.dark-theme .main-content-adapt,
 body.dark-theme ion-content,
 body.dark-theme .footer-dark {
   background: #181818 !important;
-  color: var(--color-gold) !important;
+  color: #ffd700 !important;
 }
 
 body.dark-theme h1,
@@ -210,7 +222,7 @@ body.dark-theme a,
 body.dark-theme .ion-label,
 body.dark-theme .fw-bold,
 body.dark-theme .header-title {
-  color: var(--color-gold) !important;
+  color: #ffd700 !important;
 }
 
 body.light-theme h1,
@@ -236,4 +248,84 @@ body.light-theme .header-title {
 }
 .border-gold {
   border: 2px solid var(--color-gold) !important;
+}
+
+body.theme-dark, body.dark-theme {
+  background: #181818 !important;
+  color: #ffd700 !important;
+}
+
+body.theme-dark *, body.dark-theme * {
+  background-color: transparent;
+  color: #ffd700 !important;
+  border-color: #ffd700 !important;
+  box-shadow: none !important;
+}
+
+body.theme-dark a, body.dark-theme a,
+body.theme-dark .ion-label, body.dark-theme .ion-label,
+body.theme-dark .fw-bold, body.dark-theme .fw-bold,
+body.theme-dark .header-title, body.dark-theme .header-title {
+  color: #ffd700 !important;
+}
+
+body.theme-dark .bg-white, body.dark-theme .bg-white,
+body.theme-dark .card-royal, body.dark-theme .card-royal,
+body.theme-dark .user-row, body.dark-theme .user-row,
+body.theme-dark .creneaux-row, body.dark-theme .creneaux-row,
+body.theme-dark .section-alt, body.dark-theme .section-alt,
+body.theme-dark .menu-content, body.dark-theme .menu-content,
+body.theme-dark .main-content-adapt, body.dark-theme .main-content-adapt,
+body.theme-dark ion-content, body.dark-theme ion-content,
+body.theme-dark .footer-dark, body.dark-theme .footer-dark {
+  background: #181818 !important;
+  color: #ffd700 !important;
+}
+
+body.theme-dark input, body.dark-theme input,
+body.theme-dark textarea, body.dark-theme textarea,
+body.theme-dark select, body.dark-theme select {
+  background: #232323 !important;
+  color: #ffd700 !important;
+  border-color: #ffd700 !important;
+}
+
+body.theme-dark ion-button, body.dark-theme ion-button {
+  --background: #232323 !important;
+  --color: #ffd700 !important;
+  border: 2px solid #ffd700 !important;
+}
+
+body.theme-dark ion-card, body.dark-theme ion-card {
+  background: #232323 !important;
+  color: #ffd700 !important;
+  border: 1.5px solid #ffd70055 !important;
+}
+
+body.theme-dark ion-title, body.dark-theme ion-title {
+  color: #ffd700 !important;
+}
+
+.ion-color-success,
+.ion-color-success > .button-native,
+.ion-color-success > .button-inner,
+.ion-color-success > .ion-label,
+.ion-color-success > .ion-text,
+.ion-color-success > .ion-badge {
+  background: linear-gradient(90deg, #FFD700 0%, #FFC300 100%) !important; // premium gold gradient
+  color: #232323 !important; // texte foncé pour accessibilité
+  border-radius: 1.2rem !important;
+  box-shadow: 0 2px 12px 0 #ffd70055, 0 0 8px 0 #ffc30033 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+  border: none !important;
+  text-shadow: 0 1px 8px #fff2cccc;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.ion-color-success:hover,
+.ion-color-success:focus,
+.ion-color-success:active {
+  background: linear-gradient(90deg, #FFC300 0%, #FFD700 100%) !important; // reverse gold gradient
+  color: #fff !important;
+  box-shadow: 0 4px 16px 0 #ffd700cc;
 }

@@ -8,18 +8,19 @@
 <ion-content class="ion-padding">
   <ion-card>
     <ion-card-header>
-      <ion-card-title class="ion-padding">Liste des Réservations</ion-card-title>
+      <ion-card-title class="ion-padding reservation-title">{{ 'reservation.list' | translate }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
-        <ion-row class="ion-text-center" style="font-weight: bold;">
-          <ion-col>Nom Utilisateur</ion-col>
-          <ion-col>Email</ion-col>
-          <ion-col>Date de Réservation</ion-col>
-          <ion-col>Date du Créneau</ion-col>
-          <ion-col>Début du Créneau </ion-col>
-          <ion-col>Fin du Créneau</ion-col>
-          <ion-col>Statut</ion-col>
+        <ion-row class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2 reservation-header-row">
+          <ion-col>{{ 'reservation.utilisateur_nom' | translate }}</ion-col>
+          <ion-col>{{ 'reservation.utilisateur_email' | translate }}</ion-col>
+          <ion-col>{{ 'reservation.date_reservation' | translate }}</ion-col>
+          <ion-col>{{ 'reservation.date_creneau' | translate }}</ion-col>
+          <ion-col>{{ 'reservation.heure_debut' | translate }}</ion-col>
+          <ion-col>{{ 'reservation.heure_fin' | translate }}</ion-col>
+          <ion-col>{{ 'reservation.statut' | translate }}</ion-col>
+          <ion-col>{{ 'reservation.actions' | translate }}</ion-col>
         </ion-row>
 
         <ion-row *ngFor="let res of reservations" class="ion-text-center reservations-row"
@@ -30,21 +31,29 @@
           <ion-col>{{ res.creneau_date | date:'dd/MM/yyyy' }}</ion-col>
           <ion-col>{{ res.heure_debut }}</ion-col>
           <ion-col>{{ res.heure_fin }}</ion-col>
-
           <ion-col>
             <ion-select [value]="res.statut" (ionChange)="onStatutChange(res, $event.detail.value)"
               interface="popover">
-              <ion-select-option value="en attente">En attente</ion-select-option>
-              <ion-select-option value="confirmée">Confirmée</ion-select-option>
-              <ion-select-option value="annulée">Annulée</ion-select-option>
+              <ion-select-option value="en attente">{{ 'reservation.statut_en_attente' | translate }}</ion-select-option>
+              <ion-select-option value="confirmée">{{ 'reservation.statut_confirmee' | translate }}</ion-select-option>
+              <ion-select-option value="annulée">{{ 'reservation.statut_annulee' | translate }}</ion-select-option>
             </ion-select>
           </ion-col>
-
-
+          <ion-col>
+            <button type="button" class="btn btn-outline-primary btn-sm mx-1" title="Voir" (click)="viewReservation(res)">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button type="button" class="btn btn-outline-warning btn-sm mx-1" title="Modifier" (click)="editReservation(res)">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-sm mx-1" title="Supprimer" (click)="deleteReservation(res)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </ion-col>
         </ion-row>
 
         <ion-row *ngIf="!reservations.length" class="ion-text-center">
-          <ion-col size="12">Aucune réservation trouvée.</ion-col>
+          <ion-col size="12">{{ 'reservation.empty' | translate }}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>

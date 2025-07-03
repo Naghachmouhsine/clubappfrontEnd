@@ -1,7 +1,7 @@
 {
   "header": {
     "club_full": "Royal Tennis Club de Fès",
-    "services": "★ Nos Services",
+    "services": "Nos Services",
     "profile": "Profil",
     "logout": "Déconnexion",
     "theme": "Thème"
@@ -213,5 +213,32 @@
   "profil": {
     "nom": "Nom",
     "prenom": "Prénom"
+  },
+  "user": {
+    "add_title": "Ajouter un utilisateur",
+    "edit_title": "Éditer l'utilisateur",
+    "detail_title": "Détails de l'utilisateur",
+    "close": "Fermer",
+    "save": "Sauvegarder",
+    "add": "Ajouter",
+    "role_adherent": "Adhérent",
+    "role_coach": "Coach",
+    "role_responsable": "Responsable",
+    "role_admin": "Admin"
+  },
+  "reservation": {
+    "list": "Liste des Réservations",
+    "utilisateur_nom": "Nom Utilisateur",
+    "utilisateur_email": "Email",
+    "date_reservation": "Date de Réservation",
+    "date_creneau": "Date du Créneau",
+    "heure_debut": "Début du Créneau",
+    "heure_fin": "Fin du Créneau",
+    "statut": "Statut",
+    "actions": "Actions",
+    "statut_en_attente": "En attente",
+    "statut_confirmee": "Confirmée",
+    "statut_annulee": "Annulée",
+    "empty": "Aucune réservation trouvée."
   }
 }

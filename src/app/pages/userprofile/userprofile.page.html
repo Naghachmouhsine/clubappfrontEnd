@@ -3,38 +3,43 @@
     <ion-title  class="ion-padding" >Profil Utilisateur</ion-title>
   </ion-toolbar>
 </ion-header> -->
-<app-header [nomPage]="'profile.view_profile' | translate" ></app-header>
-
-<ion-content [fullscreen]="true" class="ion-padding bg-light">
-  <div class="container py-4 d-flex justify-content-center align-items-center profile-container">
-    <div class="card shadow-lg p-4 profile-card">
+<app-header [nomPage]="'profile.view_profile' | translate"></app-header>
+<ion-content [fullscreen]="true" class="userprofile-bg">
+  <div class="profile-container">
+    <div class="glass-card animate__animated animate__fadeInDown">
+      <button class="close-btn-wow" (click)="goBack()" title="Fermer">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
       <div class="profile-header mb-3 text-center">
-        <img class="profile-avatar mb-2" src="assets/images/layout_img/user_img.jpg" alt="User image" />
-        <div class="profile-name">
-          <strong>{{ 'profil.nom' | translate }} :</strong> {{ user.nom }}<br>
-          <strong>{{ 'profil.prenom' | translate }} :</strong> {{ user.prenom }}
+        <img class="profile-avatar mb-2 animate__animated animate__pulse animate__infinite" src="assets/images/user_img.jpg" alt="User image" />
+        <div class="profile-name user-data">
+          <strong class="text-gold">{{ 'profil.nom' | translate }} :</strong> {{ user.nom }}<br>
+          <strong class="text-gold">{{ 'profil.prenom' | translate }} :</strong> {{ user.prenom }}
         </div>
-        <div class="profile-role"><strong>{{ 'profile.role' | translate }} :</strong> {{ user.role }}</div>
+        <div class="profile-role user-data">
+          <span class="role-badge" [ngClass]="user.role">{{ 'profile.role' | translate }} : {{ user.role }}</span>
+        </div>
       </div>
       <div class="mb-4">
         <div class="list-group list-group-flush">
-          <div class="list-group-item bg-transparent border-0 px-0 py-1">
-            <strong>{{ 'profile.email' | translate }} :</strong> {{ user.email }}
+          <div class="list-group-item bg-transparent border-0 px-0 py-1 user-data">
+            <strong class="text-gold">{{ 'profile.email' | translate }} :</strong> {{ user.email }}
           </div>
-          <div class="list-group-item bg-transparent border-0 px-0 py-1">
-            <strong>{{ 'profile.phone' | translate }} :</strong> {{ user.telephone }}
+          <div class="list-group-item bg-transparent border-0 px-0 py-1 user-data">
+            <strong class="text-gold">{{ 'profile.phone' | translate }} :</strong> {{ user.telephone }}
           </div>
-          <div class="list-group-item bg-transparent border-0 px-0 py-1">
-            <strong>{{ 'profile.profession' | translate }} :</strong> {{ user.profesion }}
+          <div class="list-group-item bg-transparent border-0 px-0 py-1 user-data">
+            <strong class="text-gold">{{ 'profile.profession' | translate }} :</strong> {{ user.profesion }}
           </div>
-          <div class="list-group-item bg-transparent border-0 px-0 py-1">
-            <strong>{{ 'profile.birth_date' | translate }} :</strong> {{ user.date_naissance | date }}
+          <div class="list-group-item bg-transparent border-0 px-0 py-1 user-data">
+            <strong class="text-gold">{{ 'profile.birth_date' | translate }} :</strong> {{ user.date_naissance | date }}
           </div>
         </div>
       </div>
       <div class="d-flex gap-2 flex-wrap justify-content-center mt-2">
-        <button class="btn btn-outline-warning d-flex align-items-center px-3" (click)="editProfile()">
-          <i class="bi bi-pencil me-2"></i>{{ 'profile.edit' | translate }}
+        <button class="edit-btn-wow d-flex align-items-center px-3 btn-edit-hover" (click)="editProfile()">
+          <i class="bi bi-pencil"></i>
+          <span class="edit-text">{{ 'profile.edit' | translate }}</span>
         </button>
       </div>
     </div>

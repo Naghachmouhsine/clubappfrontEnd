@@ -1,0 +1,8 @@
+.user-data {
+  color: var(--ion-text-color, #222);
+  transition: color 0.2s;
+}
+body.theme-dark .user-data,
+body.dark-theme .user-data {
+  color: #f1f1f1 !important;
+}

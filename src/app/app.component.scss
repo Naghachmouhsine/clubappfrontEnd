@@ -17,9 +17,31 @@ ion-toolbar {
   min-height: 100vh;
 }
 
-.menu-sport .menu-toolbar {
-  background: var(--color-green) !important;
+.menu-sport .menu-toolbar, .menu-sport ion-toolbar.menu-toolbar {
+  background: linear-gradient(90deg, #0a1833 0%, #3fa7ff 60%, #ffd700 100%) !important;
   color: var(--color-gold) !important;
+  box-shadow: 0 4px 24px 0 rgba(63, 167, 255, 0.13);
+  border-bottom: 3px solid #ffd700;
+}
+
+body.theme-dark .menu-sport .menu-toolbar, body.theme-dark .menu-sport ion-toolbar.menu-toolbar {
+  background: #181818 !important;
+  color: #ffd700 !important;
+  border-bottom: 3px solid #ffd700;
+}
+
+body.theme-dark .menu-sport .menu-content, body.theme-dark .menu-sport ion-content.menu-content {
+  background: #181818 !important;
+  color: #ffd700 !important;
+}
+
+/* 3 points (ion-menu-button) : couleur dorée en dark */
+body.theme-dark ion-menu-button {
+  --color: #ffd700 !important;
+}
+
+body.theme-dark ion-menu-button::part(icon) {
+  color: #ffd700 !important;
 }
 
 .menu-content {

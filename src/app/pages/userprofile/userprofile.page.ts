@@ -28,14 +28,18 @@ export class UserprofilePage implements OnInit {
     alert('Fonctionnalité à venir : édition du profil');
   }
 
+  deleteProfile() {
+    // À implémenter : confirmation puis suppression du compte
+    alert('Fonctionnalité à venir : suppression du compte');
+  }
+
   changePassword() {
     // À implémenter : ouvrir une modale ou naviguer vers une page de changement de mot de passe
     alert('Fonctionnalité à venir : changement de mot de passe');
   }
 
-  deleteAccount() {
-    // À implémenter : confirmation puis suppression du compte
-    alert('Fonctionnalité à venir : suppression du compte');
+  goBack() {
+    window.history.back();
   }
 
 }

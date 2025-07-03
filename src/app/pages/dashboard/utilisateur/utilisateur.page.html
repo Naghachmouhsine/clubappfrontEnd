@@ -22,7 +22,7 @@
             </ion-button>
           </ion-col>
         </ion-row>
-        <ion-row class="ion-text-center fw-bold bg-white rounded-3 shadow-sm mb-2 py-2">
+        <ion-row class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2">
           <ion-col>{{ 'utilisateur.name' | translate }}</ion-col>
           <ion-col>{{ 'utilisateur.email' | translate }}</ion-col>
           <ion-col>{{ 'utilisateur.phone' | translate }}</ion-col>
@@ -30,11 +30,11 @@
           <ion-col>{{ 'utilisateur.actions' | translate }}</ion-col>
         </ion-row>
         <ion-row *ngFor="let user of utilisateurs" class="ion-text-center user-row align-items-center bg-light rounded-3 mb-2 py-2" [ngClass]="getRoleClass(user.role)">
-          <ion-col class="user-cell fw-semibold">{{ user.nom }} {{ user.prenom }}</ion-col>
-          <ion-col class="user-cell">{{ user.email }}</ion-col>
-          <ion-col class="user-cell">{{ user.telephone }}</ion-col>
-          <ion-col class="user-cell">
-            <ion-badge [color]="getRoleClass(user.role)" class="px-3 py-2 rounded-pill text-uppercase">
+          <ion-col class="user-cell user-data fw-semibold">{{ user.nom }} {{ user.prenom }}</ion-col>
+          <ion-col class="user-cell user-data">{{ user.email }}</ion-col>
+          <ion-col class="user-cell user-data">{{ user.telephone }}</ion-col>
+          <ion-col class="user-cell user-data">
+            <ion-badge [color]="getRoleClass(user.role)" class="px-3 py-2 rounded-pill text-uppercase user-data">
               {{ ('utilisateur.roles.' + user.role) | translate }}
             </ion-badge>
           </ion-col>

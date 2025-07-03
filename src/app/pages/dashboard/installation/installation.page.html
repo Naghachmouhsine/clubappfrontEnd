@@ -16,12 +16,11 @@
       </ion-button>
 
       <ion-grid *ngIf="installations.length > 0">
-        <ion-row class="ion-text-center title-row">
-          <ion-col>Nom</ion-col>
-          <ion-col>Type</ion-col>
-          <ion-col>Capacité</ion-col>
-          <ion-col>Disponibilité</ion-col>
-          <ion-col>Actions</ion-col>
+        <ion-row class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2">
+          <ion-col>{{ 'installation.nom' | translate }}</ion-col>
+          <ion-col>{{ 'installation.type' | translate }}</ion-col>
+          <ion-col>{{ 'installation.statut' | translate }}</ion-col>
+          <ion-col>{{ 'installation.actions' | translate }}</ion-col>
         </ion-row>
 
         <ion-row *ngFor="let installation of installations"

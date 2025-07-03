@@ -1,0 +1,181 @@
+/* Design premium sportif harmonisé pour Activités */
+ion-card.card-royal {
+  background: linear-gradient(135deg, #cad9e7 23272f 0%, #c9d1d9 100%) !important;
+  box-shadow: 0 8px 32px 0 #ffd70033, 0 0 32px 0 #23272f33;
+  border-radius: 2rem;
+  border: 2px solid #ffd70055;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 2rem 1.5rem;
+}
+
+body.theme-dark ion-card.card-royal,
+body.theme-dark ion-card,
+body.theme-dark ion-card-title.services-title,
+body.theme-dark ion-row.fw-bold,
+body.theme-dark ion-row.user-row,
+body.theme-dark ion-row.activites-row {
+  background: linear-gradient(90deg, #232323 0%, #1a1a1a 100%) !important;
+  color: #ffd700 !important;
+  -webkit-text-fill-color: #ffd700 !important;
+  border-color: #ffd70099 !important;
+}
+
+.bg-gold-contrast {
+  background: linear-gradient(90deg, #ffe066 0%, #fffbe6 100%) !important;
+  color: #23272f !important;
+}
+.text-dark {
+  color: #23272f !important;
+  font-weight: 700;
+}
+
+ion-card-title.services-title {
+  color: #23272f !important;
+  font-size: 2.2rem !important;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900 !important;
+  letter-spacing: 1px;
+  text-align: center !important;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #ffd700 0%, #23272f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0 2px 8px #ffd70033;
+  transition: color 0.3s;
+}
+
+ion-row.fw-bold {
+  background: linear-gradient(90deg, #ffd700 0%, #23272f 100%);
+  color: #23272f !important;
+  font-weight: 900;
+  font-size: 1.1rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px 0 #ffd70022;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.7rem;
+  padding: 0.7rem 0;
+}
+
+ion-row.activites-row {
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px 0 #ffd70022;
+  background: linear-gradient(90deg, #fffbe6cc 0%, #eaf5efcc 100%);
+  border-radius: 1.2rem;
+  margin-bottom: 0.7rem;
+  align-items: center;
+}
+body.theme-dark ion-row.activites-row {
+  background: linear-gradient(90deg, #232323 0%, #1a1a1a 100%);
+}
+ion-row.activites-row:hover {
+  box-shadow: 0 4px 16px 0 #ffd70055;
+  background: linear-gradient(90deg, #ffd70022 0%, #23272f22 100%);
+}
+
+.activites-cell {
+  font-size: 1.08rem;
+  color: #23272f;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  letter-spacing: 0.2px;
+  transition: color 0.3s;
+}
+body.theme-dark .activites-cell {
+  color: #ffd700 !important;
+}
+
+ion-button.btn-gold {
+  background: linear-gradient(90deg, #ffd700 0%, #fffbe6 60%, #23272f 100%);
+  color: #23272f !important;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 2rem;
+  box-shadow: 0 2px 12px 0 #ffd70055, 0 0 8px 0 #23272f22;
+  letter-spacing: 0.5px;
+  border: none;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+  text-shadow: 0 1px 8px #fffbe6cc;
+}
+ion-button.btn-gold:hover {
+  background: linear-gradient(90deg, #23272f 0%, #ffd700 100%);
+  color: #ffd700 !important;
+  box-shadow: 0 4px 16px 0 #ffd70099;
+}
+
+ion-button[fill="clear"] {
+  border: 2px solid #ffd700;
+  color: #23272f !important;
+  font-weight: 600;
+  border-radius: 2rem;
+  transition: border 0.3s, color 0.3s;
+}
+ion-button[fill="clear"]:hover {
+  border: 2px solid #23272f;
+  color: #ffd700 !important;
+}
+body.theme-dark ion-button[fill="outline"] {
+  border: 2px solid #ffd700 !important;
+  color: #ffd700 !important;
+}
+body.theme-dark ion-button[fill="outline"]:hover {
+  border: 2px solid #23272f !important;
+  color: #23272f !important;
+}
+
+// Style premium sportif pour tous les boutons .button-solid sur la page Activités
+:host ::ng-deep .button-solid, :host ::ng-deep ion-button.button-solid {
+  --background: linear-gradient(90deg, #FFD700 0%, #23272F 100%);
+  --color: #23272F;
+  --box-shadow: 0 2px 12px 0 #FFD70055, 0 0 8px 0 #23272F22;
+  --border-radius: 2rem;
+  --border: none;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 8px #fffbe6cc;
+  font-size: 1.1rem;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+:host ::ng-deep .button-solid:hover, :host ::ng-deep ion-button.button-solid:hover {
+  --background: linear-gradient(90deg, #23272F 0%, #FFD700 100%);
+  --color: #FFD700;
+  --box-shadow: 0 4px 16px 0 #FFD70099;
+}
+body.theme-dark :host ::ng-deep .button-solid, body.theme-dark :host ::ng-deep ion-button.button-solid {
+  --background: linear-gradient(90deg, #232323 0%, #FFD700 100%);
+  --color: #FFD700;
+  --box-shadow: 0 2px 12px 0 #FFD70099, 0 0 8px 0 #23232322;
+}
+body.theme-dark :host ::ng-deep .button-solid:hover, body.theme-dark :host ::ng-deep ion-button.button-solid:hover {
+  --background: linear-gradient(90deg, #FFD700 0%, #232323 100%);
+  --color: #232323;
+  --box-shadow: 0 4px 16px 0 #FFD700cc;
+}
+
+@media (max-width: 900px) {
+  ion-card.card-royal {
+    padding: 1.2rem 0.5rem;
+  }
+  ion-row.fw-bold, ion-row.activites-row {
+    font-size: 0.98rem;
+    padding: 0.5rem 0;
+  }
+  ion-card-title.services-title {
+    font-size: 1.3rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  ion-card.card-royal {
+    padding: 0.5rem 0.1rem;
+  }
+  ion-row.fw-bold, ion-row.activites-row {
+    font-size: 0.92rem;
+    padding: 0.3rem 0;
+  }
+  ion-card-title.services-title {
+    font-size: 1.1rem !important;
+  }
+}

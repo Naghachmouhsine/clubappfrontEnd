@@ -87,4 +87,11 @@ export class AppHeaderComponent {
   goHome() {
     this.route.navigate(['/']);
   }
+
+  getProfilePictureUrl(): string {
+    // Si l'input est vide ou invalide, retourne l'image par défaut
+    return this.profilePictureUrl && this.profilePictureUrl.trim() !== ''
+      ? this.profilePictureUrl
+      : 'assets/images/user_img.jpg';
+  }
 }

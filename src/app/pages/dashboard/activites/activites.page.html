@@ -3,25 +3,25 @@
     <ion-title class="ion-padding">Dashboard - Activités</ion-title>
   </ion-toolbar>
 </ion-header> -->
-<app-header nomPage="Dashboard - Activités" ></app-header>
+<app-header nomPage="Dashboard - Activités" [showProfilePicture]="true"></app-header>
 
 <ion-content class="ion-padding section-alt">
   <ion-card class="card-royal p-4">
     <ion-card-header>
-      <ion-card-title class="services-title display-6 mb-3">🎾 Liste des activités</ion-card-title>
+      <ion-card-title class="services-title mb-3">🎾 Liste des activités</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-button class="ion-margin btn-gold btn-lg shadow" expand="block" color="success" (click)="addActivite()">
+      <ion-button class="ion-margin btn-gold btn-lg shadow" expand="block" (click)="addActivite()">
         <ion-icon slot="start" name="add-circle-outline"></ion-icon>
         Ajouter une activité
       </ion-button>
       <ion-grid>
-        <ion-row class="ion-text-center fw-bold bg-white rounded-3 shadow-sm mb-2 py-2">
-          <ion-col>Titre</ion-col>
-          <ion-col>Description</ion-col>
-          <ion-col>Type</ion-col>
-          <ion-col>Coach Assigné</ion-col>
-          <ion-col>Actions</ion-col>
+        <ion-row class="ion-text-center fw-bold rounded-3 shadow-sm mb-2 py-2 bg-gold-contrast">
+          <ion-col class="text-dark">Titre</ion-col>
+          <ion-col class="text-dark">Description</ion-col>
+          <ion-col class="text-dark">Type</ion-col>
+          <ion-col class="text-dark">Coach Assigné</ion-col>
+          <ion-col class="text-dark">Actions</ion-col>
         </ion-row>
         <ion-row *ngFor="let activite of activites" class="ion-text-center activites-row align-items-center bg-light rounded-3 mb-2 py-2">
           <ion-col class="activites-cell fw-semibold">{{ activite.titre }}</ion-col>

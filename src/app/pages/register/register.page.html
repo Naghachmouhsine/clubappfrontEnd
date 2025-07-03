@@ -4,54 +4,56 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding section-alt d-flex align-items-center justify-content-center register-content">
-  <div class="container register-container">
-    <div class="card card-royal shadow-lg p-4 animate__animated animate__fadeInDown">
-      <div class="text-center mb-4">
-        <img src="assets/images/club-logo.png" alt="Logo" class="login-logo mb-3 animate__animated animate__pulse animate__delay-1s">
-        <h2 class="fw-bold mb-2 register-title">{{ 'register.subtitle' | translate }}</h2>
-        <p class="text-muted">{{ 'register.join' | translate }}</p>
+<ion-content class="ion-padding section-alt register-content">
+  <div class="auth-container">
+    <div class="container register-container d-flex align-items-center justify-content-center">
+      <div class="card card-royal shadow-lg p-4 animate__animated animate__fadeInDown">
+        <div class="text-center mb-4">
+          <img src="assets/images/club-logo.png" alt="Logo" class="login-logo mb-3 animate__animated animate__pulse animate__delay-1s">
+          <h2 class="fw-bold mb-2 register-title">{{ 'register.subtitle' | translate }}</h2>
+          <p class="text-muted">{{ 'register.join' | translate }}</p>
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="row g-2">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">{{ 'register.nom' | translate }}</label>
+              <input type="text" class="form-control rounded-pill shadow-sm"
+                [ngClass]="{'border-gold': registerForm.get('nom')?.touched && registerForm.get('nom')?.invalid || registerForm.get('nom')?.dirty && registerForm.get('nom')?.invalid}"
+                formControlName="nom" placeholder="{{ 'register.nom_placeholder' | translate }}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">{{ 'register.prenom' | translate }}</label>
+              <input type="text" class="form-control rounded-pill shadow-sm"
+                [ngClass]="{'border-gold': registerForm.get('prenom')?.touched && registerForm.get('prenom')?.invalid || registerForm.get('prenom')?.dirty && registerForm.get('prenom')?.invalid}"
+                formControlName="prenom" placeholder="{{ 'register.prenom_placeholder' | translate }}" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">{{ 'register.email' | translate }}</label>
+            <input type="email" class="form-control rounded-pill shadow-sm"
+              [ngClass]="{'border-gold': registerForm.get('email')?.touched && registerForm.get('email')?.invalid || registerForm.get('email')?.dirty && registerForm.get('email')?.invalid}"
+              formControlName="email" placeholder="{{ 'register.email_placeholder' | translate }}" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">{{ 'register.password' | translate }}</label>
+            <input type="password" class="form-control rounded-pill shadow-sm"
+              [ngClass]="{'border-gold': registerForm.get('password')?.touched && registerForm.get('password')?.invalid || registerForm.get('password')?.dirty && registerForm.get('password')?.invalid}"
+              formControlName="password" placeholder="{{ 'register.password_placeholder' | translate }}" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-bold">{{ 'register.telephone' | translate }}</label>
+            <input type="tel" class="form-control rounded-pill shadow-sm"
+              [ngClass]="{'border-gold': registerForm.get('telephone')?.touched && registerForm.get('telephone')?.invalid || registerForm.get('telephone')?.dirty && registerForm.get('telephone')?.invalid}"
+              formControlName="telephone" placeholder="{{ 'register.telephone_placeholder' | translate }}" required>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="/login" class="small text-gold fw-bold">{{ 'register.already_member' | translate }}</a>
+          </div>
+          <button type="submit" class="btn btn-gold btn-lg w-100 shadow-lg">
+            {{ 'register.signup' | translate }}
+          </button>
+        </form>
       </div>
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="row g-2">
-          <div class="col-md-6 mb-3">
-            <label class="form-label fw-bold">{{ 'register.nom' | translate }}</label>
-            <input type="text" class="form-control rounded-pill shadow-sm"
-              [ngClass]="{'border-gold': registerForm.get('nom')?.touched && registerForm.get('nom')?.invalid || registerForm.get('nom')?.dirty && registerForm.get('nom')?.invalid}"
-              formControlName="nom" placeholder="{{ 'register.nom_placeholder' | translate }}" required>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label class="form-label fw-bold">{{ 'register.prenom' | translate }}</label>
-            <input type="text" class="form-control rounded-pill shadow-sm"
-              [ngClass]="{'border-gold': registerForm.get('prenom')?.touched && registerForm.get('prenom')?.invalid || registerForm.get('prenom')?.dirty && registerForm.get('prenom')?.invalid}"
-              formControlName="prenom" placeholder="{{ 'register.prenom_placeholder' | translate }}" required>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label fw-bold">{{ 'register.email' | translate }}</label>
-          <input type="email" class="form-control rounded-pill shadow-sm"
-            [ngClass]="{'border-gold': registerForm.get('email')?.touched && registerForm.get('email')?.invalid || registerForm.get('email')?.dirty && registerForm.get('email')?.invalid}"
-            formControlName="email" placeholder="{{ 'register.email_placeholder' | translate }}" required>
-        </div>
-        <div class="mb-3">
-          <label class="form-label fw-bold">{{ 'register.password' | translate }}</label>
-          <input type="password" class="form-control rounded-pill shadow-sm"
-            [ngClass]="{'border-gold': registerForm.get('password')?.touched && registerForm.get('password')?.invalid || registerForm.get('password')?.dirty && registerForm.get('password')?.invalid}"
-            formControlName="password" placeholder="{{ 'register.password_placeholder' | translate }}" required>
-        </div>
-        <div class="mb-4">
-          <label class="form-label fw-bold">{{ 'register.telephone' | translate }}</label>
-          <input type="tel" class="form-control rounded-pill shadow-sm"
-            [ngClass]="{'border-gold': registerForm.get('telephone')?.touched && registerForm.get('telephone')?.invalid || registerForm.get('telephone')?.dirty && registerForm.get('telephone')?.invalid}"
-            formControlName="telephone" placeholder="{{ 'register.telephone_placeholder' | translate }}" required>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <a href="/login" class="small text-gold fw-bold">{{ 'register.already_member' | translate }}</a>
-        </div>
-        <button type="submit" class="btn btn-gold btn-lg w-100 shadow-lg">
-          {{ 'register.signup' | translate }}
-        </button>
-      </form>
     </div>
   </div>
 </ion-content>

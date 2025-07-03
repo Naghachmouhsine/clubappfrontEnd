@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>{{ mode === 'edit' ? 'Éditer' : mode === 'detail' ? 'Détails' : 'Ajouter' }} l'utilisateur</ion-title>
+    <ion-title>{{ mode === 'edit' ? ('user.edit_title' | translate) : mode === 'detail' ? ('user.detail_title' | translate) : ('user.add_title' | translate) }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Fermer</ion-button>
+      <ion-button (click)="close()">{{ 'user.close' | translate }}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -11,47 +11,46 @@
   <ion-list>
     <ion-item>
       <ion-label position="stacked">ID</ion-label>
-      <ion-input [value]="user.id" readonly></ion-input>
+      <ion-input [value]="user.id" readonly class="user-data"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Nom</ion-label>
-      <ion-input [(ngModel)]="user.nom" [readonly]="mode === 'detail'"></ion-input>
+      <ion-label position="stacked">{{ 'profil.nom' | translate }}</ion-label>
+      <ion-input [(ngModel)]="user.nom" [readonly]="mode === 'detail'" class="user-data"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Prénom</ion-label>
-      <ion-input [(ngModel)]="user.prenom" [readonly]="mode === 'detail'"></ion-input>
+      <ion-label position="stacked">{{ 'profil.prenom' | translate }}</ion-label>
+      <ion-input [(ngModel)]="user.prenom" [readonly]="mode === 'detail'" class="user-data"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input [(ngModel)]="user.email" [readonly]="mode === 'detail'"></ion-input>
-      <!--- <ion-input [value]="user.email" [readonly]="mode === 'detail'"></ion-input> -->
+      <ion-label position="stacked">{{ 'profile.email' | translate }}</ion-label>
+      <ion-input [(ngModel)]="user.email" [readonly]="mode === 'detail'" class="user-data"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Téléphone</ion-label>
-      <ion-input [(ngModel)]="user.telephone" [readonly]="mode === 'detail'"></ion-input>
+      <ion-label position="stacked">{{ 'profile.phone' | translate }}</ion-label>
+      <ion-input [(ngModel)]="user.telephone" [readonly]="mode === 'detail'" class="user-data"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Rôle</ion-label>
-      <ion-select [(ngModel)]="user.role" [disabled]="mode === 'detail'">
-        <ion-select-option value="adherent">Adhérent</ion-select-option>
-        <ion-select-option value="coach">Coach</ion-select-option>
-        <ion-select-option value="responsable">Responsable</ion-select-option>
-        <ion-select-option value="admin">Admin</ion-select-option>
+      <ion-label position="stacked">{{ 'profile.role' | translate }}</ion-label>
+      <ion-select [(ngModel)]="user.role" [disabled]="mode === 'detail'" class="user-data">
+        <ion-select-option value="adherent">{{ 'user.role_adherent' | translate }}</ion-select-option>
+        <ion-select-option value="coach">{{ 'user.role_coach' | translate }}</ion-select-option>
+        <ion-select-option value="responsable">{{ 'user.role_responsable' | translate }}</ion-select-option>
+        <ion-select-option value="admin">{{ 'user.role_admin' | translate }}</ion-select-option>
       </ion-select>
     </ion-item>
 
   </ion-list>
 
   <ion-button *ngIf="mode === 'edit'" expand="block" color="success" (click)="save()">
-    Sauvegarder
+    {{ 'user.save' | translate }}
   </ion-button>
 
   <ion-button *ngIf="mode === 'add'" expand="block" color="success" (click)="save()">
-    Ajouter
+    {{ 'user.add' | translate }}
   </ion-button>
 </ion-content>

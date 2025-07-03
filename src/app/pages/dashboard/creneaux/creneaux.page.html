@@ -11,12 +11,12 @@
         {{ 'creneaux.add' | translate }}
       </ion-button>
       <ion-grid>
-        <ion-row class="ion-text-center fw-bold bg-white rounded-3 shadow-sm mb-2 py-2">
+        <ion-row class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2">
           <ion-col>{{ 'creneaux.date' | translate }}</ion-col>
           <ion-col>{{ 'creneaux.start_time' | translate }}</ion-col>
           <ion-col>{{ 'creneaux.end_time' | translate }}</ion-col>
           <ion-col>{{ 'creneaux.installation' | translate }}</ion-col>
-          <ion-col>{{ 'creneaux.available' | translate }}</ion-col>
+          <ion-col>{{ 'creneaux.disponibilite' | translate }}</ion-col>
           <ion-col>{{ 'creneaux.actions' | translate }}</ion-col>
         </ion-row>
         <ion-row *ngFor="let creneau of creneaux" class="ion-text-center creneaux-row align-items-center bg-light rounded-3 mb-2 py-2" [ngClass]="getDisponibiliteClass(creneau.disponible)">
