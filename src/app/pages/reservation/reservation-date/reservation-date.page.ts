@@ -8,7 +8,7 @@ import { ModalController } from '@ionic/angular';
 import { ReservationCService, ReservationData } from 'src/app/services/reservation-c.service';
 import { ToastController } from '@ionic/angular';
 import { LoginPage } from '../../login/login.page';
-import { InformationReservationModalComponent } from 'src/app/modals/nbr-installation-modal/information-reservation-modal.component';
+import { InformationReservationModalComponent  } from 'src/app/modals/information-reservation/information-reservation-modal.component';
 import { AppHeaderComponent } from '../../../components/app-header/app-header.component';
 import { loadStripe } from '@stripe/stripe-js';
 import { HttpClient } from '@angular/common/http';
@@ -92,28 +92,39 @@ export class ReservationDatePage implements OnInit {
       this.token = loginResult.token;
       this.user = loginResult.user;
     }
-
-    const infoResult = await this.openModalConfirmerReservation(session);
+    console.log(this.user)
+    const infoResult = await this.informationReservation(session);
     // if (!infoResult || !infoResult.valid) return;*   
-    const reservation = {
+    let reservation = {
       "id_installation": session.id_installation,
       "nbr_installation_reserver": session.nbr - infoResult.nombre_installations,//modification nombre d'installation apres reservation
       "id_utilisateur": this.user.id,
       "id_creneau": session.id,
+      "date_creneau" : session.date,
       "nbr_personn": infoResult.nombre_personne,
       "statut": "en attente", // par defaut en attente
-      "infoReservation": "reservation test",
-      "activite": this.reservation.activite
+      "infoReservation": infoResult,
+      "activite": this.reservation.activite,
+      "heure_debut" :  session.heure_debut,
+      "heure_fin" :  session.heure_fin,
+      "isAdherant" : true,
+      "role" :  this.user
     }
-    const payResult = await this.openModalPyement(); // modal pour choisir user la methode de payement
-    if (payResult) {
-      if (payResult.method === "stripe")
-        this.stripPayement(reservation)
-      if(payResult.method==="paypal")
-        this.paypalePayement(reservation)
-    }
-    if (payResult && payResult.method === 'cache') {
+    const users=['admin','responsable', 'coach', 'adherent'] // les users qu'ont accee pour reserver gratuitement Basket ou Volley
+    if(users.includes(this.user.role) && (this.reservation.activite==="Basket" || this.reservation.activite==="Volley")){
+      reservation.statut="confirmée" // reservation pour Basket et Volley est gratuit pour les adherants
       this.reserver(reservation)
+    }
+    else {
+      const payResult = await this.openModalPyement(); // modal pour choisir user la methode de payement
+      if (payResult) {
+        if (payResult.method === "stripe")
+          this.stripPayement(reservation)
+        if(payResult.method==="paypal")
+          this.paypalePayement(reservation)
+      }
+      if (payResult && payResult.method === 'cache')
+        this.reserver(reservation)   
     }
   }
 
@@ -161,7 +172,7 @@ async paypalePayement(reservation: any) {
   console.log(paypal)
   try {
   
-const order = await this.http.post<any>('http://localhost:3000/api/create-paypal-order',{ amount }).toPromise();
+const order = await this.http.post<any>('http://localhost:3000/api/create-paypal-order',{ reservation }).toPromise();
 
     const container = document.getElementById('paypal-container');
     if (!container) {
@@ -226,11 +237,11 @@ paypal.Buttons({
   //   return await modal.present();
   // }
 
-  // async openModalConfirmerReservation(reservation: any) {
+  // async informationReservation(reservation: any) {
   //   if (this.token) // verfier si l'adherant est connecté
   //         this.loginModal()
   //   const modal = await this.modal.create({
-  //     component: InformationReservationModalComponent,
+  //     component: IinformationReservationModalComponent,
   //     componentProps: { nbrMax: reservation.nbr, nombre_personne : reservation.capacite},
   //     cssClass: 'custom-modal-size'
   //   });
@@ -251,12 +262,13 @@ paypal.Buttons({
     const { data } = await modal.onDidDismiss();
     return data;
   }
-  async openModalConfirmerReservation(session: any) {
+  async informationReservation(session: any) {
     const modal = await this.modal.create({
       component: InformationReservationModalComponent,
       componentProps: {
         nbrMax: session.nbr,
-        nombre_personne: session.capacite
+        nombre_personne: session.capacite,
+        typeInstallation : this.reservation.activite
       },
       cssClass: 'custom-modal-size'
     });
@@ -319,10 +331,8 @@ paypal.Buttons({
     this.reservationService.getCreneauxDisponiblesByActivite(this.reservation.activite)
       .subscribe({
         next: (data) => {
-          this.sessions = data.map(s => ({
-            ...s,
-            date: new Date(s.date).toISOString().split('T')[0] //  "YYYY-MM-DD"
-          }));
+          console.log(data)
+          this.sessions =data
           this.sessionsByDate = this.sessions;
           this.loading = false;
           console.log(data)
@@ -336,6 +346,7 @@ paypal.Buttons({
   }
 
   reserver(reservation: any, stripe: any = NaN) {
+    console.log(reservation)
     this.reservationService.reserver(reservation).subscribe({
       next: (response) => {
         console.log(response)
