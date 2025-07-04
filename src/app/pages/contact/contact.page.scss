@@ -1,23 +1,5 @@
 .contact-page {
-  min-height: 100vh;
-  padding: 20px;
-  background: linear-gradient(135deg, #0a1833 0%, #3fa7ff 100%);
-  background-size: 200% 200%;
-  animation: bgMove 10s ease-in-out infinite alternate;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  overflow-x: hidden;
-  position: relative;
 
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;
-    opacity: 0.12;
-    z-index: 0;
-  }
 }
 
 .contact-grid {
@@ -28,6 +10,7 @@
   width: 100%;
   z-index: 2;
   position: relative;
+  margin-top: 20px;
 
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
@@ -146,48 +129,156 @@
 }
 
 .glass-card.form-container {
-  background: linear-gradient(135deg, #c9d1d9cc, #eaf5efcc);
-  border: 2px solid #ffd70055;
-  box-shadow: 0 4px 32px rgba(63, 167, 255, 0.25);
+  max-width: 540px;
+  width: 100%;
+  padding: 2rem;
+  margin: 2rem auto;
+  background: linear-gradient(135deg, #c9d1d9 0%, #eaf5ef 60%, #3fa7ff 100%);
+  border: 3px solid #ffd700;
+  border-radius: 2.5rem;
+  box-shadow: 0 8px 32px 0 #3fa7ff55, 0 0 32px 0 #ffd70066, 0 0 0 8px #fff7 inset;
   backdrop-filter: blur(18px) saturate(180%);
-  border-radius: 25px;
-  padding: 30px;
-  position: sticky;
-  top: 20px;
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 600;
   color: #0a1833;
+  position: relative;
+  z-index: 2;
+  transition: all 0.25s ease-in-out;
+  animation: cardWowIn 1.2s cubic-bezier(.4, 2, .6, 1);
+
+  h2, h3, .form-title {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #ffd700, #3fa7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 8px #ffd70033, 0 0 8px #3fa7ff22;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .form-label, .form-control, textarea, input {
+    font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1.08rem;
+    color: #0a1833;
+  }
+
+  .form-control, textarea {
+    border-radius: 1.5em;
+    border: 2px solid #3fa7ff33;
+    box-shadow: 0 1px 4px #3fa7ff22;
+    background: #fff;
+    padding: 0.75rem 1rem;
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+
+  .form-control:focus, textarea:focus {
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 8px #ffd70055;
+    outline: none;
+  }
+
+  .btn-submit {
+    background: #fff;
+    border: 2px solid #ffd700;
+    border-radius: 2em;
+    box-shadow: 0 1px 8px 0 #ffd70044;
+    font-weight: 700;
+    color: #0a1833;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      background: #ffd700;
+      color: #232323;
+      box-shadow: 0 0 12px 2px #ffd70099, 0 1px 8px 0 #ffd70044;
+    }
+  }
 }
+
+// Mode sombre
+body.theme-dark .glass-card.form-container,
+body.dark-theme .glass-card.form-container {
+  background: linear-gradient(135deg, #2c2f33 0%, #3a3f44 60%, #3fa7ff 100%);
+  color: #fff;
+
+  .form-control, textarea {
+    background: #3a3f44 !important;
+    color: #fff !important;
+    border-color: #FFD700 !important;
+  }
+
+  .btn-submit {
+    background: #FFD700 !important;
+    color: #232323 !important;
+  }
+
+  h2, h3, .form-title {
+    color: #FFD700 !important;
+    -webkit-text-fill-color: #FFD700 !important;
+    background: none !important;
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
+    text-shadow: 0 0 2px #FFD700, 0 0 4px #FFD700 !important;
+  }
+}
+
+// Responsive
+@media (max-width: 600px) {
+  .glass-card.form-container {
+    padding: 1.5rem;
+
+    h2, h3, .form-title {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+// Animation
+@keyframes cardWowIn {
+  0% { transform: scale(0.95) translateY(40px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
 
 .form-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 
   .club-logo {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 15px;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
     }
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    font-weight: 800;
     background: linear-gradient(90deg, #ffd700, #3fa7ff);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    font-weight: 900;
     letter-spacing: 1px;
+    margin-bottom: 10px;
   }
 
   p {
-    color: #0a1833cc;
-    margin: 0;
+    font-size: 0.95rem;
+    color: #ffffffcc;
   }
 }
+
 
 /* Ion item override */
 ion-item {
@@ -266,3 +357,20 @@ body.theme-dark, body.dark-theme {
     background-position: 100% 50%;
   }
 }
+
+
+.form-container.animate__fadeIn {
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

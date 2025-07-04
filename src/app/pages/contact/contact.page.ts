@@ -59,7 +59,7 @@ export class ContactPage {
     role: 'Relations presse et événements',
     email: 'nadia.benali@rtc-fes.ma',
     phone: '+212 6 23 45 67 89',
-    photo: 'assets/images/user_img2.jpg'
+    photo: 'assets/images/user_img.jpg'
   },
   {
     name: 'Ahmed Lakhlifi',
@@ -67,7 +67,7 @@ export class ContactPage {
     role: 'Encadrement sportif',
     email: 'ahmed.lakhlifi@rtc-fes.ma',
     phone: '+212 6 34 56 78 90',
-    photo: 'assets/images/user_img3.jpg'
+    photo: 'assets/images/user_img.jpg'
   },
   {
     name: 'Sara El Idrissi',
@@ -75,7 +75,7 @@ export class ContactPage {
     role: 'Gestion des membres',
     email: 'sara.idrissi@rtc-fes.ma',
     phone: '+212 6 45 67 89 01',
-    photo: 'assets/images/user_img4.jpg'
+    photo: 'assets/images/user_img.jpg'
   },
   {
     name: 'Mohamed Tazi',
@@ -83,7 +83,7 @@ export class ContactPage {
     role: 'Maintenance et infrastructure',
     email: 'mohamed.tazi@rtc-fes.ma',
     phone: '+212 6 56 78 90 12',
-    photo: 'assets/images/user_img5.jpg'
+    photo: 'assets/images/user_img.jpg'
   },
   {
     name: 'Fatima Zahra Bennis',
@@ -91,7 +91,7 @@ export class ContactPage {
     role: 'Support aux visiteurs',
     email: 'fatima.bennis@rtc-fes.ma',
     phone: '+212 6 67 89 01 23',
-    photo: 'assets/images/user_img6.jpg'
+    photo: 'assets/images/user_img.jpg'
   }
 ];
 
@@ -122,4 +122,27 @@ export class ContactPage {
   addToContacts(contact: any) {
     console.log('Adding to contacts:', contact.name);
   }
+
+
+
+  showAll = false;
+
+get visibleContacts() {
+  return this.showAll ? this.contacts : this.contacts.slice(0, 3);
+}
+
+toggleViewMore() {
+  this.showAll = !this.showAll;
+}
+
+callContact(phone: string) {
+  window.open(`tel:${phone}`, '_system'); // lance l'appel téléphonique
+}
+
+viewDetails(contact: any) {
+  console.log('Voir détails pour :', contact.name);
+  // Tu peux ici ouvrir une modale, ou naviguer vers une page de profil avec des infos supplémentaires
+}
+
+
 }

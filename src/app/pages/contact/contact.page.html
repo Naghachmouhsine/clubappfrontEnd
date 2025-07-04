@@ -10,32 +10,39 @@
     <div class="contact-cards">
       <div class="cards-container">
         <!-- Carte 1 -->
-        <div class="contact-card-staff" *ngFor="let contact of contacts">
-          <div class="card-header">
-            <h4 class="brief">{{contact.position}}</h4>
-            <div class="staff-avatar">
-              <img [src]="contact.photo" alt="Photo du personnel" />
-            </div>
-          </div>
-          <div class="card-body">
-            <h3>{{contact.name}}</h3>
-            <p class="staff-role">{{contact.role}}</p>
-            <ul class="contact-info">
-              <li><ion-icon name="mail-outline"></ion-icon> {{contact.email}}</li>
-              <li><ion-icon name="call-outline"></ion-icon> {{contact.phone}}</li>
-            </ul>
-          </div>
-          <div class="card-footer">
-            <ion-button fill="clear" size="small" (click)="openChat(contact)">
-              <ion-icon name="chatbubble-ellipses-outline" slot="start"></ion-icon>
-              Message
-            </ion-button>
-            <ion-button fill="outline" size="small" (click)="addToContacts(contact)">
-              <ion-icon name="person-add-outline" slot="start"></ion-icon>
-              Ajouter
-            </ion-button>
+      <div class="contact-card-staff" *ngFor="let contact of contacts">
+        <div class="card-header">
+          <h4 class="brief">{{ contact.position }}</h4>
+          <div class="staff-avatar">
+            <img [src]="contact.photo" alt="Photo du personnel" />
           </div>
         </div>
+        <div class="card-body">
+          <h3>{{ contact.name }}</h3>
+          <p class="staff-role">{{ contact.role }}</p>
+          <ul class="contact-info">
+            <li><ion-icon name="mail-outline"></ion-icon> {{ contact.email }}</li>
+            <li><ion-icon name="call-outline"></ion-icon> {{ contact.phone }}</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <ion-button fill="clear" size="small" (click)="openChat(contact)">
+            <ion-icon name="chatbubble-ellipses-outline" slot="start"></ion-icon>
+            Message
+          </ion-button>
+
+          <ion-button fill="solid" size="small" color="success" (click)="callContact(contact.phone)">
+            <ion-icon name="call-outline" slot="start"></ion-icon>
+            Appeler
+          </ion-button>
+
+          <ion-button fill="outline" size="small" color="medium" (click)="viewDetails(contact)">
+            <ion-icon name="ellipsis-horizontal-outline" slot="start"></ion-icon>
+            Voir plus
+          </ion-button>
+        </div>
+      </div>
+
       </div>
     </div>
 
@@ -52,17 +59,17 @@
 
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <ion-item>
-            <ion-label position="floating">Nom complet</ion-label>
+            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">Nom complet *</ion-label>
             <ion-input formControlName="name" type="text" required></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label position="floating">Email</ion-label>
+            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">Email *</ion-label>
             <ion-input formControlName="email" type="email" required></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label position="floating">Sujet</ion-label>
+            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">Sujet</ion-label>
             <ion-select formControlName="subject" interface="popover">
               <ion-select-option value="general">Question générale</ion-select-option>
               <ion-select-option value="reservation">Réservation</ion-select-option>
@@ -72,11 +79,11 @@
           </ion-item>
 
           <ion-item>
-            <ion-label position="floating">Message</ion-label>
+            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">Message</ion-label>
             <ion-textarea formControlName="message" rows="5" required></ion-textarea>
           </ion-item>
 
-          <ion-button expand="block" type="submit" class="submit-btn" [disabled]="!contactForm.valid">
+          <ion-button expand="block" type="submit" class="submit-btn mt-2" [disabled]="!contactForm.valid">
             <ion-icon name="send-outline" slot="start"></ion-icon>
             Envoyer
           </ion-button>
