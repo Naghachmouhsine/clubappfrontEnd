@@ -31,6 +31,24 @@
       ></ion-input>
     </ion-item>
 
+    <ion-item *ngIf="typeInstallation === 'Tennis'">
+      <ion-label class="ion-padding" >location raquette ?</ion-label>
+      <ion-checkbox
+        slot="start"
+        formControlName="avec_coach"
+      ></ion-checkbox>
+    </ion-item>
+
+    <ion-item  *ngIf="typeInstallation === 'Padel'">
+      <ion-label position="floating">Nombre des raquettes à reserver</ion-label>
+      <ion-input
+        type="number"
+        min="0"
+        formControlName="nombre_raquetes"
+        required
+      ></ion-input>
+    </ion-item>
+
     <ion-button  type="submit"  class="ion-margin" [disabled]="nbrForm.invalid">
       <!-- {{ mode === 'add' ? 'Ajouter' : 'Modifier' }} -->
         Reserver

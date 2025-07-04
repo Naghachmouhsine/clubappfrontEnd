@@ -15,6 +15,7 @@ export class InformationReservationModalComponent implements OnInit {
   // @Input() mode = 'add';
   @Input() nbrMax=20;// nombre maximale qui doit user ne pas depaaser
   @Input() nbrPersonMax=22; //nombre  maxs de personne qui doit reserver selon l'activité (Foot, Basket...)
+  @Input() typeInstallation=""
   nbrForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private modalCtrl: ModalController) {}
@@ -22,8 +23,11 @@ export class InformationReservationModalComponent implements OnInit {
   ngOnInit() {
     this.nbrForm = this.fb.group({
       nombre_installations: [1, [Validators.required, Validators.min(1),Validators.max(this.nbrMax)]],
-      nombre_personne : [1,[Validators.required,Validators.min(1),Validators.max(this.nbrPersonMax)]]
+      nombre_personne : [1,[Validators.required,Validators.min(1),Validators.max(this.nbrPersonMax)]],
+      avec_coach: [false],
+      nombre_raquetes : [0,[Validators.min(0),Validators.max(this.nbrPersonMax)]]
     });
+    console.log(this.typeInstallation)
   }
 
   close() {
