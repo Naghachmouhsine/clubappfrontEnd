@@ -1,140 +1,87 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="main-content"></ion-menu-button>
-    </ion-buttons>
     <ion-title>Contactez-nous</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="contact-bg">
-  <div class="contact-main-container">
-    <!-- Section des cartes de visite à gauche -->
-    <div class="cards-section col-lg-4 col-md-12">
-      <div class="cards-grid">
-        <div class="contact-card-item animate__animated animate__fadeInLeft" *ngFor="let contact of contacts; let i = index" [style.animation-delay]="(0.1 * (i + 1)) + 's'" (click)="openCardModal(contact)">
-          <div class="contact_blog">
-            <h4 class="brief">{{ contact.poste }}</h4>
-            <div class="contact_inner">
-              <div class="left">
-                <h3>{{ contact.nom }}</h3>
-                <p><strong>Poste: </strong>{{ contact.poste }}</p>
-                <ul class="list-unstyled">
-                  <li><i class="fa fa-envelope-o"></i> <a [href]="'mailto:' + contact.email">{{ contact.email }}</a></li>
-                  <li><i class="fa fa-phone"></i> <a [href]="'tel:' + contact.telephone">{{ contact.telephone }}</a></li>
-                </ul>
-              </div>
-              <div class="right">
-                <div class="profile_contacts">
-                  <img class="img-responsive" [src]="contact.image" [alt]="contact.nom" />
-                </div>
-              </div>
-              <div class="bottom_list">
-                <div class="left_rating">
-                  <p class="ratings">
-                    <span class="fa fa-star" *ngFor="let star of [1,2,3,4]"></span>
-                    <span class="fa fa-star-o"></span>
-                  </p>
-                </div>
-                <div class="right_button">
-                  <button type="button" class="btn btn-success btn-xs" (click)="openCardModal(contact)">
-                    <i class="fa fa-user"></i><i class="fa fa-comments-o"></i>
-                  </button>
-                  <button type="button" class="btn btn-primary btn-xs" (click)="downloadVCard(contact)">
-                    <i class="fa fa-download"></i> V-Card
-                  </button>
-                </div>
-              </div>
+<ion-content [fullscreen]="true" class="contact-page">
+  <div class="contact-grid">
+    <!-- Section Cartes de visite (gauche) -->
+    <div class="contact-cards">
+      <div class="cards-container">
+        <!-- Carte 1 -->
+        <div class="contact-card-staff" *ngFor="let contact of contacts">
+          <div class="card-header">
+            <h4 class="brief">{{contact.position}}</h4>
+            <div class="staff-avatar">
+              <img [src]="contact.photo" alt="Photo du personnel" />
             </div>
+          </div>
+          <div class="card-body">
+            <h3>{{contact.name}}</h3>
+            <p class="staff-role">{{contact.role}}</p>
+            <ul class="contact-info">
+              <li><ion-icon name="mail-outline"></ion-icon> {{contact.email}}</li>
+              <li><ion-icon name="call-outline"></ion-icon> {{contact.phone}}</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <ion-button fill="clear" size="small" (click)="openChat(contact)">
+              <ion-icon name="chatbubble-ellipses-outline" slot="start"></ion-icon>
+              Message
+            </ion-button>
+            <ion-button fill="outline" size="small" (click)="addToContacts(contact)">
+              <ion-icon name="person-add-outline" slot="start"></ion-icon>
+              Ajouter
+            </ion-button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Section du formulaire à droite -->
-    <div class="form-section col-lg-8 col-md-12">
-      <div class="glass-card contact-form-card animate__animated animate__fadeInRight">
-        <div class="text-center mb-3">
-          <div class="contact-avatar mb-2">
+    <!-- Section Formulaire (droite) -->
+    <div class="contact-form-section">
+      <div class="glass-card form-container animate__animated animate__fadeIn">
+        <div class="form-header">
+          <div class="club-logo">
             <img src="assets/images/club-logo.png" alt="Club Logo" />
           </div>
-          <h2 class="contact-title">📞 Contactez-nous</h2>
-          <div class="contact-business-card mb-3">
-            <div class="contact-name">Royal Tennis Club de Fès</div>
-            <div class="contact-role">Club Sportif Premium</div>
-            <div class="contact-info">
-              <p><i class="bi bi-geo-alt"></i> 123 Avenue du Tennis, Fès</p>
-              <p><i class="bi bi-envelope"></i> <a [href]="'mailto:contact@rtc-fes.ma'">contact@rtc-fes.ma</a></p>
-              <p><i class="bi bi-phone"></i> <a href="tel:+212535621234">+212 5 35 62 12 34</a></p>
-            </div>
-          </div>
+          <h2>📞 {{ 'contact.title' | translate }}</h2>
+          <p>Envoyez-nous un message et nous vous répondrons dès que possible</p>
         </div>
-        <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
-          <div class="form-group mb-3">
-            <label class="form-label fw-bold" for="contact-nom">Nom</label>
-            <input id="contact-nom" type="text" class="form-control rounded-pill shadow-sm" 
-                   [(ngModel)]="formData.nom" name="nom" required placeholder="Votre nom" title="Nom">
-          </div>
-          <div class="form-group mb-3">
-            <label class="form-label fw-bold" for="contact-email">Email</label>
-            <input id="contact-email" type="email" class="form-control rounded-pill shadow-sm" 
-                   [(ngModel)]="formData.email" name="email" required placeholder="Votre email" title="Email">
-          </div>
-          <div class="form-group mb-3">
-            <label class="form-label fw-bold" for="contact-telephone">Téléphone</label>
-            <input id="contact-telephone" type="tel" class="form-control rounded-pill shadow-sm" 
-                   [(ngModel)]="formData.telephone" name="telephone" placeholder="Votre téléphone" title="Téléphone">
-          </div>
-          <div class="form-group mb-3">
-            <label class="form-label fw-bold" for="contact-message">Message</label>
-            <textarea id="contact-message" rows="4" class="form-control rounded-4 shadow-sm" 
-                      [(ngModel)]="formData.message" name="message" required placeholder="Votre message" title="Message"></textarea>
-          </div>
-          <button type="submit" class="btn btn-gold btn-lg w-100 shadow-lg mt-2" [disabled]="!contactForm.valid">
-            <i class="fa fa-paper-plane me-2"></i> Envoyer
-          </button>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <ion-item>
+            <ion-label position="floating">Nom complet</ion-label>
+            <ion-input formControlName="name" type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="email" type="email" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Sujet</ion-label>
+            <ion-select formControlName="subject" interface="popover">
+              <ion-select-option value="general">Question générale</ion-select-option>
+              <ion-select-option value="reservation">Réservation</ion-select-option>
+              <ion-select-option value="membership">Adhésion</ion-select-option>
+              <ion-select-option value="other">Autre</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Message</ion-label>
+            <ion-textarea formControlName="message" rows="5" required></ion-textarea>
+          </ion-item>
+
+          <ion-button expand="block" type="submit" class="submit-btn" [disabled]="!contactForm.valid">
+            <ion-icon name="send-outline" slot="start"></ion-icon>
+            Envoyer
+          </ion-button>
         </form>
       </div>
     </div>
   </div>
-
-  <!-- Modal pour les cartes de visite -->
-  <ion-modal [isOpen]="showCardModal" (didDismiss)="showCardModal = false">
-    <ng-template>
-      <div class="digital-business-card p-3" *ngIf="selectedContact">
-        <div class="d-flex align-items-center mb-3">
-          <img [src]="selectedContact.image" [alt]="selectedContact.nom" class="staff-avatar me-3">
-          <div>
-            <div class="staff-name fw-bold">{{ selectedContact.nom }}</div>
-            <div class="staff-role text-gold">{{ selectedContact.poste }}</div>
-          </div>
-        </div>
-        <div class="staff-contact-info mb-3">
-          <div class="mb-2">
-            <i class="bi bi-phone text-gold"></i> 
-            <a [href]="'tel:' + selectedContact.telephone" class="text-dark ms-2">{{ selectedContact.telephone }}</a>
-          </div>
-          <div class="mb-2">
-            <i class="bi bi-envelope text-gold"></i> 
-            <a [href]="'mailto:' + selectedContact.email" class="text-dark ms-2">{{ selectedContact.email }}</a>
-          </div>
-          <div class="mb-2">
-            <i class="bi bi-geo-alt text-gold"></i> 
-            <span class="ms-2">Royal Tennis Club de Fès, 123 Avenue du Tennis, Fès</span>
-          </div>
-        </div>
-        <button type="button" class="btn btn-primary btn-sm rounded-pill shadow-sm w-100 mb-2" 
-                [href]="'tel:' + selectedContact.telephone">
-          <i class="bi bi-telephone"></i> Appeler
-        </button>
-        <button type="button" class="btn btn-outline-primary btn-sm rounded-pill shadow-sm w-100 mb-2" 
-                (click)="downloadVCard(selectedContact)">
-          <i class="bi bi-person-plus"></i> Ajouter aux contacts
-        </button>
-        <ion-button fill="clear" color="danger" expand="block" (click)="showCardModal = false">
-          <ion-icon name="close-outline" slot="start"></ion-icon> Fermer
-        </ion-button>
-      </div>
-    </ng-template>
-  </ion-modal>
 </ion-content>

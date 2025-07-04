@@ -1,115 +1,125 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { 
+  IonHeader, 
+  IonToolbar, 
+  IonTitle, 
+  IonContent, 
+  IonButton, 
+  IonIcon, 
+  IonItem, 
+  IonLabel, 
+  IonInput, 
+  IonTextarea, 
+  IonSelect, 
+  IonSelectOption 
+} from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonContent, IonTitle, IonModal, IonButton, IonIcon } from '@ionic/angular/standalone';
-import { MenuController } from '@ionic/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.page.html',
   styleUrls: ['./contact.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonContent, IonTitle, IonModal, IonButton, IonIcon]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonHeader, 
+    IonToolbar, 
+    IonTitle, 
+    IonContent, 
+    IonButton, 
+    IonIcon, 
+    IonItem, 
+    IonLabel, 
+    IonInput, 
+    IonTextarea, 
+    IonSelect, 
+    IonSelectOption,
+    TranslateModule
+  ]
 })
-export class ContactPage implements OnInit {
-  showCardModal = false;
-  selectedContact: any = null;
-  formData = {
-    nom: '',
-    email: '',
-    telephone: '',
-    message: ''
-  };
+export class ContactPage {
 
   contacts = [
-    {
-      id: 'yassine',
-      nom: 'Yassine El Amrani',
-      poste: 'Responsable Accueil',
-      email: 'yassine.amrani@rtc-fes.ma',
-      telephone: '+212612345678',
-      image: 'assets/images/user_img.jpg'
-    },
-    {
-      id: 'ahmed',
-      nom: 'Ahmed Bennani',
-      poste: 'Directeur Technique',
-      email: 'ahmed.bennani@rtc-fes.ma',
-      telephone: '+212611223344',
-      image: 'assets/images/staff2.jpg'
-    },
-    {
-      id: 'karim',
-      nom: 'Karim Alaoui',
-      poste: 'Entraîneur Principal',
-      email: 'karim.alaoui@rtc-fes.ma',
-      telephone: '+212655667788',
-      image: 'assets/images/staff3.jpg'
-    },
-    {
-      id: 'fatima',
-      nom: 'Fatima Zahra',
-      poste: 'Responsable Événements',
-      email: 'fatima.zahra@rtc-fes.ma',
-      telephone: '+212699887766',
-      image: 'assets/images/staff4.jpg'
-    },
-    {
-      id: 'omar',
-      nom: 'Omar Tahiri',
-      poste: 'Responsable Maintenance',
-      email: 'omar.tahiri@rtc-fes.ma',
-      telephone: '+212677554433',
-      image: 'assets/images/staff5.jpg'
-    },
-    {
-      id: 'aicha',
-      nom: 'Aicha Benali',
-      poste: 'Secrétaire Générale',
-      email: 'aicha.benali@rtc-fes.ma',
-      telephone: '+212644332211',
-      image: 'assets/images/staff6.jpg'
-    }
-  ];
-
-  constructor(private menu: MenuController) {}
-
-  ngOnInit() {}
-
-  toggleMenu() {
-    this.menu.toggle('main-content');
+  {
+    name: 'Yassine El Amrani',
+    position: 'Responsable Accueil',
+    role: 'Gestion des réservations',
+    email: 'yassine.amrani@rtc-fes.ma',
+    phone: '+212 6 12 34 56 78',
+    photo: 'assets/images/user_img.jpg'
+  },
+  {
+    name: 'Nadia Benali',
+    position: 'Responsable Communication',
+    role: 'Relations presse et événements',
+    email: 'nadia.benali@rtc-fes.ma',
+    phone: '+212 6 23 45 67 89',
+    photo: 'assets/images/user_img2.jpg'
+  },
+  {
+    name: 'Ahmed Lakhlifi',
+    position: 'Entraîneur Principal',
+    role: 'Encadrement sportif',
+    email: 'ahmed.lakhlifi@rtc-fes.ma',
+    phone: '+212 6 34 56 78 90',
+    photo: 'assets/images/user_img3.jpg'
+  },
+  {
+    name: 'Sara El Idrissi',
+    position: 'Responsable Adhésions',
+    role: 'Gestion des membres',
+    email: 'sara.idrissi@rtc-fes.ma',
+    phone: '+212 6 45 67 89 01',
+    photo: 'assets/images/user_img4.jpg'
+  },
+  {
+    name: 'Mohamed Tazi',
+    position: 'Responsable Technique',
+    role: 'Maintenance et infrastructure',
+    email: 'mohamed.tazi@rtc-fes.ma',
+    phone: '+212 6 56 78 90 12',
+    photo: 'assets/images/user_img5.jpg'
+  },
+  {
+    name: 'Fatima Zahra Bennis',
+    position: 'Assistante Accueil',
+    role: 'Support aux visiteurs',
+    email: 'fatima.bennis@rtc-fes.ma',
+    phone: '+212 6 67 89 01 23',
+    photo: 'assets/images/user_img6.jpg'
   }
+];
 
-  openCardModal(contact: any) {
-    this.selectedContact = contact;
-    this.showCardModal = true;
-  }
 
-  downloadVCard(contact: any) {
-    const vCard = `BEGIN:VCARD
-VERSION:3.0
-FN:${contact.nom}
-ORG:Royal Tennis Club de Fès
-TITLE:${contact.poste}
-EMAIL:${contact.email}
-TEL:${contact.telephone}
-ADR:;;123 Avenue du Tennis;Fès;;;Maroc
-END:VCARD`;
-    const blob = new Blob([vCard], { type: 'text/vcard' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${contact.nom}.vcf`;
-    link.click();
-    window.URL.revokeObjectURL(url);
+  contactForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.contactForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      subject: ['general', Validators.required],
+      message: ['', Validators.required]
+    });
   }
 
   onSubmit() {
-    if (this.formData.nom && this.formData.email && this.formData.message) {
-      console.log('Formulaire soumis :', this.formData);
-      this.formData = { nom: '', email: '', telephone: '', message: '' };
+    if (this.contactForm.valid) {
+      console.log('Form submitted:', this.contactForm.value);
+      alert('Message envoyé avec succès!');
+      this.contactForm.reset();
     }
   }
-}
 
-export { ContactPage }; // Export explicite pour éviter TS2306
+  openChat(contact: any) {
+    console.log('Opening chat with', contact.name);
+  }
+
+  addToContacts(contact: any) {
+    console.log('Adding to contacts:', contact.name);
+  }
+}
