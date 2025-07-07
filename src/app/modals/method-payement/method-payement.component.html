@@ -16,7 +16,7 @@
         <ion-label class="ion-margin">CMI</ion-label>
         <ion-radio slot="start" value="cmi"></ion-radio>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="userRole!='user'" >
         <ion-label class="ion-margin">Cache</ion-label>
         <ion-radio slot="start" value="cache"></ion-radio>
       </ion-item>

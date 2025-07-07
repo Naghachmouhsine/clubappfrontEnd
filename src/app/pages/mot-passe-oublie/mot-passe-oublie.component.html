@@ -1,0 +1,31 @@
+<ion-content class="ion-padding section-alt login-content">
+  <div class="auth-container">
+    <div class="container login-container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+      <div class="card card-royal shadow-lg p-4 animate__animated animate__fadeInDown">
+        <div class="text-center mb-4">
+          <img src="assets/images/club-logo.png" alt="Logo" class="login-logo mb-3 animate__animated animate__pulse animate__delay-1s">
+          <h2 class="fw-bold mt-3 login-title">{{ 'forgot.title' | translate }}</h2>
+          <p class="text-muted">{{ 'forgot.subtitle' | translate }}</p>
+        </div>
+
+        <form (ngSubmit)="onSendLink()">
+          <div class="mb-4">
+            <label class="form-label fw-bold">{{ 'forgot.email' | translate }}</label>
+            <input type="email" class="form-control rounded-pill shadow-sm"
+              [(ngModel)]="email" name="email"
+              placeholder="{{ 'forgot.email_placeholder' | translate }}"
+              required>
+          </div>
+
+          <button type="submit" class="btn btn-gold btn-lg w-100 shadow-lg" [disabled]="!email">
+            {{ 'forgot.send_link' | translate }}
+          </button>
+
+          <div class="text-center mt-3">
+            <a href="/login" class="small text-gold">{{ 'forgot.back_login' | translate }}</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>

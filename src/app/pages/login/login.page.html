@@ -21,8 +21,12 @@
               [(ngModel)]="password" name="password" placeholder="{{ 'login.password_placeholder' | translate }}" required>
           </div>
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <a href="/forgot-password" class="small text-gold">{{ 'login.forgot' | translate }}</a>
-            <a href="/register" class="small text-gold fw-bold">{{ 'login.create_account' | translate }}</a>
+              <span (click)="navigateTO('/forgot-password')" class="small text-gold" style="cursor: pointer;">
+                {{ 'login.forgot' | translate }}
+              </span>
+              <span (click)="navigateTO('/register')" class="small text-gold fw-bold" style="cursor: pointer;">
+                {{ 'login.create_account' | translate }}
+              </span>
           </div>
           <button type="submit" class="btn btn-gold btn-lg w-100 shadow-lg" [disabled]="!email || !password">
             {{ 'login.login' | translate }}

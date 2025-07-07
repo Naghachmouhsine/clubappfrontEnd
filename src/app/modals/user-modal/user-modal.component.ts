@@ -22,7 +22,7 @@ export class UserModalComponent {
   ngOnInit() {
     if (this.mode === 'edit' || this.mode === 'detail') {
       this.http.get(`http://localhost:3000/api/utilisateurs/${this.userId}`)
-        .subscribe((res: any) => this.user = res);
+        .subscribe((res: any) => {this.user = res;console.log(this.user)});
     } else if (this.mode === 'add') {
       this.user = {
         id: null,

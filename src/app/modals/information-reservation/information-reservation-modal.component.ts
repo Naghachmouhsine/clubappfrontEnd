@@ -25,9 +25,8 @@ export class InformationReservationModalComponent implements OnInit {
       nombre_installations: [1, [Validators.required, Validators.min(1),Validators.max(this.nbrMax)]],
       nombre_personne : [1,[Validators.required,Validators.min(1),Validators.max(this.nbrPersonMax)]],
       avec_coach: [false],
-      nombre_raquetes : [0,[Validators.min(0),Validators.max(this.nbrPersonMax)]]
+      // nombre_raquetes : [0,[Validators.min(0),Validators.max(this.nbrPersonMax)]]
     });
-    console.log(this.typeInstallation)
   }
 
   close() {

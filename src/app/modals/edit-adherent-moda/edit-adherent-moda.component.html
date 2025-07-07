@@ -1,0 +1,40 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-title>Modifier Adhérent</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Fermer</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- <ion-item>
+    <ion-label position="floating">Nom</ion-label>
+    <ion-input [(ngModel)]="adherent.nom"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Prénom</ion-label>
+    <ion-input [(ngModel)]="adherent.prenom"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Téléphone</ion-label>
+    <ion-input [(ngModel)]="adherent.telephone"></ion-input>
+  </ion-item> -->
+
+  <!-- <ion-item>
+    <ion-label position="floating">Statut</ion-label>
+    <ion-select [(ngModel)]="adherent.statut_abonnement">
+      <ion-select-option value="Active">Active</ion-select-option>
+      <ion-select-option value="inActive">InActive</ion-select-option>
+    </ion-select>
+  </ion-item> -->
+
+  <ion-item>
+    <ion-label position="floating">Total Points</ion-label>
+    <ion-input type="number" [(ngModel)]="adherent.totalPoints"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" color="primary" (click)="save()">Enregistrer</ion-button>
+</ion-content>

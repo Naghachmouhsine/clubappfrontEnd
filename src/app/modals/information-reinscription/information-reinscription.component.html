@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Type de Réinscription</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss(false)">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-radio-group [(ngModel)]="typeSelected">
+    <ion-list>
+      <ion-item *ngFor="let typeR of typesReinscription">
+        <ion-label class="ion-margin" >{{ typeR }}</ion-label>
+        <ion-radio slot="start" [value]="typeR"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-radio-group>
+
+  <ion-button expand="block" color="success" [disabled]="!typeSelected" (click)="saveConfig()">
+    Enregistrer
+  </ion-button>
+</ion-content>

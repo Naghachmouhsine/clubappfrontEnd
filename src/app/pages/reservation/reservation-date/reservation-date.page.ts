@@ -76,8 +76,6 @@ export class ReservationDatePage implements OnInit {
         this.reservation.activite = params["activiter"]
       }
     });
-
-
     // this.reservation = this.reservationService.getReservation();
     this.generateWeekDates();
     // this.loadSessionsForDate(this.selectedDate);
@@ -108,7 +106,7 @@ export class ReservationDatePage implements OnInit {
       "heure_debut" :  session.heure_debut,
       "heure_fin" :  session.heure_fin,
       "isAdherant" : true,
-      "role" :  this.user
+      "role" :  this.user.role
     }
     const users=['admin','responsable', 'coach', 'adherent'] // les users qu'ont accee pour reserver gratuitement Basket ou Volley
     if(users.includes(this.user.role) && (this.reservation.activite==="Basket" || this.reservation.activite==="Volley")){
@@ -116,7 +114,7 @@ export class ReservationDatePage implements OnInit {
       this.reserver(reservation)
     }
     else {
-      const payResult = await this.openModalPyement(); // modal pour choisir user la methode de payement
+      const payResult = await this.openModalPyement(this.user.role); // modal pour choisir user la methode de payement
       if (payResult) {
         if (payResult.method === "stripe")
           this.stripPayement(reservation)
@@ -253,9 +251,12 @@ paypal.Buttons({
   //   });
   //   return await modal.present();
   // }
-  async openModalPyement(): Promise<any> {
+  async openModalPyement(roleUser:string): Promise<any> {
     const modal = await this.modal.create({
-      component: MethodPayementComponent
+      component: MethodPayementComponent,
+      componentProps : {
+        userRole:roleUser // utiliser pour verfier est ce que user est adherant ou extern
+      }
     });
 
     await modal.present();

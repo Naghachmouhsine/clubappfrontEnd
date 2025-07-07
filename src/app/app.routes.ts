@@ -1,110 +1,107 @@
 import { Routes } from '@angular/router';
-import { LoginPage } from './pages/login/login.page';
-import { RegisterPage } from './pages/register/register.page';
-import { SettingsPage } from './pages/settings/settings.page';
 import { HomePage } from './home/home.page';
-import { ContactPage } from './pages/contact/contact.page';
-import { UserprofilePage } from './pages/userprofile/userprofile.page';
-import { ActivitesPage } from './pages/dashboard/activites/activites.page';
-import { UtilisateurPage } from './pages/dashboard/utilisateur/utilisateur.page';
-import { InstallationPage } from './pages/dashboard/installation/installation.page';
-import { CreneauxPage } from './pages/dashboard/creneaux/creneaux.page';
-import { ActiviteRPage } from './pages/reservation/activite-r/activite-r.page';
-import { DateRPage } from './pages/reservation/date-r/date-r.page';
-import { CreneauRPage } from './pages/reservation/creneau-r/creneau-r.page';
-import { ConfirmationRPage } from './pages/reservation/confirmation-r/confirmation-r.page';
-import { HomeRPage } from './pages/reservation/home-r/home-r.page';
-import { ReservationDatePage } from './pages/reservation/reservation-date/reservation-date.page';
-import { ReservationComponent } from './pages/dashboard/reservation/reservation.component';
 import { AuthGuard } from './services/authgard.service';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
   {
     path: 'home',
     component: HomePage,
   },
   {
     path: 'login',
-    component: LoginPage,
+    loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage),
   },
   {
     path: 'register',
-    component: RegisterPage,
+    loadComponent: () => import('./pages/register/register.page').then(m => m.RegisterPage),
+  },
+  {
+    path: "forgot-password",
+    loadComponent : () =>import('./pages/mot-passe-oublie/mot-passe-oublie.component').then(m=>m.MotPasseOublieComponent),
   },
   {
     path: 'settings',
-    component: SettingsPage,
+    loadComponent: () => import('./pages/settings/settings.page').then(m => m.SettingsPage),
   },
   {
     path: 'contact',
-    component: ContactPage,
+    loadComponent: () => import('./pages/contact/contact.page').then(m => m.ContactPage),
   },
   {
     path: 'userprofile',
-    component: UserprofilePage,
+    loadComponent: () => import('./pages/userprofile/userprofile.page').then(m => m.UserprofilePage),
     canActivate: [AuthGuard],
   },
+
+  // Dashboard
   {
     path: 'dashboard/activites',
-    component: ActivitesPage,
+    loadComponent: () => import('./pages/dashboard/activites/activites.page').then(m => m.ActivitesPage),
     canActivate: [AuthGuard],
   },
   {
     path: 'dashboard/utilisateur',
-    component: UtilisateurPage,
+    loadComponent: () => import('./pages/dashboard/utilisateur/utilisateur.page').then(m => m.UtilisateurPage),
     canActivate: [AuthGuard],
   },
   {
     path: 'dashboard/reservations',
-    component: ReservationComponent,
+    loadComponent: () => import('./pages/dashboard/reservation/reservation.component').then(m => m.ReservationComponent),
     canActivate: [AuthGuard],
   },
   {
     path: 'dashboard/installation',
-    component: InstallationPage,
+    loadComponent: () => import('./pages/dashboard/installation/installation.page').then(m => m.InstallationPage),
     canActivate: [AuthGuard],
   },
   {
     path: 'dashboard/creneaux',
-    component: CreneauxPage,
+    loadComponent: () => import('./pages/dashboard/creneaux/creneaux.page').then(m => m.CreneauxPage),
     canActivate: [AuthGuard],
   },
-  // Reservations : 
+  {
+    path : 'dashboard/adherants',
+    loadComponent: () => import('./pages/dashboard/adherant/adherant.component').then(m => m.AdherantComponent),
+    canActivate: [AuthGuard],
+  },
+  // Réservation
   {
     path: 'reservation/activite',
-    component: ActiviteRPage,
+    loadComponent: () => import('./pages/reservation/activite-r/activite-r.page').then(m => m.ActiviteRPage),
     canActivate: [AuthGuard],
   },
   {
     path: 'reservation/date',
-    component: DateRPage,
+    loadComponent: () => import('./pages/reservation/date-r/date-r.page').then(m => m.DateRPage),
     canActivate: [AuthGuard],
   },
   {
     path: 'reservation/creneau',
-    component: CreneauRPage,
+    loadComponent: () => import('./pages/reservation/creneau-r/creneau-r.page').then(m => m.CreneauRPage),
     canActivate: [AuthGuard],
   },
   {
     path: 'reservation/confirmation',
-    component: ConfirmationRPage,
+    loadComponent: () => import('./pages/reservation/confirmation-r/confirmation-r.page').then(m => m.ConfirmationRPage),
   },
   {
     path: 'reservation/home',
-    component: HomeRPage,
+    loadComponent: () => import('./pages/reservation/home-r/home-r.page').then(m => m.HomeRPage),
   },
   {
     path: 'reservation/reservation-date',
-    component:ReservationDatePage,
-    // canActivate : [AuthGuard]
+    loadComponent: () => import('./pages/reservation/reservation-date/reservation-date.page').then(m => m.ReservationDatePage),
   },
   {
     path: 'resultPayement',
-    component: ReservationDatePage,
-  }
+    loadComponent: () => import('./pages/reservation/reservation-date/reservation-date.page').then(m => m.ReservationDatePage),
+  },
+  {
+    path: 'reset-password',
+    loadComponent: () => import('./pages/reset-password/reset-password.page').then( m => m.ResetPasswordPage)
+  },
+
+
 ];

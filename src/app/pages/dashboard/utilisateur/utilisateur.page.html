@@ -29,14 +29,21 @@
           <ion-col>{{ 'utilisateur.role' | translate }}</ion-col>
           <ion-col>{{ 'utilisateur.actions' | translate }}</ion-col>
         </ion-row>
-        <ion-row *ngFor="let user of utilisateurs" class="ion-text-center user-row align-items-center bg-light rounded-3 mb-2 py-2" [ngClass]="getRoleClass(user.role)">
+        <ion-row *ngFor="let user of utilisateurs"
+          class="ion-text-center user-row align-items-center bg-light rounded-3 mb-2 py-2"
+          [ngClass]="getRoleClass(user.role)">
           <ion-col class="user-cell user-data fw-semibold">{{ user.nom }} {{ user.prenom }}</ion-col>
           <ion-col class="user-cell user-data">{{ user.email }}</ion-col>
           <ion-col class="user-cell user-data">{{ user.telephone }}</ion-col>
           <ion-col class="user-cell user-data">
-            <ion-badge [color]="getRoleClass(user.role)" class="px-3 py-2 rounded-pill text-uppercase user-data">
-              {{ ('utilisateur.roles.' + user.role) | translate }}
-            </ion-badge>
+            <ion-select interface="popover" [(ngModel)]="user.selectedRole" (ionChange)="onRoleChange(user)"
+              class="user-data">
+              <ion-select-option value="user">Utilisateur</ion-select-option>
+              <ion-select-option value="adherent">Adhérent</ion-select-option>
+              <ion-select-option value="coach">Coach</ion-select-option>
+              <ion-select-option value="responsable">Responsable</ion-select-option>
+              <ion-select-option value="admin">Admin</ion-select-option>
+            </ion-select>
           </ion-col>
           <ion-col>
             <ion-button size="small" fill="outline" color="primary" (click)="detailUser(user.id)" class="rounded-pill">

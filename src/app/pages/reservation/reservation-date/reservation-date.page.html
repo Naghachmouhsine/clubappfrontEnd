@@ -72,12 +72,20 @@
     <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
   </ion-item>
   <!--     Aucun créneau  -->
-<ion-item *ngIf="sessionsByDate.length === 0">
+<ion-item *ngIf="sessionsByDate.length === 0 && reservation.activite!='Football'  ">
   <ion-label class="ion-text-center">
     <ion-icon name="alert-circle-outline" color="medium" style="margin-right: 8px;"></ion-icon>
     Aucun créneau disponible pour le moment
   </ion-label>
 </ion-item>
+
+<ion-item *ngIf="reservation.activite=='Football'  ">
+  <ion-label class="ion-text-center">
+    <ion-icon name="alert-circle-outline" color="medium" style="margin-right: 8px;"></ion-icon>
+    Désolé pour la gêne occasionnée. Les terrains de football sont en rénovation et seront de nouveau disponibles dès la prochaine saison.
+  </ion-label>
+</ion-item>
+
 
 </ion-content>
 <div *ngIf="buttonPypale" id="paypal-container" ></div>

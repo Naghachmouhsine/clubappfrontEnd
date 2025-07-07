@@ -70,6 +70,14 @@
     "create_account": "Créer un compte",
     "login": "Se connecter"
   },
+  "forgot": {
+    "title": "Mot de passe oublié",
+    "subtitle": "Entrez votre adresse email pour recevoir un lien de réinitialisation.",
+    "email": "Adresse email",
+    "email_placeholder": "exemple@domaine.com",
+    "send_link": "Envoyer le lien",
+    "back_login": "← Retour à la connexion"
+  },
   "home_r": {
     "title": "Réserver une activité",
     "card_title": "Réserver une activité",
@@ -116,6 +124,8 @@
       "user": "Utilisateur"
     }
   },
+
+
   "menu": {
     "title": "Royal Tennis Club de Fès",
     "home": "Accueil",
@@ -126,7 +136,8 @@
     "installations": "Installations",
     "slots": "Créneaux",
     "reservation": "Réservation",
-    "contact": "Contact"
+    "contact": "Contact",
+    "adherants" :  "Adherants"
   },
   "about": {
     "title": "À propos de nous",
@@ -149,6 +160,16 @@
     "message_placeholder": "Votre message",
     "send": "Envoyer"
   },
+  "adherent": {
+  "title": "Gestion des adhérents",
+  "list": "Liste des adhérents",
+  "name": "Nom complet",
+  "email": "Email",
+  "phone": "Téléphone",
+  "subscription_status": "Statut",
+  "registration_date": "Inscription",
+  "details": "Détails"
+},
   "footer": {
     "club": "Royal Tennis Club de Fès",
     "address": "Adresse : ...",
@@ -179,7 +200,7 @@
     "cancel": "Annuler",
     "login": "Se connecter",
     "register": "Créer un compte",
-    "role": "Rôle",
+    "role": "Status",
     "personal_info": "Informations personnelles",
     "email": "Email",
     "phone": "Téléphone",
@@ -189,7 +210,11 @@
     "change_password": "Changer le mot de passe",
     "delete_account": "Supprimer le compte",
     "nom": "Nom",
-    "prenom": "Prénom"
+    "prenom": "Prénom",
+     "genre": "Genre",
+  "subscription_status": "Statut d'abonnement",
+  "registration_date": "Date d'inscription",
+  "renew_required": "Votre abonnement est inactif. Merci de procéder à une réinscription annuelle."
   },
   "settings": {
     "title": "Paramètres",
