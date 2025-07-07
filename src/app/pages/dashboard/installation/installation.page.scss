@@ -1,12 +1,25 @@
 /* Design premium sportif harmonisé pour Installations */
+
 ion-card.card-royal {
-  background: #c9d1d9 !important;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  position: relative; /* important pour le pseudo-élément */
   border-radius: 2rem;
-  border: 1.5px solid rgba(63, 167, 255, 0.13);
-  -webkit-backdrop-filter: blur(8px); /* Compatibilité Safari/iOS */
-  backdrop-filter: blur(8px);
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 215, 0, 0.18); /* doré léger */
   padding: 2rem 1.5rem;
+  background: transparent; /* transparent pour que le flou apparaisse */
+  z-index: 0;
+}
+
+/* On ajoute un pseudo-élément pour le fond flou + dégradé */
+ion-card.card-royal::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(63, 167, 255, 0.3));
+  backdrop-filter: blur(20px); /* effet flou */
+  -webkit-backdrop-filter: blur(12px); /* Safari */
+  border-radius: 2rem;
+  z-index: -1; /* en arrière-plan */
 }
 body.theme-dark ion-card.card-royal,
 body.theme-dark ion-card,
@@ -31,7 +44,7 @@ body.theme-dark ion-badge.user-data {
   box-shadow: 0 2px 8px 0 #ffd70033;
 }
 ion-card-title.services-title {
-  color: #3fa7ff !important;
+  color: #222 !important;
   font-size: 2.2rem !important;
   font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
   font-weight: 900 !important;
@@ -93,7 +106,7 @@ body.theme-dark .installation-cell {
   color: #ffd700 !important;
 }
 ion-button.btn-gold {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%);
+  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 0.5) !important  ;
   color: #222 !important;
   font-weight: bold;
   font-size: 1.1rem;

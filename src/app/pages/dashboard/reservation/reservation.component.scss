@@ -1,13 +1,27 @@
 /* Design premium sportif harmonisé pour Réservations */
-ion-card {
-  background: #c9d1d9 !important;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+
+ion-card[_ngcontent-ng-c1592420907] {
+  position: relative; /* important pour le pseudo-élément */
   border-radius: 2rem;
-  border: 1.5px solid rgba(63, 167, 255, 0.13);
-  -webkit-backdrop-filter: blur(8px); /* Compatibilité Safari/iOS */
-  backdrop-filter: blur(8px);
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 215, 0, 0.18); /* doré léger */
   padding: 2rem 1.5rem;
+  background: transparent; /* transparent pour que le flou apparaisse */
+  z-index: 0;
 }
+
+/* On ajoute un pseudo-élément pour le fond flou + dégradé */
+ion-card[_ngcontent-ng-c1592420907]::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(63, 167, 255, 0.2));
+  backdrop-filter: blur(12px); /* effet flou */
+  -webkit-backdrop-filter: blur(12px); /* Safari */
+  border-radius: 2rem;
+  z-index: -1; /* en arrière-plan */
+}
+
 body.theme-dark ion-card.card-royal,
 body.theme-dark ion-card,
 body.theme-dark ion-card-title,
@@ -53,17 +67,17 @@ body.theme-dark ion-card {
   background: rgba(30, 34, 54, 0.92) !important;
   border: 1.5px solid rgba(255, 215, 0, 0.12);
 }
-ion-card-title {
-  color: #3fa7ff !important;
-  font-size: 2.2rem !important;
-  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
-  font-weight: 900 !important;
-  letter-spacing: 1px;
-  text-align: center !important;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 2px 8px rgba(63, 167, 255, 0.18);
-  transition: color 0.3s;
-}
+// ion-card-title {
+//   color: #3fa7ff !important;
+//   font-size: 2.2rem !important;
+//   font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+//   font-weight: 900 !important;
+//   letter-spacing: 1px;
+//   text-align: center !important;
+//   margin-bottom: 1.5rem;
+//   text-shadow: 0 2px 8px rgba(63, 167, 255, 0.18);
+//   transition: color 0.3s;
+// }
 .reservation-title {
   font-size: 2.2rem !important;
   font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
@@ -71,13 +85,11 @@ ion-card-title {
   letter-spacing: 1px;
   text-align: center !important;
   margin-bottom: 1.5rem;
-  background: linear-gradient(90deg, #ffd700 0%, #fffbe6 60%, #23272f 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
   text-shadow: 0 2px 8px #ffd70033;
   transition: color 0.3s;
+  color: #000;
 }
 .ion-text-center[style*="font-weight: bold;"] {
   background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%);

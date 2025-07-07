@@ -23,15 +23,29 @@ html[class*="dark"] .services-title {
 
 /* Style premium sportif pour la page liste utilisateurs */
 
-ion-card.card-royal {
-  background: #c9d1d9; /* Glassmorphism foncé */
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+ion-card.card-royal[_ngcontent-ng-c3544753662] {
+  position: relative; /* important pour le pseudo-élément */
   border-radius: 2rem;
-  border: 1.5px solid rgba(63, 167, 255, 0.18);
-  -webkit-backdrop-filter: blur(8px); /* Support Safari/iOS */
-  backdrop-filter: blur(8px);
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 215, 0, 0.18); /* doré léger */
   padding: 2rem 1.5rem;
+  background: transparent; /* transparent pour que le flou apparaisse */
+  z-index: 0;
 }
+
+/* On ajoute un pseudo-élément pour le fond flou + dégradé */
+ion-card.card-royal[_ngcontent-ng-c3544753662]::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(63, 167, 255, 0.3));
+  backdrop-filter: blur(12px); /* effet flou */
+  -webkit-backdrop-filter: blur(12px); /* Safari */
+  border-radius: 2rem;
+  z-index: -1; /* en arrière-plan */
+}
+
+
 
 // ion-card-title.services-title {
 //   color: #3fa7ff !important;
@@ -52,11 +66,8 @@ ion-card-title.services-title {
   letter-spacing: 1px;
   text-align: center !important;
   margin-bottom: 1.5rem;
-  background: linear-gradient(90deg, #FFD700 0%, #23272F 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
   text-shadow: 0 2px 12px #ffd70055, 0 0 8px #fffbe6cc;
   transition: color 0.3s;
 }
@@ -316,7 +327,7 @@ html[class*='dark'] ion-button[fill="outline"]:hover {
 
 // Style premium sportif pour tous les boutons .button-solid sur la page Activités
 :host ::ng-deep .button-solid, :host ::ng-deep ion-button.button-solid {
-  --background: linear-gradient(90deg, #FFD700 0%, #23272F 100%);
+  --background: linear-gradient(90deg, #FFD700 0%, #23272F 0.5);
   --color: #23272F;
   --box-shadow: 0 2px 12px 0 #FFD70055, 0 0 8px 0 #23272F22;
   --border-radius: 2rem;
@@ -328,3 +339,5 @@ html[class*='dark'] ion-button[fill="outline"]:hover {
   font-size: 1.1rem;
   transition: background 0.3s, color 0.3s, box-shadow 0.3s;
 }
+
+
