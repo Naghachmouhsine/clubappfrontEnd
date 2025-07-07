@@ -18,18 +18,20 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicModule,
     AppHeaderComponent,
     TranslateModule
-]
+  ]
 })
 export class UtilisateurPage implements OnInit {
 
-  utilisateurs: any[] = [];
+  utilisateurs: any[] = []; // modifiable
+  utilisateursOrigin: any[] = []; // pour garder les donner avant confirmer la modification dans la base donnes
+
 
   constructor(
     private http: HttpClient,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private modalCtrl: ModalController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadUtilisateurs();
@@ -38,7 +40,12 @@ export class UtilisateurPage implements OnInit {
   loadUtilisateurs() {
     this.http.get<any[]>('http://localhost:3000/api/utilisateurs')
       .subscribe({
-        next: (res) => this.utilisateurs = res,
+        next: (res) => {
+          this.utilisateurs = res.map(user => ({
+            ...user,
+            selectedRole: user.role
+          }));
+        },
         error: (err) => console.error(err)
       });
   }
@@ -74,34 +81,34 @@ export class UtilisateurPage implements OnInit {
   }
 
   // Méthode pour afficher les détails de l'utilisateur
-async detailUser(id: number) {
-  // Tu fais une requête pour récupérer les détails de l'utilisateur
-  this.http.get<any>(`http://localhost:3000/api/utilisateurs/${id}`).subscribe({
-    next: async (user) => {
-      // Si tu as un composant modal pour afficher les détails
-      const modal = await this.modalCtrl.create({
-        component: UserModalComponent, // Le même composant modal, mais tu peux l'utiliser pour l'affichage des détails
-        componentProps: {
-          userId: id,       // Passe l'ID de l'utilisateur à la modal
-          mode: 'detail',    // Passer le mode "détail" pour que le modal affiche les détails de manière spécifique
-          userDetails: user  // Passe les détails de l'utilisateur récupérés dans la requête
-        }
-      });
+  async detailUser(id: number) {
+    // Tu fais une requête pour récupérer les détails de l'utilisateur
+    this.http.get<any>(`http://localhost:3000/api/utilisateurs/${id}`).subscribe({
+      next: async (user) => {
+        // Si tu as un composant modal pour afficher les détails
+        const modal = await this.modalCtrl.create({
+          component: UserModalComponent, // Le même composant modal, mais tu peux l'utiliser pour l'affichage des détails
+          componentProps: {
+            userId: id,       // Passe l'ID de l'utilisateur à la modal
+            mode: 'detail',    // Passer le mode "détail" pour que le modal affiche les détails de manière spécifique
+            userDetails: user  // Passe les détails de l'utilisateur récupérés dans la requête
+          }
+        });
 
-      modal.onDidDismiss().then(result => {
-        // Si tu souhaites, tu peux gérer la fermeture du modal, par exemple recharger la liste des utilisateurs.
-        if (result.data === true) {
-          this.loadUtilisateurs(); // Par exemple, on peut rafraîchir la liste si une modification a eu lieu
-        }
-      });
+        modal.onDidDismiss().then(result => {
+          // Si tu souhaites, tu peux gérer la fermeture du modal, par exemple recharger la liste des utilisateurs.
+          if (result.data === true) {
+            this.loadUtilisateurs(); // Par exemple, on peut rafraîchir la liste si une modification a eu lieu
+          }
+        });
 
-      return await modal.present();
-    },
-    error: (err) => {
-      console.error('Erreur lors de la récupération des détails de l\'utilisateur', err);
-    }
-  });
-}
+        return await modal.present();
+      },
+      error: (err) => {
+        console.error('Erreur lors de la récupération des détails de l\'utilisateur', err);
+      }
+    });
+  }
 
   // Méthode pour éditer l'utilisateur
   async editUser(id: number) {
@@ -135,6 +142,39 @@ async detailUser(id: number) {
     });
 
     await modal.present();
+  }
+
+  async onRoleChange(user: any) {
+    const newRole = user.selectedRole;
+    const oldRole = user.role;
+
+    const alert = await this.alertCtrl.create({
+      header: 'Confirmer la modification',
+      message: `Voulez-vous vraiment changer le rôle de ${user.nom} vers ${newRole.toUpperCase()} ?`,
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: () => {
+            user.selectedRole = oldRole;
+          }
+        },
+        {
+          text: 'Confirmer',
+          handler: async () => {
+            this.http.put(`http://localhost:3000/api/updateRoleUser`, {id:user.id,newRole:newRole})
+              .subscribe({
+                next: async () => {
+                    this.loadUtilisateurs();
+                },
+                error: (err) =>{user.selectedRole = oldRole;console.error(err)}
+              });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   getRoleClass(role: string): string {

@@ -52,13 +52,18 @@ export class LoginPage {
           this.presentToast(params["message"], 'danger', 6000);
           this.to= params['to'] || 'home';
         }
+        if(params["updateMotPass"]==="true"){
+          this.presentToast(params["message"], 'success', 6000);
+        }
       });
     }
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
   }
-
+  navigateTO(route:string){
+    this.router.navigate([route]);
+  }
   async onLogin() {
     if (!this.email || !this.password) {
       return this.presentToast('Veuillez remplir tous les champs.', 'danger');

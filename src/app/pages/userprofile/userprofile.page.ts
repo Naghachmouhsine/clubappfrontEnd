@@ -3,6 +3,7 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { AppHeaderComponent } from '../../components/app-header/app-header.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-userprofile',
@@ -13,28 +14,51 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class UserprofilePage implements OnInit {
 
- user: any = {};
+  user: any = {};
+  loading = false;
+  errorMessage = '';
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     const userData = localStorage.getItem('user');
     if (userData) {
-      this.user = JSON.parse(userData);
+      const userId = JSON.parse(userData).id; 
+      if (userId) {
+        this.loadUserProfile(userId);
+      } else {
+        this.errorMessage = 'ID utilisateur introuvable.';
+      }
+    } else {
+      this.errorMessage = 'Utilisateur non connecté.';
     }
-    console.log(this.user)
+  }
+
+  loadUserProfile(userId: number) {
+    this.loading = true;
+    this.http.get(`http://localhost:3000/api/userprofile/${userId}`)
+      .subscribe({
+        next: (data) => {
+          this.user = data;
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error('Erreur lors du chargement du profil', err);
+          this.errorMessage = 'Erreur lors du chargement du profil utilisateur.';
+          this.loading = false;
+        }
+      });
   }
 
   editProfile() {
-    // À implémenter : ouvrir une modale ou naviguer vers une page d'édition
     alert('Fonctionnalité à venir : édition du profil');
   }
 
   deleteProfile() {
-    // À implémenter : confirmation puis suppression du compte
     alert('Fonctionnalité à venir : suppression du compte');
   }
 
   changePassword() {
-    // À implémenter : ouvrir une modale ou naviguer vers une page de changement de mot de passe
     alert('Fonctionnalité à venir : changement de mot de passe');
   }
 

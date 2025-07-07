@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SharedIonicModule } from 'src/app/shared/shared-ionic.module';
@@ -12,9 +12,9 @@ import { IonicModule, ModalController } from '@ionic/angular';
   styleUrls: ['./method-payement.component.scss'],
 })
 export class MethodPayementComponent {
-
+   @Input() userRole="" // si adherant pour payer en cache, si extern doit payer en ligne pour confirmer la reservation
    methode: string = ''; 
-
+  
   constructor(private router: Router,private modalCtrl:ModalController) {}
 
   // payer() {

@@ -1,0 +1,49 @@
+<app-header [nomPage]="'adherant.title' | translate"></app-header>
+
+<ion-content class="ion-padding section-alt">
+  <ion-card class="card-royal p-4">
+    <ion-card-header>
+      <ion-card-title class="services-title display-6 mb-3">👥 Liste des Adhérents</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="fw-bold bg-gold-contrast rounded-3 py-2 text-center">
+          <ion-col>Nom complet</ion-col>
+          <ion-col>Email</ion-col>
+          <ion-col>Téléphone</ion-col>
+          <ion-col>Statut</ion-col>
+          <ion-col>Date d'inscription</ion-col>
+          <ion-col>Totale Points</ion-col>
+          <ion-col>Action</ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let adherent of adherents" class=" mb-2 text-center align-items-center">
+          <ion-col class="fw-semibold">{{ adherent.nom }} {{ adherent.prenom }}</ion-col>
+          <ion-col>{{ adherent.email }}</ion-col>
+          <ion-col>{{ adherent.telephone }}</ion-col>
+          <ion-col>
+            <!-- <ion-badge [color]="getStatusColor(adherent.statut_abonnement)"> -->
+            {{ adherent.statut_abonnement | uppercase }}
+            <!-- </ion-badge> -->
+          </ion-col>
+          <ion-col>{{ adherent.date_inscription | date }}</ion-col>
+          <ion-col>{{ adherent.totalPoints || 0 }}</ion-col>
+          <ion-col class="d-flex justify-content-center gap-2">
+            <!-- Icône de Réinscription -->
+            <ion-button *ngIf="adherent.statut_abonnement === 'inActive'" fill="clear" color="warning" size="small"
+              (click)="reinscrire(adherent)" title="Réinscrire l'adhérent">
+              <ion-icon name="refresh-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+
+            <!-- Icône de modification -->
+            <ion-button fill="clear" color="primary" size="small" (click)="openEditModal(adherent)"
+              title="Modifier l'adhérent">
+              <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

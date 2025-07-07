@@ -12,6 +12,7 @@ export class AuthGuard implements CanActivate {
     'userprofile': ['admin','user','responsable', 'coach', 'adherent'],
     'dashboard/activites': ['admin', 'responsable', 'coach'],
     'dashboard/utilisateur': ['admin'],
+    'dashboard/adherants': ['admin'],
     'dashboard/installation': ['admin', 'responsable'],
     'dashboard/creneaux': ['admin', 'responsable'],
     'reservation/activite-r': ['admin', 'responsable', 'coach'],

@@ -39,15 +39,13 @@
       ></ion-checkbox>
     </ion-item>
 
-    <ion-item  *ngIf="typeInstallation === 'Padel'">
-      <ion-label position="floating">Nombre des raquettes à reserver</ion-label>
-      <ion-input
-        type="number"
-        min="0"
-        formControlName="nombre_raquetes"
-        required
-      ></ion-input>
+    <ion-item *ngIf="typeInstallation === 'Padel'">
+      <ion-label class="ion-text-wrap">
+        ⚠️ Veuillez apporter vos propres raquettes. <br>
+        Un service de location est également disponible sur place si nécessaire.
+      </ion-label>
     </ion-item>
+
 
     <ion-button  type="submit"  class="ion-margin" [disabled]="nbrForm.invalid">
       <!-- {{ mode === 'add' ? 'Ajouter' : 'Modifier' }} -->
