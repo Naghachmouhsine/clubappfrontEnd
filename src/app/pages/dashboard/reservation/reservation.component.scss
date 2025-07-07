@@ -123,15 +123,21 @@ body.theme-dark .reservations-row {
   box-shadow: 0 4px 16px 0 rgba(63, 167, 255, 0.18);
   background: linear-gradient(90deg, #3fa7ff11 0%, #ffd70011 100%);
 }
+
 .reservations-row.confirme {
-  background: linear-gradient(90deg, #2ecc70cc 0%, #3fa7ff33 100%) !important;
+  background: linear-gradient(90deg, #28a745 0%, #c1f0d4 100%) !important;
+  color: #fff !important;
 }
 .reservations-row.en_attente {
-  background: linear-gradient(90deg, #f1c40fcc 0%, #ffd70033 100%) !important;
+  background: linear-gradient(90deg, #f1c40f 0%, #fff4c2 100%) !important;
+  color: #000 !important;
 }
 .reservations-row.annuler {
-  background: linear-gradient(90deg, #95a5a6cc 0%, #3fa7ff33 100%) !important;
+  background: linear-gradient(90deg, #bdc3c7 0%, #ecf0f1 100%) !important;
+  color: #444 !important;
 }
+
+
 ion-select, ion-select-option {
   font-weight: bold;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;

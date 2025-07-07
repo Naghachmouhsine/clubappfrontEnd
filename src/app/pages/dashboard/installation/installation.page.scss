@@ -1,48 +1,27 @@
-/* Design premium sportif harmonisé pour Installations */
+/* Composant Dashboard - Installations | Glassmorphism sportif harmonisé */
 
 ion-card.card-royal {
-  position: relative; /* important pour le pseudo-élément */
+  position: relative;
   border-radius: 2rem;
   overflow: hidden;
-  border: 1.5px solid rgba(255, 215, 0, 0.18); /* doré léger */
+  border: 1.5px solid rgba(255, 215, 0, 0.18);
   padding: 2rem 1.5rem;
-  background: transparent; /* transparent pour que le flou apparaisse */
+  background: transparent;
   z-index: 0;
 }
 
-/* On ajoute un pseudo-élément pour le fond flou + dégradé */
 ion-card.card-royal::before {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(63, 167, 255, 0.3));
-  backdrop-filter: blur(20px); /* effet flou */
-  -webkit-backdrop-filter: blur(12px); /* Safari */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 2rem;
-  z-index: -1; /* en arrière-plan */
+  z-index: -1;
 }
-body.theme-dark ion-card.card-royal,
-body.theme-dark ion-card,
-body.theme-dark ion-card-title.services-title,
-body.theme-dark ion-row.title-row,
-body.theme-dark ion-row.installation-row {
-  background: linear-gradient(90deg, #2d2d2d 0%, #1a1a1a 100%) !important;
-  color: #ffd700 !important;
-  -webkit-text-fill-color: #ffd700 !important;
-  border-color: #ffd70099 !important;
-}
-body.theme-dark ion-card-title.services-title,
-body.theme-dark ion-row.title-row {
-  color: #ffd700 !important;
-  -webkit-text-fill-color: #ffd700 !important;
-  text-shadow: 0 2px 8px #ffd70044;
-}
-body.theme-dark ion-badge,
-body.theme-dark ion-badge.user-data {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
-  color: #222 !important;
-  box-shadow: 0 2px 8px 0 #ffd70033;
-}
+
+/* TITRE */
 ion-card-title.services-title {
   color: #222 !important;
   font-size: 2.2rem !important;
@@ -54,7 +33,43 @@ ion-card-title.services-title {
   text-shadow: 0 2px 8px rgba(63, 167, 255, 0.18);
   transition: color 0.3s;
 }
-ion-row.title-row {
+
+/* BOUTONS PREMIUM */
+/* ====== Boutons Premium ====== */
+ion-button.btn-gold {
+  --background: linear-gradient(90deg, #FFD700 0%, #3FA7FF 100%) !important;
+  --color: #222 !important;
+  --box-shadow: 0 2px 8px 0 rgba(255, 215, 0, 0.13);
+  --border-radius: 2rem;
+
+  background: var(--background);
+  color: var(--color);
+  font-weight: bold;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  border: none;
+  border-radius: var(--border-radius);
+  letter-spacing: 0.5px;
+  box-shadow: var(--box-shadow);
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+  margin-bottom: 10px;
+}
+
+ion-button.btn-gold:hover {
+  --background: linear-gradient(90deg, #3FA7FF 0%, #FFD700 100%) !important;
+  background: var(--background);
+  color: #222 !important;
+}
+
+
+/* MARGIN BOTTOM bouton (utile si besoin d’espacement supplémentaire) */
+.mb-btn {
+  margin-bottom: 1rem !important;
+}
+
+/* TABLEAU HEADERS */
+ion-row.title-row,
+ion-row.fw-bold {
   background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%);
   color: #222 !important;
   font-weight: 900;
@@ -65,6 +80,8 @@ ion-row.title-row {
   margin-bottom: 0.7rem;
   padding: 0.7rem 0;
 }
+
+/* LIGNES INSTALLATION */
 ion-row.installation-row {
   transition: box-shadow 0.2s, background 0.2s;
   box-shadow: 0 2px 8px 0 rgba(63, 167, 255, 0.07);
@@ -75,17 +92,24 @@ ion-row.installation-row {
   font-size: 1.08rem;
   color: #222;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-  letter-spacing: 0.2px;
   font-weight: bold;
 }
-body.theme-dark ion-row.installation-row {
-  background: rgba(30,34,54,0.92);
-  color: #f5f5f5;
-}
+
 ion-row.installation-row:hover {
   box-shadow: 0 4px 16px 0 rgba(63, 167, 255, 0.18);
   background: linear-gradient(90deg, #3fa7ff11 0%, #ffd70011 100%);
 }
+
+/* CELLS */
+.installation-cell {
+  font-size: 1.08rem;
+  color: #222;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  letter-spacing: 0.2px;
+  transition: color 0.3s;
+}
+
+/* DISPONIBILITÉ COULEUR */
 .installation-row.disponible-oui {
   background: linear-gradient(90deg, #2ecc70cc 0%, #3fa7ff33 100%) !important;
 }
@@ -95,39 +119,8 @@ ion-row.installation-row:hover {
 .installation-row.disponible-inconnu {
   background: linear-gradient(90deg, #95a5a6cc 0%, #3fa7ff33 100%) !important;
 }
-.installation-cell {
-  font-size: 1.08rem;
-  color: #222;
-  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-  letter-spacing: 0.2px;
-  transition: color 0.3s;
-}
-body.theme-dark .installation-cell {
-  color: #ffd700 !important;
-}
-ion-button.btn-gold {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 0.5) !important  ;
-  color: #222 !important;
-  font-weight: bold;
-  font-size: 1.1rem;
-  border-radius: 2rem;
-  box-shadow: 0 2px 8px 0 rgba(255, 215, 0, 0.13);
-  letter-spacing: 0.5px;
-  border: none;
-  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-}
-body.theme-dark ion-button.btn-gold {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
-  color: #222 !important;
-}
-ion-button.btn-gold:hover {
-  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%);
-  color: #222 !important;
-}
-body.theme-dark ion-button.btn-gold:hover {
-  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%) !important;
-  color: #222 !important;
-}
+
+/* BOUTONS OUTLINE */
 ion-button[fill="outline"] {
   border: 2px solid #3fa7ff;
   color: #3fa7ff !important;
@@ -135,23 +128,65 @@ ion-button[fill="outline"] {
   border-radius: 2rem;
   transition: border 0.3s, color 0.3s;
 }
-body.theme-dark ion-button[fill="outline"] {
-  border: 2px solid #ffd700 !important;
+ion-button[fill="outline"]:hover {
+  border: 2px solid #FFD700;
+  color: #FFD700 !important;
+}
+
+/* DARK THEME */
+body.theme-dark ion-card.card-royal,
+body.theme-dark ion-card,
+body.theme-dark ion-card-title.services-title,
+body.theme-dark ion-row.installation-row {
+  background: linear-gradient(90deg, #2d2d2d 0%, #1a1a1a 100%) !important;
+  color: #ffd700 !important;
+  border-color: #ffd70099 !important;
+}
+body.theme-dark .installation-cell {
   color: #ffd700 !important;
 }
-ion-button[fill="outline"]:hover {
-  border: 2px solid #ffd700;
-  color: #ffd700 !important;
+body.theme-dark ion-button.btn-gold {
+  --background: linear-gradient(90deg, #FFD700 0%, #3fa7ff 100%) !important;
+  background: var(--background);
+  color: #222 !important;
+}
+body.theme-dark ion-button.btn-gold:hover {
+  --background: linear-gradient(90deg, #3fa7ff 0%, #FFD700 100%) !important;
+  background: var(--background);
+  color: #222 !important;
+}
+body.theme-dark ion-button[fill="outline"] {
+  border: 2px solid #FFD700 !important;
+  color: #FFD700 !important;
 }
 body.theme-dark ion-button[fill="outline"]:hover {
   border: 2px solid #3fa7ff !important;
   color: #3fa7ff !important;
 }
+
+/* BOUTONS SOLID COMMUNS */
+:host ::ng-deep .button-solid,
+:host ::ng-deep ion-button.button-solid {
+  --background: linear-gradient(90deg, #FFD700 0%, #23272F 100%);
+  --color: #23272F;
+  --box-shadow: 0 2px 12px 0 #FFD70055, 0 0 8px 0 #23272F22;
+  --border-radius: 2rem;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 8px #fffbe6cc;
+  transition: all 0.3s;
+}
+
+/* EMPTY STATE */
 .empty-state {
   margin-top: 20px;
   font-style: italic;
   color: #666;
 }
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
   ion-card.card-royal {
     padding: 1.2rem 0.5rem;
@@ -161,7 +196,7 @@ body.theme-dark ion-button[fill="outline"]:hover {
     padding: 0.5rem 0;
   }
   ion-card-title.services-title {
-    font-size: 1.3rem !important;
+    font-size: 1.4rem !important;
   }
 }
 @media (max-width: 600px) {
@@ -169,26 +204,10 @@ body.theme-dark ion-button[fill="outline"]:hover {
     padding: 0.5rem 0.1rem;
   }
   ion-row.title-row, ion-row.installation-row {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     padding: 0.3rem 0;
   }
   ion-card-title.services-title {
     font-size: 1.1rem !important;
   }
 }
-
-
-// Style premium sportif pour tous les boutons .button-solid sur la page Activités
-:host ::ng-deep .button-solid, :host ::ng-deep ion-button.button-solid {
-  --background: linear-gradient(90deg, #FFD700 0%, #23272F 100%);
-  --color: #23272F;
-  --box-shadow: 0 2px 12px 0 #FFD70055, 0 0 8px 0 #23272F22;
-  --border-radius: 2rem;
-  --border: none;
-  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
-  font-weight: 900;
-  letter-spacing: 0.5px;
-  text-shadow: 0 1px 8px #fffbe6cc;
-  font-size: 1.1rem;
-  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-} 

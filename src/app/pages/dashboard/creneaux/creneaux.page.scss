@@ -1,81 +1,130 @@
-/* Design premium sportif harmonisé pour Créneaux */
+/* ====== Base Card Style ====== */
 ion-card.card-royal {
-  background: #c9d1d9 !important;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  position: relative;
   border-radius: 2rem;
-  border: 1.5px solid rgba(63, 167, 255, 0.13);
-  -webkit-backdrop-filter: blur(8px); /* Compatibilité Safari/iOS */
-  backdrop-filter: blur(8px);
+  overflow: hidden;
   padding: 2rem 1.5rem;
+  background: transparent;
+  border: 1.5px solid rgba(255, 215, 0, 0.18);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px #ffd70033, 0 0 32px #23272f33;
 }
-body.theme-dark ion-card.card-royal,
-body.theme-dark ion-card,
-body.theme-dark ion-card-title.services-title,
-body.theme-dark ion-row.fw-bold,
-body.theme-dark ion-row.creneaux-row {
-  background: linear-gradient(90deg, #2d2d2d 0%, #1a1a1a 100%) !important;
-  color: #ffd700 !important;
-  -webkit-text-fill-color: #ffd700 !important;
-  border-color: #ffd70099 !important;
+
+ion-card.card-royal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(63, 167, 255, 0.3));
+  backdrop-filter: blur(12px);
+  border-radius: 2rem;
+  z-index: -1;
 }
-body.theme-dark ion-card-title.services-title,
-body.theme-dark ion-row.fw-bold {
-  color: #ffd700 !important;
-  -webkit-text-fill-color: #ffd700 !important;
-  text-shadow: 0 2px 8px #ffd70044;
+
+
+/* ====== Theme Sombre (Dark) ====== */
+body.theme-dark {
+  ion-card.card-royal,
+  ion-card,
+  ion-card-title.services-title,
+  ion-row.fw-bold,
+  ion-row.creneaux-row {
+    background: linear-gradient(90deg, #2d2d2d, #1a1a1a) !important;
+    color: #ffd700 !important;
+    border-color: #ffd70099 !important;
+    -webkit-text-fill-color: #ffd700 !important;
+  }
+
+  ion-card-title.services-title,
+  ion-row.fw-bold {
+    text-shadow: 0 2px 8px #ffd70044;
+  }
+
+  .creneaux-cell {
+    color: #ffd700 !important;
+  }
+
+  ion-badge,
+  ion-badge.user-data {
+    background: linear-gradient(90deg, #ffd700, #3fa7ff) !important;
+    color: #222 !important;
+    box-shadow: 0 2px 8px #ffd70033;
+  }
+
+  ion-button.btn-gold {
+    background: linear-gradient(90deg, #ffd700, #3fa7ff) !important;
+    color: #222 !important;
+  }
+
+  ion-button.btn-gold:hover {
+    background: linear-gradient(90deg, #3fa7ff, #ffd700) !important;
+  }
+
+  ion-button[fill="outline"] {
+    border-color: #ffd700 !important;
+    color: #ffd700 !important;
+  }
+
+  ion-button[fill="outline"]:hover {
+    border-color: #3fa7ff !important;
+    color: #3fa7ff !important;
+  }
 }
+
+/* ====== Titre de section ====== */
 ion-card-title.services-title {
-  color: #3fa7ff !important;
+  color: #222 !important;
+  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', sans-serif;
   font-size: 2.2rem !important;
-  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
-  font-weight: 900 !important;
+  font-weight: 900;
   letter-spacing: 1px;
-  text-align: center !important;
-  margin-bottom: 1.5rem;
+  text-align: center;
   text-shadow: 0 2px 8px rgba(63, 167, 255, 0.18);
+  margin-bottom: 1.5rem;
   transition: color 0.3s;
 }
+
+/* ====== Entête tableau ====== */
 ion-row.fw-bold {
-  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%);
-  color: #222 !important;
+  background: linear-gradient(90deg, #3fa7ff, #ffd700);
+  color: #222;
   font-weight: 900;
   font-size: 1.1rem;
   border-radius: 1.2rem;
-  box-shadow: 0 2px 8px 0 rgba(63, 167, 255, 0.07);
+  box-shadow: 0 2px 8px rgba(63, 167, 255, 0.07);
   letter-spacing: 0.5px;
-  margin-bottom: 0.7rem;
   padding: 0.7rem 0;
 }
+
+/* ====== Ligne de tableau ====== */
 ion-row.creneaux-row {
-  transition: box-shadow 0.2s, background 0.2s;
-  box-shadow: 0 2px 8px 0 rgba(63, 167, 255, 0.07);
-  background: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 1.2rem;
-  margin-bottom: 0.7rem;
-  align-items: center;
   font-size: 1.08rem;
+  font-weight: bold;
+  letter-spacing: 0.2px;
   color: #222;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-  letter-spacing: 0.2px;
-  font-weight: bold;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(63, 167, 255, 0.07);
 }
-body.theme-dark ion-row.creneaux-row {
-  background: rgba(30,34,54,0.92);
-  color: #f5f5f5;
-}
+
 ion-row.creneaux-row:hover {
-  box-shadow: 0 4px 16px 0 rgba(63, 167, 255, 0.18);
-  background: linear-gradient(90deg, #3fa7ff11 0%, #ffd70011 100%);
+  background: linear-gradient(90deg, #3fa7ff11, #ffd70011);
+  box-shadow: 0 4px 16px rgba(63, 167, 255, 0.18);
 }
+
+/* ====== Disponibilité (couleurs par statut) ====== */
 .creneaux-row.disponible-oui {
-  background: linear-gradient(90deg, #2ecc70cc 0%, #3fa7ff33 100%) !important;
+  background: linear-gradient(90deg, #2ecc70cc, #3fa7ff33) !important;
 }
 .creneaux-row.disponible-non {
-  background: linear-gradient(90deg, #e74c3ccc 0%, #ffd70033 100%) !important;
+  background: linear-gradient(90deg, #e74c3ccc, #ffd70033) !important;
 }
 .creneaux-row.disponible-inconnu {
-  background: linear-gradient(90deg, #95a5a6cc 0%, #3fa7ff33 100%) !important;
+  background: linear-gradient(90deg, #95a5a6cc, #3fa7ff33) !important;
 }
+
+/* ====== Cellules ====== */
 .creneaux-cell {
   font-size: 1.08rem;
   color: #222;
@@ -83,61 +132,70 @@ ion-row.creneaux-row:hover {
   letter-spacing: 0.2px;
   transition: color 0.3s;
 }
-body.theme-dark .creneaux-cell {
-  color: #ffd700 !important;
-}
+
+/* ====== Badge Disponibilité ====== */
 ion-badge {
   font-weight: bold;
   font-size: 0.95rem;
   border-radius: 1.2rem;
-  box-shadow: 0 2px 8px 0 rgba(255, 215, 0, 0.13);
-  letter-spacing: 0.5px;
   padding: 0.5em 1.2em;
-  border: none;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.13);
   transition: background 0.3s, color 0.3s;
+  letter-spacing: 0.5px;
+  border: none;
 }
+
 ion-badge[disponible="oui"] {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%);
+  background: linear-gradient(90deg, #ffd700, #3fa7ff);
   color: #222 !important;
 }
+
 ion-badge[disponible="non"] {
-  background: linear-gradient(90deg, #e74c3c 0%, #3fa7ff 100%);
+  background: linear-gradient(90deg, #e74c3c, #3fa7ff);
   color: #fff !important;
 }
+
 ion-badge[disponible="inconnu"] {
-  background: linear-gradient(90deg, #95a5a6 0%, #3fa7ff 100%);
+  background: linear-gradient(90deg, #95a5a6, #3fa7ff);
   color: #222 !important;
 }
-body.theme-dark ion-badge,
-body.theme-dark ion-badge.user-data {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
-  color: #222 !important;
-  box-shadow: 0 2px 8px 0 #ffd70033;
-}
+
+/* ====== Boutons ====== */
+
 ion-button.btn-gold {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%);
+  /* Neutralisation des couleurs Ionic */
+  --ion-color-base: transparent;
+  --background: linear-gradient(90deg, #ffd700, #3fa7ff) !important;
+  --color: #222 !important;
+
+  /* Apparence personnalisée */
+  background: linear-gradient(90deg, #ffd700, #3fa7ff) !important;
   color: #222 !important;
   font-weight: bold;
   font-size: 1.1rem;
   border-radius: 2rem;
-  box-shadow: 0 2px 8px 0 rgba(255, 215, 0, 0.13);
   letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.13);
   border: none;
   transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+
+  /* Neutralisation forcée */
+  --ion-color-primary: none;
+  --ion-color-base-rgb: 0, 0, 0;
+  --ion-color-contrast: #222;
+  --ion-color-contrast-rgb: 34, 34, 34;
 }
-body.theme-dark ion-button.btn-gold {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
-  color: #222 !important;
-}
+
 ion-button.btn-gold:hover {
-  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%);
+  background: linear-gradient(90deg, #3fa7ff, #ffd700) !important;
+  --background: linear-gradient(90deg, #3fa7ff, #ffd700) !important;
   color: #222 !important;
-  box-shadow: 0 4px 16px 0 rgba(63, 167, 255, 0.18);
+  --color: #222 !important;
+  box-shadow: 0 4px 16px rgba(63, 167, 255, 0.18);
 }
-body.theme-dark ion-button.btn-gold:hover {
-  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%) !important;
-  color: #222 !important;
-}
+
+
+
 ion-button[fill="clear"] {
   border: 2px solid #3fa7ff;
   color: #3fa7ff !important;
@@ -145,39 +203,42 @@ ion-button[fill="clear"] {
   border-radius: 2rem;
   transition: border 0.3s, color 0.3s;
 }
+
 ion-button[fill="clear"]:hover {
-  border: 2px solid #ffd700;
+  border-color: #ffd700;
   color: #ffd700 !important;
 }
-body.theme-dark ion-button[fill="outline"] {
-  border: 2px solid #ffd700 !important;
-  color: #ffd700 !important;
-}
-body.theme-dark ion-button[fill="outline"]:hover {
-  border: 2px solid #3fa7ff !important;
-  color: #3fa7ff !important;
-}
+
+/* ====== Responsive ====== */
 @media (max-width: 900px) {
   ion-card.card-royal {
     padding: 1.2rem 0.5rem;
   }
-  ion-row.fw-bold, ion-row.creneaux-row {
+
+  ion-row.fw-bold,
+  ion-row.creneaux-row {
     font-size: 0.98rem;
     padding: 0.5rem 0;
   }
+
   ion-card-title.services-title {
     font-size: 1.3rem !important;
   }
 }
+
 @media (max-width: 600px) {
   ion-card.card-royal {
     padding: 0.5rem 0.1rem;
   }
-  ion-row.fw-bold, ion-row.creneaux-row {
+
+  ion-row.fw-bold,
+  ion-row.creneaux-row {
     font-size: 0.92rem;
     padding: 0.3rem 0;
   }
+
   ion-card-title.services-title {
     font-size: 1.1rem !important;
   }
 }
+
