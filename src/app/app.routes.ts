@@ -4,7 +4,6 @@ import { AuthGuard } from './services/authgard.service';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-
   {
     path: 'home',
     component: HomePage,
@@ -20,6 +19,7 @@ export const routes: Routes = [
   {
     path: "forgot-password",
     loadComponent : () =>import('./pages/mot-passe-oublie/mot-passe-oublie.component').then(m=>m.MotPasseOublieComponent),
+
   },
   {
     path: 'settings',
@@ -111,12 +111,36 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/historique-reservation/historique-reservation.page').then( m => m.HistoriqueReservationPage),
     canActivate: [AuthGuard],
     
-  },  {
+  },
+  {
     path: 'historique-participation-evenement',
     loadComponent: () => import('./pages/historique-participation-evenement/historique-participation-evenement.page').then( m => m.HistoriqueParticipationEvenementPage)
   },
 
-
-
+  // 👉 Routes ajoutées pour les services de la page d'accueil
+  {
+    path: 'equipe',
+    loadComponent: () => import('./pages/equipe/equipe.page').then(m => m.EquipePage),
+  },
+  {
+    path: 'evenements',
+    loadComponent: () => import('./pages/evenements/evenements.page').then(m => m.EvenementsPage),
+  },
+  {
+    path: 'clubhouse',
+    loadComponent: () => import('./pages/clubhouse/clubhouse.page').then(m => m.ClubhousePage),
+  },
+  {
+    path: 'evenements',
+    loadComponent: () => import('./pages/evenements/evenements.page').then( m => m.EvenementsPage)
+  },
+  {
+    path: 'equipe',
+    loadComponent: () => import('./pages/equipe/equipe.page').then( m => m.EquipePage)
+  },
+  {
+    path: 'clubhouse',
+    loadComponent: () => import('./pages/clubhouse/clubhouse.page').then( m => m.ClubhousePage)
+  }
 
 ];

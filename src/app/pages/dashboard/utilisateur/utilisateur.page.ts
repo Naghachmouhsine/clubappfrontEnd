@@ -22,9 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class UtilisateurPage implements OnInit {
 
-  utilisateurs: any[] = []; // modifiable
-  utilisateursOrigin: any[] = []; // pour garder les donner avant confirmer la modification dans la base donnes
-
+  utilisateurs: any[] = [];
 
   constructor(
     private http: HttpClient,
@@ -38,16 +36,18 @@ export class UtilisateurPage implements OnInit {
   }
 
   loadUtilisateurs() {
-    this.http.get<any[]>('http://localhost:3000/api/utilisateurs')
-      .subscribe({
-        next: (res) => {
-          this.utilisateurs = res.map(user => ({
-            ...user,
-            selectedRole: user.role
-          }));
-        },
-        error: (err) => console.error(err)
-      });
+    this.http.get<any[]>('http://localhost:3000/api/utilisateurs').subscribe({
+      next: res => {
+        this.utilisateurs = res.map(user => ({
+          ...user,
+          selectedRole: user.role
+        }));
+      },
+      error: err => {
+        console.error('Erreur chargement utilisateurs', err);
+        this.showToast('Erreur lors du chargement des utilisateurs', 'danger');
+      }
+    });
   }
 
   async deleteUser(id: number) {
@@ -59,58 +59,50 @@ export class UtilisateurPage implements OnInit {
         {
           text: 'Supprimer',
           handler: () => {
-            this.http.delete(`http://localhost:3000/api/utilisateurs/${id}`)
-              .subscribe({
-                next: async () => {
-                  this.utilisateurs = this.utilisateurs.filter(u => u.id !== id);
-                  const toast = await this.toastCtrl.create({
-                    message: 'Utilisateur supprimé.',
-                    duration: 2000,
-                    color: 'success'
-                  });
-                  toast.present();
-                },
-                error: (err) => console.error(err)
-              });
+            this.http.delete(`http://localhost:3000/api/utilisateurs/${id}`).subscribe({
+              next: async () => {
+                this.utilisateurs = this.utilisateurs.filter(u => u.id !== id);
+                this.showToast('Utilisateur supprimé.', 'success');
+              },
+              error: err => {
+                console.error('Erreur suppression utilisateur', err);
+                this.showToast('Erreur lors de la suppression', 'danger');
+              }
+            });
           }
         }
       ]
     });
-
     await alert.present();
   }
 
-  // Méthode pour afficher les détails de l'utilisateur
   async detailUser(id: number) {
-    // Tu fais une requête pour récupérer les détails de l'utilisateur
     this.http.get<any>(`http://localhost:3000/api/utilisateurs/${id}`).subscribe({
       next: async (user) => {
-        // Si tu as un composant modal pour afficher les détails
         const modal = await this.modalCtrl.create({
-          component: UserModalComponent, // Le même composant modal, mais tu peux l'utiliser pour l'affichage des détails
+          component: UserModalComponent,
           componentProps: {
-            userId: id,       // Passe l'ID de l'utilisateur à la modal
-            mode: 'detail',    // Passer le mode "détail" pour que le modal affiche les détails de manière spécifique
-            userDetails: user  // Passe les détails de l'utilisateur récupérés dans la requête
+            userId: id,
+            mode: 'detail',
+            userDetails: user
           }
         });
 
         modal.onDidDismiss().then(result => {
-          // Si tu souhaites, tu peux gérer la fermeture du modal, par exemple recharger la liste des utilisateurs.
           if (result.data === true) {
-            this.loadUtilisateurs(); // Par exemple, on peut rafraîchir la liste si une modification a eu lieu
+            this.loadUtilisateurs();
           }
         });
 
-        return await modal.present();
+        await modal.present();
       },
-      error: (err) => {
-        console.error('Erreur lors de la récupération des détails de l\'utilisateur', err);
+      error: err => {
+        console.error('Erreur récupération détails utilisateur', err);
+        this.showToast('Erreur lors de la récupération des détails', 'danger');
       }
     });
   }
 
-  // Méthode pour éditer l'utilisateur
   async editUser(id: number) {
     const modal = await this.modalCtrl.create({
       component: UserModalComponent,
@@ -119,25 +111,22 @@ export class UtilisateurPage implements OnInit {
 
     modal.onDidDismiss().then(result => {
       if (result.data === true) {
-        this.loadUtilisateurs(); // Refresh après modification
+        this.loadUtilisateurs();
       }
     });
 
-    return await modal.present();
+    await modal.present();
   }
-
 
   async addUser() {
     const modal = await this.modalCtrl.create({
       component: UserModalComponent,
-      componentProps: {
-        mode: 'add'
-      }
+      componentProps: { mode: 'add' }
     });
 
     modal.onDidDismiss().then(result => {
       if (result.data) {
-        this.loadUtilisateurs(); // Mise à jour si ajout réussi
+        this.loadUtilisateurs();
       }
     });
 
@@ -155,20 +144,23 @@ export class UtilisateurPage implements OnInit {
         {
           text: 'Annuler',
           role: 'cancel',
-          handler: () => {
-            user.selectedRole = oldRole;
-          }
+          handler: () => { user.selectedRole = oldRole; }
         },
         {
           text: 'Confirmer',
-          handler: async () => {
-            this.http.put(`http://localhost:3000/api/updateRoleUser`, {id:user.id,newRole:newRole})
-              .subscribe({
-                next: async () => {
-                    this.loadUtilisateurs();
-                },
-                error: (err) =>{user.selectedRole = oldRole;console.error(err)}
-              });
+          handler: () => {
+            this.http.put(`http://localhost:3000/api/updateRoleUser`, { id: user.id, newRole }).subscribe({
+              next: () => {
+                user.role = newRole;  // Met à jour localement le rôle
+                this.showToast('Rôle mis à jour.', 'success');
+                this.loadUtilisateurs();
+              },
+              error: err => {
+                user.selectedRole = oldRole; // rollback en cas d'erreur
+                console.error('Erreur mise à jour rôle', err);
+                this.showToast('Erreur lors de la mise à jour du rôle', 'danger');
+              }
+            });
           }
         }
       ]
@@ -186,5 +178,15 @@ export class UtilisateurPage implements OnInit {
       case 'user': return 'role-user';
       default: return '';
     }
+  }
+
+  private async showToast(message: string, color: string = 'primary') {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2500,
+      color,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }

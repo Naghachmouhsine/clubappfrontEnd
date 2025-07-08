@@ -1,0 +1,10 @@
+.glass-modal {
+  --background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+}
+
+.glass-header {
+  --background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
