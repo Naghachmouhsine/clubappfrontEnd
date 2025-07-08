@@ -3,7 +3,8 @@
     <ion-header>
       <ion-toolbar class="menu-toolbar">
         <ion-title class="ion-padding fw-bold">
-          <img src="assets/images/club-logo.png" alt="Logo" style="width:36px;height:36px;border-radius:50%;margin-right:10px;border:2px solid var(--color-gold);background:#fff;vertical-align:middle;">
+          <img src="assets/images/club-logo.png" alt="Logo"
+            style="width:36px;height:36px;border-radius:50%;margin-right:10px;border:2px solid var(--color-gold);background:#fff;vertical-align:middle;">
           {{ 'menu.title' | translate }}
         </ion-title>
       </ion-toolbar>
@@ -14,12 +15,13 @@
           <ion-icon name="home-outline" slot="start" color="warning"></ion-icon>
           <ion-label class="ion-margin fw-bold">{{ 'menu.home' | translate }}</ion-label>
         </ion-item>
-        <ion-item button (click)="toggleDashboardSubmenu()" menuClose>
+        <ion-item button (click)="toggleDashboardSubmenu()" *ngIf="user?.role==='admin'" menuClose>
           <ion-icon name="grid-outline" slot="start" color="warning"></ion-icon>
           <ion-label class="ion-margin fw-bold">{{ 'menu.dashboard' | translate }}</ion-label>
-          <ion-icon [name]="isDashboardOpen ? 'chevron-up-outline' : 'chevron-down-outline'" slot="end" color="warning"></ion-icon>
+          <ion-icon [name]="isDashboardOpen ? 'chevron-up-outline' : 'chevron-down-outline'" slot="end"
+            color="warning"></ion-icon>
         </ion-item>
-        <ion-list *ngIf="isDashboardOpen" class="submenu">
+        <ion-list *ngIf="isDashboardOpen && user.role==='admin'" class="submenu">
           <ion-item lines="none" button (click)="navigateTo('/dashboard/utilisateur')" menuClose>
             <ion-icon name="people-outline" slot="start" color="warning"></ion-icon>
             <ion-label class="ion-margin">{{ 'menu.users' | translate }}</ion-label>
@@ -49,6 +51,10 @@
           <ion-icon name="clipboard-outline" slot="start" color="warning"></ion-icon>
           <ion-label class="ion-margin fw-bold">{{ 'menu.reservation' | translate }}</ion-label>
         </ion-item>
+        <ion-item button (click)="navigateTo('/historique-reservation')" menuClose>
+          <ion-icon name="clipboard-outline" slot="start" color="warning"></ion-icon>
+          <ion-label class="ion-margin fw-bold">{{ 'menu.historique-reservation' | translate }}</ion-label>
+        </ion-item>
         <ion-item button (click)="navigateTo('/contact')" menuClose>
           <ion-icon name="mail-outline" slot="start" color="warning"></ion-icon>
           <ion-label class="ion-margin fw-bold">{{ 'menu.contact' | translate }}</ion-label>
@@ -57,12 +63,8 @@
     </ion-content>
   </ion-menu>
 
-  <app-header nomPage="Royal Tennis Club de Fès" menuId="main-content" 
-    [showServicesText]="true"   
-    [showProfilePicture]="true" 
-    [showProfileText]="false" 
-    [showLogoutText]="false"
-    [profilePictureUrl]="user?.photoUrl || 'assets/images/user_img.jpg'"
-  ></app-header>
+  <app-header nomPage="Royal Tennis Club de Fès" menuId="main-content" [showServicesText]="true"
+    [showProfilePicture]="true" [showProfileText]="false" [showLogoutText]="false"
+    [profilePictureUrl]="user?.photoUrl || 'assets/images/user_img.jpg'"></app-header>
   <ion-router-outlet id="main-content" class="main-content-adapt"></ion-router-outlet>
 </ion-app>

@@ -16,18 +16,22 @@
         Ajouter une activité
       </ion-button>
       <ion-grid>
+      
         <ion-row class="ion-text-center fw-bold rounded-3 shadow-sm mb-2 py-2 bg-gold-contrast">
           <ion-col class="text-dark">Titre</ion-col>
           <ion-col class="text-dark">Description</ion-col>
           <ion-col class="text-dark">Type</ion-col>
           <ion-col class="text-dark">Coach Assigné</ion-col>
+          <ion-col class="text-dark">Installation</ion-col>
           <ion-col class="text-dark">Actions</ion-col>
         </ion-row>
-        <ion-row *ngFor="let activite of activites" class="ion-text-center activites-row align-items-center bg-light rounded-3 mb-2 py-2">
+        <ion-row *ngFor="let activite of activites"
+          class="ion-text-center activites-row align-items-center bg-light rounded-3 mb-2 py-2">
           <ion-col class="activites-cell fw-semibold">{{ activite.titre }}</ion-col>
           <ion-col class="activites-cell">{{ activite.description }}</ion-col>
           <ion-col class="activites-cell">{{ activite.type }}</ion-col>
-          <ion-col class="activites-cell">{{ activite.coach_assigne }}</ion-col>
+          <ion-col class="activites-cell">{{ activite.nom }}  {{ activite.prenom }}</ion-col>
+          <ion-col class="activites-cell">{{ activite.installation }}</ion-col>
           <ion-col>
             <ion-button fill="clear" color="primary" (click)="detailActivite(activite.id)" class="rounded-pill">
               <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
@@ -36,6 +40,9 @@
               <ion-icon name="create-outline" slot="icon-only"></ion-icon>
             </ion-button>
           </ion-col>
+        </ion-row>
+        <ion-row *ngIf="!activites.length" class="ion-text-center">
+          <ion-col size="12">Aucun activité trouver</ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>

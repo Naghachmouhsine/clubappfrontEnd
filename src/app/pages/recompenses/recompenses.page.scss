@@ -1,0 +1,7 @@
+.recomp-card.disabled {
+  opacity: 0.5;
+  ion-button {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}

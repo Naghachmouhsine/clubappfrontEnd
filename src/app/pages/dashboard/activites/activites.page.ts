@@ -4,6 +4,7 @@ import { SharedIonicModule } from 'src/app/shared/shared-ionic.module';
 import { ModalController } from '@ionic/angular';
 import { ActiviteModalComponent } from 'src/app/modals/activite-modal/activite-modal.component';
 import { AppHeaderComponent } from '../../../components/app-header/app-header.component';
+import { HttpClient } from '@angular/common/http';
 
 interface Activite {
   id: number;
@@ -22,27 +23,20 @@ interface Activite {
 })
 export class ActivitesPage implements OnInit {
 
-  activites: Activite[] = [
-    {
-      id: 1,
-      titre: 'Yoga',
-      description: 'Séance de yoga pour débutants',
-      type: 'Bien-être',
-      coach_assigne: 'Alice Dupont'
-    },
-    {
-      id: 2,
-      titre: 'Crossfit',
-      description: 'Entraînement intensif de Crossfit',
-      type: 'Fitness',
-      coach_assigne: 'Marc Lefèvre'
-    }
-  ];
+  activites: any[]=[]
 
-  constructor(private moadlCtrl:ModalController) { }
+  constructor(private moadlCtrl:ModalController,private http:HttpClient) { }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.loadActivie()
+  }
+  loadActivie(){
+      this.http.get<any[]>('http://localhost:3000/api/getAllActivite')
+      .subscribe({
+        next: (res) => this.activites = res,
+        error: (err) => console.error('Erreur chargement activitges :', err)
+      });
+  }
   async addActivite() {
     const modal = await this.moadlCtrl.create({
       component: ActiviteModalComponent,
@@ -50,8 +44,8 @@ export class ActivitesPage implements OnInit {
     });
 
     modal.onDidDismiss().then((result) => {
-      if (result.data && result.data.activite) {
-        this.activites.push(result.data.activite);
+      if (result.data) {
+        this.loadActivie()
         console.log('Nouvelle activité ajoutée :', result.data.activite);
       }
     });

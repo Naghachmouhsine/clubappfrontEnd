@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { ThemeService, ThemeType } from './services/theme.service';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { RecempenseService } from './services/recempense.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -32,22 +33,37 @@ export function HttpLoaderFactory(http: HttpClient) {
 })
 export class AppComponent implements OnInit, OnDestroy {
   user: any = null;
+  totalPoints:any
   constructor(
     private menuCtrl: MenuController,
     private router: Router,
     private popoverController: PopoverController,
     private menuService: MenuService,
     private themeService: ThemeService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private http: HttpClient,
+    private servicePoints:RecempenseService,
   ) {
     const userData = localStorage.getItem('user');
     if (userData) {
       this.user = JSON.parse(userData);
+      console.log(this.user)
+      this.http.get<any>(`http://localhost:3000/api/getPoints/${this.user.id}`)
+      .subscribe({
+        next: (data) => {
+          this.totalPoints=data?.points
+          this.servicePoints.setPoints(this.totalPoints || 0)
+        },
+        error: (err) => {
+          console.error('Erreur lors du chargement du profil', err);;
+        }
+      });
     }
     // Initialisation dynamique de la langue par défaut
     const lang = localStorage.getItem('lang') || 'fr';
     this.translate.setDefaultLang(lang);
     this.translate.use(lang);
+
   }
 
   isDashboardOpen = false;

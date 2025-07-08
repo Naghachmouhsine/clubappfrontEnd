@@ -102,6 +102,21 @@ export const routes: Routes = [
     path: 'reset-password',
     loadComponent: () => import('./pages/reset-password/reset-password.page').then( m => m.ResetPasswordPage)
   },
+  {
+    path: 'recompenses',
+    loadComponent: () => import('./pages/recompenses/recompenses.page').then( m => m.RecompensesPage)
+  },
+  {
+    path: 'historique-reservation',
+    loadComponent: () => import('./pages/historique-reservation/historique-reservation.page').then( m => m.HistoriqueReservationPage),
+    canActivate: [AuthGuard],
+    
+  },  {
+    path: 'historique-participation-evenement',
+    loadComponent: () => import('./pages/historique-participation-evenement/historique-participation-evenement.page').then( m => m.HistoriqueParticipationEvenementPage)
+  },
+
+
 
 
 ];

@@ -14,6 +14,7 @@ export interface Reservation {
   date_jour_reservation: string;
   heure_debut: string;
   heure_fin: string;
+  installation:string
 }
 
 @Injectable({ providedIn: 'root' })
@@ -24,6 +25,10 @@ export class ReservationService {
 
   getAll() : Observable<Reservation[]> {
     return this.http.get<Reservation[]>(this.apiUrl);
+  }
+
+  getHistriqueReservation(idAdherant:number) : Observable<Reservation[]>{
+    return this.http.get<Reservation[]>(this.apiUrl+"/"+idAdherant);
   }
 
   get(id: number) {

@@ -16,12 +16,8 @@ export class ActiviteModalComponent implements OnInit {
   @Input() mode: 'add' | 'edit' | 'detail' = 'add';
   @Input() activite: any;
 
-  coaches = [
-    { id: 1, nom: 'Alice Dupont' },
-    { id: 2, nom: 'Marc Lefèvre' },
-    { id: 3, nom: 'Sophie Martin' },
-    { id: 4, nom: 'Jean Durand' },
-  ]
+  coaches :any[]=[]
+  installation :any[]=[]
 
   activiteForm: FormGroup;
 
@@ -35,50 +31,56 @@ export class ActiviteModalComponent implements OnInit {
       description: [''],
       type: ['', Validators.required],
       coach_assigne: [null, Validators.required],
+      installation: [null, Validators.required],
     });
     if (this.mode === 'detail' || this.mode === 'edit') {
       this.activiteForm.patchValue({
         titre: this.activite.titre,
         description: this.activite.description,
         type: this.activite.type,
-        coach_assigné: this.activite.coach_assigné?.id // selon structure
+        coach_assigné: this.activite.coach_assigné?.id, // selon structure
+        installation: this.activite.installation?.id
       });
     }
   }
 
   ngOnInit() {
-    // if ((this.mode === 'edit' || this.mode === 'detail') && this.activite?.id) {
-
-    //   this.http.get(`http://localhost:3000/api/activites/${this.activite.id}`).subscribe({
-    //     next: (data: any) => {
-    //       this.activite = data;
-
-    //       // Remplir le formulaire avec les données reçues
-    //       this.activiteForm.patchValue({
-    //         titre: this.activite.titre,
-    //         description: this.activite.description,
-    //         type: this.activite.type,
-    //         coach_assigné: this.activite.coach_assigné,
-    //       });
-
-    //       if (this.mode === 'detail') {
-    //         this.activiteForm.disable();
-    //       }
-    //     },
-    //     error: err => {
-    //       console.error('Erreur lors du chargement de l\'activité', err);
-    //     }
-    //   });
-    // } else if (this.mode === 'add') {
-    //   // Mode ajout, reset formulaire
-    // this.activiteForm.reset();
-    // }
+      this.getCoaches();
+      this.getInstallation()
+    if ((this.mode === 'edit' || this.mode === 'detail') && this.activite?.id) {
+    } else if (this.mode === 'add') {
+      // Mode ajout, reset formulaire
+    this.activiteForm.reset();
+    }
   }
 
   async close(reload = false) {
     await this.modalCtrl.dismiss({ reload });
   }
+  getCoaches() {
+    try {
+    
+      this.http.get<any>('http://localhost:3000/api/coaches').subscribe({
+        next: (data) => {this.coaches = data;console.log(this.coaches)},
+        error: (err) => console.error(err)
+      });
 
+    } catch (error) {
+      console.error('Error fetching reservations:', error);
+    }
+  }
+  getInstallation() {
+    try {
+    
+      this.http.get<any>('http://localhost:3000/api/installation').subscribe({
+        next: (data) => {this.installation = data;},
+        error: (err) => console.error(err)
+      });
+
+    } catch (error) {
+      console.error('Error fetching reservations:', error);
+    }
+  }
   submit() {
     if (this.activiteForm.invalid) {
       console.warn('Formulaire invalide');
@@ -87,18 +89,18 @@ export class ActiviteModalComponent implements OnInit {
 
     const formData = { ...this.activiteForm.value };
 
-  
+    console.log(formData)
 
-    // if (this.mode === 'add') {
-    //   this.http.post('http://localhost:3000/api/activites', formData).subscribe({
-    //     next: () => this.close(true),
-    //     error: (err) => console.error('Erreur ajout activité', err),
-    //   });
-    // } else if (this.mode === 'edit') {
-    //   this.http.put(`http://localhost:3000/api/activites/${this.activite.id}`, formData).subscribe({
-    //     next: () => this.close(true),
-    //     error: (err) => console.error('Erreur modification activité', err),
-    //   });
-    // }
+    if (this.mode === 'add') {
+      this.http.post('http://localhost:3000/api/activite', formData).subscribe({
+        next: () => this.close(true),
+        error: (err) => console.error('Erreur ajout activité', err),
+      });
+    } else if (this.mode === 'edit') {
+      // this.http.put(`http://localhost:3000/api/activites/${this.activite.id}`, formData).subscribe({
+      //   next: () => this.close(true),
+      //   error: (err) => console.error('Erreur modification activité', err),
+      // });
+    }
   }
 }

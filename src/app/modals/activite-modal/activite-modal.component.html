@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title class="ion-padding">
-      {{ mode === 'add' ? 'Ajouter une activité' : (mode === 'edit' ? 'Éditer une activité' : 'Détails de l\'activité') }}
+      {{ mode === 'add' ? 'Ajouter une activité' : (mode === 'edit' ? 'Éditer une activité' : 'Détails de l\'activité')
+      }}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close()">Annuler</ion-button>
@@ -14,42 +15,38 @@
 
     <ion-item>
       <ion-label position="floating">Titre</ion-label>
-      <ion-input
-        type="text"
-        formControlName="titre"
-        required
-        [attr.aria-invalid]="activiteForm.get('titre')?.invalid ? 'true' : 'false'"
-      ></ion-input>
+      <ion-input type="text" formControlName="titre" required
+        [attr.aria-invalid]="activiteForm.get('titre')?.invalid ? 'true' : 'false'"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Description</ion-label>
-      <ion-textarea
-        formControlName="description"
-        [attr.aria-invalid]="activiteForm.get('description')?.invalid ? 'true' : 'false'"
-      ></ion-textarea>
+      <ion-textarea formControlName="description"
+        [attr.aria-invalid]="activiteForm.get('description')?.invalid ? 'true' : 'false'"></ion-textarea>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Type</ion-label>
-      <ion-input
-        type="text"
-        formControlName="type"
-        required
-        [attr.aria-invalid]="activiteForm.get('type')?.invalid ? 'true' : 'false'"
-      ></ion-input>
+      <ion-input type="text" formControlName="type" required
+        [attr.aria-invalid]="activiteForm.get('type')?.invalid ? 'true' : 'false'"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Coach assigné</ion-label>
       <ion-select formControlName="coach_assigne" interface="popover" required>
         <ion-select-option *ngFor="let coach of coaches" [value]="coach.id">
-          {{ coach.nom }}
+          {{ coach.nom }} {{ coach.prenom }} {{ coach.specialite }}
         </ion-select-option>
       </ion-select>
     </ion-item>
-
-
+    <ion-item>
+      <ion-label>Installation</ion-label>
+      <ion-select formControlName="installation" interface="popover" required>
+        <ion-select-option *ngFor="let inst of installation" [value]="inst.id">
+          {{ inst.nom }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
     <ion-button expand="block" type="submit" color="primary" [disabled]="activiteForm.invalid || mode === 'detail'">
       {{ mode === 'add' ? 'Ajouter' : 'Modifier' }}
     </ion-button>

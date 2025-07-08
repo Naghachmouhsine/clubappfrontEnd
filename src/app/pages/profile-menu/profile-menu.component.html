@@ -1,5 +1,6 @@
 <ion-list>
   <ng-container *ngIf="isLoggedIn; else notLogged">
+    
     <ion-item button (click)="navigateTo('/userprofile')">
       <ion-icon name="person-circle-outline" slot="start"></ion-icon>
       {{ 'profile.view_profile' | translate }}

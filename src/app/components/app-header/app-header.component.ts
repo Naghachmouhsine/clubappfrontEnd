@@ -6,7 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProfileMenuComponent } from '../../pages/profile-menu/profile-menu.component';
-
+import { HttpClient } from '@angular/common/http';
+import { RecempenseService } from 'src/app/services/recempense.service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -22,18 +23,20 @@ export class AppHeaderComponent implements OnInit {
   @Input() showProfileText: boolean = true;
   @Input() showLogoutText: boolean = true;
   @Input() profilePictureUrl: string = '';
-
+  totalPoints:any=0
   theme: ThemeType = 'light';
   themeIcon: string = 'sunny-outline';
   lang: LangType = 'fr';
 
   isLoggedIn: boolean = false;
+  user:any;
 
   constructor(
     private route: Router,
     private themeService: ThemeService,
     private langService: LangService,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
+    private servicePoints:RecempenseService
   ) {}
 
   ngOnInit(): void {
@@ -42,8 +45,17 @@ export class AppHeaderComponent implements OnInit {
     this.lang = this.langService.getLang();
 
     // Vérifie si un token est présent dans le localStorage
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem('token');
     this.isLoggedIn = !!token;
+    
+    const userData = localStorage.getItem('user');
+    if (userData){
+      this.user = JSON.parse(userData); 
+      this.servicePoints.points$.subscribe(points => {
+      this.totalPoints = points;
+    });
+    }
+     
   }
 
   cycleTheme() {
@@ -64,6 +76,7 @@ export class AppHeaderComponent implements OnInit {
         : this.theme === 'dark'
         ? 'moon-outline'
         : 'contrast-outline'; // auto
+        
   }
 
   async openProfileMenu(event: MouseEvent) {
@@ -94,13 +107,16 @@ export class AppHeaderComponent implements OnInit {
   goHome() {
     this.route.navigate(['/']);
   }
-
+ goRecemepense(){
+    this.route.navigate(['/recompenses']);
+ }
   redirectToLogin() {
     this.route.navigate(['/login']);
   }
 
   logout() {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.isLoggedIn = false;
     this.route.navigate(['/login']);
   }

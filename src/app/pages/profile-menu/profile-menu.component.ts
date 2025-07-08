@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedIonicModule } from '../../shared/shared-ionic.module';
 import { AlertController } from '@ionic/angular';
@@ -15,12 +15,27 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   templateUrl: './profile-menu.component.html',
   styleUrls: ['./profile-menu.component.scss']
 })
-export class ProfileMenuComponent {
+export class ProfileMenuComponent implements OnInit {
   isLoggedIn = false;
+  totalPoints=0
+  user:any
   constructor(private router: Router, private alertCtrl: AlertController, private translate: TranslateService) {
     this.isLoggedIn = !!localStorage.getItem('token');
   }
-
+ ngOnInit() {
+    const userData = localStorage.getItem('user');
+    if (userData)
+      this.user = JSON.parse(userData); 
+     console.log(this.user)
+      // if (userId) {
+    
+      // } else {
+      //   this.errorMessage = 'ID utilisateur introuvable.';
+      // }
+    // } else {
+    //   errorMessage = 'Utilisateur non connecté.';
+    // }
+  }
   navigateTo(path: string) {
     this.router.navigate([path]);
   }

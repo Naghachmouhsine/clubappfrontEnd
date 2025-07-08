@@ -137,7 +137,8 @@
     "slots": "Créneaux",
     "reservation": "Réservation",
     "contact": "Contact",
-    "adherants" :  "Adherants"
+    "adherants" :  "Adherants",
+    "historique-reservation" : "Mes reservation"
   },
   "about": {
     "title": "À propos de nous",
@@ -264,6 +265,7 @@
     "statut_en_attente": "En attente",
     "statut_confirmee": "Confirmée",
     "statut_annulee": "Annulée",
-    "empty": "Aucune réservation trouvée."
+    "empty": "Aucune réservation trouvée.",
+    "installation" : "Installation"
   }
 }
