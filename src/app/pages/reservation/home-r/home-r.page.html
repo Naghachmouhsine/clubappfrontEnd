@@ -1,24 +1,21 @@
-<!-- src/app/pages/reservation/home-r.page.html -->
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>Réserver une activité</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <app-header [nomPage]="'home_r.title' | translate"></app-header>
+
 <ion-content class="ion-padding section-alt">
   <ion-card class="card-royal p-4">
     <ion-card-header>
-      <ion-card-title class="services-title display-6 mb-3">🎾 {{ 'home_r.card_title' | translate }}</ion-card-title>
+      <ion-card-title class="services-title display-6 mb-3">
+        🎾 {{ 'home_r.card_title' | translate }}
+      </ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
         <ion-row>
-          <ion-col size="12" size-md="2" size-lg="6" *ngFor="let a of activites">
-            <div class="activity-card card-royal shadow-sm mb-4" (click)="choisirActivite(a)">
-              <img [src]="a.image" alt="{{ a.nom }}" class="img-fluid rounded-3 mb-2" />
+          <ion-col size="12" size-md="4" size-lg="3" *ngFor="let a of activites">
+            <div class="activity-card" (click)="choisirActivite(a)">
+              <img [src]="a.image" alt="{{ a.nom }}" />
               <div class="overlay">
-                <h2 class="services-title">{{ a.emoji }} {{ ('home_r.activities.' + a.nom) | translate }}</h2>
+                <span class="emoji">{{ a.emoji }}</span>
+                <span class="activity-name">{{ ('home_r.activities.' + a.nom) | translate }}</span>
               </div>
             </div>
           </ion-col>

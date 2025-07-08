@@ -1,1 +1,88 @@
-/* Custom styles for footer if needed */
+.footer-dark {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px 20px 20px;
+  border-radius: 20px 20px 0 0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.3s ease-in-out;
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--footer-title-color);
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: var(--footer-text-color);
+    line-height: 1.5;
+  }
+
+  a {
+    color: var(--footer-link-color);
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #ffc107;
+      text-decoration: underline;
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .text-md-end {
+    text-align: right;
+
+    @media (max-width: 768px) {
+      text-align: left;
+      margin-top: 20px;
+    }
+  }
+
+  .small {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: var(--footer-muted-color);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 15px;
+  }
+}
+
+/* Mode clair */
+:root {
+  --footer-title-color: #222;
+  --footer-text-color: #333;
+  --footer-link-color: #444;
+  --footer-muted-color: #666;
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --footer-title-color: #ffffff;
+    --footer-text-color: #dddddd;
+    --footer-link-color: #f0f0f0;
+    --footer-muted-color: #bbbbbb;
+  }
+
+  .footer-dark {
+    background: rgba(0, 0, 0, 0.6);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}

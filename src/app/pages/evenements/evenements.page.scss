@@ -51,13 +51,14 @@ ion-row.fw-bold {
   box-shadow: 0 2px 8px rgba(63, 167, 255, 0.1);
 }
 
-/* ===== Ligne utilisateur ===== */
-ion-row.user-row, ion-row.adherent-row {
+/* ===== Ligne événements ===== */
+ion-row.activites-row {
   background: rgba(255, 255, 255, 0.85);
   border-radius: 1rem;
   margin-bottom: 0.5rem;
   box-shadow: 0 2px 6px rgba(63, 167, 255, 0.06);
   transition: all 0.2s ease-in-out;
+  align-items: center;
 
   &:hover {
     box-shadow: 0 4px 12px rgba(63, 167, 255, 0.15);
@@ -65,20 +66,58 @@ ion-row.user-row, ion-row.adherent-row {
   }
 }
 
-body.theme-dark ion-row.user-row,
-body.theme-dark ion-row.adherent-row {
-  background: rgba(30, 34, 54, 0.92);
-  color: #ffd700;
+body.theme-dark ion-row.activites-row {
+  background: rgba(10, 12, 20, 0.95) !important;
+  color: #ffd700 !important;
+  box-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+body.theme-dark ion-row.activites-row:hover {
+  background: linear-gradient(90deg, rgba(63, 167, 255, 0.08), rgba(255, 215, 0, 0.08)) !important;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+}
+
+
+
+/* ===== Cellules ===== */
+ion-col.activites-cell {
+  font-weight: 600;
 }
 
 /* ===== Boutons actions ===== */
 ion-button {
-  --border-radius: 50%;
+  --border-radius: 2%;
   --padding-start: 0;
   --padding-end: 0;
   --color: inherit;
   --background-hover: transparent;
   font-size: 1.2rem;
+}
+
+/* Bouton ajouter */
+ion-button.btn-gold {
+  --background: linear-gradient(90deg, #ffd700, #3fa7ff);
+  --color: #222;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.6);
+}
+
+ion-button.btn-gold:hover {
+  filter: brightness(1.1);
+}
+
+/* ===== Modal styles ===== */
+ion-modal {
+  --border-radius: 1.5rem;
+  --background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(15px);
+  padding: 1rem;
+}
+
+body.theme-dark ion-modal {
+  --background: rgba(20, 22, 34, 0.95);
+  color: #ffd700;
 }
 
 /* ===== Responsive ===== */
@@ -88,7 +127,7 @@ ion-button {
   }
 
   ion-row.fw-bold,
-  ion-row.user-row {
+  ion-row.activites-row {
     font-size: 0.95rem;
     padding: 0.5rem 0;
   }
@@ -100,7 +139,7 @@ ion-button {
 
 @media (max-width: 600px) {
   ion-row.fw-bold,
-  ion-row.user-row {
+  ion-row.activites-row {
     font-size: 0.88rem;
     padding: 0.4rem 0;
   }
@@ -108,4 +147,11 @@ ion-button {
   ion-card-title.services-title {
     font-size: 1.1rem;
   }
+}
+
+/* Mode sombre */
+body.theme-dark ion-card.card-royal {
+  background: rgba(20, 22, 34, 0.92);
+  border-color: rgba(255, 215, 0, 0.12);
+  color: #ffd700;
 }

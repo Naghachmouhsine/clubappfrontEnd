@@ -19,7 +19,7 @@ export const routes: Routes = [
   },
   {
     path: "forgot-password",
-    loadComponent : () =>import('./pages/mot-passe-oublie/mot-passe-oublie.component').then(m=>m.MotPasseOublieComponent),
+    loadComponent: () => import('./pages/mot-passe-oublie/mot-passe-oublie.component').then(m => m.MotPasseOublieComponent),
   },
   {
     path: 'settings',
@@ -66,6 +66,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/dashboard/adherant/adherant.component').then(m => m.AdherantComponent),
     canActivate: [AuthGuard],
   },
+
   // Réservation
   {
     path: 'reservation/activite',
@@ -100,8 +101,32 @@ export const routes: Routes = [
   },
   {
     path: 'reset-password',
-    loadComponent: () => import('./pages/reset-password/reset-password.page').then( m => m.ResetPasswordPage)
+    loadComponent: () => import('./pages/reset-password/reset-password.page').then(m => m.ResetPasswordPage)
   },
 
+  // 👉 Routes ajoutées pour les services de la page d'accueil
+  {
+    path: 'equipe',
+    loadComponent: () => import('./pages/equipe/equipe.page').then(m => m.EquipePage),
+  },
+  {
+    path: 'evenements',
+    loadComponent: () => import('./pages/evenements/evenements.page').then(m => m.EvenementsPage),
+  },
+  {
+    path: 'clubhouse',
+    loadComponent: () => import('./pages/clubhouse/clubhouse.page').then(m => m.ClubhousePage),
+  },  {
+    path: 'evenements',
+    loadComponent: () => import('./pages/evenements/evenements.page').then( m => m.EvenementsPage)
+  },
+  {
+    path: 'equipe',
+    loadComponent: () => import('./pages/equipe/equipe.page').then( m => m.EquipePage)
+  },
+  {
+    path: 'clubhouse',
+    loadComponent: () => import('./pages/clubhouse/clubhouse.page').then( m => m.ClubhousePage)
+  },
 
 ];
