@@ -142,5 +142,4 @@ export const routes: Routes = [
     path: 'clubhouse',
     loadComponent: () => import('./pages/clubhouse/clubhouse.page').then( m => m.ClubhousePage)
   }
-
 ];

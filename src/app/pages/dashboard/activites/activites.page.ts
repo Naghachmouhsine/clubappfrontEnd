@@ -24,14 +24,29 @@ interface Activite {
 export class ActivitesPage implements OnInit {
 
   activites: any[]=[]
-
+  user:any;
   constructor(private moadlCtrl:ModalController,private http:HttpClient) { }
 
   ngOnInit() {
-    this.loadActivie()
+    const userData = localStorage.getItem('user'); 
+    if (userData){
+      this.user = JSON.parse(userData);
+      console.log(this.user)
+      if(this.user.role==="coach")
+        this.loadActivie(this.user.id)  // dans le cas de coach, affiche just les activites assigie a lui meme
+      else
+        this.loadActivie()
+    }else
+      this.loadActivie()
+
   }
-  loadActivie(){
-      this.http.get<any[]>('http://localhost:3000/api/getAllActivite')
+  loadActivie(idCoach:any=NaN){
+      let api=""
+      if(this.user.role==="coach")
+        api="http://localhost:3000/api/getAllActivite/"+this.user.id
+      else
+        api="http://localhost:3000/api/getAllActivite/0" //tous les activites (pour admin)
+      this.http.get<any[]>(api)
       .subscribe({
         next: (res) => this.activites = res,
         error: (err) => console.error('Erreur chargement activitges :', err)

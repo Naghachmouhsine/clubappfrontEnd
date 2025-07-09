@@ -1,13 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>historiqueParticipationEvenement</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">historiqueParticipationEvenement</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<app-header nomPage="Dashboard - Evenements" ></app-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-padding reservation-title">List des Evenements</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2 reservation-header-row">
+          <ion-col>evenement</ion-col>
+          <ion-col>date</ion-col>
+          <ion-col>lieu</ion-col>
+          <ion-col>description</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let part of participation" class="ion-text-center reservations-row">
+          <ion-col>{{ part.nom }}</ion-col>
+          <ion-col>{{ part.date | date:'dd/MM/yyyy' }}</ion-col>
+          <ion-col>{{ part.lieu }}</ion-col>
+          <ion-col>{{ part.description }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="!participation.length" class="ion-text-center">
+          <ion-col size="12">Aucun Evenement trouver</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

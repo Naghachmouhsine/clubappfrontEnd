@@ -15,13 +15,13 @@
           <ion-icon name="home-outline" slot="start" color="warning"></ion-icon>
           <ion-label class="ion-margin fw-bold">{{ 'menu.home' | translate }}</ion-label>
         </ion-item>
-        <ion-item button (click)="toggleDashboardSubmenu()" *ngIf="user?.role==='admin'" menuClose>
+        <ion-item button (click)="toggleDashboardSubmenu()" *ngIf="user?.role!='adherent'" menuClose>
           <ion-icon name="grid-outline" slot="start" color="warning"></ion-icon>
           <ion-label class="ion-margin fw-bold">{{ 'menu.dashboard' | translate }}</ion-label>
           <ion-icon [name]="isDashboardOpen ? 'chevron-up-outline' : 'chevron-down-outline'" slot="end"
             color="warning"></ion-icon>
         </ion-item>
-        <ion-list *ngIf="isDashboardOpen && user.role==='admin'" class="submenu">
+        <ion-list *ngIf="isDashboardOpen && user?.role!='adherent'" class="submenu">
           <ion-item lines="none" button (click)="navigateTo('/dashboard/utilisateur')" menuClose>
             <ion-icon name="people-outline" slot="start" color="warning"></ion-icon>
             <ion-label class="ion-margin">{{ 'menu.users' | translate }}</ion-label>
@@ -46,6 +46,10 @@
             <ion-icon name="time-outline" slot="start" color="warning"></ion-icon>
             <ion-label class="ion-margin">{{ 'menu.slots' | translate }}</ion-label>
           </ion-item>
+          <ion-item lines="none" button (click)="navigateTo('/evenements')" menuClose>
+            <ion-icon name="calendar-outline" slot="start" color="warning"></ion-icon>
+            <ion-label class="ion-margin">Evenements</ion-label>
+          </ion-item>
         </ion-list>
         <ion-item button (click)="navigateTo('/reservation/home')" menuClose>
           <ion-icon name="clipboard-outline" slot="start" color="warning"></ion-icon>
@@ -54,6 +58,10 @@
         <ion-item button (click)="navigateTo('/historique-reservation')" menuClose>
           <ion-icon name="clipboard-outline" slot="start" color="warning"></ion-icon>
           <ion-label class="ion-margin fw-bold">{{ 'menu.historique-reservation' | translate }}</ion-label>
+        </ion-item>
+        <ion-item button (click)="navigateTo('/historique-participation-evenement')" menuClose>
+          <ion-icon name="clipboard-outline" slot="start" color="warning"></ion-icon>
+          <ion-label class="ion-margin fw-bold">Mes participations</ion-label>
         </ion-item>
         <ion-item button (click)="navigateTo('/contact')" menuClose>
           <ion-icon name="mail-outline" slot="start" color="warning"></ion-icon>
