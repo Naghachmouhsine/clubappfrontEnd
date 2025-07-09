@@ -1,85 +1,165 @@
 <app-header nomPage="Événements" [showProfilePicture]="true"></app-header>
 
 <ion-content class="ion-padding section-alt">
-  <ion-card class="card-royal p-4">
-    <ion-card-header>
-      <ion-card-title class="services-title mb-3">📅 Liste des événements</ion-card-title>
-    </ion-card-header>
 
-    <ion-card-content>
-      <ion-button *ngIf="role === 'admin'" class="ion-margin btn-gold btn-lg shadow" expand="block" (click)="ouvrirFormulaire()">
-        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
-        Ajouter un événement
-      </ion-button>
+  <!-- ========== ADMIN ========== -->
+  <ng-container *ngIf="role === 'admin'; else publicView">
+    <ion-card class="card-royal p-4">
+      <ion-card-header>
+        <ion-card-title class="services-title mb-3">📅 Liste des événements</ion-card-title>
+      </ion-card-header>
 
-      <ion-grid>
-        <ion-row class="ion-text-center fw-bold rounded-3 shadow-sm mb-2 py-2 bg-gold-contrast">
-          <ion-col class="text-dark">Nom</ion-col>
-          <ion-col class="text-dark">Description</ion-col>
-          <ion-col class="text-dark">Date</ion-col>
-          <ion-col class="text-dark">Lieu</ion-col>
-          <ion-col class="text-dark" *ngIf="role === 'admin'">Actions</ion-col>
-        </ion-row>
+      <ion-card-content>
+        <ion-button class="ion-margin btn-gold btn-lg shadow" expand="block" (click)="ouvrirFormulaire()">
+          <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+          Ajouter un événement
+        </ion-button>
 
-        <ion-row *ngFor="let evenement of evenements" class="ion-text-center activites-row align-items-center rounded-3 mb-2 py-2">
-          <ion-col class="activites-cell fw-semibold">{{ evenement.nom }}</ion-col>
-          <ion-col class="activites-cell">{{ evenement.description }}</ion-col>
-          <ion-col class="activites-cell">{{ evenement.date | date:'mediumDate' }}</ion-col>
-          <ion-col class="activites-cell">{{ evenement.lieu }}</ion-col>
-          <ion-col *ngIf="role === 'admin'">
-            <ion-button fill="clear" color="primary" (click)="ouvrirFormulaire(evenement)" class="rounded-pill">
-              <ion-icon name="create-outline" slot="icon-only"></ion-icon>
-            </ion-button>
-            <ion-button fill="clear" color="danger" (click)="demanderSuppression(evenement.id)" class="rounded-pill">
-              <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+        <ion-grid>
+          <ion-row class="ion-text-center fw-bold rounded-3 shadow-sm mb-2 py-2 bg-gold-contrast">
+            <ion-col class="text-dark">Nom</ion-col>
+            <ion-col class="text-dark">Description</ion-col>
+            <ion-col class="text-dark">Date</ion-col>
+            <ion-col class="text-dark">Lieu</ion-col>
+            <ion-col class="text-dark">Actions</ion-col>
+          </ion-row>
 
-      <ion-alert
-        [isOpen]="alertDelete.show"
-        header="Confirmation"
-        message="Voulez-vous vraiment supprimer cet évènement ?"
-        [buttons]="alertButtons"
-        (didDismiss)="alertDelete.show = false">
-      </ion-alert>
+          <ion-row *ngFor="let evenement of evenements" class="ion-text-center activites-row align-items-center rounded-3 mb-2 py-2">
+            <ion-col class="activites-cell fw-semibold">{{ evenement.nom }}</ion-col>
+            <ion-col class="activites-cell">{{ evenement.description }}</ion-col>
+            <ion-col class="activites-cell">
+              {{ evenement.date | date:'mediumDate' }} à {{ evenement.date | date:'shortTime' }}
+            </ion-col>
+            <ion-col class="activites-cell">{{ evenement.lieu }}</ion-col>
+            <ion-col>
+              <ion-button fill="clear" color="primary" (click)="ouvrirFormulaire(evenement)" class="rounded-pill">
+                <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+              <ion-button fill="clear" color="danger" (click)="demanderSuppressionSecurise(evenement)" class="rounded-pill">
+                <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
 
-      <!-- Modal de formulaire -->
-      <ion-modal [isOpen]="showFormModal" (didDismiss)="fermerFormulaire()">
-        <ng-template>
-          <ion-header translucent>
-            <ion-toolbar>
-              <ion-title>{{ selectedEvenement ? 'Modifier' : 'Ajouter' }} un événement</ion-title>
-              <ion-buttons slot="end">
-                <ion-button (click)="fermerFormulaire()">Fermer</ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content class="ion-padding">
-            <ion-item>
-              <ion-label position="floating">Nom de l'événement *</ion-label>
-              <ion-input [(ngModel)]="formEvenement.nom"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Description</ion-label>
-              <ion-input [(ngModel)]="formEvenement.description"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Date *</ion-label>
-              <ion-input type="date" [(ngModel)]="formEvenement.date"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Lieu</ion-label>
-              <ion-input [(ngModel)]="formEvenement.lieu"></ion-input>
-            </ion-item>
-            <ion-button expand="block" class="ion-margin-top" (click)="soumettreFormulaire()">
-              {{ selectedEvenement ? 'Enregistrer les modifications' : 'Ajouter' }}
-            </ion-button>
-          </ion-content>
+        <!-- ✅ Confirmation suppression -->
+        <ion-alert
+          [isOpen]="alertDelete.show"
+          header="Confirmation"
+          message="Voulez-vous vraiment supprimer cet évènement ?"
+          [buttons]="alertButtons"
+          (didDismiss)="alertDelete.show = false">
+        </ion-alert>
+
+        <!-- ✅ Modal formulaire ajout/modif -->
+        <ion-modal [isOpen]="showFormModal" (didDismiss)="fermerFormulaire()">
+          <ng-template>
+            <ion-header translucent>
+              <ion-toolbar>
+                <ion-title>{{ selectedEvenement ? 'Modifier' : 'Ajouter' }} un événement</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button (click)="fermerFormulaire()">Fermer</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <ion-item>
+                <ion-label position="floating">Nom de l'événement *</ion-label>
+                <ion-input [(ngModel)]="formEvenement.nom"></ion-input>
+              </ion-item>
+              <ion-item>
+            <ion-label>Photo de l’événement</ion-label>
+            <input type="file" (change)="onImageSelected($event)" accept="image/*" />
+          </ion-item>
+
+          <!-- Prévisualisation si image choisie -->
+          <div *ngIf="imagePreview" class="mt-3 text-center">
+            <img [src]="imagePreview" alt="Prévisualisation" style="max-width: 100%; max-height: 200px; border-radius: 10px;" />
+          </div>
+
+              <ion-item>
+                <ion-label position="floating">Description</ion-label>
+                <ion-input [(ngModel)]="formEvenement.description"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Date *</ion-label>
+                <ion-input type="datetime-local" [(ngModel)]="formEvenement.date"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Lieu</ion-label>
+                <ion-input [(ngModel)]="formEvenement.lieu"></ion-input>
+              </ion-item>
+              <ion-button expand="block" class="ion-margin-top" (click)="soumettreFormulaire()">
+                {{ selectedEvenement ? 'Enregistrer les modifications' : 'Ajouter' }}
+              </ion-button>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <!-- ========== PUBLIC VIEW (adhérent, visiteur) ========== -->
+
+  <!-- ========== PUBLIC VIEW (adhérent, visiteur) ========== -->
+<ng-template #publicView>
+  <div class="ion-padding">
+    <h2 class="text-center mb-4 fw-bold text-white">📆 Nos Événements</h2>
+
+    <ion-row class="ion-justify-content-center" *ngIf="evenements && evenements.length > 0">
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let evenement of evenements" class="mb-4">
+        <ion-card class="glass-card shadow-lg">
+
+          <!-- Image événement -->
+        <img *ngIf="evenement.photoUrl; else placeholderImage" 
+             [src]="evenement.photoUrl" 
+             alt="Image événement"
+             (error)="onImageError($event, evenement)"
+             style="border-radius: 10px 10px 0 0; object-fit: cover; height: 180px; width: 100%;" />
+
+        <ng-template #placeholderImage>
+          <img src="assets/images/Foot.jpg" alt="Placeholder" 
+              style="border-radius: 10px 10px 0 0; object-fit: cover; height: 180px; width: 100%;" />
         </ng-template>
-      </ion-modal>
 
-    </ion-card-content>
-  </ion-card>
+          <ion-card-header>
+            <ion-card-subtitle class="text-muted small fst-italic">
+              {{ evenement.date | date:'fullDate' }} à {{ evenement.date | date:'shortTime' }}
+            </ion-card-subtitle>
+            <ion-card-title class="fw-bold fs-4">{{ evenement.nom }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p class="mb-3 text-secondary">{{ evenement.description || 'Pas de description disponible.' }}</p>
+            <p class="fw-semibold">📍 Lieu : {{ evenement.lieu || 'Non précisé' }}</p>
+
+            <div *ngIf="role !== 'admin'">
+              <ng-container *ngIf="role === 'adherent'; else notAdherent">
+                <ion-button expand="block" color="primary" (click)="participerEvenement(evenement)">
+                  🎟️ Participer
+                </ion-button>
+              </ng-container>
+              <ng-template #notAdherent>
+                <p class="text-danger fst-italic mt-3">
+                  Vous devez être adhérent pour participer à cet événement.
+                </p>
+              </ng-template>
+            </div>
+
+            <div *ngIf="role === 'admin'" class="text-center text-muted fst-italic mt-2">
+              (Vous êtes administrateur, participation désactivée)
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="evenements.length === 0" class="text-center text-light mt-5">
+      Aucun événement à venir pour le moment. Restez connecté pour les prochaines actualités !
+    </div>
+  </div>
+</ng-template>
+ 
+
 </ion-content>

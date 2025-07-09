@@ -27,21 +27,25 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   // 🔐 Authentifier l’utilisateur
+
   login(email: string, password: string): Observable<LoginResponse> {
-    return new Observable((observer) => {
-      this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }).subscribe({
-        next: (response) => {
-          localStorage.setItem('authToken', response.token);
-          localStorage.setItem('userInfo', JSON.stringify(response.user));
-          this.userInfo = response.user;
-          this.isLoggedInSubject.next(true);
-          observer.next(response);
-          observer.complete();
-        },
-        error: (err) => observer.error(err)
-      });
+  return new Observable((observer) => {
+    this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }).subscribe({
+      next: (response) => {
+        localStorage.setItem('authToken', response.token);
+        localStorage.setItem('userInfo', JSON.stringify(response.user));
+        localStorage.setItem('userId', response.user.id.toString());  // ✅ AJOUTÉ
+        localStorage.setItem('role', response.user.role);             // ✅ AJOUTÉ
+        this.userInfo = response.user;
+        this.isLoggedInSubject.next(true);
+        observer.next(response);
+        observer.complete();
+      },
+      error: (err) => observer.error(err)
     });
-  }
+  });
+}
+
 
   // 📤 Déconnexion
   logout() {

@@ -155,3 +155,221 @@ body.theme-dark ion-card.card-royal {
   border-color: rgba(255, 215, 0, 0.12);
   color: #ffd700;
 }
+
+
+/* ===== Container principal public view ===== */
+.public-view-container {
+  max-width: 95%;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  border-radius: 1.8rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(63, 167, 255, 0.25));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 215, 0, 0.18);
+  box-shadow: 0 8px 30px rgba(63, 167, 255, 0.2);
+  color: #222;
+  font-family: 'Montserrat', 'Orbitron', sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+  
+}
+
+/* Mode sombre */
+body.theme-dark .public-view-container {
+  background: linear-gradient(135deg, rgba(63, 167, 255, 0.15), rgba(255, 215, 0, 0.15));
+  border-color: rgba(255, 215, 0, 0.12);
+  color: #ffd700;
+  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.25);
+}
+
+/* Titre principal dans public view */
+.public-view-container h2 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 1.8rem;
+  color: inherit;
+  text-shadow: 0 2px 8px rgba(63, 167, 255, 0.4);
+}
+
+/* Paragraphe d’intro */
+.public-view-container p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: inherit;
+}
+
+/* Boutons dans public view */
+.public-view-container ion-button {
+  --border-radius: 2rem;
+  --background: linear-gradient(90deg, #ffd700, #3fa7ff);
+  --color: #222;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0.8rem 2.5rem;
+  margin: 0 auto 2rem auto;
+  display: block;
+  box-shadow: 0 6px 15px rgba(255, 215, 0, 0.7);
+  transition: filter 0.3s ease;
+}
+
+.public-view-container ion-button:hover {
+  filter: brightness(1.1);
+}
+
+/* Tableaux dans public view */
+.public-view-container table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: inherit;
+  box-shadow: 0 4px 12px rgba(63, 167, 255, 0.1);
+}
+
+/* En-tête tableau */
+.public-view-container table thead tr {
+  background: linear-gradient(90deg, #3fa7ff, #ffd700);
+  color: #222;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(63, 167, 255, 0.15);
+}
+
+body.theme-dark .public-view-container table thead tr {
+  background: linear-gradient(90deg, #3fa7ffcc, #ffd700cc);
+  color: #222;
+}
+
+/* Cellules en-tête */
+.public-view-container table thead th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+/* Lignes du corps */
+.public-view-container table tbody tr {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 6px rgba(63, 167, 255, 0.07);
+  transition: all 0.3s ease;
+}
+
+body.theme-dark .public-view-container table tbody tr {
+  background: rgba(20, 22, 34, 0.9);
+  color: #ffd700;
+  box-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
+}
+
+.public-view-container table tbody tr:hover {
+  background: linear-gradient(90deg, #3fa7ff22, #ffd70022);
+  box-shadow: 0 6px 20px rgba(63, 167, 255, 0.15);
+  cursor: pointer;
+}
+
+/* Cellules tableau */
+.public-view-container table tbody td {
+  padding: 0.75rem 1rem;
+  border-left: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.public-view-container table tbody tr:hover td {
+  border-left: 2px solid #3fa7ff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .public-view-container {
+    padding: 1.5rem 1.8rem;
+  }
+
+  .public-view-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .public-view-container ion-button {
+    font-size: 1rem;
+    padding: 0.7rem 2rem;
+  }
+
+  .public-view-container table {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .public-view-container {
+    padding: 1rem 1.2rem;
+  }
+
+  .public-view-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .public-view-container ion-button {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.6rem;
+  }
+
+  .public-view-container table {
+    font-size: 0.9rem;
+  }
+}
+
+.glass-card.shadow-lg.md.hydrated {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1.5rem;
+  padding: 1.6rem 2rem;
+  color: #222;
+  box-shadow: 0 8px 24px rgba(63, 167, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+
+  /* margin left entre chaque carte sauf la première */
+  margin-right: 10px;
+}
+
+/* Supprimer margin-left sur la première carte pour éviter un décalage global */
+.glass-card.shadow-lg.md.hydrated:first-child {
+  margin-left: 0;
+}
+
+/* Hover effect */
+.glass-card.shadow-lg.md.hydrated:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(63, 167, 255, 0.35);
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Mode sombre */
+body.theme-dark .glass-card.shadow-lg.md.hydrated {
+  background: rgba(20, 22, 34, 0.8);
+  color: #ffd700;
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.2);
+}
+
+body.theme-dark .glass-card.shadow-lg.md.hydrated:hover {
+  background: rgba(63, 167, 255, 0.2);
+  box-shadow: 0 14px 40px rgba(255, 215, 0, 0.4);
+}
+
+/* Responsive : sur petits écrans, supprimer margin-left */
+@media (max-width: 900px) {
+  .glass-card.shadow-lg.md.hydrated {
+    margin-left: 0;
+    margin-top: 1.8rem;
+  }
+}
