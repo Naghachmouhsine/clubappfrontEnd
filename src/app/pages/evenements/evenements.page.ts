@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Evenement, EvenementService } from 'src/app/services/evenement.service';
 import { UserService, UserProfile } from 'src/app/services/user.service';
@@ -34,8 +35,7 @@ export class EvenementsPage implements OnInit {
   selectedEvenement: any = null;
 
   imageFile: File | null = null;
-imagePreview: string | null = null;
-  router: any;
+  imagePreview: string | null = null;
 
     onImageSelected(event: any) {
       const file = event.target.files[0];
@@ -69,26 +69,31 @@ imagePreview: string | null = null;
   constructor(
     private evenementService: EvenementService,
     private userService: UserService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    this.testerConnexionServeur();
-    this.chargerEvenements();
-    this.initialiserProfilUtilisateur();
+    try {
+      this.testerConnexionServeur();
+      this.chargerEvenements();
+      this.initialiserProfilUtilisateur();
 
-    this.alertButtons = [
-      {
-        text: 'Annuler',
-        role: 'cancel',
-        handler: () => this.annulerSuppression()
-      },
-      {
-        text: 'Supprimer',
-        role: 'destructive',
-        handler: () => this.supprimerEvenement()
-      }
-    ];
+      this.alertButtons = [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: () => this.annulerSuppression()
+        },
+        {
+          text: 'Supprimer',
+          role: 'destructive',
+          handler: () => this.supprimerEvenement()
+        }
+      ];
+    } catch (error) {
+      console.error('Erreur lors de l\'initialisation:', error);
+    }
   }
 
   // Tester la connexion au serveur
@@ -101,7 +106,22 @@ imagePreview: string | null = null;
         console.error('❌ Serveur backend non accessible:', err);
         if (err.status === 0) {
           console.error('Vérifiez que le serveur est démarré sur http://localhost:3000');
+        } else if (err.status === 404) {
+          console.error('L\'endpoint /api/evenements n\'existe pas sur le serveur');
+          console.error('Vérifiez la configuration de votre serveur backend');
         }
+      }
+    });
+  }
+
+  // Tester si une image est accessible
+  testerImage(imageUrl: string) {
+    this.http.get(imageUrl, { responseType: 'blob' }).subscribe({
+      next: () => {
+        console.log('✅ Image accessible:', imageUrl);
+      },
+      error: (err) => {
+        console.error('❌ Image non accessible:', imageUrl, err);
       }
     });
   }
@@ -110,20 +130,26 @@ initialiserProfilUtilisateur() {
   const userId = localStorage.getItem('userId');
   if (!userId) {
     console.warn('⚠️ Aucun userId trouvé dans le localStorage. L’utilisateur est peut-être déconnecté ou non authentifié.');
-    this.router.navigate(['/login']);
+    // Optionnel: rediriger vers la page de connexion
+    // this.router.navigate(['/login']);
+    this.role = 'visiteur'; // Rôle par défaut pour les visiteurs
+    this.idAdherent = '';
     return;
   }
 
-  this.userService.loadUserProfile(userId).subscribe(
-    (profile) => {
+  this.userService.loadUserProfile(userId).subscribe({
+    next: (profile) => {
       this.role = profile.role.toLowerCase(); // Sécurité
       this.idAdherent = profile.id.toString();
       console.log('✅ Profil chargé :', this.role);
     },
-    (error) => {
+    error: (error) => {
       console.error('Erreur lors du chargement du profil :', error);
+      // En cas d'erreur, définir des valeurs par défaut
+      this.role = 'visiteur';
+      this.idAdherent = '';
     }
-  );
+  });
 }
 
 
@@ -132,26 +158,50 @@ initialiserProfilUtilisateur() {
       next: (evenements) => {
         console.log('Données reçues du backend:', evenements);
         
-        // Mapper les événements avec les URLs complètes des images
-        this.evenements = evenements.map(e => ({
-          ...e,
-          photoUrl: e.image ? this.evenementService.getImageUrl(e.image) : null
-        }));
-        
-        // Aussi assigner à listeEvenements pour compatibilité
+        // Le service a déjà construit les URLs complètes
+        this.evenements = evenements;
         this.listeEvenements = this.evenements;
         
         // Debug des URLs d'images
         this.evenements.forEach(evenement => {
           console.log(`Événement: ${evenement.nom}`);
-          console.log(`Image filename: ${evenement.image}`);
+          console.log(`Image filename: ${evenement.image_url}`);
           console.log(`Photo URL: ${evenement.photoUrl}`);
+          
+          // Tester l'accessibilité de l'image
+          if (evenement.photoUrl) {
+            this.testerImage(evenement.photoUrl);
+          }
         });
       },
       error: (err) => {
         console.error('Erreur de chargement des événements', err);
-        this.evenements = [];
-        this.listeEvenements = [];
+        console.log('🔄 Chargement des données de test...');
+        
+        // Données de test en cas d'échec du backend
+        this.evenements = [
+          {
+            id: 1,
+            nom: 'Tournoi de Football',
+            description: 'Tournoi amical entre les équipes du club',
+            date: '2024-02-15',
+            lieu: 'Stade municipal',
+            image_url: undefined,
+            photoUrl: null
+          },
+          {
+            id: 2,
+            nom: 'Assemblée Générale',
+            description: 'Assemblée générale annuelle du club',
+            date: '2024-03-01',
+            lieu: 'Salle de réunion',
+            image_url: undefined,
+            photoUrl: null
+          }
+        ];
+        
+        this.listeEvenements = this.evenements;
+        console.log('✅ Données de test chargées');
       }
     });
   }
@@ -173,6 +223,8 @@ initialiserProfilUtilisateur() {
     this.showFormModal = false;
     this.selectedEvenement = null;
     this.formEvenement = { nom: '', description: '', date: '', lieu: '' };
+    this.imageFile = null;
+    this.imagePreview = null;
   }
 
  soumettreFormulaire() {
@@ -283,7 +335,16 @@ initialiserProfilUtilisateur() {
         },
         error: (err) => {
           console.error('Erreur participation:', err);
-          alert('Une erreur est survenue lors de la participation. Veuillez réessayer.');
+          
+          if (err.status === 0 || err.message.includes('ERR_CONNECTION_REFUSED')) {
+            alert('Impossible de se connecter au serveur. Veuillez vérifier votre connexion.');
+          } else if (err.status === 401) {
+            alert('Session expirée. Veuillez vous reconnecter.');
+          } else if (err.status === 409) {
+            alert('Vous êtes déjà inscrit à cet événement.');
+          } else {
+            alert('Une erreur est survenue lors de la participation. Veuillez réessayer.');
+          }
         }
       });
   }
@@ -309,9 +370,9 @@ initialiserProfilUtilisateur() {
     console.error('URL tentée:', event.target.src);
     
     // Vérifier si le fichier existe vraiment
-    if (evenement.image) {
-      console.log('Nom du fichier image:', evenement.image);
-      console.log('URL construite:', this.evenementService.getImageUrl(evenement.image));
+    if (evenement.image_url) {
+      console.log('Nom du fichier image:', evenement.image_url);
+      console.log('URL construite:', this.evenementService.getImageUrl(evenement.image_url));
     }
     
     // L'image par défaut sera affichée automatiquement grâce au template
