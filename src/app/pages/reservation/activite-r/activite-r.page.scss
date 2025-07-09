@@ -1,0 +1,19 @@
+// Import des styles communs pour les réservations
+@import '../shared-reservation-styles.scss';
+
+:host {
+  --ion-background-color: transparent;
+  --ion-text-color: var(--ion-color-primary-contrast);
+}
+
+// Styles spécifiques à cette page (si nécessaire)
+// Les styles communs sont maintenant dans shared-reservation-styles.scss// Import des styles communs pour les réservations
+@import '../shared-reservation-styles.scss';
+
+:host {
+  --ion-background-color: transparent;
+  --ion-text-color: var(--ion-color-primary-contrast);
+}
+
+// Styles spécifiques à cette page (si nécessaire)
+// Les styles communs sont maintenant dans shared-reservation-styles.scss

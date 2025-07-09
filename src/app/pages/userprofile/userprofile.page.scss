@@ -1,306 +1,118 @@
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  padding: 2rem;
+  background-color: var(--ion-background-color, #f5f5f5);
+}
+
+.userprofile-bg {
+  background-color: var(--ion-background-color, #f5f5f5);
+}
+
 .profile-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
+  text-align: center;
 }
+
 .profile-avatar {
   width: 120px;
   height: 120px;
-  object-fit: cover;
   border-radius: 50%;
-  border: 3px solid var(--color-gold, #FFD700);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  margin-bottom: 1rem;
-  background: #fff;
+  object-fit: cover;
+  border: 2px solid var(--ion-color-medium);
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+
 .profile-name {
-  color: var(--color-green, #1e5631);
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 0.2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: var(--ion-text-color, #333);
 }
+
 .profile-role {
-  color: #888;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  color: var(--ion-color-medium);
+  font-size: 0.95rem;
 }
-.ion-card {
-  border-radius: 18px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  background: #fff;
-}
-.ion-item {
-  border-radius: 10px;
-  margin-bottom: 0.5rem;
-  background: #f8f9fa;
-}
-.ion-label strong {
-  color: var(--color-gold, #FFD700);
-}
-.bg-light {
-  background: #f8f9fa !important;
-}
-.profile-card {
-  max-width: 420px;
-  width: 100%;
-  border-radius: 1.5rem;
-  background: #fff;
-  color: #222;
-}
-.profile-card, .profile-card * {
-  color: inherit !important;
-}
-body.theme-dark .profile-card, body.theme-dark .profile-card *,
-body.dark-theme .profile-card, body.dark-theme .profile-card * {
-  color: #f1f1f1 !important;
-}
-.profile-container {
-  position: relative;
-  z-index: 2;
-  min-height: 90vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--primary-600, #3fa7ff) 0%, var(--primary-800, #0a1833) 100%);
-  padding: var(--spacing-6, 2rem);
-  overflow: hidden;
-}
-.profile-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;
-  opacity: 0.13;
-  z-index: 0;
-  pointer-events: none;
-}
-body.theme-dark .profile-header,
-body.dark-theme .profile-header {
-  color: #f1f1f1;
-}
-body.theme-dark .profile-name,
-body.dark-theme .profile-name {
-  color: var(--color-gold, #FFD700);
-}
-body.theme-dark .profile-avatar,
-body.dark-theme .profile-avatar {
-  background: #23272b;
-}
-body.theme-dark .bg-light,
-body.dark-theme .bg-light {
-  background: #181c1f !important;
-}
+
 .user-data {
-  color: var(--ion-text-color, #222);
-  transition: color 0.2s;
+  color: var(--ion-text-color, #333);
+  font-size: 0.95rem;
 }
-body.theme-dark .user-data,
-body.dark-theme .user-data {
-  color: #f1f1f1 !important;
+
+.list-group-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--ion-color-light);
 }
-.userprofile-bg {
-  min-height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #0a1833 0%, #3fa7ff 60%, #ffd700 100%);
-  background-size: 200% 200%;
-  animation: bgMove 8s ease-in-out infinite alternate;
-  padding: 0;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-.userprofile-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;
-  opacity: 0.13;
-  z-index: 0;
-}
-@keyframes bgMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+
+.list-group-item:last-child {
+  border-bottom: none;
 }
 
 .glass-card {
-  max-width: 540px;
+  max-width: 500px;
   width: 100%;
-  background: linear-gradient(135deg, #c9d1d9 0%, #eaf5ef 60%, #3fa7ff 100%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  backdrop-filter: blur(18px) saturate(180%);
-  border: 3px solid #ffd700;
-  box-shadow: 0 8px 32px 0 #3fa7ff55, 0 0 32px 0 #ffd70066, 0 0 0 8px #fff7  inset;
-  border-radius: 2.5rem;
-  color: #0a1833;
-  padding: 2.5rem 2.5rem 2rem 2.5rem;
-  position: relative;
-  z-index: 3;
-  overflow: visible;
-  transition: box-shadow 0.25s, border 0.25s, background 0.25s;
-  font-family: 'Montserrat', 'Orbitron', 'Segoe UI', Arial, sans-serif;
-  font-weight: 700;
-  letter-spacing: 1px;
-  animation: cardWowIn 1.2s cubic-bezier(.4,2,.6,1);
-}
-.glass-card .user-data strong,
-.glass-card .profile-name strong,
-.glass-card .profile-role strong {
-  color: #0a1833;
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-  font-weight: 900;
-  letter-spacing: 1.5px;
-  text-shadow: 0 2px 8px #ffd70033, 0 0 8px #3fa7ff22;
-}
-@keyframes cardWowIn {
-  0% { transform: scale(0.95) translateY(40px); opacity: 0; }
-  100% { transform: scale(1) translateY(0); opacity: 1; }
-}
-.glass-card:hover {
-  box-shadow: 0 16px 64px 0 #ffd700cc, 0 0 48px 0 #3fa7ff99, 0 0 0 12px #fff9  inset;
-  border: 3px solid #3fa7ff;
-  background: linear-gradient(135deg, #fff 60%, #c9d1d9 100%);
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0e0;
 }
 
-// Pour le fixed background wow
-.fixed.inset-0.pointer-events-none.z-max.overflow-hidden {
-  min-height: 100vh;
-  width: 100vw;
-  background: linear-gradient(135deg, var(--primary-600, #3fa7ff) 0%, var(--primary-800, #0a1833) 100%);
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 1000;
-  pointer-events: none;
-}
-body.theme-dark .glass-card {
-  background: linear-gradient(135deg, #181818 60%, #232323 100%);
-  color: #ffd700;
-  border: 3px solid #ffd700;
-  box-shadow: 0 8px 32px 0 #ffd70055, 0 0 32px 0 #3fa7ff66, 0 0 0 8px #23232377  inset;
-}
-body.theme-dark .glass-card:hover {
-  border: 3px solid #3fa7ff;
-  background: linear-gradient(135deg, #232323 60%, #181818 100%);
-  box-shadow: 0 16px 64px 0 #3fa7ffcc, 0 0 48px 0 #ffd70099, 0 0 0 12px #23232399  inset;
+body.theme-dark .glass-card,
+body.dark-theme .glass-card {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  color: #f1f1f1;
 }
 
-.profile-avatar {
-  box-shadow: 0 4px 32px 0 #ffd70099, 0 0 16px 0 #3fa7ff55;
-  border: 4px solid #ffd700;
-  background: #fff;
-  transition: box-shadow 0.2s, border 0.2s;
+body.theme-dark .user-data,
+body.dark-theme .user-data {
+  color: #f1f1f1;
 }
-.profile-avatar:hover {
-  box-shadow: 0 8px 48px 0 #ffd700cc, 0 0 32px 0 #3fa7ff99;
-  border: 4px solid #3fa7ff;
+
+.text-gold {
+  color: var(--ion-color-primary, #3fa7ff);
+  font-weight: 500;
 }
 
 .role-badge {
-  display: inline-block;
-  padding: 0.3em 1.1em;
-  border-radius: 1em;
-  font-weight: 700;
-  font-size: 1.1em;
-  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%);
-  color: #181818;
-  box-shadow: 0 2px 12px 0 #ffd70033;
-  margin-top: 0.5em;
-  animation: badgePulse 1.5s infinite alternate;
-}
-@keyframes badgePulse {
-  0% { box-shadow: 0 0 8px 0 #ffd70044; }
-  100% { box-shadow: 0 0 24px 4px #ffd70099; }
+  padding: 0.3rem 0.7rem;
+  background-color: var(--ion-color-primary-shade, #2b8fd6);
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .edit-btn-wow {
-  border-radius: 2em;
-  border: 2px solid #ffd700;
-  color: #ffd700;
-  background: #232323;
-  box-shadow: 0 1px 8px 0 #ffd70044;
-  font-weight: 700;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  background-color: var(--ion-color-primary);
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 0.4rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
+
 .edit-btn-wow:hover {
-  background: #ffd700;
-  color: #232323;
-  box-shadow: 0 0 12px 2px #ffd70099, 0 1px 8px 0 #ffd70044;
+  background-color: var(--ion-color-primary-shade);
 }
 
-body.theme-dark .userprofile-bg {
-  background: linear-gradient(120deg, #0a1833 0%, #3fa7ff 60%, #ffd700 100%) !important;
-}
-
-.btn-edit-hover .edit-text {
-  display: inline;
-  margin-left: 0.5em;
-  transition: color 0.2s, text-decoration 0.2s;
-}
-.btn-edit-hover:hover .edit-text {
-  color: #3fa7ff;
-  text-decoration: underline;
-}
-.btn-edit-hover i {
-  font-size: 1.3em;
-  transition: color 0.2s;
-}
-.btn-delete {
-  color: #dc3545;
-  border: 2px solid #dc3545;
-  background: #fff;
-  font-weight: 700;
-}
-.btn-delete:hover {
-  background: #dc3545;
-  color: #fff;
-}
-.btn-delete .delete-text {
-  display: inline;
-  margin-left: 0.5em;
-}
 .close-btn-wow {
   position: absolute;
-  top: 18px;
-  right: 24px;
-  z-index: 100;
-  background: rgba(255,255,255,0.85);
-  border: 2px solid #ffd700;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px #ffd70033;
-  font-size: 1.6rem;
-  color: #23272f;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-.close-btn-wow:hover {
-  background: #ffd700;
-  color: #23272f;
-  box-shadow: 0 4px 16px #ffd70099;
-}
-body.theme-dark .close-btn-wow {
-  background: #232323;
-  color: #ffd700;
-  border-color: #ffd700;
-}
-body.theme-dark .close-btn-wow:hover {
-  background: #ffd700;
-  color: #232323;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--ion-color-medium);
+  font-size: 1.5rem;
+  cursor: pointer;
 }

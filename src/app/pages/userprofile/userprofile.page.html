@@ -6,7 +6,9 @@
       </button>
 
       <div class="profile-header mb-3 text-center">
-        <img class="profile-avatar mb-2 animate__animated animate__pulse animate__infinite" src="assets/images/user_img.jpg" alt="User image" />
+<img class="profile-avatar mb-2 animate__animated animate__pulse"
+     [src]="user.photoUrl || 'assets/images/user_img.jpg'"
+     alt="User image" />
         <div class="profile-name user-data">
           <strong class="text-gold">{{ 'profil.nom' | translate }} :</strong> {{ user.nom }}<br>
           <strong class="text-gold">{{ 'profil.prenom' | translate }} :</strong> {{ user.prenom }}
