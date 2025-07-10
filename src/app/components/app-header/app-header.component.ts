@@ -19,7 +19,7 @@ import { ProfileMenuComponent } from '../../pages/profile-menu/profile-menu.comp
     FormsModule,
     CommonModule,
     TranslateModule,
-    ProfileMenuComponent,
+    ProfileMenuComponent, // Utilisé dynamiquement dans popoverController.create()
   ],
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss']

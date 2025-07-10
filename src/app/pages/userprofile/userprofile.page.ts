@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { AppHeaderComponent } from '../../components/app-header/app-header.component';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-userprofile',
   standalone: true,
-  imports: [CommonModule, IonicModule, AppHeaderComponent, TranslateModule],
+  imports: [CommonModule, IonicModule, TranslateModule],
   templateUrl: './userprofile.page.html',
   styleUrls: ['./userprofile.page.scss']
 })

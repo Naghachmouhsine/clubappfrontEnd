@@ -1,5 +1,5 @@
 // Import des styles communs pour les réservations
-@import '../shared-reservation-styles.scss';
+@use '../shared-reservation-styles.scss';
 
 :host {
   --ion-background-color: transparent;
