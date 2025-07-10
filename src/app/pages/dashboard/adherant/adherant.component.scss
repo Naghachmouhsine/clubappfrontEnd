@@ -51,25 +51,35 @@ ion-row.fw-bold {
   box-shadow: 0 2px 8px rgba(63, 167, 255, 0.1);
 }
 
-/* ===== Ligne utilisateur ===== */
-ion-row.user-row, ion-row.adherent-row {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 1rem;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 2px 6px rgba(63, 167, 255, 0.06);
-  transition: all 0.2s ease-in-out;
 
-  &:hover {
-    box-shadow: 0 4px 12px rgba(63, 167, 255, 0.15);
-    background: linear-gradient(90deg, #3fa7ff11 0%, #ffd70011 100%);
+ion-row {
+  transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(63, 167, 255, 0.07);
+  background: rgba(255, 255, 255, 0.49); // ❗ sera désactivé en dark mode
+  border-radius: 1.2rem;
+  margin-bottom: 0.7rem;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #000;
+  font-size: 1.05rem;
+  font-weight: 500;
+
+  ion-label,
+  ion-text,
+  p,
+  h1,
+  h2,
+  h3 {
+    font-size: 1.05rem;
   }
 }
 
-body.theme-dark ion-row.user-row,
-body.theme-dark ion-row.adherent-row {
-  background: rgba(30, 34, 54, 0.92);
-  color: #ffd700;
-}
+
+
+
+
 
 /* ===== Boutons actions ===== */
 ion-button {
@@ -100,10 +110,6 @@ ion-button {
 
 @media (max-width: 600px) {
   ion-row.fw-bold,
-  ion-row.user-row {
-    font-size: 0.88rem;
-    padding: 0.4rem 0;
-  }
 
   ion-card-title.services-title {
     font-size: 1.1rem;
