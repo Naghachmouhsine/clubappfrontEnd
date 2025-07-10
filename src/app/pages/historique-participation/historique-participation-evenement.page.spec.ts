@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HistoriqueParticipationEvenementPage } from './historique-participation-evenement.page';
+import { HistoriqueParticipationEvenementPage } from './historique-participation.page';
 
 describe('HistoriqueParticipationEvenementPage', () => {
   let component: HistoriqueParticipationEvenementPage;

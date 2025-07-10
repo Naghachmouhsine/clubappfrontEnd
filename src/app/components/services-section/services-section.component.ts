@@ -23,7 +23,7 @@ export class ServicesSectionComponent implements OnInit, OnDestroy {
       title: 'home.services.cours_title',
       desc: 'home.services.cours_desc',
       icon: 'fas fa-chalkboard-teacher',
-      route: '/equipe' // ou /cours si tu veux une page dédiée aux cours
+      route: '/participe-activite'
     },
     {
       title: 'home.services.events_title',

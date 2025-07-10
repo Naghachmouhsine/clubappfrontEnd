@@ -1,0 +1,83 @@
+<app-header nomPage="Dashboard - Participations"></app-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Segment de sélection -->
+  <ion-segment [(ngModel)]="viewType" (ionChange)="switchView(viewType)">
+    <ion-segment-button value="evenements">
+      <ion-label>Événements</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="activites">
+      <ion-label>Activités</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Affichage des événements -->
+  <ng-container *ngIf="viewType === 'evenements'">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-padding">Liste des Événements</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row
+            class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2 reservation-header-row">
+            <ion-col>Événement</ion-col>
+            <ion-col>Date</ion-col>
+            <ion-col>Lieu</ion-col>
+            <ion-col>Description</ion-col>
+          </ion-row>
+
+          <ion-row *ngFor="let part of participation" class="ion-text-center reservations-row">
+            <ion-col>{{ part.nom }}</ion-col>
+            <ion-col>{{ part.date | date:'dd/MM/yyyy' }}</ion-col>
+            <ion-col>{{ part.lieu }}</ion-col>
+            <ion-col>{{ part.description }}</ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="!participation.length" class="ion-text-center">
+            <ion-col size="12">Aucun événement trouvé</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <!-- Affichage des activités -->
+  <ng-container *ngIf="viewType === 'activites'">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-padding">Liste des Activités</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row
+            class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2 reservation-header-row">
+            <ion-col class="text-dark">Titre</ion-col>
+            <ion-col class="text-dark">Description</ion-col>
+            <ion-col class="text-dark">Type</ion-col>
+            <ion-col class="text-dark">date_participation</ion-col>
+            <ion-col class="text-dark">heure_participation</ion-col>
+            <ion-col class="text-dark">Coach Assigné</ion-col>
+            <ion-col class="text-dark">Installation</ion-col>
+          </ion-row>
+
+          <ion-row *ngFor="let act of activites" class="ion-text-center reservations-row">
+            <ion-col>{{ act.titre }}</ion-col>
+            <ion-col>{{ act.description }}</ion-col>
+            <ion-col>{{ act.type }}</ion-col>
+            <ion-col>{{ act.date_participation | date:'dd/MM/yyyy' }}</ion-col>
+            <ion-col>{{ formatTime(act.heure_participation) }}</ion-col>
+            <ion-col>{{ act.nom }} {{ act.prenom }}</ion-col>
+            <ion-col>{{ act.installation }}</ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="!activites.length" class="ion-text-center">
+            <ion-col size="12">Aucune activité trouvée</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+</ion-content>

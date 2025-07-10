@@ -1,0 +1,49 @@
+<app-header nomPage="Événements" [showProfilePicture]="true"></app-header>
+
+<ion-content class="ion-padding section-alt">
+  <div class="ion-padding">
+    <h2 class="text-center mb-4 fw-bold text-white">📆 Nos Activites</h2>
+
+    <ion-row class="ion-justify-content-center" *ngIf="activites && activites.length > 0">
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let act of activites" class="mb-4">
+        <ion-card class="glass-card shadow-lg ion-padding" >
+
+          <ion-card-header>
+            <ion-card-subtitle class="text-muted small fst-italic">
+              {{ act.titre }}
+            </ion-card-subtitle>
+            <ion-card-title class="fw-bold fs-4">{{ act.description }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p class="mb-3 text-secondary">{{ act.type || 'Pas de description disponible.' }}</p>
+            <p class="fw-semibold"> Coach : {{ act.nom }}  {{ act.prenom }}</p>
+            <p class="fw-semibold"> Installation : {{ act.installation}}</p>
+
+            <div *ngIf="userConnecter.role !== 'admin'">
+              <ng-container *ngIf="userConnecter.role === 'adherent'; else notAdherent">
+                <ion-button expand="block" color="primary" (click)="participerActivite(act)">
+                  🎟️ Participer
+                </ion-button>
+              </ng-container>
+              <ng-template #notAdherent>
+                <p class="text-danger fst-italic mt-3">
+                  Vous devez être adhérent pour participer à cet événement.
+                </p>
+              </ng-template>
+            </div>
+
+            <div *ngIf="userConnecter.role === 'admin'" class="text-center text-muted fst-italic mt-2">
+              (Vous êtes administrateur, participation désactivée)
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="activites.length === 0" class="text-center text-light mt-5">
+      Aucun  activites à venir pour le moment. Restez connecté pour les prochaines actualités !
+    </div>
+  </div>
+</ion-content>
+ 

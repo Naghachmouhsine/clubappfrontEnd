@@ -114,7 +114,7 @@ export const routes: Routes = [
   },
   {
     path: 'historique-participation-evenement',
-    loadComponent: () => import('./pages/historique-participation-evenement/historique-participation-evenement.page').then( m => m.HistoriqueParticipationEvenementPage)
+    loadComponent: () => import('./pages/historique-participation/historique-participation.page').then( m => m.HistoriqueParticipationEvenementPage)
   },
 
   // 👉 Routes ajoutées pour les services de la page d'accueil
@@ -141,5 +141,14 @@ export const routes: Routes = [
   {
     path: 'clubhouse',
     loadComponent: () => import('./pages/clubhouse/clubhouse.page').then( m => m.ClubhousePage)
+  },
+  {
+    path: 'participe-activite',
+    loadComponent: () => import('./pages/participe-activite/participe-activite.page').then( m => m.ParticipeActivitePage)
+  },  {
+    path: 'statistique-admin',
+    loadComponent: () => import('./pages/dashboard/statistique-admin/statistique-admin.page').then( m => m.StatistiqueAdminPage)
   }
+
+
 ];

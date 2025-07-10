@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Participation</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="annuler()">Fermer</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="creneauForm">
+    <ion-item>
+      <ion-label position="floating">Date</ion-label>
+      <ion-input
+        type="date"
+        formControlName="date"
+        required
+        [attr.aria-invalid]="creneauForm.get('date')?.invalid ? 'true' : 'false'">
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin-top">
+      <ion-label position="floating">Heure début</ion-label>
+      <ion-input
+        type="time"
+        formControlName="heure_debut"
+        required
+        [attr.aria-invalid]="creneauForm.get('heure_debut')?.invalid ? 'true' : 'false'">
+      </ion-input>
+    </ion-item>
+
+    <div class="ion-text-center ion-margin-top">
+      <ion-button expand="block" color="success" (click)="validerParticipation()">
+        Participer
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

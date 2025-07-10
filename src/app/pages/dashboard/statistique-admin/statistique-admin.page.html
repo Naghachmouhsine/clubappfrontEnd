@@ -1,0 +1,125 @@
+<app-header nomPage="Dashboard - Statistique"></app-header>
+
+<ion-content>
+
+  <!-- Statistiques générales -->
+  <ion-grid class="ion-padding">
+    <ion-row class="ion-justify-content-center ion-align-items-stretch">
+
+      <ion-col size="6" size-md="3" class="ion-padding">
+        <ion-card color="success" class="ion-text-center dashboard-card">
+          <ion-card-header>
+            <!-- <ion-icon name="people-outline" size="large" color="light"></ion-icon> -->
+            <ion-card-subtitle>Adhérents</ion-card-subtitle>
+            <ion-card-title>{{ stats.adherents }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="3" class="ion-padding">
+        <ion-card color="success" class="ion-text-center dashboard-card">
+          <ion-card-header>
+            <!-- <ion-icon name="calendar-outline" size="large" color="light"></ion-icon> -->
+            <ion-card-subtitle>Réservations</ion-card-subtitle>
+            <ion-card-title>{{ stats.reservations }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="3" class="ion-padding">
+        <ion-card color="success" class="ion-text-center dashboard-card">
+          <ion-card-header>
+            <!-- <ion-icon name="megaphone-outline" size="large" color="light"></ion-icon> -->
+            <ion-card-subtitle>Participation Événements</ion-card-subtitle>
+            <ion-card-title>{{ stats.evenements }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="3" class="ion-padding">
+        <ion-card color="success" class="ion-text-center dashboard-card">
+          <ion-card-header>
+            <!-- <ion-icon name="barbell-outline" size="large" color="light"></ion-icon> -->
+            <ion-card-subtitle>Participation Activités</ion-card-subtitle>
+            <ion-card-title>{{ stats.activites }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+  <!-- Graphiques -->
+  <ion-grid class="ion-margin-vertical" style="max-width: 900px; margin: 0 auto;">
+    <ion-row class="ion-justify-content-center ion-align-items-stretch">
+
+      <!-- Bar chart : Réservations par mois -->
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">Réservations par mois</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas baseChart [data]="barChartData" [options]="barChartOptions" chartType="bar"
+              style="width: 100% !important; height: 250px !important;">
+            </canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- Doughnut chart : Statuts des réservations -->
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">Répartition des statuts</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <!-- <canvas baseChart [data]="doughnutChartData" [options]="doughnutChartOptions" chartType="'doughnut'"
+              style="width: 100% !important; height: 250px !important;">
+            </canvas>  -->
+            <canvas baseChart
+        [labels]="doughnutChartLabels"
+        [datasets]="doughnutChartDatasets"
+        [options]="doughnutChartOptions"
+        [legend]="true"
+        [type]="'doughnut'">
+</canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-grid class="ion-margin-top">
+    <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col size="12" size-md="4" class="ion-margin-end">
+        <ion-button expand="block" color="primary" class="ion-margin-bottom"
+          (click)="navigateTo('dashboard/utilisateur')">
+          Gérer Utilisateurs
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-md="4">
+        <ion-button expand="block" color="tertiary" class="ion-margin-bottom"
+          (click)="navigateTo('dashboard/adherants')">
+          Gérer Adherents
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-md="4" class="ion-margin-end">
+        <ion-button expand="block" color="secondary" class="ion-margin-bottom"
+          (click)="navigateTo('dashboard/activites')">
+          Gérer Activités
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-md="4">
+        <ion-button expand="block" color="tertiary" class="ion-margin-bottom" (click)="navigateTo('evenements')">
+          Gérer Événements
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
