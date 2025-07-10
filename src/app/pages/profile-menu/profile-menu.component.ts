@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SharedIonicModule } from '../../shared/shared-ionic.module';
 import { AlertController } from '@ionic/angular';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { SharedIonicModule } from '../../shared/shared-ionic.module';
+import { AuthService } from 'src/app/services/auth.service';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile-menu',
@@ -17,25 +18,26 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class ProfileMenuComponent implements OnInit {
   isLoggedIn = false;
-  totalPoints=0
-  user:any
-  constructor(private router: Router, private alertCtrl: AlertController, private translate: TranslateService) {
-    this.isLoggedIn = !!localStorage.getItem('token');
+  user: any = null;
+
+  constructor(
+    private router: Router,
+    private alertCtrl: AlertController,
+    private translate: TranslateService,
+    private serviceAuth: AuthService,
+    private popoverController: PopoverController
+  ) { }
+
+  ngOnInit() {
+    this.serviceAuth.isLoggedIn$.subscribe(status => {
+      this.isLoggedIn = status;
+    });
+
+    this.serviceAuth.userConnecter$.subscribe(user => {
+      this.user = user;
+    });
   }
- ngOnInit() {
-    const userData = localStorage.getItem('user');
-    if (userData)
-      this.user = JSON.parse(userData); 
-     console.log(this.user)
-      // if (userId) {
-    
-      // } else {
-      //   this.errorMessage = 'ID utilisateur introuvable.';
-      // }
-    // } else {
-    //   errorMessage = 'Utilisateur non connecté.';
-    // }
-  }
+
   navigateTo(path: string) {
     this.router.navigate([path]);
   }
@@ -46,15 +48,19 @@ export class ProfileMenuComponent implements OnInit {
       message: this.translate.instant('profile.logout_confirm'),
       buttons: [
         { text: this.translate.instant('profile.cancel'), role: 'cancel' },
-        { text: this.translate.instant('profile.logout'), handler: () => this.logout() }
+        {
+          text: this.translate.instant('profile.logout'),
+          handler: () => { this.logout() }
+        }
       ]
     });
     await alert.present();
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    this.serviceAuth.logout();
+    this.popoverController.dismiss(null, 'logout');
     this.router.navigate(['/login']);
   }
+
 }

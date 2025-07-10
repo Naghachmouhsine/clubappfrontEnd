@@ -9,6 +9,8 @@ import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { HttpClient } from '@angular/common/http';
+import { AnyBuyerError } from '@stripe/stripe-js';
+import { RecempenseService } from 'src/app/services/recempense.service';
 
 @Component({
   selector: 'app-evenements',
@@ -34,22 +36,22 @@ export class EvenementsPage implements OnInit {
   selectedEvenement: any = null;
 
   imageFile: File | null = null;
-imagePreview: string | null = null;
+  imagePreview: string | null = null;
   router: any;
 
-    onImageSelected(event: any) {
-      const file = event.target.files[0];
-      if (file) {
-        this.imageFile = file;
+  onImageSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.imageFile = file;
 
-        // Aperçu image
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imagePreview = reader.result as string;
-        };
-        reader.readAsDataURL(file);
-      }
+      // Aperçu image
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
     }
+  }
 
 
   formEvenement = {
@@ -69,8 +71,9 @@ imagePreview: string | null = null;
   constructor(
     private evenementService: EvenementService,
     private userService: UserService,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient,
+    private servicePoint:RecempenseService
+  ) { }
 
   ngOnInit() {
     this.testerConnexionServeur();
@@ -106,41 +109,41 @@ imagePreview: string | null = null;
     });
   }
 
-initialiserProfilUtilisateur() {
-  const userId = localStorage.getItem('userId');
-  if (!userId) {
-    console.warn('⚠️ Aucun userId trouvé dans le localStorage. L’utilisateur est peut-être déconnecté ou non authentifié.');
-    this.router.navigate(['/login']);
-    return;
-  }
-
-  this.userService.loadUserProfile(userId).subscribe(
-    (profile) => {
-      this.role = profile.role.toLowerCase(); // Sécurité
-      this.idAdherent = profile.id.toString();
-      console.log('✅ Profil chargé :', this.role);
-    },
-    (error) => {
-      console.error('Erreur lors du chargement du profil :', error);
+  initialiserProfilUtilisateur() {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      console.warn('⚠️ Aucun userId trouvé dans le localStorage. L’utilisateur est peut-être déconnecté ou non authentifié.');
+      this.router.navigate(['/login']);
+      return;
     }
-  );
-}
+
+    this.userService.loadUserProfile(userId).subscribe(
+      (profile) => {
+        this.role = profile.role.toLowerCase(); // Sécurité
+        this.idAdherent = profile.id.toString();
+        console.log('✅ Profil chargé :', this.role);
+      },
+      (error) => {
+        console.error('Erreur lors du chargement du profil :', error);
+      }
+    );
+  }
 
 
   chargerEvenements() {
     this.evenementService.getEvenements().subscribe({
       next: (evenements) => {
         console.log('Données reçues du backend:', evenements);
-        
+
         // Mapper les événements avec les URLs complètes des images
         this.evenements = evenements.map(e => ({
           ...e,
           photoUrl: e.image ? this.evenementService.getImageUrl(e.image) : null
         }));
-        
+
         // Aussi assigner à listeEvenements pour compatibilité
         this.listeEvenements = this.evenements;
-        
+
         // Debug des URLs d'images
         this.evenements.forEach(evenement => {
           console.log(`Événement: ${evenement.nom}`);
@@ -175,50 +178,50 @@ initialiserProfilUtilisateur() {
     this.formEvenement = { nom: '', description: '', date: '', lieu: '' };
   }
 
- soumettreFormulaire() {
-  if (!this.formEvenement.nom || !this.formEvenement.date) {
-    alert('Le nom et la date sont obligatoires.');
-    return;
+  soumettreFormulaire() {
+    if (!this.formEvenement.nom || !this.formEvenement.date) {
+      alert('Le nom et la date sont obligatoires.');
+      return;
+    }
+
+    const isModification = !!this.selectedEvenement;
+
+    if (this.imageFile) {
+      const formData = new FormData();
+      formData.append('nom', this.formEvenement.nom);
+      formData.append('description', this.formEvenement.description);
+      formData.append('date', this.formEvenement.date);
+      formData.append('lieu', this.formEvenement.lieu);
+      formData.append('image', this.imageFile); // nom du champ côté backend
+
+      const request$ = isModification
+        ? this.evenementService.modifierEvenementAvecImage(this.selectedEvenement.id, formData)
+        : this.evenementService.ajouterEvenementAvecImage(formData);
+
+      request$.subscribe({
+        next: () => {
+          this.chargerEvenements();
+          this.fermerFormulaire();
+          this.imageFile = null;
+          this.imagePreview = null;
+        },
+        error: err => console.error('Erreur lors de l’enregistrement de l’événement', err)
+      });
+    } else {
+      // Sans image, on envoie simplement les données texte
+      const request$ = isModification
+        ? this.evenementService.modifierEvenement(this.selectedEvenement.id, this.formEvenement)
+        : this.evenementService.ajouterEvenement(this.formEvenement);
+
+      request$.subscribe({
+        next: () => {
+          this.chargerEvenements();
+          this.fermerFormulaire();
+        },
+        error: err => console.error('Erreur lors de l’enregistrement de l’événement', err)
+      });
+    }
   }
-
-  const isModification = !!this.selectedEvenement;
-
-  if (this.imageFile) {
-    const formData = new FormData();
-    formData.append('nom', this.formEvenement.nom);
-    formData.append('description', this.formEvenement.description);
-    formData.append('date', this.formEvenement.date);
-    formData.append('lieu', this.formEvenement.lieu);
-    formData.append('image', this.imageFile); // nom du champ côté backend
-
-    const request$ = isModification
-      ? this.evenementService.modifierEvenementAvecImage(this.selectedEvenement.id, formData)
-      : this.evenementService.ajouterEvenementAvecImage(formData);
-
-    request$.subscribe({
-      next: () => {
-        this.chargerEvenements();
-        this.fermerFormulaire();
-        this.imageFile = null;
-        this.imagePreview = null;
-      },
-      error: err => console.error('Erreur lors de l’enregistrement de l’événement', err)
-    });
-  } else {
-    // Sans image, on envoie simplement les données texte
-    const request$ = isModification
-      ? this.evenementService.modifierEvenement(this.selectedEvenement.id, this.formEvenement)
-      : this.evenementService.ajouterEvenement(this.formEvenement);
-
-    request$.subscribe({
-      next: () => {
-        this.chargerEvenements();
-        this.fermerFormulaire();
-      },
-      error: err => console.error('Erreur lors de l’enregistrement de l’événement', err)
-    });
-  }
-}
 
 
   demanderSuppression(id: number) {
@@ -272,13 +275,21 @@ initialiserProfilUtilisateur() {
 
     const participationData = {
       idAdherant: this.idAdherent,
-      idEvenemen: evenement.id
+      idEvenement: evenement.id
     };
 
-    this.http.post('http://localhost:3000/api/evenements/participer', participationData)
+    console.log(participationData)
+
+    this.http.post<any>('http://localhost:3000/api/evenements/participer', participationData)
       .subscribe({
-        next: () => {
-          alert(`Vous êtes inscrit à l'événement : ${evenement.nom}`);
+        next: (rep) => {
+          if(rep.isParticiper && rep.message){
+            alert(`${rep.message} : ${evenement.nom}`); // le message pour indiquer a user que deje participer dans evenement
+          }else{
+            if(rep.totalPoints)
+              this.servicePoint.ajoutePoints(rep.totalPoints)
+            alert(`Vous êtes inscrit à l'événement : ${evenement.nom}`);
+          }
           this.chargerEvenements();
         },
         error: (err) => {
@@ -307,13 +318,13 @@ initialiserProfilUtilisateur() {
   onImageError(event: any, evenement: Evenement) {
     console.error(`Erreur de chargement de l'image pour l'événement ${evenement.nom}:`, evenement.photoUrl);
     console.error('URL tentée:', event.target.src);
-    
+
     // Vérifier si le fichier existe vraiment
     if (evenement.image) {
       console.log('Nom du fichier image:', evenement.image);
       console.log('URL construite:', this.evenementService.getImageUrl(evenement.image));
     }
-    
+
     // L'image par défaut sera affichée automatiquement grâce au template
     event.target.style.display = 'none';
   }

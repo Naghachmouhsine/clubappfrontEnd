@@ -19,53 +19,67 @@ interface LoginResponse {
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/api';
+
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
   private userInfo: LoginResponse['user'] | null = null;
+  private userConnecterSource = new BehaviorSubject<LoginResponse['user'] | null>(null);
+  userConnecter$ = this.userConnecterSource.asObservable();
 
-  constructor(private http: HttpClient) {}
+  private tokenSource = new BehaviorSubject<string | null>(this.getTokenFromStorage());
+  token$ = this.tokenSource.asObservable();
 
-  // 🔐 Authentifier l’utilisateur
+  constructor(private http: HttpClient) {
+    this.initializeFromStorage(); // synchroniser au démarrage
+  }
 
   login(email: string, password: string): Observable<LoginResponse> {
-  return new Observable((observer) => {
-    this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }).subscribe({
-      next: (response) => {
-        localStorage.setItem('authToken', response.token);
-        localStorage.setItem('userInfo', JSON.stringify(response.user));
-        localStorage.setItem('userId', response.user.id.toString());  // ✅ AJOUTÉ
-        localStorage.setItem('role', response.user.role);             // ✅ AJOUTÉ
-        this.userInfo = response.user;
-        this.isLoggedInSubject.next(true);
-        observer.next(response);
-        observer.complete();
-      },
-      error: (err) => observer.error(err)
+    return new Observable(observer => {
+      this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }).subscribe({
+        next: response => {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('userInfo', JSON.stringify(response.user));
+          localStorage.setItem('userId', response.user.id.toString());
+          localStorage.setItem('role', response.user.role);
+
+          this.userInfo = response.user;
+          this.isLoggedInSubject.next(true);
+          this.userConnecterSource.next(response.user);
+          this.tokenSource.next(response.token);
+
+          observer.next(response);
+          observer.complete();
+        },
+        error: err => observer.error(err)
+      });
     });
-  });
-}
+  }
 
-
-  // 📤 Déconnexion
   logout() {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('token');
     localStorage.removeItem('userInfo');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('role');
+
     this.userInfo = null;
     this.isLoggedInSubject.next(false);
+    this.userConnecterSource.next(null);
+    this.tokenSource.next(null);
   }
 
-  // ✅ Vérifie présence du token
   private hasToken(): boolean {
-    return !!localStorage.getItem('authToken');
+    return !!localStorage.getItem('token');
   }
 
-  // 🔁 Rafraîchir le status (ex: au démarrage)
+  private getTokenFromStorage(): string | null {
+    return localStorage.getItem('token');
+  }
+
   checkAuthStatus() {
     this.isLoggedInSubject.next(this.hasToken());
   }
 
-  // 👤 Récupère les infos utilisateur
   getUser(): LoginResponse['user'] | null {
     if (!this.userInfo) {
       const stored = localStorage.getItem('userInfo');
@@ -76,8 +90,24 @@ export class AuthService {
     return this.userInfo;
   }
 
-  // 🔒 Récupère le token (si besoin pour les headers)
   getToken(): string | null {
-    return localStorage.getItem('authToken');
+    return this.tokenSource.value;
+  }
+
+  getUserConnecter(): LoginResponse['user'] | null {
+    return this.userConnecterSource.value;
+  }
+
+  initializeFromStorage() {
+    const userString = localStorage.getItem('userInfo');
+    const token = localStorage.getItem('token');
+
+    if (userString && token) {
+      const user = JSON.parse(userString);
+      this.userInfo = user;
+      this.userConnecterSource.next(user);
+      this.tokenSource.next(token);
+      this.isLoggedInSubject.next(true);
+    }
   }
 }

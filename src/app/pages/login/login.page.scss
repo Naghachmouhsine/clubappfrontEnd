@@ -1,3 +1,18 @@
+
+.custom-toast {
+  --width: 90%;
+  --max-width: 320px;
+  --border-radius: 10px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.success-toast {
+  --background: #e6ffed; 
+  --color: #2e7d32;      
+}
+
 .login-page {
   --background: #121212;
   color: #fff;

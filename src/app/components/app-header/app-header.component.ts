@@ -1,69 +1,81 @@
-import { ThemeService, ThemeType } from '../../services/theme.service';
-import { LangService, LangType } from '../../services/lang.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, PopoverController } from '@ionic/angular';
-import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { ThemeService, ThemeType } from '../../services/theme.service';
+import { LangService, LangType } from '../../services/lang.service';
+import { RecempenseService } from '../../services/recempense.service';
+import { AuthService } from '../../services/auth.service';
 import { ProfileMenuComponent } from '../../pages/profile-menu/profile-menu.component';
-import { HttpClient } from '@angular/common/http';
-import { RecempenseService } from 'src/app/services/recempense.service';
+
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [IonicModule, FormsModule, CommonModule, ProfileMenuComponent],
+  imports: [
+    IonicModule,
+    FormsModule,
+    CommonModule,
+    TranslateModule,
+    ProfileMenuComponent,
+  ],
   templateUrl: './app-header.component.html',
-  styleUrls: ['./app-header.component.scss'],
+  styleUrls: ['./app-header.component.scss']
 })
 export class AppHeaderComponent implements OnInit {
   @Input() nomPage = 'Home';
-  @Input() menuId: string = 'main-content';
-  @Input() showServicesText: boolean = true;
-  @Input() showProfilePicture: boolean = false;
-  @Input() showProfileText: boolean = true;
-  @Input() showLogoutText: boolean = true;
-  @Input() profilePictureUrl: string = '';
-  totalPoints:any=0
+  @Input() menuId = 'main-content';
+  @Input() showServicesText = true;
+  @Input() showProfilePicture = false;
+  @Input() showProfileText = true;
+  @Input() showLogoutText = true;
+  @Input() profilePictureUrl = '';
+
+  totalPoints: number = 0;
   theme: ThemeType = 'light';
-  themeIcon: string = 'sunny-outline';
+  themeIcon = 'sunny-outline';
   lang: LangType = 'fr';
 
-  isLoggedIn: boolean = false;
-  user:any;
+  isLoggedIn = false;
+  user: any = null;
 
   constructor(
     private route: Router,
     private themeService: ThemeService,
     private langService: LangService,
     private popoverController: PopoverController,
-    private servicePoints:RecempenseService
+    private servicePoints: RecempenseService,
+    private serviceAuth: AuthService
   ) {}
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
-    this.updateThemeIcon();
     this.lang = this.langService.getLang();
+    this.updateThemeIcon();
 
-    // Vérifie si un token est présent dans le localStorage
-    const token = localStorage.getItem('token');
-    this.isLoggedIn = !!token;
     
-    const userData = localStorage.getItem('user');
-    if (userData){
-      this.user = JSON.parse(userData); 
-      this.servicePoints.points$.subscribe(points => {
-      this.totalPoints = points;
+    this.serviceAuth.isLoggedIn$.subscribe(isLogin => {
+      this.isLoggedIn = isLogin;
+
+      if (isLogin) {
+        this.servicePoints.points$.subscribe(points => {
+          this.totalPoints = points;
+        });
+      }
     });
-    }
-     
+
+    this.serviceAuth.userConnecter$.subscribe(user => {
+      this.user = user;
+    });
   }
 
   cycleTheme() {
-    this.theme = this.theme === 'light'
-      ? 'dark'
-      : this.theme === 'dark'
-      ? 'auto'
-      : 'light';
+    this.theme =
+      this.theme === 'light' ? 'dark' :
+      this.theme === 'dark' ? 'auto' :
+      'light';
 
     this.themeService.setTheme(this.theme);
     this.updateThemeIcon();
@@ -71,28 +83,39 @@ export class AppHeaderComponent implements OnInit {
 
   updateThemeIcon() {
     this.themeIcon =
-      this.theme === 'light'
-        ? 'sunny-outline'
-        : this.theme === 'dark'
-        ? 'moon-outline'
-        : 'contrast-outline'; // auto
-        
+      this.theme === 'light' ? 'sunny-outline' :
+      this.theme === 'dark' ? 'moon-outline' :
+      'contrast-outline';
   }
 
-  async openProfileMenu(event: MouseEvent) {
-    const popover = await this.popoverController.create({
-      component: ProfileMenuComponent,
-      event: event,
-      translucent: true,
-    });
-    await popover.present();
+async openProfileMenu(event: MouseEvent) {
+  const popover = await this.popoverController.create({
+    component: ProfileMenuComponent,
+    event: event,
+    translucent: true,
+  });
+
+  await popover.present();
+
+  const { data, role } = await popover.onDidDismiss();
+
+  
+  console.log('Popover fermé avec rôle :', role);
+
+  if (role === 'logout') {
+    this.serviceAuth.checkAuthStatus(); 
+    this.route.navigate(['/login']);  // ou n'importe quelle action
+  }
+}
+
+
+  navigateTo(path: string) {
+    this.route.navigate([path]);
   }
 
   scrollToServices() {
     const el = document.getElementById('services');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   }
 
   setLang(lang: LangType) {
@@ -107,23 +130,28 @@ export class AppHeaderComponent implements OnInit {
   goHome() {
     this.route.navigate(['/']);
   }
- goRecemepense(){
+
+  goRecempense() {
     this.route.navigate(['/recompenses']);
- }
+  }
+
   redirectToLogin() {
     this.route.navigate(['/login']);
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    this.serviceAuth.logout();
     this.isLoggedIn = false;
     this.route.navigate(['/login']);
   }
 
   getProfilePictureUrl(): string {
-    return this.profilePictureUrl && this.profilePictureUrl.trim() !== ''
-      ? this.profilePictureUrl
-      : 'assets/images/user_img.jpg';
+    if (this.isLoggedIn) {
+      return this.profilePictureUrl?.trim()
+        ? this.profilePictureUrl
+        : 'assets/images/user_img.jpg';
+    } else {
+      return 'assets/images/logo/image.png';
+    }
   }
 }

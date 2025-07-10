@@ -1,31 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { IonicModule, MenuController, PopoverController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
-import { ProfileMenuComponent } from './pages/profile-menu/profile-menu.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { NgIf } from '@angular/common'; // <-- à importer
+import { IonicModule, MenuController, PopoverController } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
-import { MenuService } from './services/menu.service';
-import { Subscription } from 'rxjs';
+import { ProfileMenuComponent } from './pages/profile-menu/profile-menu.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ThemeService, ThemeType } from './services/theme.service';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { RecempenseService } from './services/recempense.service';
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+import { AuthService } from './services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    NgIf,
     IonicModule,
     RouterModule,
-    ReactiveFormsModule,
     HttpClientModule,
+    CommonModule,
     AppHeaderComponent,
     TranslateModule
   ],
@@ -33,73 +26,68 @@ export function HttpLoaderFactory(http: HttpClient) {
 })
 export class AppComponent implements OnInit, OnDestroy {
   user: any = null;
-  totalPoints:any
+  isDashboardOpen = false;
+  theme: ThemeType = 'auto';
+  loginIn: boolean = false;
+  private menuSub?: Subscription;
+  private authSub?: Subscription;
+  private userSub?: Subscription;
+
   constructor(
-    private menuCtrl: MenuController,
     private router: Router,
+    private menuCtrl: MenuController,
     private popoverController: PopoverController,
-    private menuService: MenuService,
     private themeService: ThemeService,
     private translate: TranslateService,
     private http: HttpClient,
-    private servicePoints:RecempenseService,
+    private servicePoints: RecempenseService,
+    private serviceAuth: AuthService
   ) {
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      this.user = JSON.parse(userData);
-      console.log(this.user)
-      this.http.get<any>(`http://localhost:3000/api/getPoints/${this.user.id}`)
-      .subscribe({
-        next: (data) => {
-          this.totalPoints=data?.points
-          this.servicePoints.setPoints(this.totalPoints || 0)
-        },
-        error: (err) => {
-          console.error('Erreur lors du chargement du profil', err);;
-        }
-      });
-    }
-    // Initialisation dynamique de la langue par défaut
     const lang = localStorage.getItem('lang') || 'fr';
     this.translate.setDefaultLang(lang);
     this.translate.use(lang);
-
   }
 
-  isDashboardOpen = false;
-  theme: ThemeType = 'auto';
-  private menuSub: Subscription | undefined;
-
   ngOnInit() {
-    const savedTheme = this.getSavedTheme();
-    const themeToApply = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : this.getSystemTheme();
-    this.applyTheme(themeToApply);
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      if (this.theme === 'auto') {
-        this.applyTheme(this.getSystemTheme());
+    // Auth reactive
+    this.authSub = this.serviceAuth.isLoggedIn$.subscribe(status => {
+      this.loginIn = status;
+    });
+
+    this.userSub = this.serviceAuth.userConnecter$.subscribe(user => {
+      this.user = user;
+      if (user) {
+        this.http.get<any>(`http://localhost:3000/api/getPoints/${user.id}`).subscribe({
+          next: data => this.servicePoints.setPoints(data?.points || 0),
+          error: err => console.error('Erreur chargement points', err)
+        });
       }
     });
-    this.router.events.subscribe(() => {
-      if (this.router.url === '/login') {
-        this.menuCtrl.enable(false);
-      } else {
-        this.menuCtrl.enable(true);
-      }
-    });
-    this.menuSub = this.menuService.openMenu$.subscribe(() => {
-      this.menuCtrl.enable(true, 'main-content');
-      this.menuCtrl.open('main-content');
-    });
+
+    // Thème système
     this.theme = this.themeService.getTheme();
     this.themeService.applyTheme(this.theme);
     this.themeService.theme$.subscribe(theme => {
       this.theme = theme;
       this.themeService.applyTheme(theme);
     });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (this.theme === 'auto') {
+        this.applyTheme(this.getSystemTheme());
+      }
+    });
+
+    // Gestion du menu selon route
+    this.router.events.subscribe(() => {
+      this.menuCtrl.enable(this.router.url !== '/login');
+    });
   }
 
   ngOnDestroy() {
-    if (this.menuSub) this.menuSub.unsubscribe();
+    this.menuSub?.unsubscribe();
+    this.authSub?.unsubscribe();
+    this.userSub?.unsubscribe();
   }
 
   toggleMenu() {
@@ -111,23 +99,23 @@ export class AppComponent implements OnInit, OnDestroy {
     this.menuCtrl.close();
   }
 
+  toggleDashboardSubmenu() {
+    this.isDashboardOpen = !this.isDashboardOpen;
+  }
+
   async openProfileMenu(event: MouseEvent) {
     const popover = await this.popoverController.create({
       component: ProfileMenuComponent,
-      event: event,
+      event,
       translucent: true,
     });
+
     await popover.present();
-  }
 
-  logout() {
-    console.log('Déconnexion...');
-    this.router.navigate(['/login']);
-    this.menuCtrl.close();
-  }
-
-  toggleDashboardSubmenu() {
-    this.isDashboardOpen = !this.isDashboardOpen;
+    const { role } = await popover.onDidDismiss();
+    if (role === 'logout') {
+      this.router.navigate(['/login']);
+    }
   }
 
   setTheme(theme: ThemeType) {
@@ -138,10 +126,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.translate.use(lang);
     localStorage.setItem('lang', lang);
     window.location.reload();
-  }
-
-  getSavedTheme(): 'light' | 'dark' | 'auto' | null {
-    return (localStorage.getItem('theme') as any) || null;
   }
 
   getSystemTheme(): 'light' | 'dark' {

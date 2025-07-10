@@ -1,12 +1,12 @@
-<ion-toolbar>
-  <ion-buttons slot="start">
+<ion-toolbar  [ngClass]="!isLoggedIn ? 'ion-padding-start' : 'no-padding'">
+  <ion-buttons slot="start" *ngIf="isLoggedIn"  >
     <ion-menu-button menuId="main-content" color="light"></ion-menu-button>
   </ion-buttons>
-  <ion-title class="ion-text-start header-title" (click)="goHome()" style="cursor:pointer;">
+  <ion-title class="ion-text-start header-title  " (click)="goHome()" style="cursor:pointer;">
     {{ t('header.club_full') }}
   </ion-title>
   <ion-buttons slot="end">
-    <ion-button  (click)="goRecemepense()" *ngIf="isLoggedIn" class="points-btn" title="Points fidélité">
+    <ion-button (click)="navigateTo('/recompenses')" *ngIf="isLoggedIn" class="points-btn" title="Points fidélité">
       <ion-icon name="ribbon-outline" slot="start" color="warning"></ion-icon>
       <span class="fw-bold">{{ totalPoints || 0 }}</span>
     </ion-button>
@@ -24,14 +24,18 @@
       <ion-icon name="star-outline" slot="start" color="warning"></ion-icon>
       <span>{{ t('header.services') }}</span>
     </ion-button>
-    <ion-button *ngIf="showProfilePicture" (click)="openProfileMenu($event)" class="profile-btn">
+    <ion-button *ngIf="showProfilePicture  && isLoggedIn " (click)="openProfileMenu($event)" class="profile-btn">
       <span class="profile-btn-img-wrapper">
         <img [src]="getProfilePictureUrl()" alt="Profil" class="header-profile-img" />
       </span>
     </ion-button>
-    <ion-button *ngIf="showProfileText && !showProfilePicture" (click)="openProfileMenu($event)" class="profile-btn">
+    <ion-button *ngIf="showProfileText && !showProfilePicture && isLoggedIn " (click)="openProfileMenu($event)"
+      class="profile-btn">
       <ion-icon name="person-circle-outline" slot="icon-only" color="light"></ion-icon>
       <span class="d-none d-md-inline text-lower">{{ t('header.profile') }}</span>
+    </ion-button>
+    <ion-button *ngIf="!isLoggedIn" (click)="logout()" title="Se connecter">
+      <ion-icon name="log-in-outline" slot="start" color="warning"></ion-icon>
     </ion-button>
   </ion-buttons>
 </ion-toolbar>

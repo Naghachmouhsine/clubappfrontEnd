@@ -20,4 +20,8 @@ export class RecempenseService {
   deductPoints(points: number) {
     this.pointsSource.next(this.pointsSource.value - points);
   }
+
+  ajoutePoints(point : number){
+    this.pointsSource.next(this.pointsSource.value+point)
+  }
 }

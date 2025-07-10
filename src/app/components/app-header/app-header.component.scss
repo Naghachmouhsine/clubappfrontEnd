@@ -68,8 +68,8 @@ ion-title.header-title {
   background: none;
   color: #181818 !important;
   text-shadow: none;
-  padding: 0.5rem 0;
-  margin: 0 auto;
+  padding: 0.5rem 10 !important;
+  margin: 10 auto;
   display: block;
   text-align: center;
 }
@@ -108,7 +108,7 @@ ion-button.services-btn:hover {
 }
 
 .profile-btn-img-wrapper {
-  border: 2px solid #ffd700 !important;
+  // border: 2px solid #ffd700 !important;
   box-shadow: 0 1px 4px 0 #ffd70022;
 }
 
