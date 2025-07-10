@@ -18,6 +18,7 @@ export class EditAccountModalComponent {
 
   constructor(private fb: FormBuilder, private modalCtrl: ModalController) {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
+    console.log(user);
     this.accountForm = this.fb.group({
       nom: [user.nom || '', [Validators.required]],
       prenom: [user.prenom || '', [Validators.required]],

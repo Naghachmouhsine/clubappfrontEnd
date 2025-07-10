@@ -1,0 +1,83 @@
+<div class="popup-modal">
+  <button class="close-btn" (click)="close()" aria-label="Fermer">
+    <ion-icon name="close-outline"></ion-icon>
+  </button>
+  
+  <form [formGroup]="notificationsForm" (ngSubmit)="submit()" class="popup-form">
+    <div class="avatar-premium mb-2 mx-auto">
+      <ion-icon name="notifications" class="gold-avatar"></ion-icon>
+    </div>
+    
+    <h4 class="text-center mb-3">{{ 'settings.notifications_title' | translate }}</h4>
+    
+    <ion-list lines="none">
+      <!-- Notifications Email -->
+      <ion-item>
+        <ion-label>
+          <h3>{{ 'settings.email_notifications' | translate }}</h3>
+          <p>{{ 'settings.email_notifications_desc' | translate }}</p>
+        </ion-label>
+        <ion-toggle formControlName="emailNotifications" slot="end"></ion-toggle>
+      </ion-item>
+      
+      <!-- Notifications Push -->
+      <ion-item>
+        <ion-label>
+          <h3>{{ 'settings.push_notifications' | translate }}</h3>
+          <p>{{ 'settings.push_notifications_desc' | translate }}</p>
+        </ion-label>
+        <ion-toggle formControlName="pushNotifications" slot="end"></ion-toggle>
+      </ion-item>
+      
+      <!-- Confirmation de réservation -->
+      <ion-item>
+        <ion-label>
+          <h3>{{ 'settings.reservation_confirmation' | translate }}</h3>
+          <p>{{ 'settings.reservation_confirmation_desc' | translate }}</p>
+        </ion-label>
+        <ion-toggle formControlName="reservationConfirmation" slot="end"></ion-toggle>
+      </ion-item>
+      
+      <!-- Rappels d'événements -->
+      <ion-item>
+        <ion-label>
+          <h3>{{ 'settings.event_reminders' | translate }}</h3>
+          <p>{{ 'settings.event_reminders_desc' | translate }}</p>
+        </ion-label>
+        <ion-toggle formControlName="eventReminders" slot="end"></ion-toggle>
+      </ion-item>
+      
+      <!-- Emails promotionnels -->
+      <ion-item>
+        <ion-label>
+          <h3>{{ 'settings.promotional_emails' | translate }}</h3>
+          <p>{{ 'settings.promotional_emails_desc' | translate }}</p>
+        </ion-label>
+        <ion-toggle formControlName="promotionalEmails" slot="end"></ion-toggle>
+      </ion-item>
+      
+      <!-- Newsletter hebdomadaire -->
+      <ion-item>
+        <ion-label>
+          <h3>{{ 'settings.weekly_newsletter' | translate }}</h3>
+          <p>{{ 'settings.weekly_newsletter_desc' | translate }}</p>
+        </ion-label>
+        <ion-toggle formControlName="weeklyNewsletter" slot="end"></ion-toggle>
+      </ion-item>
+      
+      <!-- Alertes de maintenance -->
+      <ion-item>
+        <ion-label>
+          <h3>{{ 'settings.maintenance_alerts' | translate }}</h3>
+          <p>{{ 'settings.maintenance_alerts_desc' | translate }}</p>
+        </ion-label>
+        <ion-toggle formControlName="maintenanceAlerts" slot="end"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    
+    <ion-button expand="block" type="submit" [disabled]="loading" class="mt-3 gold-btn">
+      <ion-spinner *ngIf="loading" name="dots"></ion-spinner>
+      <span *ngIf="!loading">{{ 'settings.save' | translate }}</span>
+    </ion-button>
+  </form>
+</div>

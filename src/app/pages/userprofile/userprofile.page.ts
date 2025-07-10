@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { AppHeaderComponent } from '../../components/app-header/app-header.component';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-userprofile',
   standalone: true,
-  imports: [CommonModule, IonicModule, AppHeaderComponent, TranslateModule],
+  imports: [CommonModule, IonicModule, TranslateModule],
   templateUrl: './userprofile.page.html',
   styleUrls: ['./userprofile.page.scss']
 })
@@ -65,5 +65,11 @@ export class UserprofilePage implements OnInit {
   goBack() {
     window.history.back();
   }
+  getInitials(prenom: string, nom: string): string {
+  const firstNameInitial = prenom?.charAt(0)?.toUpperCase() || '';
+  const lastNameInitial = nom?.charAt(0)?.toUpperCase() || '';
+  return firstNameInitial + lastNameInitial;
+}
+
 
 }
