@@ -1,0 +1,114 @@
+<div class="popup-modal">
+  <button class="close-btn" (click)="close()" aria-label="Fermer">
+    <ion-icon name="close-outline"></ion-icon>
+  </button>
+  
+  <form [formGroup]="securityForm" (ngSubmit)="submit()" class="popup-form">
+    <div class="avatar-premium mb-2 mx-auto">
+      <ion-icon name="shield-checkmark" class="gold-avatar"></ion-icon>
+    </div>
+    
+    <h4 class="text-center mb-3">{{ 'settings.security_title' | translate }}</h4>
+    
+    <!-- Section Authentification -->
+    <div class="security-section">
+      <h5>{{ 'settings.authentication' | translate }}</h5>
+      
+      <ion-item>
+        <ion-label>
+          <h3>{{ 'settings.two_factor_auth' | translate }}</h3>
+          <p>{{ 'settings.two_factor_desc' | translate }}</p>
+        </ion-label>
+        <ion-toggle 
+          [checked]="twoFactorEnabled" 
+          (ionChange)="toggleTwoFactor()" 
+          slot="end">
+        </ion-toggle>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>
+          <h3>{{ 'settings.login_notifications' | translate }}</h3>
+          <p>{{ 'settings.login_notifications_desc' | translate }}</p>
+        </ion-label>
+        <ion-toggle formControlName="loginNotifications" slot="end"></ion-toggle>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">{{ 'settings.session_timeout' | translate }}</ion-label>
+        <ion-select formControlName="sessionTimeout">
+          <ion-select-option value="15">15 minutes</ion-select-option>
+          <ion-select-option value="30">30 minutes</ion-select-option>
+          <ion-select-option value="60">1 heure</ion-select-option>
+          <ion-select-option value="120">2 heures</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    
+    <!-- Section Questions de sécurité -->
+    <div class="security-section">
+      <h5>{{ 'settings.security_questions' | translate }}</h5>
+      
+      <ion-item>
+        <ion-label position="floating">{{ 'settings.security_question_1' | translate }}</ion-label>
+        <ion-select formControlName="securityQuestion1">
+          <ion-select-option *ngFor="let q of securityQuestions" [value]="q.id">
+            {{ q.question }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">{{ 'settings.security_answer_1' | translate }}</ion-label>
+        <ion-input formControlName="securityAnswer1" type="text"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">{{ 'settings.security_question_2' | translate }}</ion-label>
+        <ion-select formControlName="securityQuestion2">
+          <ion-select-option *ngFor="let q of securityQuestions" [value]="q.id">
+            {{ q.question }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">{{ 'settings.security_answer_2' | translate }}</ion-label>
+        <ion-input formControlName="securityAnswer2" type="text"></ion-input>
+      </ion-item>
+    </div>
+    
+    <!-- Section Historique de connexion -->
+    <div class="security-section">
+      <div class="section-header">
+        <h5>{{ 'settings.login_history' | translate }}</h5>
+        <ion-button fill="clear" size="small" (click)="clearLoginHistory()">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </div>
+      
+      <div class="login-history">
+        <div *ngFor="let login of loginHistory" class="login-entry">
+          <div class="login-info">
+            <div class="login-device">
+              <ion-icon [name]="getStatusIcon(login.status)" [color]="getStatusColor(login.status)"></ion-icon>
+              <span>{{ login.device }}</span>
+            </div>
+            <div class="login-details">
+              <small>{{ login.date | date:'short' }} - {{ login.location }}</small>
+            </div>
+          </div>
+        </div>
+        
+        <div *ngIf="loginHistory.length === 0" class="no-history">
+          <p>{{ 'settings.no_login_history' | translate }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <ion-button expand="block" type="submit" [disabled]="loading || securityForm.invalid" class="mt-3 gold-btn">
+      <ion-spinner *ngIf="loading" name="dots"></ion-spinner>
+      <span *ngIf="!loading">{{ 'settings.save' | translate }}</span>
+    </ion-button>
+  </form>
+</div>

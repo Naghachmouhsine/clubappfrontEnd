@@ -1,0 +1,156 @@
+.popup-modal {
+  padding: 1.5rem;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--ion-color-medium);
+  z-index: 10;
+  
+  &:hover {
+    color: var(--ion-color-primary);
+  }
+}
+
+.avatar-premium {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .gold-avatar {
+    font-size: 2.5rem;
+    color: #8b6914;
+  }
+}
+
+.popup-form {
+  h4 {
+    color: var(--ion-color-primary);
+    font-weight: 600;
+  }
+}
+
+.security-section {
+  margin-bottom: 2rem;
+  
+  h5 {
+    color: var(--ion-color-dark);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    border-bottom: 2px solid var(--ion-color-light);
+    padding-bottom: 0.5rem;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h5 {
+      margin-bottom: 0;
+    }
+  }
+}
+
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 0.5rem;
+  
+  ion-label {
+    h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      color: var(--ion-color-dark);
+    }
+    
+    p {
+      font-size: 0.875rem;
+      color: var(--ion-color-medium);
+      margin: 0;
+    }
+  }
+  
+  ion-toggle {
+    --handle-width: 20px;
+    --handle-height: 20px;
+    --track-width: 40px;
+    --track-height: 24px;
+  }
+}
+
+.login-history {
+  background: var(--ion-color-light);
+  border-radius: 8px;
+  padding: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+  
+  .login-entry {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--ion-color-medium-tint);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .login-info {
+      flex: 1;
+      
+      .login-device {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+        
+        ion-icon {
+          font-size: 1.2rem;
+        }
+      }
+      
+      .login-details {
+        margin-top: 0.25rem;
+        
+        small {
+          color: var(--ion-color-medium);
+        }
+      }
+    }
+  }
+  
+  .no-history {
+    text-align: center;
+    color: var(--ion-color-medium);
+    font-style: italic;
+    
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.gold-btn {
+  --background: linear-gradient(135deg, #ffd700, #ffed4e);
+  --color: #8b6914;
+  font-weight: 600;
+  height: 48px;
+  
+  &:hover {
+    --background: linear-gradient(135deg, #ffed4e, #ffd700);
+  }
+}

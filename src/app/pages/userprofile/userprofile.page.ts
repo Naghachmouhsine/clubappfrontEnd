@@ -65,5 +65,11 @@ export class UserprofilePage implements OnInit {
   goBack() {
     window.history.back();
   }
+  getInitials(prenom: string, nom: string): string {
+  const firstNameInitial = prenom?.charAt(0)?.toUpperCase() || '';
+  const lastNameInitial = nom?.charAt(0)?.toUpperCase() || '';
+  return firstNameInitial + lastNameInitial;
+}
+
 
 }
