@@ -11,35 +11,40 @@
       <ion-card-title class="services-title mb-3">🎾 Liste des activités</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-button class="ion-margin btn-gold btn-lg shadow" expand="block"   *ngIf="user.role!='coach'" (click)="addActivite()">
+      <ion-button class="ion-margin btn-gold btn-lg shadow" expand="block" *ngIf="user.role!='coach'"
+        (click)="addActivite()">
         <ion-icon slot="start" name="add-circle-outline"></ion-icon>
         Ajouter une activité
       </ion-button>
       <ion-grid>
-      
+
         <ion-row class="ion-text-center fw-bold rounded-3 shadow-sm mb-2 py-2 bg-gold-contrast">
           <ion-col class="text-dark">Titre</ion-col>
           <ion-col class="text-dark">Description</ion-col>
           <ion-col class="text-dark">Type</ion-col>
-          <ion-col class="text-dark" *ngIf="user.role!='coach'" >Coach Assigné</ion-col>
+          <ion-col class="text-dark" *ngIf="user.role!='coach'">Coach Assigné</ion-col>
           <ion-col class="text-dark">Installation</ion-col>
-          <ion-col class="text-dark"  *ngIf="user.role!='coach'"  >Actions</ion-col>
+          <ion-col class="text-dark" *ngIf="user.role!='coach'">Actions</ion-col>
         </ion-row>
         <ion-row *ngFor="let activite of activites"
           class="ion-text-center activites-row align-items-center bg-light rounded-3 mb-2 py-2">
           <ion-col class="activites-cell fw-semibold">{{ activite.titre }}</ion-col>
           <ion-col class="activites-cell">{{ activite.description }}</ion-col>
           <ion-col class="activites-cell">{{ activite.type }}</ion-col>
-          <ion-col class="activites-cell"  *ngIf="user.role!='coach'"  >{{ activite.nom }}  {{ activite.prenom }}</ion-col>
-          <ion-col class="activites-cell"  >{{ activite.installation }}</ion-col>
-          <ion-col   *ngIf="user.role!='coach'" >
+          <ion-col class="activites-cell" *ngIf="user.role!='coach'">{{ activite.nom }} {{ activite.prenom }}</ion-col>
+          <ion-col class="activites-cell">{{ activite.installation }}</ion-col>
+          <ion-col *ngIf="user.role!='coach'">
             <ion-button fill="clear" color="primary" (click)="detailActivite(activite.id)" class="rounded-pill">
               <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
             </ion-button>
             <ion-button fill="clear" color="warning" (click)="editActivite(activite.id)" class="rounded-pill">
               <ion-icon name="create-outline" slot="icon-only"></ion-icon>
             </ion-button>
+            <ion-button fill="clear" color="danger" (click)="deleteActivite(activite.id)" class="rounded-pill">
+              <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+            </ion-button>
           </ion-col>
+
         </ion-row>
         <ion-row *ngIf="!activites.length" class="ion-text-center">
           <ion-col size="12">Aucun activité trouver</ion-col>

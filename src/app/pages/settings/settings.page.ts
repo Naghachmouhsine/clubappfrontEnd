@@ -10,6 +10,7 @@ import { ThemeService, ThemeType } from '../../services/theme.service';
 import { LangService, LangType } from '../../services/lang.service';
 import { ThemeModalComponent } from './theme-modal';
 import { LanguageModalComponent } from './language-modal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -23,7 +24,8 @@ export class SettingsPage implements OnInit {
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
     private themeService: ThemeService,
-    private langService: LangService
+    private langService: LangService,
+    private route:Router
   ) { }
 
   ngOnInit() {
@@ -32,19 +34,28 @@ export class SettingsPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: EditAccountModalComponent,
       breakpoints: [0, 0.7, 1],
-      initialBreakpoint: 0.7,
+      initialBreakpoint: 1,
       cssClass: 'modal-rounded'
     });
+
     await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+
+    if (data === true) {
+      const toast = await this.toastCtrl.create({
+        message: 'Votre profil a été modifié avec succès',
+        duration: 1000,
+        position: 'top',
+        cssClass:  'my-success-toast'
+      });
+      await toast.present();
+
+    }
   }
+
   async changePassword() {
-    const modal = await this.modalCtrl.create({
-      component: ChangePasswordModalComponent,
-      breakpoints: [0, 0.7, 1],
-      initialBreakpoint: 0.7,
-      cssClass: 'modal-rounded'
-    });
-    await modal.present();
+    this.route.navigate(["/forgot-password"])
   }
   async changeTheme() {
     const modal = await this.modalCtrl.create({

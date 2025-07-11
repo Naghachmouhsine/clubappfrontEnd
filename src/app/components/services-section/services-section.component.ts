@@ -31,12 +31,12 @@ export class ServicesSectionComponent implements OnInit, OnDestroy {
       icon: 'fas fa-trophy',
       route: '/evenements'
     },
-    {
-      title: 'home.services.clubhouse_title',
-      desc: 'home.services.clubhouse_desc',
-      icon: 'fas fa-home',
-      route: '/clubhouse' // tu peux créer cette page ensuite
-    }
+    // {
+    //   title: 'home.services.clubhouse_title',
+    //   desc: 'home.services.clubhouse_desc',
+    //   icon: 'fas fa-home',
+    //   route: '/clubhouse' // tu peux créer cette page ensuite
+    // }
   ];
 
   private langSub: any;

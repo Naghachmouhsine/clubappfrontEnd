@@ -213,6 +213,7 @@
     "nom": "Nom",
     "prenom": "Prénom",
      "genre": "Genre",
+
   "subscription_status": "Statut d'abonnement",
   "registration_date": "Date d'inscription",
   "renew_required": "Votre abonnement est inactif. Merci de procéder à une réinscription annuelle."

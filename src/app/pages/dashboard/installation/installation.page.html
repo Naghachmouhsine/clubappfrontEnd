@@ -17,10 +17,11 @@
 
       <ion-grid *ngIf="installations.length > 0">
         <ion-row class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2">
-          <ion-col>{{ 'installation.nom' | translate }}</ion-col>
-          <ion-col>{{ 'installation.type' | translate }}</ion-col>
-          <ion-col>{{ 'installation.statut' | translate }}</ion-col>
-          <ion-col>{{ 'installation.actions' | translate }}</ion-col>
+          <ion-col>Nom</ion-col>
+          <ion-col>Type</ion-col>
+          <ion-col>Capacite</ion-col>
+          <ion-col>Disponible</ion-col>
+          <ion-col>Action</ion-col>
         </ion-row>
 
         <ion-row *ngFor="let installation of installations"
@@ -31,13 +32,14 @@
           <ion-col class="installation-cell">{{ installation.capacite }}</ion-col>
           <ion-col class="installation-cell">{{ installation.disponible }}</ion-col>
           <ion-col>
-            <ion-button size="small" fill="outline" color="primary" (click)="detailInstallation(installation.id)">
-              <ion-icon name="eye-outline" slot="start"></ion-icon>
-              Détails
+            <ion-button fill="clear" color="primary" (click)="detailInstallation(installation.id)" class="rounded-pill">
+              <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
             </ion-button>
-            <ion-button size="small" fill="outline" color="warning" (click)="editInstallation(installation.id)">
-              <ion-icon name="create-outline" slot="start"></ion-icon>
-              Modifier
+            <ion-button fill="clear" color="warning"  (click)="editInstallation(installation.id)" class="rounded-pill">
+              <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" color="danger" (click)="deleteInstallation(installation.id)" class="rounded-pill">
+              <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
             </ion-button>
           </ion-col>
         </ion-row>

@@ -29,11 +29,12 @@ export class MotPasseOublieComponent {
       .subscribe({
         next: async () => {
           const toast = await this.toastCtrl.create({
-            message: 'Un lien de réinitialisation a été envoyé.',
-            duration: 3000,
-            color: 'success'
+            message: 'Veuillez vérifier votre boîte email.',
+            duration: 1000,
+            position: 'top',
+            cssClass: 'my-success-toast'
           });
-          toast.present();
+          await toast.present();
         },
         error: async (error) => {
           let errorMessage = ""

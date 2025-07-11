@@ -28,19 +28,15 @@
         </ion-row>
 
         <ion-row *ngFor="let user of utilisateurs"
-                 class="ion-text-center user-row align-items-center rounded-3 mb-2 py-2"
-                 [ngClass]="[getRoleClass(user.role), 'bg-light']">
+          class="ion-text-center user-row align-items-center rounded-3 mb-2 py-2"
+          [ngClass]="[getRoleClass(user.role), 'bg-light']">
           <ion-col class="user-cell user-data fw-semibold">{{ user.nom }} {{ user.prenom }}</ion-col>
           <ion-col class="user-cell user-data">{{ user.email }}</ion-col>
           <ion-col class="user-cell user-data">{{ user.telephone }}</ion-col>
 
           <ion-col class="user-cell user-data">
-            <ion-select
-              interface="popover"
-              [(ngModel)]="user.selectedRole"
-              (ionChange)="onRoleChange(user)"
-              class="select-role"
-              aria-label="Changer rôle utilisateur">
+            <ion-select interface="popover" [(ngModel)]="user.selectedRole" (ionChange)="onRoleChange(user)"
+              class="select-role" aria-label="Changer rôle utilisateur">
               <ion-select-option value="user">Utilisateur</ion-select-option>
               <ion-select-option value="adherent">Adhérent</ion-select-option>
               <ion-select-option value="coach">Coach</ion-select-option>
@@ -48,17 +44,15 @@
               <ion-select-option value="admin">Admin</ion-select-option>
             </ion-select>
           </ion-col>
-
           <ion-col>
-            <ion-button
-              size="small"
-              fill="outline"
-              color="primary"
-              (click)="detailUser(user.id)"
-              class="rounded-pill btn-action"
-              aria-label="Voir détails utilisateur">
-              <ion-icon name="create-outline" slot="start"></ion-icon>
-              Détails
+            <ion-button fill="clear" color="primary" (click)="editUser(user.id)" class="rounded-pill">
+              <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" color="warning"  (click)="detailUser(user.id)" class="rounded-pill">
+              <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" color="danger" (click)="deleteUser(user.id)" class="rounded-pill">
+              <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
             </ion-button>
           </ion-col>
         </ion-row>

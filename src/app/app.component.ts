@@ -95,8 +95,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   navigateTo(path: string) {
-    this.router.navigate([path]);
     this.menuCtrl.close();
+    this.isDashboardOpen=false
+    this.router.navigate([path]);
   }
 
   toggleDashboardSubmenu() {

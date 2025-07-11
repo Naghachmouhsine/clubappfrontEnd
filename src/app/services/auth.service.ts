@@ -44,6 +44,7 @@ export class AuthService {
           localStorage.setItem('role', response.user.role);
 
           this.userInfo = response.user;
+          console.log(response.user)
           this.isLoggedInSubject.next(true);
           this.userConnecterSource.next(response.user);
           this.tokenSource.next(response.token);
@@ -75,7 +76,10 @@ export class AuthService {
   private getTokenFromStorage(): string | null {
     return localStorage.getItem('token');
   }
-
+  setUser(user: LoginResponse['user']) {
+    this.userInfo = user;
+    this.userConnecterSource.next(user);
+  }
   checkAuthStatus() {
     this.isLoggedInSubject.next(this.hasToken());
   }
