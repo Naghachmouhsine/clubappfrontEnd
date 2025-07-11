@@ -40,12 +40,12 @@
               [(ngModel)]="user.selectedRole"
               (ionChange)="onRoleChange(user)"
               class="select-role"
-              aria-label="Changer rôle utilisateur">
-              <ion-select-option value="user">Utilisateur</ion-select-option>
-              <ion-select-option value="adherent">Adhérent</ion-select-option>
-              <ion-select-option value="coach">Coach</ion-select-option>
-              <ion-select-option value="responsable">Responsable</ion-select-option>
-              <ion-select-option value="admin">Admin</ion-select-option>
+              [attr.aria-label]="'utilisateur.change_role' | translate">
+              <ion-select-option value="user">{{ 'utilisateur.role_options.user' | translate }}</ion-select-option>
+              <ion-select-option value="adherent">{{ 'utilisateur.role_options.adherent' | translate }}</ion-select-option>
+              <ion-select-option value="coach">{{ 'utilisateur.role_options.coach' | translate }}</ion-select-option>
+              <ion-select-option value="responsable">{{ 'utilisateur.role_options.responsable' | translate }}</ion-select-option>
+              <ion-select-option value="admin">{{ 'utilisateur.role_options.admin' | translate }}</ion-select-option>
             </ion-select>
           </ion-col>
 
@@ -56,9 +56,9 @@
               color="primary"
               (click)="detailUser(user.id)"
               class="rounded-pill btn-action"
-              aria-label="Voir détails utilisateur">
+              [attr.aria-label]="'utilisateur.view_details' | translate">
               <ion-icon name="create-outline" slot="start"></ion-icon>
-              Détails
+              {{ 'utilisateur.details' | translate }}
             </ion-button>
           </ion-col>
         </ion-row>

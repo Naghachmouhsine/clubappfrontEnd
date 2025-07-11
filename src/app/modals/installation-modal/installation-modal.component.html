@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>
-      {{ mode === 'add' ? 'Ajouter une installation' : mode === 'edit' ? 'Modifier une installation' : 'Détails de l\'installation' }}
+      {{ mode === 'add' ? ('modals.installation.title' | translate) : mode === 'edit' ? ('modals.installation.edit_title' | translate) : ('installation.details' | translate) }}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismissModal()">
@@ -14,29 +14,29 @@
 <ion-content class="ion-padding">
   <form [formGroup]="installationForm" (ngSubmit)="submitForm()">
     <ion-item>
-      <ion-label position="floating">Nom</ion-label>
+      <ion-label position="floating">{{ 'modals.installation.nom' | translate }}</ion-label>
       <ion-input formControlName="nom"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Type</ion-label>
+      <ion-label position="floating">{{ 'modals.installation.type' | translate }}</ion-label>
       <ion-input formControlName="type"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Capacité</ion-label>
+      <ion-label position="floating">{{ 'modals.installation.capacity' | translate }}</ion-label>
       <ion-input type="number" formControlName="capacite"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Disponible</ion-label>
+      <ion-label>{{ 'modals.installation.available' | translate }}</ion-label>
       <ion-toggle formControlName="disponibilite"></ion-toggle>
     </ion-item>
 
     <ion-button expand="block" type="submit" color="success" 
                 *ngIf="mode !== 'detail'" 
                 [disabled]="installationForm.invalid">
-      {{ mode === 'edit' ? 'Mettre à jour' : 'Ajouter' }}
+      {{ mode === 'edit' ? ('common.edit' | translate) : ('common.add' | translate) }}
     </ion-button>
   </form>
 </ion-content>

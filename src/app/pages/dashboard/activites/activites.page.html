@@ -3,27 +3,27 @@
     <ion-title class="ion-padding">Dashboard - Activités</ion-title>
   </ion-toolbar>
 </ion-header> -->
-<app-header nomPage="Dashboard - Activités" [showProfilePicture]="true"></app-header>
+<app-header [nomPage]="'activities.dashboard_title' | translate" [showProfilePicture]="true"></app-header>
 
 <ion-content class="ion-padding section-alt">
   <ion-card class="card-royal p-4">
     <ion-card-header>
-      <ion-card-title class="services-title mb-3">🎾 Liste des activités</ion-card-title>
+      <ion-card-title class="services-title mb-3">🎾 {{ 'activities.list' | translate }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-button class="ion-margin btn-gold btn-lg shadow" expand="block"   *ngIf="user.role!='coach'" (click)="addActivite()">
         <ion-icon slot="start" name="add-circle-outline"></ion-icon>
-        Ajouter une activité
+        {{ 'activities.add' | translate }}
       </ion-button>
       <ion-grid>
       
         <ion-row class="ion-text-center fw-bold rounded-3 shadow-sm mb-2 py-2 bg-gold-contrast">
-          <ion-col class="text-dark">Titre</ion-col>
-          <ion-col class="text-dark">Description</ion-col>
-          <ion-col class="text-dark">Type</ion-col>
-          <ion-col class="text-dark" *ngIf="user.role!='coach'" >Coach Assigné</ion-col>
-          <ion-col class="text-dark">Installation</ion-col>
-          <ion-col class="text-dark"  *ngIf="user.role!='coach'"  >Actions</ion-col>
+          <ion-col class="text-dark">{{ 'activities.title_column' | translate }}</ion-col>
+          <ion-col class="text-dark">{{ 'activities.description' | translate }}</ion-col>
+          <ion-col class="text-dark">{{ 'activities.type' | translate }}</ion-col>
+          <ion-col class="text-dark" *ngIf="user.role!='coach'" >{{ 'activities.coach_assigned' | translate }}</ion-col>
+          <ion-col class="text-dark">{{ 'activities.installation' | translate }}</ion-col>
+          <ion-col class="text-dark"  *ngIf="user.role!='coach'"  >{{ 'activities.actions' | translate }}</ion-col>
         </ion-row>
         <ion-row *ngFor="let activite of activites"
           class="ion-text-center activites-row align-items-center bg-light rounded-3 mb-2 py-2">
@@ -42,7 +42,7 @@
           </ion-col>
         </ion-row>
         <ion-row *ngIf="!activites.length" class="ion-text-center">
-          <ion-col size="12">Aucun activité trouver</ion-col>
+          <ion-col size="12">{{ 'activities.empty' | translate }}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>

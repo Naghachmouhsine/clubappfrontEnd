@@ -1,14 +1,14 @@
-<app-header nomPage="Dashboard - Participations"></app-header>
+<app-header [nomPage]="'participation_history.dashboard_title' | translate"></app-header>
 
 <ion-content class="ion-padding">
 
   <!-- Segment de sélection -->
   <ion-segment [(ngModel)]="viewType" (ionChange)="switchView(viewType)">
     <ion-segment-button value="evenements">
-      <ion-label>Événements</ion-label>
+      <ion-label>{{ 'participation_history.events' | translate }}</ion-label>
     </ion-segment-button>
     <ion-segment-button value="activites">
-      <ion-label>Activités</ion-label>
+      <ion-label>{{ 'participation_history.activities' | translate }}</ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -16,16 +16,16 @@
   <ng-container *ngIf="viewType === 'evenements'">
     <ion-card>
       <ion-card-header>
-        <ion-card-title class="ion-padding">Liste des Événements</ion-card-title>
+        <ion-card-title class="ion-padding">{{ 'participation_history.event_list' | translate }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-grid>
           <ion-row
             class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2 reservation-header-row">
-            <ion-col>Événement</ion-col>
-            <ion-col>Date</ion-col>
-            <ion-col>Lieu</ion-col>
-            <ion-col>Description</ion-col>
+            <ion-col>{{ 'participation_history.event_name' | translate }}</ion-col>
+            <ion-col>{{ 'participation_history.date' | translate }}</ion-col>
+            <ion-col>{{ 'participation_history.location' | translate }}</ion-col>
+            <ion-col>{{ 'participation_history.description' | translate }}</ion-col>
           </ion-row>
 
           <ion-row *ngFor="let part of participation" class="ion-text-center reservations-row">
@@ -36,7 +36,7 @@
           </ion-row>
 
           <ion-row *ngIf="!participation.length" class="ion-text-center">
-            <ion-col size="12">Aucun événement trouvé</ion-col>
+            <ion-col size="12">{{ 'participation_history.no_events_found' | translate }}</ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>
@@ -47,19 +47,19 @@
   <ng-container *ngIf="viewType === 'activites'">
     <ion-card>
       <ion-card-header>
-        <ion-card-title class="ion-padding">Liste des Activités</ion-card-title>
+        <ion-card-title class="ion-padding">{{ 'participation_history.activity_list' | translate }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-grid>
           <ion-row
             class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2 reservation-header-row">
-            <ion-col class="text-dark">Titre</ion-col>
-            <ion-col class="text-dark">Description</ion-col>
-            <ion-col class="text-dark">Type</ion-col>
-            <ion-col class="text-dark">date_participation</ion-col>
-            <ion-col class="text-dark">heure_participation</ion-col>
-            <ion-col class="text-dark">Coach Assigné</ion-col>
-            <ion-col class="text-dark">Installation</ion-col>
+            <ion-col class="text-dark">{{ 'participation_history.title_column' | translate }}</ion-col>
+            <ion-col class="text-dark">{{ 'participation_history.description' | translate }}</ion-col>
+            <ion-col class="text-dark">{{ 'participation_history.type' | translate }}</ion-col>
+            <ion-col class="text-dark">{{ 'participation_history.participation_date' | translate }}</ion-col>
+            <ion-col class="text-dark">{{ 'participation_history.participation_time' | translate }}</ion-col>
+            <ion-col class="text-dark">{{ 'participation_history.assigned_coach' | translate }}</ion-col>
+            <ion-col class="text-dark">{{ 'participation_history.installation' | translate }}</ion-col>
           </ion-row>
 
           <ion-row *ngFor="let act of activites" class="ion-text-center reservations-row">
@@ -73,7 +73,7 @@
           </ion-row>
 
           <ion-row *ngIf="!activites.length" class="ion-text-center">
-            <ion-col size="12">Aucune activité trouvée</ion-col>
+            <ion-col size="12">{{ 'participation_history.no_activities_found' | translate }}</ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>

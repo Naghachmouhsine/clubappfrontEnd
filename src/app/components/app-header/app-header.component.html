@@ -1,6 +1,6 @@
 <ion-toolbar  [ngClass]="!isLoggedIn ? 'ion-padding-start' : 'no-padding'">
   <ion-buttons slot="start" *ngIf="isLoggedIn"  >
-    <ion-menu-button menuId="main-content" color="light"></ion-menu-button>
+    <ion-menu-button menu="main-menu" color="light"></ion-menu-button>
   </ion-buttons>
   <ion-title class="ion-text-start header-title  " (click)="goHome()" style="cursor:pointer;">
     {{ t('header.club_full') }}

@@ -94,6 +94,28 @@
       "Arts Martiaux": "Arts Martiaux"
     }
   },
+  "activities": {
+    "title": "Activités",
+    "list": "Liste des activités",
+    "add": "Ajouter une activité",
+    "name": "Nom",
+    "description": "Description",
+    "type": "Type",
+    "actions": "Actions",
+    "title_column": "Titre",
+    "coach_assigned": "Coach Assigné",
+    "installation": "Installation",
+    "empty": "Aucune activité trouvée",
+    "dashboard_title": "Dashboard - Activités",
+    "our_activities": "Nos Activités",
+    "participate": "Participer",
+    "coach": "Coach",
+    "must_be_member": "Vous devez être adhérent pour participer à cette activité.",
+    "admin_participation_disabled": "(Vous êtes administrateur, participation désactivée)",
+    "no_activities": "Aucune activité à venir pour le moment. Restez connecté pour les prochaines actualités !",
+    "no_description": "Pas de description disponible.",
+    "details": "Détails de l'activité"
+  },
   "creneaux": {
     "title": "Dashboard - Créneaux",
     "list": "Liste des créneaux",
@@ -103,9 +125,26 @@
     "end_time": "Heure Fin",
     "installation": "Installation",
     "available": "Disponible",
+    "disponibilite": "Disponibilité",
     "actions": "Actions",
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "details": "Détails du créneau",
+    "time_error": "L'heure de fin doit être après l'heure de début."
+  },
+  "installation": {
+    "title": "Dashboard - Installations",
+    "list": "Liste des installations",
+    "add": "Ajouter une installation",
+    "nom": "Nom",
+    "type": "Type",
+    "statut": "Statut",
+    "actions": "Actions",
+    "details": "Détails",
+    "edit": "Modifier",
+    "empty": "Aucune installation enregistrée pour le moment.",
+    "capacity": "Capacité",
+    "available": "Disponible"
   },
   "utilisateur": {
     "title": "Dashboard - Utilisateurs",
@@ -116,12 +155,22 @@
     "phone": "Téléphone",
     "role": "Rôle",
     "actions": "Actions",
+    "details": "Détails",
+    "change_role": "Changer rôle utilisateur",
+    "view_details": "Voir détails utilisateur",
     "roles": {
       "adherent": "Adhérent",
       "coach": "Coach",
       "responsable": "Responsable",
       "admin": "Admin",
       "user": "Utilisateur"
+    },
+    "role_options": {
+      "user": "Utilisateur",
+      "adherent": "Adhérent",
+      "coach": "Coach",
+      "responsable": "Responsable",
+      "admin": "Admin"
     }
   },
 
@@ -137,8 +186,29 @@
     "slots": "Créneaux",
     "reservation": "Réservation",
     "contact": "Contact",
-    "adherants" :  "Adherants",
-    "historique-reservation" : "Mes reservation"
+    "adherants": "Adhérents",
+    "historique-reservation": "Mes réservations",
+    "events": "Événements",
+    "team": "Équipe",
+    "rewards": "Récompenses",
+    "clubhouse": "Club House",
+    "participate-activity": "Participer aux activités",
+    "history-participation": "Historique participation",
+    "statistics": "Statistiques"
+  },
+  "events": {
+    "title": "Événements",
+    "add": "Ajouter",
+    "edit": "Modifier",
+    "add_event": "Ajouter un événement",
+    "edit_event": "Modifier un événement",
+    "close": "Fermer",
+    "name": "Nom",
+    "description": "Description",
+    "date": "Date",
+    "location": "Lieu",
+    "save_changes": "Enregistrer les modifications",
+    "required": "requis"
   },
   "about": {
     "title": "À propos de nous",
@@ -159,18 +229,65 @@
     "email_placeholder": "Votre email",
     "message": "Message",
     "message_placeholder": "Votre message",
-    "send": "Envoyer"
+    "send": "Envoyer",
+    "full_name": "Nom complet *",
+    "email_required": "Email *",
+    "subject": "Sujet",
+    "message_required": "Message",
+    "send_message": "Envoyez-nous un message et nous vous répondrons dès que possible",
+    "subjects": {
+      "general": "Question générale",
+      "reservation": "Réservation",
+      "membership": "Adhésion",
+      "other": "Autre"
+    },
+    "staff": {
+      "message_button": "Message",
+      "call_button": "Appeler",
+      "more_button": "Voir plus"
+    }
   },
   "adherent": {
-  "title": "Gestion des adhérents",
-  "list": "Liste des adhérents",
-  "name": "Nom complet",
-  "email": "Email",
-  "phone": "Téléphone",
-  "subscription_status": "Statut",
-  "registration_date": "Inscription",
-  "details": "Détails"
-},
+    "title": "Gestion des adhérents",
+    "list": "Liste des adhérents",
+    "name": "Nom complet",
+    "email": "Email",
+    "phone": "Téléphone",
+    "subscription_status": "Statut",
+    "registration_date": "Inscription",
+    "details": "Détails",
+    "total_points": "Total Points",
+    "actions": "Actions",
+    "reinscribe": "Réinscrire l'adhérent",
+    "edit": "Modifier l'adhérent"
+  },
+  "events": {
+    "title": "Événements",
+    "list": "Liste des événements",
+    "add": "Ajouter un événement",
+    "edit": "Modifier un événement",
+    "name": "Nom",
+    "description": "Description",
+    "date": "Date",
+    "location": "Lieu",
+    "actions": "Actions",
+    "close": "Fermer",
+    "save": "Enregistrer les modifications",
+    "add_button": "Ajouter",
+    "delete_confirm": "Voulez-vous vraiment supprimer cet évènement ?",
+    "confirmation": "Confirmation",
+    "participate": "Participer",
+    "photo": "Photo de l'événement",
+    "preview": "Prévisualisation",
+    "name_required": "Nom de l'événement *",
+    "date_required": "Date *",
+    "no_description": "Pas de description disponible.",
+    "no_location": "Non précisé",
+    "must_be_member": "Vous devez être adhérent pour participer à cet événement.",
+    "admin_participation_disabled": "(Vous êtes administrateur, participation désactivée)",
+    "no_events": "Aucun événement à venir pour le moment. Restez connecté pour les prochaines actualités !",
+    "our_events": "Nos Événements"
+  },
   "footer": {
     "club": "Royal Tennis Club de Fès",
     "address": "Adresse : ...",
@@ -212,10 +329,12 @@
     "delete_account": "Supprimer le compte",
     "nom": "Nom",
     "prenom": "Prénom",
-     "genre": "Genre",
-  "subscription_status": "Statut d'abonnement",
-  "registration_date": "Date d'inscription",
-  "renew_required": "Votre abonnement est inactif. Merci de procéder à une réinscription annuelle."
+    "genre": "Genre",
+    "subscription_status": "Statut d'abonnement",
+    "registration_date": "Date d'inscription",
+    "renew_required": "Votre abonnement est inactif. Merci de procéder à une réinscription annuelle.",
+    "specialite": "Spécialité",
+    "department": "Département"
   },
   "settings": {
     "title": "Paramètres",
@@ -254,6 +373,8 @@
   },
   "reservation": {
     "list": "Liste des Réservations",
+    "dashboard_title": "Dashboard - Réservations",
+    "my_reservations": "Mes Réservations",
     "utilisateur_nom": "Nom Utilisateur",
     "utilisateur_email": "Email",
     "date_reservation": "Date de Réservation",
@@ -266,6 +387,260 @@
     "statut_confirmee": "Confirmée",
     "statut_annulee": "Annulée",
     "empty": "Aucune réservation trouvée.",
-    "installation" : "Installation"
+    "installation": "Installation",
+    "booking_for": "Réservation pour",
+    "club_name": "Mon Club Sportif",
+    "selected_activity": "Activité sélectionnée",
+    "click_to_book": "Cliquez sur un créneau disponible pour réserver",
+    "capacity": "Capacité",
+    "available_facilities": "Installations disponibles",
+    "no_slots_available": "Aucun créneau disponible pour le moment",
+    "football_renovation": "Désolé pour la gêne occasionnée. Les terrains de football sont en rénovation et seront de nouveau disponibles dès la prochaine saison.",
+    "confirmation_title": "Confirmation de réservation",
+    "slot_selection": "Sélection du créneau",
+    "date_selection": "Sélection de la date"
+  },
+  "forgot": {
+    "title": "Mot de passe oublié",
+    "subtitle": "Entrez votre adresse email pour recevoir un lien de réinitialisation.",
+    "email": "Adresse email",
+    "email_placeholder": "exemple@domaine.com",
+    "send_link": "Envoyer le lien",
+    "back_login": "← Retour à la connexion"
+  },
+  "clubhouse": {
+    "title": "Club House",
+    "welcome": "Bienvenue au Club House",
+    "description": "Un espace convivial pour se détendre après l'effort.",
+    "services": "Services disponibles",
+    "restaurant": "Restaurant",
+    "bar": "Bar",
+    "lounge": "Salon",
+    "terrace": "Terrasse"
+  },
+  "team": {
+    "title": "Notre Équipe",
+    "management": "Direction",
+    "coaches": "Entraîneurs",
+    "staff": "Personnel",
+    "contact_member": "Contacter",
+    "view_profile": "Voir le profil"
+  },
+  "rewards": {
+    "title": "Récompenses Fidélité",
+    "your_rewards": "Vos Récompenses",
+    "total_points": "Total : {{points}} points",
+    "points_unit": "points",
+    "obtain": "Obtenir",
+    "obtained": "Obtenue",
+    "max_obtained": "Obtenue ({{max}})",
+    "not_enough_points": "Points insuffisants",
+    "congratulations": "Félicitations !",
+    "reward_obtained": "Récompense obtenue avec succès"
+  },
+  "participation_history": {
+    "title": "Historique Participation",
+    "dashboard_title": "Dashboard - Participations",
+    "events": "Événements",
+    "activities": "Activités",
+    "event_list": "Liste des Événements",
+    "activity_list": "Liste des Activités",
+    "event_name": "Événement",
+    "date": "Date",
+    "location": "Lieu",
+    "description": "Description",
+    "title_column": "Titre",
+    "type": "Type",
+    "participation_date": "Date participation",
+    "participation_time": "Heure participation",
+    "assigned_coach": "Coach Assigné",
+    "installation": "Installation",
+    "no_events_found": "Aucun événement trouvé",
+    "no_activities_found": "Aucune activité trouvée"
+  },
+  "statistics": {
+    "title": "Statistiques",
+    "dashboard_title": "Dashboard - Statistiques",
+    "overview": "Vue d'ensemble",
+    "users": "Utilisateurs",
+    "reservations": "Réservations",
+    "activities": "Activités",
+    "events": "Événements",
+    "total": "Total",
+    "active": "Actifs",
+    "pending": "En attente",
+    "confirmed": "Confirmées",
+    "cancelled": "Annulées"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "yes": "Oui",
+    "no": "Non",
+    "all": "Tous",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "warning": "Attention",
+    "info": "Information"
+  },
+  "modals": {
+    "creneau": {
+      "title": "Ajouter un créneau",
+      "edit_title": "Modifier le créneau",
+      "date": "Date",
+      "start_time": "Heure début",
+      "end_time": "Heure fin",
+      "installation": "Installation",
+      "available": "Disponible"
+    },
+    "activite": {
+      "title": "Ajouter une activité",
+      "edit_title": "Modifier l'activité",
+      "titre": "Titre",
+      "description": "Description",
+      "type": "Type",
+      "coach": "Coach",
+      "coach_assigne": "Coach assigné",
+      "installation": "Installation"
+    },
+    "installation": {
+      "title": "Ajouter une installation",
+      "edit_title": "Modifier l'installation",
+      "nom": "Nom",
+      "type": "Type",
+      "capacity": "Capacité",
+      "available": "Disponible"
+    },
+    "user": {
+      "title": "Ajouter un utilisateur",
+      "edit_title": "Modifier l'utilisateur",
+      "details_title": "Détails de l'utilisateur",
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prénom",
+      "email": "Email",
+      "telephone": "Téléphone",
+      "role": "Rôle"
+    },
+    "participation": {
+      "title": "Participation",
+      "date": "Date",
+      "time": "Heure"
+    },
+    "payment": {
+      "title": "Choisissez votre méthode de paiement",
+      "stripe": "Stripe",
+      "paypal": "PayPal",
+      "cmi": "CMI",
+      "cash": "Espèces",
+      "confirm": "Confirmer Paiement"
+    }
+  },
+  "reset_password": {
+    "title": "Réinitialiser le mot de passe",
+    "new_password": "Nouveau mot de passe",
+    "confirm_password": "Confirmer le mot de passe",
+    "password_mismatch": "Les mots de passe ne correspondent pas.",
+    "reset_button": "Réinitialiser",
+    "password_placeholder": "••••••••"
+  },
+  "statistics": {
+    "dashboard_title": "Dashboard - Statistiques",
+    "general_stats": "Statistiques générales",
+    "members": "Adhérents",
+    "reservations": "Réservations",
+    "activities": "Activités",
+    "events": "Événements",
+    "installations": "Installations",
+    "users": "Utilisateurs"
+  },
+  "modals": {
+    "creneau": {
+      "title": "Ajouter un créneau",
+      "edit_title": "Éditer un créneau",
+      "date": "Date",
+      "start_time": "Heure début",
+      "end_time": "Heure fin",
+      "installation": "Installation",
+      "available": "Disponible"
+    },
+    "activite": {
+      "title": "Ajouter une activité",
+      "edit_title": "Éditer une activité",
+      "titre": "Titre",
+      "description": "Description",
+      "type": "Type",
+      "installation": "Installation"
+    },
+    "installation": {
+      "title": "Ajouter une installation",
+      "edit_title": "Modifier une installation",
+      "nom": "Nom",
+      "type": "Type",
+      "capacity": "Capacité",
+      "available": "Disponible"
+    },
+    "user": {
+      "id": "ID"
+    },
+    "participation": {
+      "title": "Participation",
+      "date": "Date",
+      "time": "Heure"
+    },
+    "payment": {
+      "title": "Choisissez votre méthode de paiement",
+      "stripe": "Stripe",
+      "paypal": "PayPal",
+      "cmi": "CMI",
+      "cash": "Espèces",
+      "confirm": "Confirmer Paiement"
+    },
+    "reservation": {
+      "title": "Nombre d'installations à réserver",
+      "facilities_count": "Nombre d'installations à réserver",
+      "people_count": "Nombre de personnes"
+    }
+  },
+  "common": {
+    "add": "Ajouter",
+    "edit": "Modifier",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "save": "Enregistrer"
+  },
+  "events": {
+    "title": "Événements",
+    "add_event": "Ajouter un événement",
+    "edit_event": "Modifier un événement",
+    "name_required": "Nom *",
+    "description": "Description",
+    "date_required": "Date *",
+    "location": "Lieu",
+    "save": "Enregistrer les modifications",
+    "add_button": "Ajouter"
+  },
+  "reservation": {
+    "date_selection": "Date",
+    "slot_selection": "Créneau"
+  },
+  "reinscription": {
+    "title": "Type de Réinscription",
+    "types": {
+      "couple": "Couple",
+      "adulte_seul": "Adulte seul",
+      "couple_senior": "Couple senior",
+      "senior_seul": "Senior seul",
+      "etudiant": "Étudiant",
+      "jeune": "Jeune",
+      "enfant": "Enfant",
+      "nounou": "Nounou"
+    }
   }
 }

@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Participation</ion-title>
+    <ion-title>{{ 'modals.participation.title' | translate }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="annuler()">Fermer</ion-button>
+      <ion-button (click)="annuler()">{{ 'common.close' | translate }}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -10,7 +10,7 @@
 <ion-content class="ion-padding">
   <form [formGroup]="creneauForm">
     <ion-item>
-      <ion-label position="floating">Date</ion-label>
+      <ion-label position="floating">{{ 'modals.participation.date' | translate }}</ion-label>
       <ion-input
         type="date"
         formControlName="date"
@@ -20,7 +20,7 @@
     </ion-item>
 
     <ion-item class="ion-margin-top">
-      <ion-label position="floating">Heure début</ion-label>
+      <ion-label position="floating">{{ 'modals.participation.time' | translate }}</ion-label>
       <ion-input
         type="time"
         formControlName="heure_debut"
@@ -31,7 +31,7 @@
 
     <div class="ion-text-center ion-margin-top">
       <ion-button expand="block" color="success" (click)="validerParticipation()">
-        Participer
+        {{ 'activities.participate' | translate }}
       </ion-button>
     </div>
   </form>

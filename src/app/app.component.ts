@@ -94,13 +94,26 @@ export class AppComponent implements OnInit, OnDestroy {
     this.menuCtrl.toggle();
   }
 
-  navigateTo(path: string) {
-    this.router.navigate([path]);
-    this.menuCtrl.close();
+  async navigateTo(path: string) {
+    console.log('Tentative de navigation vers:', path);
+    console.log('État du menu avant fermeture:', await this.menuCtrl.isOpen());
+    
+    try {
+      const result = await this.menuCtrl.close();
+      console.log('Résultat de la fermeture:', result);
+      console.log('État du menu après fermeture:', await this.menuCtrl.isOpen());
+      
+      this.router.navigate([path]);
+    } catch (error) {
+      console.error('Erreur lors de la fermeture du menu:', error);
+      this.router.navigate([path]);
+    }
   }
 
   toggleDashboardSubmenu() {
     this.isDashboardOpen = !this.isDashboardOpen;
+    // Fermer le menu après avoir basculé le sous-menu
+    this.menuCtrl.close();
   }
 
   async openProfileMenu(event: MouseEvent) {

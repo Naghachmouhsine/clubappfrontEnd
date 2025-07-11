@@ -14,14 +14,14 @@
   </ion-item>
 
   <ion-item *ngIf="activiteSelectionnee">
-    <ion-label>Date</ion-label>
+    <ion-label>{{ 'reservation.date_selection' | translate }}</ion-label>
     <ion-select [(ngModel)]="dateSelectionnee" (ionChange)="onDateChange()">
       <ion-select-option *ngFor="let date of datesDisponibles" [value]="date">{{ date }}</ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-item *ngIf="dateSelectionnee">
-    <ion-label>Créneau</ion-label>
+    <ion-label>{{ 'reservation.slot_selection' | translate }}</ion-label>
     <ion-select [(ngModel)]="creneauSelectionne">
       <ion-select-option *ngFor="let creneau of creneauxDisponibles" [value]="creneau">
         {{ creneau.heure_debut }} - {{ creneau.heure_fin }}

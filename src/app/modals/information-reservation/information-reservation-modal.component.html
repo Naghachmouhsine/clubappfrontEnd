@@ -1,11 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title class="ion-padding">
-       <!-- {{ mode === 'add' ? 'Ajouter une activité' : (mode === 'edit' ? 'Éditer une activité' : 'Détails') }} -->
-      Nombre d'installations à réserver
+      {{ 'modals.reservation.title' | translate }}
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Annuler</ion-button>
+      <ion-button (click)="close()">{{ 'common.cancel' | translate }}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -13,7 +12,7 @@
 <ion-content class="ion-padding">
   <form [formGroup]="nbrForm" (ngSubmit)="submit()">
     <ion-item>
-      <ion-label position="floating">Nombre d'installations à réserver</ion-label>
+      <ion-label position="floating">{{ 'modals.reservation.facilities_count' | translate }}</ion-label>
       <ion-input
         type="number"
         min="1"
@@ -22,7 +21,7 @@
       ></ion-input>
     </ion-item>
      <ion-item>
-      <ion-label position="floating">Nombre de personne</ion-label>
+      <ion-label position="floating">{{ 'modals.reservation.people_count' | translate }}</ion-label>
       <ion-input
         type="number"
         min="1"

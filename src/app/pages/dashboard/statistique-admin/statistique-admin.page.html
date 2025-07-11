@@ -1,4 +1,4 @@
-<app-header nomPage="Dashboard - Statistique"></app-header>
+<app-header [nomPage]="'statistics.dashboard_title' | translate"></app-header>
 
 <ion-content>
 
@@ -10,7 +10,7 @@
         <ion-card color="success" class="ion-text-center dashboard-card">
           <ion-card-header>
             <!-- <ion-icon name="people-outline" size="large" color="light"></ion-icon> -->
-            <ion-card-subtitle>Adhérents</ion-card-subtitle>
+            <ion-card-subtitle>{{ 'statistics.members' | translate }}</ion-card-subtitle>
             <ion-card-title>{{ stats.adherents }}</ion-card-title>
           </ion-card-header>
         </ion-card>
@@ -20,7 +20,7 @@
         <ion-card color="success" class="ion-text-center dashboard-card">
           <ion-card-header>
             <!-- <ion-icon name="calendar-outline" size="large" color="light"></ion-icon> -->
-            <ion-card-subtitle>Réservations</ion-card-subtitle>
+            <ion-card-subtitle>{{ 'statistics.reservations' | translate }}</ion-card-subtitle>
             <ion-card-title>{{ stats.reservations }}</ion-card-title>
           </ion-card-header>
         </ion-card>
@@ -30,7 +30,7 @@
         <ion-card color="success" class="ion-text-center dashboard-card">
           <ion-card-header>
             <!-- <ion-icon name="megaphone-outline" size="large" color="light"></ion-icon> -->
-            <ion-card-subtitle>Participation Événements</ion-card-subtitle>
+            <ion-card-subtitle>{{ 'statistics.events' | translate }}</ion-card-subtitle>
             <ion-card-title>{{ stats.evenements }}</ion-card-title>
           </ion-card-header>
         </ion-card>
@@ -40,7 +40,7 @@
         <ion-card color="success" class="ion-text-center dashboard-card">
           <ion-card-header>
             <!-- <ion-icon name="barbell-outline" size="large" color="light"></ion-icon> -->
-            <ion-card-subtitle>Participation Activités</ion-card-subtitle>
+            <ion-card-subtitle>{{ 'statistics.activities' | translate }}</ion-card-subtitle>
             <ion-card-title>{{ stats.activites }}</ion-card-title>
           </ion-card-header>
         </ion-card>

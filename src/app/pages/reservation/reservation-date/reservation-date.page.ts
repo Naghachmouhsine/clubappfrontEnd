@@ -14,12 +14,13 @@ import { loadStripe } from '@stripe/stripe-js';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MethodPayementComponent } from 'src/app/modals/method-payement/method-payement.component';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-reservation-date',
   templateUrl: './reservation-date.page.html',
   styleUrls: ['./reservation-date.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, AppHeaderComponent]
+  imports: [IonicModule, CommonModule, FormsModule, AppHeaderComponent, TranslateModule]
 })
 export class ReservationDatePage implements OnInit {
 

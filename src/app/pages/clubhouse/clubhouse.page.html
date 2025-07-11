@@ -1,13 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>clubhouse</ion-title>
+    <ion-title>{{ 'clubhouse.title' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">clubhouse</ion-title>
+      <ion-title size="large">{{ 'clubhouse.title' | translate }}</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="ion-padding">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="text-center">
+          🏛️ {{ 'clubhouse.welcome' | translate }}
+        </ion-card-title>
+        <ion-card-subtitle class="text-center">
+          {{ 'clubhouse.description' | translate }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <h3>{{ 'clubhouse.services' | translate }}</h3>
+        <ion-list>
+          <ion-item>
+            <ion-icon name="restaurant-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>{{ 'clubhouse.restaurant' | translate }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="wine-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>{{ 'clubhouse.bar' | translate }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="bed-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>{{ 'clubhouse.lounge' | translate }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="sunny-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>{{ 'clubhouse.terrace' | translate }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
