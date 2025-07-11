@@ -4,12 +4,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="contact-page">
-  <div class="contact-grid">
-    <!-- Section Cartes de visite (gauche) -->
-    <div class="contact-cards">
-      <div class="cards-container">
-        <!-- Carte 1 -->
+<ion-content [fullscreen]="true" class="contact-page ion-padding-top">
+
+  <!-- Section Cartes de visite (gauche) -->
+  <div class="contact-cards">
+    <div class="cards-container">
+
       <div class="contact-card-staff" *ngFor="let contact of contacts">
         <div class="card-header">
           <h4 class="brief">{{ contact.position }}</h4>
@@ -43,7 +43,6 @@
         </div>
       </div>
 
-      </div>
     </div>
 
     <!-- Section Formulaire (droite) -->
@@ -59,17 +58,23 @@
 
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <ion-item>
-            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">{{ 'contact.full_name' | translate }}</ion-label>
+            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">
+              {{ 'contact.full_name' | translate }} *
+            </ion-label>
             <ion-input formControlName="name" type="text" required></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">{{ 'contact.email_required' | translate }}</ion-label>
+            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">
+              {{ 'contact.email_required' | translate }} *
+            </ion-label>
             <ion-input formControlName="email" type="email" required></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">{{ 'contact.subject' | translate }}</ion-label>
+            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">
+              {{ 'contact.subject' | translate }}
+            </ion-label>
             <ion-select formControlName="subject" interface="popover">
               <ion-select-option value="general">{{ 'contact.subjects.general' | translate }}</ion-select-option>
               <ion-select-option value="reservation">{{ 'contact.subjects.reservation' | translate }}</ion-select-option>
@@ -79,7 +84,9 @@
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">{{ 'contact.message_required' | translate }}</ion-label>
+            <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">
+              {{ 'contact.message_required' | translate }} *
+            </ion-label>
             <ion-textarea formControlName="message" rows="5" required></ion-textarea>
           </ion-item>
 

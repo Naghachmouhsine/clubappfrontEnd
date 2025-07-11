@@ -6,5 +6,48 @@
   <app-about-section></app-about-section>
   <app-gallery-section></app-gallery-section>
   <!-- <app-contact-section></app-contact-section> -->
+     <div class="contact-form-section">
+    <div class="glass-card form-container animate__animated animate__fadeIn">
+      <div class="form-header">
+        <div class="club-logo">
+          <img src="assets/images/club-logo.png" alt="Club Logo" />
+        </div>
+        <h2>📞 {{ 'contact.title' | translate }}</h2>
+        <p>Envoyez-nous un message et nous vous répondrons dès que possible</p>
+      </div>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">Nom complet *</ion-label>
+          <ion-input formControlName="name" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">Email *</ion-label>
+          <ion-input formControlName="email" type="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">Sujet</ion-label>
+          <ion-select formControlName="subject" interface="popover">
+            <ion-select-option value="general">Question générale</ion-select-option>
+            <ion-select-option value="reservation">Réservation</ion-select-option>
+            <ion-select-option value="membership">Adhésion</ion-select-option>
+            <ion-select-option value="other">Autre</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked" class="fst-italic fw-bold fs-5 mb-2">Message</ion-label>
+          <ion-textarea formControlName="message" rows="5" required></ion-textarea>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" class="submit-btn mt-2" [disabled]="!contactForm.valid">
+          <ion-icon name="send-outline" slot="start"></ion-icon>
+          Envoyer
+        </ion-button>
+      </form>
+    </div>
+  </div>
   <app-footer-dark></app-footer-dark>
 </ion-content>

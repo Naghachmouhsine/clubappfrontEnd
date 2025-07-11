@@ -1,26 +1,29 @@
-<!-- <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Dashboard - Installations</ion-title>
-  </ion-toolbar>
-</ion-header> -->
+<!-- En-tête personnalisé -->
 <app-header [nomPage]="'installation.title' | translate"></app-header>
+
 <ion-content class="ion-padding section-alt">
   <ion-card class="card-royal">
     <ion-card-header>
-      <ion-card-title class="services-title">{{ 'installation.list' | translate }}</ion-card-title>
+      <ion-card-title class="services-title">
+        {{ 'installation.list' | translate }}
+      </ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
+      <!-- Bouton d'ajout -->
       <ion-button expand="block" (click)="addInstallation()" class="btn-gold">
         <ion-icon slot="start" name="add-circle-outline"></ion-icon>
         {{ 'installation.add' | translate }}
       </ion-button>
 
+      <!-- Tableau des installations -->
       <ion-grid *ngIf="installations.length > 0">
         <ion-row class="ion-text-center fw-bold bg-gold-contrast rounded-3 shadow-sm mb-2 py-2">
-          <ion-col>{{ 'installation.nom' | translate }}</ion-col>
-          <ion-col>{{ 'installation.type' | translate }}</ion-col>
-          <ion-col>{{ 'installation.statut' | translate }}</ion-col>
-          <ion-col>{{ 'installation.actions' | translate }}</ion-col>
+          <ion-col class="text-dark">{{ 'installation.name' | translate }}</ion-col>
+          <ion-col class="text-dark">{{ 'installation.type' | translate }}</ion-col>
+          <ion-col class="text-dark">{{ 'installation.capacity' | translate }}</ion-col>
+          <ion-col class="text-dark">{{ 'installation.available' | translate }}</ion-col>
+          <ion-col class="text-dark">{{ 'installation.actions' | translate }}</ion-col>
         </ion-row>
 
         <ion-row *ngFor="let installation of installations"
@@ -31,18 +34,20 @@
           <ion-col class="installation-cell">{{ installation.capacite }}</ion-col>
           <ion-col class="installation-cell">{{ installation.disponible }}</ion-col>
           <ion-col>
-            <ion-button size="small" fill="outline" color="primary" (click)="detailInstallation(installation.id)">
-              <ion-icon name="eye-outline" slot="start"></ion-icon>
-              {{ 'installation.details' | translate }}
+            <ion-button fill="clear" color="primary" (click)="detailInstallation(installation.id)" class="rounded-pill">
+              <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
             </ion-button>
-            <ion-button size="small" fill="outline" color="warning" (click)="editInstallation(installation.id)">
-              <ion-icon name="create-outline" slot="start"></ion-icon>
-              {{ 'installation.edit' | translate }}
+            <ion-button fill="clear" color="warning" (click)="editInstallation(installation.id)" class="rounded-pill">
+              <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" color="danger" (click)="deleteInstallation(installation.id)" class="rounded-pill">
+              <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
             </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
 
+      <!-- Message vide -->
       <div *ngIf="installations.length === 0" class="ion-text-center empty-state">
         <p>{{ 'installation.empty' | translate }}</p>
       </div>

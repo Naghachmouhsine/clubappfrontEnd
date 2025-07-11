@@ -16,6 +16,7 @@
 }
 
 .contact-cards {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -24,10 +25,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+  max-width: 1000px; /* Limite totale pour éviter plus de 3 */
+  margin: 0 auto;     /* Centrer le conteneur */
   position: sticky;
   top: 20px;
   z-index: 2;
 }
+
 
 .contact-card-staff {
   background: linear-gradient(135deg, #eaf5efcc 0%, #c9d1d9cc 100%);

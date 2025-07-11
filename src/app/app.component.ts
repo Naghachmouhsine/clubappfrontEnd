@@ -29,7 +29,6 @@ export class AppComponent implements OnInit, OnDestroy {
   isDashboardOpen = false;
   theme: ThemeType = 'auto';
   loginIn: boolean = false;
-  private menuSub?: Subscription;
   private authSub?: Subscription;
   private userSub?: Subscription;
 
@@ -85,24 +84,14 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.menuSub?.unsubscribe();
     this.authSub?.unsubscribe();
     this.userSub?.unsubscribe();
   }
 
-  toggleMenu() {
-    this.menuCtrl.toggle();
-  }
-
   async navigateTo(path: string) {
-    console.log('Tentative de navigation vers:', path);
-    console.log('État du menu avant fermeture:', await this.menuCtrl.isOpen());
-    
+    this.isDashboardOpen = false;
     try {
-      const result = await this.menuCtrl.close();
-      console.log('Résultat de la fermeture:', result);
-      console.log('État du menu après fermeture:', await this.menuCtrl.isOpen());
-      
+      await this.menuCtrl.close();
       this.router.navigate([path]);
     } catch (error) {
       console.error('Erreur lors de la fermeture du menu:', error);
@@ -112,7 +101,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   toggleDashboardSubmenu() {
     this.isDashboardOpen = !this.isDashboardOpen;
-    // Fermer le menu après avoir basculé le sous-menu
     this.menuCtrl.close();
   }
 

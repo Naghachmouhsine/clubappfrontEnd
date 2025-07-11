@@ -74,12 +74,12 @@ export class InstallationModalComponent implements OnInit {
         await this.http.put(`http://localhost:3000/api/installations/${this.installationId}`, body).toPromise();
       }
 
-      const toast = await this.toastCtrl.create({
-        message: this.mode === 'add' ? 'Installation ajoutée' : 'Installation mise à jour',
-        duration: 2000,
-        color: 'success'
-      });
-      toast.present();
+      // const toast = await this.toastCtrl.create({
+      //   message: this.mode === 'add' ? 'Installation ajoutée' : 'Installation mise à jour',
+      //   duration: 2000,
+      //   color: 'success'
+      // });
+      // toast.present();
       this.dismissModal(true);
 
     } catch (err) {

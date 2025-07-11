@@ -2,33 +2,47 @@
   <button class="close-btn" (click)="close()" aria-label="Fermer">
     <ion-icon name="close-outline"></ion-icon>
   </button>
+
   <form [formGroup]="accountForm" (ngSubmit)="submit()" class="popup-form">
     <div class="avatar-premium mb-2 mx-auto">
       <ion-icon name="person-circle" class="gold-avatar"></ion-icon>
     </div>
+
     <ion-list lines="none">
       <ion-item>
-        <ion-label position="floating">{{ 'profil.nom' | translate }}</ion-label>
+        <ion-label class="mb-2" position="stacked">{{ 'profile.nom' | translate }}</ion-label>
         <ion-input formControlName="nom"></ion-input>
       </ion-item>
+
       <ion-item>
-        <ion-label position="floating">{{ 'profil.prenom' | translate }}</ion-label>
+        <ion-label class="mb-2" position="stacked">{{ 'profile.prenom' | translate }}</ion-label>
         <ion-input formControlName="prenom"></ion-input>
       </ion-item>
+
       <ion-item>
-        <ion-label position="floating">{{ 'profile.email' | translate }}</ion-label>
+        <ion-label class="mb-2" position="stacked">{{ 'profile.email' | translate }}</ion-label>
         <ion-input formControlName="email" type="email"></ion-input>
       </ion-item>
+    <ion-item>
+      <ion-label   class="mb-2"  position="stacked">Date de Naissance</ion-label>
+      <ion-input
+        type="date"
+        formControlName="date_naissance"
+      ></ion-input>
+    </ion-item>
       <ion-item>
-        <ion-label position="floating">{{ 'profile.phone' | translate }}</ion-label>
-        <ion-input formControlName="telephone"></ion-input>
+        <ion-label class="mb-2" position="stacked">{{ 'profile.phone' | translate }}</ion-label>
+        <ion-input formControlName="telephone" type="tel"></ion-input>
       </ion-item>
+
       <ion-item>
-        <ion-label position="floating">{{ 'profile.profession' | translate }}</ion-label>
+        <ion-label class="mb-2" position="stacked">{{ 'profile.profession' | translate }}</ion-label>
         <ion-input formControlName="profesion"></ion-input>
       </ion-item>
     </ion-list>
+
     <div *ngIf="errorMsg" class="text-danger small mt-2">{{ errorMsg | translate }}</div>
+
     <ion-button expand="block" type="submit" [disabled]="loading || accountForm.invalid" class="mt-3 gold-btn">
       <ion-spinner *ngIf="loading" name="dots"></ion-spinner>
       <span *ngIf="!loading">{{ 'settings.save' | translate }}</span>

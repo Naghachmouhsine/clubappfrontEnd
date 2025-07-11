@@ -55,13 +55,14 @@ export class InstallationPage implements OnInit {
             this.http.delete(`http://localhost:3000/api/installations/${id}`)
               .subscribe({
                 next: async () => {
-                  this.installations = this.installations.filter(i => i.id !== id);
-                  const toast = await this.toastCtrl.create({
-                    message: 'Installation supprimée.',
-                    duration: 2000,
-                    color: 'success'
-                  });
-                  toast.present();
+                  // this.installations = this.installations.filter(i => i.id !== id);
+                  // const toast = await this.toastCtrl.create({
+                  //   message: 'Installation supprimée.',
+                  //   duration: 2000,
+                  //   color: 'success'
+                  // });
+                  // toast.present();
+                  this.loadInstallations()
                 },
                 error: (err) => console.error(err)
               });
