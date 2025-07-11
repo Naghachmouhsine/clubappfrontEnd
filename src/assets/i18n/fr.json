@@ -196,20 +196,6 @@
     "history-participation": "Historique participation",
     "statistics": "Statistiques"
   },
-  "events": {
-    "title": "Événements",
-    "add": "Ajouter",
-    "edit": "Modifier",
-    "add_event": "Ajouter un événement",
-    "edit_event": "Modifier un événement",
-    "close": "Fermer",
-    "name": "Nom",
-    "description": "Description",
-    "date": "Date",
-    "location": "Lieu",
-    "save_changes": "Enregistrer les modifications",
-    "required": "requis"
-  },
   "about": {
     "title": "À propos de nous",
     "description": "Le Royal Tennis Club de Fès est un lieu d’excellence sportive, de convivialité et de tradition. Notre club accueille petits et grands pour la pratique du tennis et d’autres activités sportives dans un cadre royal et verdoyant.",
@@ -286,7 +272,11 @@
     "must_be_member": "Vous devez être adhérent pour participer à cet événement.",
     "admin_participation_disabled": "(Vous êtes administrateur, participation désactivée)",
     "no_events": "Aucun événement à venir pour le moment. Restez connecté pour les prochaines actualités !",
-    "our_events": "Nos Événements"
+    "our_events": "Nos Événements",
+    "save_changes": "Enregistrer les modifications",
+    "required": "requis",
+    "add_event": "Ajouter un événement",
+    "edit_event": "Modifier un événement"
   },
   "footer": {
     "club": "Royal Tennis Club de Fès",
@@ -400,14 +390,6 @@
     "slot_selection": "Sélection du créneau",
     "date_selection": "Sélection de la date"
   },
-  "forgot": {
-    "title": "Mot de passe oublié",
-    "subtitle": "Entrez votre adresse email pour recevoir un lien de réinitialisation.",
-    "email": "Adresse email",
-    "email_placeholder": "exemple@domaine.com",
-    "send_link": "Envoyer le lien",
-    "back_login": "← Retour à la connexion"
-  },
   "clubhouse": {
     "title": "Club House",
     "welcome": "Bienvenue au Club House",
@@ -458,90 +440,7 @@
     "no_events_found": "Aucun événement trouvé",
     "no_activities_found": "Aucune activité trouvée"
   },
-  "statistics": {
-    "title": "Statistiques",
-    "dashboard_title": "Dashboard - Statistiques",
-    "overview": "Vue d'ensemble",
-    "users": "Utilisateurs",
-    "reservations": "Réservations",
-    "activities": "Activités",
-    "events": "Événements",
-    "total": "Total",
-    "active": "Actifs",
-    "pending": "En attente",
-    "confirmed": "Confirmées",
-    "cancelled": "Annulées"
-  },
-  "common": {
-    "save": "Enregistrer",
-    "cancel": "Annuler",
-    "delete": "Supprimer",
-    "edit": "Modifier",
-    "add": "Ajouter",
-    "close": "Fermer",
-    "confirm": "Confirmer",
-    "yes": "Oui",
-    "no": "Non",
-    "all": "Tous",
-    "loading": "Chargement...",
-    "error": "Erreur",
-    "success": "Succès",
-    "warning": "Attention",
-    "info": "Information"
-  },
-  "modals": {
-    "creneau": {
-      "title": "Ajouter un créneau",
-      "edit_title": "Modifier le créneau",
-      "date": "Date",
-      "start_time": "Heure début",
-      "end_time": "Heure fin",
-      "installation": "Installation",
-      "available": "Disponible"
-    },
-    "activite": {
-      "title": "Ajouter une activité",
-      "edit_title": "Modifier l'activité",
-      "titre": "Titre",
-      "description": "Description",
-      "type": "Type",
-      "coach": "Coach",
-      "coach_assigne": "Coach assigné",
-      "installation": "Installation"
-    },
-    "installation": {
-      "title": "Ajouter une installation",
-      "edit_title": "Modifier l'installation",
-      "nom": "Nom",
-      "type": "Type",
-      "capacity": "Capacité",
-      "available": "Disponible"
-    },
-    "user": {
-      "title": "Ajouter un utilisateur",
-      "edit_title": "Modifier l'utilisateur",
-      "details_title": "Détails de l'utilisateur",
-      "id": "ID",
-      "nom": "Nom",
-      "prenom": "Prénom",
-      "email": "Email",
-      "telephone": "Téléphone",
-      "role": "Rôle"
-    },
-    "participation": {
-      "title": "Participation",
-      "date": "Date",
-      "time": "Heure"
-    },
-    "payment": {
-      "title": "Choisissez votre méthode de paiement",
-      "stripe": "Stripe",
-      "paypal": "PayPal",
-      "cmi": "CMI",
-      "cash": "Espèces",
-      "confirm": "Confirmer Paiement"
-    }
-  },
+
   "reset_password": {
     "title": "Réinitialiser le mot de passe",
     "new_password": "Nouveau mot de passe",
@@ -558,7 +457,14 @@
     "activities": "Activités",
     "events": "Événements",
     "installations": "Installations",
-    "users": "Utilisateurs"
+    "users": "Utilisateurs",
+    "title": "Statistiques",
+    "overview": "Vue d'ensemble",
+    "total": "Total",
+    "active": "Actifs",
+    "pending": "En attente",
+    "confirmed": "Confirmées",
+    "cancelled": "Annulées"
   },
   "modals": {
     "creneau": {
@@ -613,22 +519,16 @@
     "edit": "Modifier",
     "cancel": "Annuler",
     "close": "Fermer",
-    "save": "Enregistrer"
-  },
-  "events": {
-    "title": "Événements",
-    "add_event": "Ajouter un événement",
-    "edit_event": "Modifier un événement",
-    "name_required": "Nom *",
-    "description": "Description",
-    "date_required": "Date *",
-    "location": "Lieu",
-    "save": "Enregistrer les modifications",
-    "add_button": "Ajouter"
-  },
-  "reservation": {
-    "date_selection": "Date",
-    "slot_selection": "Créneau"
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "yes": "Oui",
+    "no": "Non",
+    "all": "Tous",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "warning": "Attention",
+    "info": "Information"
   },
   "reinscription": {
     "title": "Type de Réinscription",

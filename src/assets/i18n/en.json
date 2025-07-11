@@ -186,20 +186,6 @@
     "history-participation": "Participation history",
     "statistics": "Statistics"
   },
-  "events": {
-    "title": "Events",
-    "add": "Add",
-    "edit": "Edit",
-    "add_event": "Add an event",
-    "edit_event": "Edit an event",
-    "close": "Close",
-    "name": "Name",
-    "description": "Description",
-    "date": "Date",
-    "location": "Location",
-    "save_changes": "Save changes",
-    "required": "required"
-  },
   "about": {
     "title": "About us",
     "description": "The Royal Tennis Club of Fès is a place of sporting excellence, conviviality and tradition. Our club welcomes young and old for tennis and other sports activities in a royal and green setting.",
@@ -374,7 +360,11 @@
     "must_be_member": "You must be a member to participate in this event.",
     "admin_participation_disabled": "(You are an administrator, participation disabled)",
     "no_events": "No upcoming events at the moment. Stay connected for the latest news!",
-    "our_events": "Our Events"
+    "our_events": "Our Events",
+    "save_changes": "Save changes",
+    "required": "required",
+    "add_event": "Add an event",
+    "edit_event": "Edit an event"
   },
   "adherent": {
     "title": "Member management",
@@ -460,7 +450,10 @@
     "active": "Active",
     "pending": "Pending",
     "confirmed": "Confirmed",
-    "cancelled": "Cancelled"
+    "cancelled": "Cancelled",
+    "general_stats": "General statistics",
+    "members": "Members",
+    "installations": "Facilities"
   },
   "common": {
     "save": "Save",
@@ -530,6 +523,20 @@
       "cmi": "CMI",
       "cash": "Cash",
       "confirm": "Confirm Payment"
+    },
+      "reservation": {
+      "title": "Number of facilities to reserve",
+      "facilities_count": "Number of facilities to reserve",
+      "people_count": "Number of people" ,
+      "my_reservations": "My Reservations",
+      "list": "Reservation List",
+      "date_reservation": "Reservation Date",
+      "date_creneau": "Slot Date",
+      "heure_debut": "Start Time",
+      "heure_fin": "End Time",
+      "statut": "Status",
+      "installation": "Facility",
+      "empty": "No reservations found."
     }
   },
   "reset_password": {
@@ -539,86 +546,6 @@
     "password_mismatch": "Passwords do not match.",
     "reset_button": "Reset",
     "password_placeholder": "••••••••"
-  },
-  "statistics": {
-    "dashboard_title": "Dashboard - Statistics",
-    "general_stats": "General statistics",
-    "members": "Members",
-    "reservations": "Reservations",
-    "activities": "Activities",
-    "events": "Events",
-    "installations": "Facilities",
-    "users": "Users"
-  },
-  "modals": {
-    "creneau": {
-      "title": "Add slot",
-      "edit_title": "Edit slot",
-      "date": "Date",
-      "start_time": "Start time",
-      "end_time": "End time",
-      "installation": "Facility",
-      "available": "Available"
-    },
-    "activite": {
-      "title": "Add activity",
-      "edit_title": "Edit activity",
-      "titre": "Title",
-      "description": "Description",
-      "type": "Type",
-      "installation": "Facility"
-    },
-    "installation": {
-      "title": "Add facility",
-      "edit_title": "Edit facility",
-      "nom": "Name",
-      "type": "Type",
-      "capacity": "Capacity",
-      "available": "Available"
-    },
-    "user": {
-      "id": "ID"
-    },
-    "participation": {
-      "title": "Participation",
-      "date": "Date",
-      "time": "Time"
-    },
-    "payment": {
-      "title": "Choose your payment method",
-      "stripe": "Stripe",
-      "paypal": "PayPal",
-      "cmi": "CMI",
-      "cash": "Cash",
-      "confirm": "Confirm Payment"
-    },
-    "reservation": {
-      "title": "Number of facilities to reserve",
-      "facilities_count": "Number of facilities to reserve",
-      "people_count": "Number of people"
-    }
-  },
-  "common": {
-    "add": "Add",
-    "edit": "Edit",
-    "cancel": "Cancel",
-    "close": "Close",
-    "save": "Save"
-  },
-  "events": {
-    "title": "Events",
-    "add_event": "Add an event",
-    "edit_event": "Edit an event",
-    "name_required": "Name *",
-    "description": "Description",
-    "date_required": "Date *",
-    "location": "Location",
-    "save": "Save changes",
-    "add_button": "Add"
-  },
-  "reservation": {
-    "date_selection": "Date",
-    "slot_selection": "Slot"
   },
   "reinscription": {
     "title": "Renewal Type",

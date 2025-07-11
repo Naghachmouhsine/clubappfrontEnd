@@ -446,7 +446,10 @@
     "active": "نشط",
     "pending": "قيد الانتظار",
     "confirmed": "مؤكد",
-    "cancelled": "ملغى"
+    "cancelled": "ملغى",
+    "general_stats": "الإحصائيات العامة",
+    "members": "الأعضاء",
+    "installations": "المنشآت"
   },
   "common": {
     "save": "حفظ",
@@ -516,6 +519,11 @@
       "cmi": "سي إم آي",
       "cash": "نقدًا",
       "confirm": "تأكيد الدفع"
+    },
+        "reservation": {
+      "title": "عدد المنشآت المراد حجزها",
+      "facilities_count": "عدد المنشآت المراد حجزها",
+      "people_count": "عدد الأشخاص"
     }
   },
   "reset_password": {
@@ -526,86 +534,7 @@
     "reset_button": "إعادة تعيين",
     "password_placeholder": "••••••••"
   },
-  "statistics": {
-    "dashboard_title": "لوحة التحكم - الإحصائيات",
-    "general_stats": "الإحصائيات العامة",
-    "members": "الأعضاء",
-    "reservations": "الحجوزات",
-    "activities": "الأنشطة",
-    "events": "الفعاليات",
-    "installations": "المنشآت",
-    "users": "المستخدمون"
-  },
-  "modals": {
-    "creneau": {
-      "title": "إضافة فترة زمنية",
-      "edit_title": "تعديل الفترة الزمنية",
-      "date": "التاريخ",
-      "start_time": "وقت البداية",
-      "end_time": "وقت النهاية",
-      "installation": "المنشأة",
-      "available": "متاح"
-    },
-    "activite": {
-      "title": "إضافة نشاط",
-      "edit_title": "تعديل النشاط",
-      "titre": "العنوان",
-      "description": "الوصف",
-      "type": "النوع",
-      "installation": "المنشأة"
-    },
-    "installation": {
-      "title": "إضافة منشأة",
-      "edit_title": "تعديل المنشأة",
-      "nom": "الاسم",
-      "type": "النوع",
-      "capacity": "السعة",
-      "available": "متاح"
-    },
-    "user": {
-      "id": "المعرف"
-    },
-    "participation": {
-      "title": "المشاركة",
-      "date": "التاريخ",
-      "time": "الوقت"
-    },
-    "payment": {
-      "title": "اختر طريقة الدفع",
-      "stripe": "سترايب",
-      "paypal": "باي بال",
-      "cmi": "سي إم آي",
-      "cash": "نقدًا",
-      "confirm": "تأكيد الدفع"
-    },
-    "reservation": {
-      "title": "عدد المنشآت المراد حجزها",
-      "facilities_count": "عدد المنشآت المراد حجزها",
-      "people_count": "عدد الأشخاص"
-    }
-  },
-  "common": {
-    "add": "إضافة",
-    "edit": "تعديل",
-    "cancel": "إلغاء",
-    "close": "إغلاق",
-    "save": "حفظ"
-  },
-  "events": {
-    "title": "الفعاليات",
-    "add_event": "إضافة فعالية",
-    "edit_event": "تعديل الفعالية",
-    "name_required": "الاسم *",
-    "description": "الوصف",
-    "date_required": "التاريخ *",
-    "location": "المكان",
-    "save": "حفظ التغييرات",
-    "add_button": "إضافة"
-  },
-  "reservation": {
-    "date_selection": "التاريخ",
-    "slot_selection": "الفترة الزمنية"
-  },
+
   "reinscription": {
     "title": "نوع التجديد",
     "types": {
