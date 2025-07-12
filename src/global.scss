@@ -1,3 +1,6 @@
+/* Import des styles de thème pour les pages */
+@use 'app/shared/styles/theme-pages.scss';
+
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -45,65 +48,101 @@
   background-color: aliceblue;
 }
 
+/* ===== VARIABLES CSS GLOBALES ===== */
 :root {
-  --color-green: #004225;
-  --color-gold: #FFD700;
-  --color-white: #fff;
-  --color-light: #f9f9f9;
+  /* Variables de couleurs principales - Mode Clair */
+  --color-primary: #004225;
+  --color-secondary: #FFD700;
+  --color-accent: #3fa7ff;
+  --color-background: #f9f9f9;
+  --color-surface: #ffffff;
+  --color-text: #00422;
+  --color-text-secondary: #666666;
+  --color-border: #e0e0e0;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  
+  /* Variables legacy pour compatibilité */
+  --color-green: var(--color-primary);
+  --color-gold: var(--color-secondary);
+  --color-white: var(--color-surface);
+  --color-light: var(--color-background);
   --color-footer: #222;
   --font-main: 'Poppins', 'Roboto', Arial, sans-serif;
-  --ion-color-success: #FFD700 !important; /* gold */
-  --ion-color-success-rgb: 255, 215, 0 !important;
-  --ion-color-success-contrast: #232323 !important; /* texte foncé pour accessibilité */
-  --ion-color-success-contrast-rgb: 35, 35, 35 !important;
-  --ion-color-success-shade: #FFC300 !important;
-  --ion-color-success-tint: #FFF2CC !important;
+  
+  /* Variables Ionic */
+  --ion-color-success: var(--color-secondary);
+  --ion-color-success-rgb: 255, 215, 0;
+  --ion-color-success-contrast: #232323;
+  --ion-color-success-contrast-rgb: 35, 35, 35;
+  --ion-color-success-shade: #FFC300;
+  --ion-color-success-tint: #FFF2CC;
+  
+  /* Variables pour les composants */
+  --header-background: linear-gradient(90deg, #0a1833 0%, #3fa7ff 60%, #ffd700 100%);
+  --menu-background: var(--color-surface);
+  --card-background: var(--color-surface);
+  --input-background: var(--color-surface);
 }
 
 body {
   font-family: var(--font-main);
-  background: var(--color-light);
-  color: var(--color-green);
+  background: var(--color-background);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 a, .btn {
   font-family: var(--font-main);
 }
+
+/* Boutons */
 .btn-gold {
-  background: var(--color-gold);
-  color: var(--color-green);
+  background: var(--color-secondary);
+  color: var(--color-primary);
   border-radius: 30px;
   font-weight: 600;
   transition: box-shadow 0.2s, transform 0.2s;
 }
+
 .btn-gold:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 16px var(--color-shadow);
   transform: translateY(-2px) scale(1.03);
-  color: var(--color-green);
+  color: var(--color-primary);
 }
+
+/* Cartes */
 .card-royal {
+  background: var(--card-background);
   border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 16px var(--color-shadow);
   border: none;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, background-color 0.3s ease;
 }
+
 .card-royal:hover {
   box-shadow: 0 6px 24px rgba(0,66,37,0.12);
 }
+
+/* Sections */
 .section-alt {
-  background: var(--color-light);
+  background: var(--color-background);
 }
+
 .section-green {
   background: #eaf5ef;
 }
+
 .footer-dark {
-  background: var(--color-green);
-  color: var(--color-gold);
+  background: var(--color-primary);
+  color: var(--color-secondary);
   padding: 40px 0 20px 0;
 }
+
 .footer-dark a {
-  color: var(--color-gold);
+  color: var(--color-secondary);
   text-decoration: none;
 }
+
 .hero {
   min-height: 70vh;
   background: linear-gradient(rgba(0,66,37,0.7),rgba(0,66,37,0.7)),url('assets/images/hero-bg.jpg') center/cover no-repeat;
@@ -111,233 +150,211 @@ a, .btn {
   align-items: center;
   justify-content: center;
 }
+
 .services-title, .about-title, .gallery-title, .contact-title {
-  color: var(--color-green);
+  color: var(--color-text);
 }
+
 .services-icon {
   font-size: 2.5rem;
-  color: var(--color-gold);
+  color: var(--color-secondary);
 }
+
 .form-max {
   max-width: 500px;
 }
 
-/* Thème sombre premium */
+/* ===== THÈME SOMBRE ===== */
 body.dark-theme {
-  --color-green: #00331a;
-  --color-gold: #FFD700;
-  --color-white: #232323; // noir 90% pour fond principal
-  --color-light: #232323; // noir 90% pour fond secondaire
+  /* Variables de couleurs pour le thème sombre */
+  --color-primary: #00331a;
+  --color-secondary: #FFD700;
+  --color-accent: #3fa7ff;
+  --color-background: #181818;
+  --color-surface: #232323;
+  --color-text: #FFD700;
+  --color-text-secondary: #cccccc;
+  --color-border: #444444;
+  --color-shadow: rgba(255, 215, 0, 0.1);
+  
+  /* Variables legacy pour compatibilité */
+  --color-green: var(--color-primary);
+  --color-gold: var(--color-secondary);
+  --color-white: var(--color-surface);
+  --color-light: var(--color-background);
   --color-footer: #111;
-  --ion-color-success: #FFD700 ;
-  --ion-color-success-rgb: 255, 215, 0 !important;
-  --ion-color-success-contrast: #181818 !important;
-  --ion-color-success-contrast-rgb: 24, 24, 24 !important;
-  --ion-color-success-shade: #FFC300 !important;
-  --ion-color-success-tint: #FFF2CC !important;
-  background: var(--color-light) !important;
-  color: var(--color-gold) !important;
+  
+  /* Variables Ionic pour le thème sombre */
+  --ion-color-success: var(--color-secondary);
+  --ion-color-success-rgb: 255, 215, 0;
+  --ion-color-success-contrast: #181818;
+  --ion-color-success-contrast-rgb: 24, 24, 24;
+  --ion-color-success-shade: #FFC300;
+  --ion-color-success-tint: #FFF2CC;
+  
+  /* Variables pour les composants en mode sombre */
+  --header-background: linear-gradient(90deg, #181818 0%, #232323 60%, #ffd700 100%);
+  --menu-background: var(--color-surface);
+  --card-background: var(--color-surface);
+  --input-background: var(--color-surface);
 }
 
+/* Styles généraux pour le thème sombre */
+body.dark-theme {
+  background: var(--color-background) !important;
+  color: var(--color-text) !important;
+}
+
+/* Composants principaux */
 body.dark-theme .card-royal,
 body.dark-theme .section-alt,
 body.dark-theme .menu-content,
 body.dark-theme .main-content-adapt,
 body.dark-theme ion-content,
+body.dark-theme .bg-white,
+body.dark-theme ,
+body.dark-theme .creneaux-row {
+  background: var(--card-background) !important;
+  color: var(--color-text) !important;
+}
+
+/* Textes et titres */
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6,
+body.dark-theme p,
+body.dark-theme a,
+body.dark-theme .ion-label,
+body.dark-theme .fw-bold,
+body.dark-theme .header-title {
+  color: var(--color-text) !important;
+}
+
+/* Formulaires */
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select,
+body.dark-theme ion-input,
+body.dark-theme ion-textarea,
+body.dark-theme ion-select {
+  background: var(--input-background) !important;
+  color: var(--color-text) !important;
+  border-color: var(--color-border) !important;
+}
+
+/* Boutons Ionic */
+body.dark-theme ion-button {
+  --background: var(--color-surface);
+  --color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+/* Cartes Ionic */
+body.dark-theme ion-card {
+  background: var(--card-background) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+/* Titres Ionic */
+body.dark-theme ion-title {
+  color: var(--color-text) !important;
+}
+
+/* Badges */
+body.dark-theme ion-badge {
+  background: var(--color-secondary) !important;
+  color: var(--color-primary) !important;
+}
+
+/* Footer */
 body.dark-theme .footer-dark {
-  background: #232323 !important;
-  color: var(--color-gold) !important;
+  background: var(--color-primary) !important;
+  color: var(--color-secondary) !important;
 }
 
-body.dark-theme .btn-gold {
-  background: var(--color-gold);
-  color: var(--color-green);
-}
-
-body.dark-theme .footer-dark {
-  background: var(--color-green);
-  color: var(--color-gold);
-}
-
+/* Hero section */
 body.dark-theme .hero {
   background: linear-gradient(rgba(0,51,26,0.8),rgba(0,51,26,0.8)),url('assets/images/hero-bg.jpg') center/cover no-repeat;
 }
 
-body.dark-theme h1,
-body.dark-theme h2,
-body.dark-theme h3,
-body.dark-theme h4,
-body.dark-theme h5,
-body.dark-theme h6,
-body.dark-theme p,
-body.dark-theme a,
-body.dark-theme .ion-label,
-body.dark-theme .fw-bold,
-body.dark-theme .header-title {
-  color: var(--color-gold) !important;
+/* Menu latéral */
+body.dark-theme ion-menu {
+  --background: var(--menu-background);
+  --color: var(--color-text);
 }
 
-// Badges : garder la couleur mais adapter le texte si besoin
-body.dark-theme ion-badge {
-  color: #fff !important;
+body.dark-theme ion-menu ion-toolbar {
+  --background: var(--header-background);
+  --color: var(--color-text);
 }
 
-// Pour les backgrounds blancs explicites
-body.dark-theme .bg-white,
-body.dark-theme .card-royal,
-body.dark-theme .user-row,
-body.dark-theme .creneaux-row {
-  background: #232323 !important;
-  color: var(--color-gold) !important;
+body.dark-theme ion-menu ion-item {
+  --background: transparent;
+  --color: var(--color-text);
+  --border-color: var(--color-border);
 }
 
-body.light-theme {
-  background: var(--color-light);
-  color: var(--color-green);
+body.dark-theme ion-menu ion-item:hover {
+  --background: rgba(255, 215, 0, 0.1);
 }
 
-body.dark-theme {
-  background: #181818 !important;
-  color: #ffd700 !important;
+/* Modales */
+body.dark-theme .modal-wrapper {
+  background: var(--card-background) !important;
+  color: var(--color-text) !important;
 }
 
-body.dark-theme .card-royal,
-body.dark-theme .section-alt,
-body.dark-theme .menu-content,
-body.dark-theme .main-content-adapt,
-body.dark-theme ion-content,
-body.dark-theme .footer-dark {
-  background: #181818 !important;
-  color: #ffd700 !important;
+/* Toast */
+body.dark-theme ion-toast {
+  --background: var(--color-surface);
+  --color: var(--color-text);
 }
 
-body.dark-theme h1,
-body.dark-theme h2,
-body.dark-theme h3,
-body.dark-theme h4,
-body.dark-theme h5,
-body.dark-theme h6,
-body.dark-theme p,
-body.dark-theme a,
-body.dark-theme .ion-label,
-body.dark-theme .fw-bold,
-body.dark-theme .header-title {
-  color: #ffd700 !important;
-}
-
-body.light-theme h1,
-body.light-theme h2,
-body.light-theme h3,
-body.light-theme h4,
-body.light-theme h5,
-body.light-theme h6,
-body.light-theme p,
-body.light-theme a,
-body.light-theme .ion-label,
-body.light-theme .fw-bold,
-body.light-theme .header-title {
-  color: var(--color-green) !important;
-}
-
+/* ===== CLASSES UTILITAIRES ===== */
 .text-gold {
-  color: var(--color-gold) !important;
+  color: var(--color-secondary) !important;
 }
+
 .bg-gold {
-  background: var(--color-gold) !important;
-  color: var(--color-green) !important;
+  background: var(--color-secondary) !important;
+  color: var(--color-primary) !important;
 }
+
 .border-gold {
-  border: 2px solid var(--color-gold) !important;
+  border: 2px solid var(--color-secondary) !important;
 }
 
-body.theme-dark, body.dark-theme {
-  background: #181818 !important;
-  color: #ffd700 !important;
-}
-
-body.theme-dark *, body.dark-theme * {
-  background-color: transparent;
-  color: #ffd700 !important;
-  border-color: #ffd700 !important;
-  box-shadow: none !important;
-}
-
-body.theme-dark a, body.dark-theme a,
-body.theme-dark .ion-label, body.dark-theme .ion-label,
-body.theme-dark .fw-bold, body.dark-theme .fw-bold,
-body.theme-dark .header-title, body.dark-theme .header-title {
-  color: #ffd700 !important;
-}
-
-body.theme-dark .bg-white, body.dark-theme .bg-white,
-body.theme-dark .card-royal, body.dark-theme .card-royal,
-body.theme-dark .user-row, body.dark-theme .user-row,
-body.theme-dark .creneaux-row, body.dark-theme .creneaux-row,
-body.theme-dark .section-alt, body.dark-theme .section-alt,
-body.theme-dark .menu-content, body.dark-theme .menu-content,
-body.theme-dark .main-content-adapt, body.dark-theme .main-content-adapt,
-body.theme-dark ion-content, body.dark-theme ion-content,
-body.theme-dark .footer-dark, body.dark-theme .footer-dark {
-  background: #181818 !important;
-  color: #ffd700 !important;
-}
-
-body.theme-dark input, body.dark-theme input,
-body.theme-dark textarea, body.dark-theme textarea,
-body.theme-dark select, body.dark-theme select {
-  background: #232323 !important;
-  color: #ffd700 !important;
-  border-color: #ffd700 !important;
-}
-
-body.theme-dark ion-button, body.dark-theme ion-button {
-  --background: #232323 !important;
-  --color: #ffd700 !important;
-  border: 2px solid #ffd700 !important;
-}
-
-body.theme-dark ion-card, body.dark-theme ion-card {
-  background: #232323 !important;
-  color: #ffd700 !important;
-  border: 1.5px solid #ffd70055 !important;
-}
-
-body.theme-dark ion-title, body.dark-theme ion-title {
-  color: #ffd700 !important;
-}
-
+/* ===== COMPOSANTS IONIC PERSONNALISÉS ===== */
 .ion-color-success,
 .ion-color-success > .button-native,
 .ion-color-success > .button-inner,
 .ion-color-success > .ion-label,
 .ion-color-success > .ion-text,
 .ion-color-success > .ion-badge {
-  background: linear-gradient(90deg, #FFD700 0%, #FFC300 100%) !important; // premium gold gradient
-  color: #232323 !important; // texte foncé pour accessibilité
+  background: linear-gradient(90deg, var(--color-secondary) 0%, #FFC300 100%) !important;
+  color: var(--color-primary) !important;
   border-radius: 1.2rem !important;
-  box-shadow: 0 2px 12px 0 #ffd70055, 0 0 8px 0 #ffc30033 !important;
+  box-shadow: 0 2px 12px 0 rgba(255, 215, 0, 0.3), 0 0 8px 0 rgba(255, 195, 0, 0.2) !important;
   font-weight: 700 !important;
   letter-spacing: 0.5px;
   border: none !important;
-  text-shadow: 0 1px 8px #fff2cccc;
   transition: background 0.3s, color 0.3s, box-shadow 0.3s;
 }
+
+
 .ion-color-success:hover,
 .ion-color-success:focus,
 .ion-color-success:active {
-  background: linear-gradient(90deg, #FFC300 0%, #FFD700 100%) !important; // reverse gold gradient
-  color: #fff !important;
-  box-shadow: 0 4px 16px 0 #ffd700cc;
+  background: linear-gradient(90deg, #FFC300 0%, var(--color-secondary) 100%) !important;
+  color: var(--color-primary) !important;
+  box-shadow: 0 4px 16px 0 rgba(255, 215, 0, 0.8);
 }
 
-/* global.scss */
-// .my-success-toast {
-//   --background: #d2d530 !important; /* vert doux */
-//   --color: white !important;
-//   font-weight: 600;
-//   text-align: center;
-// }
-
+/* Toast personnalisé */
 .my-success-toast {
   --background: linear-gradient(135deg, #4caf50, #c29d56) !important;
   --color: white !important;
@@ -345,4 +362,10 @@ body.theme-dark ion-title, body.dark-theme ion-title {
   text-align: center;
   border-radius: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal personnalisée */
+.custom-modal-size .modal-wrapper {
+  background-color: var(--card-background);
+  color: var(--color-text);
 }

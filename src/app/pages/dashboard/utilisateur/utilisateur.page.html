@@ -29,7 +29,7 @@
 
         <ion-row *ngFor="let user of utilisateurs"
           class="ion-text-center user-row align-items-center rounded-3 mb-2 py-2"
-          [ngClass]="[getRoleClass(user.role), 'bg-light']">
+          [ngClass]="[getRoleClass(user.role)]">
           
           <ion-col class="user-cell user-data fw-semibold">
             {{ user.nom }} {{ user.prenom }}

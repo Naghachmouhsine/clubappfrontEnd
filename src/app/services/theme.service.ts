@@ -29,7 +29,38 @@ export class ThemeService {
     if (theme === 'auto') {
       finalTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
-    document.body.classList.toggle('dark-theme', finalTheme === 'dark');
-    document.body.classList.toggle('light-theme', finalTheme === 'light');
+    
+    // Nettoyer toutes les classes de thème existantes
+    document.body.classList.remove('dark-theme', 'light-theme', 'theme-dark', 'theme-light');
+    
+    // Appliquer le nouveau thème
+    if (finalTheme === 'dark') {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.add('light-theme');
+    }
+    
+    // Mettre à jour les variables CSS pour Ionic
+    this.updateIonicTheme(finalTheme as 'light' | 'dark');
+  }
+  
+  private updateIonicTheme(theme: 'light' | 'dark') {
+    const root = document.documentElement;
+    
+    if (theme === 'dark') {
+      // Appliquer les variables Ionic pour le mode sombre
+      root.style.setProperty('--ion-background-color', '#181818');
+      root.style.setProperty('--ion-text-color', '#FFD700');
+      root.style.setProperty('--ion-toolbar-background', '#232323');
+      root.style.setProperty('--ion-item-background', '#232323');
+      root.style.setProperty('--ion-card-background', '#232323');
+    } else {
+      // Réinitialiser aux valeurs par défaut pour le mode clair
+      root.style.removeProperty('--ion-background-color');
+      root.style.removeProperty('--ion-text-color');
+      root.style.removeProperty('--ion-toolbar-background');
+      root.style.removeProperty('--ion-item-background');
+      root.style.removeProperty('--ion-card-background');
+    }
   }
 }

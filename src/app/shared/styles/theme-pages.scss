@@ -1,0 +1,226 @@
+/* ===== STYLES PARTAGÉS POUR LES PAGES ===== */
+
+/* Styles de base pour toutes les pages */
+ion-content {
+  --background: var(--color-background);
+  --color: var(--color-text);
+}
+
+/* Cartes et conteneurs */
+.page-container,
+.content-container {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+/* Formulaires */
+ion-input,
+ion-textarea,
+ion-select,
+ion-datetime,
+ion-checkbox,
+ion-radio {
+  --background: var(--input-background);
+  --color: var(--color-text);
+  --border-color: var(--color-border);
+}
+
+/* Boutons */
+ion-button {
+  --background: var(--color-surface);
+  --color: var(--color-text);
+  --border-color: var(--color-border);
+}
+
+ion-button.button-fill-solid {
+  --background: var(--color-secondary);
+  --color: var(--color-primary);
+}
+
+/* Listes */
+ion-list {
+  background: var(--color-background);
+}
+
+ion-item {
+  --background: var(--color-surface);
+  --color: var(--color-text);
+  --border-color: var(--color-border);
+}
+
+/* Cartes */
+ion-card {
+  --background: var(--card-background);
+  --color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+/* Headers de page */
+ion-header ion-toolbar {
+  --background: var(--header-background);
+  --color: var(--color-text);
+}
+
+/* Modales */
+.modal-wrapper {
+  background: var(--card-background) !important;
+  color: var(--color-text) !important;
+}
+
+/* Alertes */
+.alert-wrapper {
+  background: var(--card-background) !important;
+  color: var(--color-text) !important;
+}
+
+/* Toasts */
+ion-toast {
+  --background: var(--color-surface);
+  --color: var(--color-text);
+}
+
+/* Popovers */
+.popover-content {
+  background: var(--card-background) !important;
+  color: var(--color-text) !important;
+}
+
+/* Segments */
+ion-segment {
+  --background: var(--color-surface);
+}
+
+ion-segment-button {
+  --background: transparent;
+  --color: var(--color-text);
+  --border-color: var(--color-border);
+}
+
+ion-segment-button.segment-button-checked {
+  --background: var(--color-secondary);
+  --color: var(--color-primary);
+}
+
+/* Tabs */
+ion-tab-bar {
+  --background: var(--color-surface);
+  --border: 1px solid var(--color-border);
+}
+
+ion-tab-button {
+  --color: var(--color-text-secondary);
+  --color-selected: var(--color-secondary);
+}
+
+/* Searchbar */
+ion-searchbar {
+  --background: var(--color-surface);
+  --color: var(--color-text);
+  --border-color: var(--color-border);
+}
+
+/* Refresher */
+ion-refresher-content {
+  --color: var(--color-text);
+}
+
+/* Loading */
+ion-loading {
+  --background: var(--card-background);
+  --color: var(--color-text);
+}
+
+/* Skeleton text */
+ion-skeleton-text {
+  --background: var(--color-border);
+}
+
+/* Progress bar */
+ion-progress-bar {
+  --background: var(--color-border);
+  --progress-background: var(--color-secondary);
+}
+
+/* Range */
+ion-range {
+  --bar-background: var(--color-border);
+  --bar-background-active: var(--color-secondary);
+  --knob-background: var(--color-secondary);
+}
+
+/* Toggle */
+ion-toggle {
+  --background: var(--color-border);
+  --background-checked: var(--color-secondary);
+}
+
+/* Checkbox */
+ion-checkbox {
+  --background: var(--color-surface);
+  --background-checked: var(--color-secondary);
+  --border-color: var(--color-border);
+  --border-color-checked: var(--color-secondary);
+  --checkmark-color: var(--color-primary);
+}
+
+/* Radio */
+ion-radio {
+  --color: var(--color-secondary);
+  --color-checked: var(--color-secondary);
+}
+
+/* Accordion */
+ion-accordion-group {
+  background: var(--color-surface);
+}
+
+ion-accordion {
+  --background: var(--color-surface);
+  --color: var(--color-text);
+}
+
+/* Breadcrumb */
+ion-breadcrumb {
+  --color: var(--color-text);
+  --color-active: var(--color-secondary);
+}
+
+/* Chip */
+ion-chip {
+  --background: var(--color-surface);
+  --color: var(--color-text);
+}
+
+/* Badge */
+ion-badge {
+  --background: var(--color-secondary);
+  --color: var(--color-primary);
+}
+
+/* Fab */
+ion-fab-button {
+  --background: var(--color-secondary);
+  --color: var(--color-primary);
+}
+
+/* Infinite scroll */
+ion-infinite-scroll-content {
+  --color: var(--color-text);
+}
+
+/* Reorder */
+ion-reorder {
+  --color: var(--color-text);
+}
+
+/* Picker */
+.picker-wrapper {
+  background: var(--card-background) !important;
+  color: var(--color-text) !important;
+}
+
+/* Action sheet */
+.action-sheet-wrapper {
+  background: var(--card-background) !important;
+  color: var(--color-text) !important;
+}

@@ -18,40 +18,56 @@ ion-toolbar {
 }
 
 .menu-sport .menu-toolbar, .menu-sport ion-toolbar.menu-toolbar {
-  background: linear-gradient(90deg, #0a1833 0%, #3fa7ff 60%, #ffd700 100%) !important;
-  color: var(--color-gold) !important;
+  background: var(--header-background) !important;
+  color: var(--color-secondary) !important;
   box-shadow: 0 4px 24px 0 rgba(63, 167, 255, 0.13);
-  border-bottom: 3px solid #ffd700;
+  border-bottom: 3px solid var(--color-secondary);
+  transition: background 0.3s ease;
 }
 
-body.theme-dark .menu-sport .menu-toolbar, body.theme-dark .menu-sport ion-toolbar.menu-toolbar {
-  background: #181818 !important;
-  color: #ffd700 !important;
-  border-bottom: 3px solid #ffd700;
+.menu-sport .menu-content, .menu-sport ion-content.menu-content {
+  background: var(--menu-background) !important;
+  color: var(--color-text) !important;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-body.theme-dark .menu-sport .menu-content, body.theme-dark .menu-sport ion-content.menu-content {
-  background: #181818 !important;
-  color: #ffd700 !important;
+/* Bouton menu (3 points) */
+ion-menu-button {
+  --color: var(--color-text) !important;
+  transition: color 0.3s ease;
 }
 
-/* 3 points (ion-menu-button) : couleur dorée en dark */
-body.theme-dark ion-menu-button {
-  --color: #ffd700 !important;
-}
 
-body.theme-dark ion-menu-button::part(icon) {
-  color: #ffd700 !important;
-}
 
 .menu-content {
-  background: var(--color-light);
+  background: var(--menu-background);
+  color: var(--color-text);
 }
 
 .submenu {
   padding-left: 16px;
-  background: #f8f8f8;
-  border-left: 2px solid #3880ff;
+  background: var(--color-background);
+  border-left: 2px solid var(--color-accent);
+}
+
+/* Styles pour les éléments du menu */
+.menu-sport ion-item {
+  --background: transparent;
+  --color: var(--color-text);
+  --border-color: var(--color-border);
+  transition: background 0.3s ease;
+}
+
+.menu-sport ion-item:hover {
+  --background: rgba(255, 215, 0, 0.1);
+}
+
+.menu-sport ion-icon {
+  color: var(--color-secondary);
+}
+
+.menu-sport ion-label {
+  color: var(--color-text);
 }
 
 ion-button ion-icon {
