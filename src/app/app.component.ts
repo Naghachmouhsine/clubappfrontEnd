@@ -88,20 +88,129 @@ export class AppComponent implements OnInit, OnDestroy {
     this.userSub?.unsubscribe();
   }
 
-  async navigateTo(path: string) {
-    this.isDashboardOpen = false;
-    try {
-      await this.menuCtrl.close();
+async navigateTo(path: string) {
+  this.isDashboardOpen = false;
+  
+  try {
+    // 🎯 Essayer plusieurs méthodes pour fermer le menu
+    await this.forceCloseMenu();
+    
+    // Attendre un peu que le menu se ferme
+    setTimeout(() => {
       this.router.navigate([path]);
-    } catch (error) {
-      console.error('Erreur lors de la fermeture du menu:', error);
-      this.router.navigate([path]);
-    }
+    }, 200);
+  } catch (error) {
+    console.error('Erreur lors de la navigation:', error);
+    this.router.navigate([path]);
   }
+}
+
+// 🎯 Méthode principale pour forcer la fermeture du menu
+private async forceCloseMenu() {
+  // Méthode 1: Simulation de clic à l'extérieur
+  this.simulateOutsideClick();
+  
+  // Méthode 2: Manipulation directe du DOM
+  setTimeout(() => {
+    this.manipulateMenuDOM();
+  }, 50);
+  
+  // Méthode 3: Fermeture classique en backup
+  setTimeout(() => {
+    this.menuCtrl.close('main-menu');
+  }, 100);
+}
+
+// 🎯 Manipulation directe du DOM du menu
+private manipulateMenuDOM() {
+  try {
+    const menuElement = document.querySelector('ion-menu[menu-id="main-menu"]');
+    if (menuElement) {
+      // Forcer la classe de fermeture
+      menuElement.classList.remove('show-menu');
+      menuElement.classList.add('menu-hidden');
+      
+      // Déclencher l'événement de fermeture
+      const closeEvent = new CustomEvent('ionMenuDidClose', {
+        detail: { menuId: 'main-menu' }
+      });
+      menuElement.dispatchEvent(closeEvent);
+    }
+    
+    // Supprimer l'overlay/backdrop s'il existe
+    const backdrop = document.querySelector('.menu-backdrop, ion-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
+  } catch (error) {
+    console.log('Manipulation DOM échouée');
+  }
+}
+
+// 🎯 Méthode pour simuler un clic à l'extérieur du menu
+private simulateOutsideClick() {
+  try {
+    // Méthode 1: Simuler un clic sur le backdrop du menu
+    const backdrop = document.querySelector('ion-backdrop');
+    if (backdrop) {
+      (backdrop as HTMLElement).click();
+      return;
+    }
+
+    // Méthode 2: Simuler un clic sur le contenu principal
+    const mainContent = document.querySelector('#main-content');
+    if (mainContent) {
+      const clickEvent = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      });
+      mainContent.dispatchEvent(clickEvent);
+      return;
+    }
+
+    // Méthode 3: Simuler un tap/touch sur l'overlay
+    const overlay = document.querySelector('ion-menu ion-backdrop, .menu-backdrop');
+    if (overlay) {
+      const touchEvent = new TouchEvent('touchstart', {
+        bubbles: true,
+        cancelable: true
+      });
+      overlay.dispatchEvent(touchEvent);
+      return;
+    }
+
+    // Méthode 4: Forcer la fermeture via MenuController
+    this.menuCtrl.close('main-menu');
+  } catch (error) {
+    console.log('Simulation de clic échouée, fermeture classique');
+    this.menuCtrl.close('main-menu');
+  }
+}
+
+// 🎯 Méthode alternative : forcer la fermeture avec événement personnalisé
+private forceMenuClose() {
+  try {
+    // Émettre un événement personnalisé pour fermer le menu
+    const closeEvent = new CustomEvent('menuClose', {
+      detail: { menuId: 'main-menu' },
+      bubbles: true
+    });
+    document.dispatchEvent(closeEvent);
+    
+    // Backup: fermeture classique
+    setTimeout(() => {
+      this.menuCtrl.close('main-menu');
+    }, 50);
+  } catch (error) {
+    this.menuCtrl.close('main-menu');
+  }
+}
+
 
   toggleDashboardSubmenu() {
     this.isDashboardOpen = !this.isDashboardOpen;
-    this.menuCtrl.close();
+    // Ne pas fermer le menu lors du toggle du sous-menu
   }
 
   async openProfileMenu(event: MouseEvent) {

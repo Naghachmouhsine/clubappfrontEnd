@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, PopoverController } from '@ionic/angular';
+import { IonicModule, PopoverController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -47,7 +47,8 @@ export class AppHeaderComponent implements OnInit {
     private langService: LangService,
     private popoverController: PopoverController,
     private servicePoints: RecempenseService,
-    private serviceAuth: AuthService
+    private serviceAuth: AuthService,
+    private menuCtrl: MenuController
   ) {}
 
   ngOnInit(): void {
@@ -109,8 +110,44 @@ async openProfileMenu(event: MouseEvent) {
 }
 
 
-  navigateTo(path: string) {
-    this.route.navigate([path]);
+  async navigateTo(path: string) {
+    // 🎯 Simuler un clic à l'extérieur pour fermer le menu
+    this.simulateOutsideClick();
+    
+    // Attendre que le menu se ferme puis naviguer
+    setTimeout(() => {
+      this.route.navigate([path]);
+    }, 150);
+  }
+
+  // 🎯 Simulation de clic à l'extérieur du menu
+  private simulateOutsideClick() {
+    try {
+      // Chercher le backdrop du menu
+      const backdrop = document.querySelector('ion-backdrop, .menu-backdrop');
+      if (backdrop) {
+        (backdrop as HTMLElement).click();
+        return;
+      }
+
+      // Simuler un clic sur le contenu principal
+      const mainContent = document.querySelector('#main-content');
+      if (mainContent) {
+        const clickEvent = new MouseEvent('click', {
+          view: window,
+          bubbles: true,
+          cancelable: true
+        });
+        mainContent.dispatchEvent(clickEvent);
+        return;
+      }
+
+      // Fallback: fermeture classique
+      this.menuCtrl.close('main-menu');
+    } catch (error) {
+      console.log('Simulation échouée, fermeture classique');
+      this.menuCtrl.close('main-menu');
+    }
   }
 
   scrollToServices() {

@@ -1,0 +1,84 @@
+LICENCE PROPRIÉTAIRE - ROYAL TENNIS CLUB DE FÈS
+==============================================
+
+Copyright (c) 2024 Royal Tennis Club de Fès
+Tous droits réservés.
+
+DÉVELOPPEURS PRINCIPAUX :
+- Youssouf Tangara (ytangara2003@gmail.com)
+- Naghach Mouhsine
+
+PROPRIÉTAIRE :
+Royal Tennis Club de Fès
+Fès, Maroc
+
+RESTRICTIONS D'UTILISATION :
+===========================
+
+1. UTILISATION AUTORISÉE :
+   - Cette application est exclusivement destinée à l'usage du Royal Tennis Club de Fès
+   - Utilisation par les membres, le personnel et les administrateurs du club uniquement
+   - Déploiement sur les serveurs et plateformes du Royal Tennis Club de Fès
+
+2. INTERDICTIONS :
+   - ❌ Utilisation commerciale par des tiers
+   - ❌ Redistribution du code source
+   - ❌ Modification sans autorisation écrite
+   - ❌ Reverse engineering
+   - ❌ Création d'œuvres dérivées
+   - ❌ Vente, location ou transfert de licence
+   - ❌ Utilisation par d'autres clubs ou organisations
+
+3. PROPRIÉTÉ INTELLECTUELLE :
+   - Le code source, la conception, les algorithmes et tous les éléments de cette application
+     sont la propriété exclusive du Royal Tennis Club de Fès et de ses développeurs
+   - Toute violation de ces droits sera poursuivie selon la loi
+
+4. GARANTIE ET RESPONSABILITÉ :
+   - Cette application est fournie "en l'état" sans garantie d'aucune sorte
+   - Les développeurs et le Royal Tennis Club de Fès ne peuvent être tenus responsables
+     de tout dommage résultant de l'utilisation de cette application
+
+5. DONNÉES ET CONFIDENTIALITÉ :
+   - Toutes les données collectées par l'application appartiennent au Royal Tennis Club de Fès
+   - Les données des utilisateurs sont protégées selon la politique de confidentialité du club
+   - Aucune donnée ne peut être extraite ou utilisée à des fins externes
+
+6. MAINTENANCE ET SUPPORT :
+   - Le support technique est assuré exclusivement par l'équipe de développement
+   - Les mises à jour et corrections sont fournies selon les besoins du club
+   - Aucun support n'est fourni pour des utilisations non autorisées
+
+7. DURÉE DE LA LICENCE :
+   - Cette licence est valide tant que l'application est utilisée conformément aux termes
+   - Le Royal Tennis Club de Fès se réserve le droit de révoquer cette licence à tout moment
+   - En cas de violation des termes, la licence est automatiquement révoquée
+
+8. JURIDICTION :
+   - Cette licence est régie par le droit marocain
+   - Tout litige sera soumis aux tribunaux compétents de Fès, Maroc
+
+CONTACT POUR QUESTIONS LÉGALES :
+===============================
+Email : ytangara2003@gmail.com
+Objet : [LICENCE] Royal Tennis Club de Fès - Application
+
+TECHNOLOGIES UTILISÉES SOUS LICENCE :
+====================================
+- Ionic Framework : MIT License
+- Angular : MIT License
+- Node.js : MIT License
+- Autres dépendances : Voir package.json pour les licences respectives
+
+AVERTISSEMENT :
+==============
+Toute utilisation non autorisée de cette application constitue une violation
+du droit d'auteur et peut entraîner des poursuites judiciaires.
+
+Le Royal Tennis Club de Fès et ses développeurs se réservent tous les droits
+non expressément accordés dans cette licence.
+
+---
+
+© 2024 Royal Tennis Club de Fès - Tous droits réservés
+Développé par Youssouf Tangara et Naghach Mouhsine
