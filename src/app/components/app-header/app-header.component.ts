@@ -111,43 +111,23 @@ async openProfileMenu(event: MouseEvent) {
 
 
   async navigateTo(path: string) {
-    // 🎯 Simuler un clic à l'extérieur pour fermer le menu
-    this.simulateOutsideClick();
-    
-    // Attendre que le menu se ferme puis naviguer
-    setTimeout(() => {
-      this.route.navigate([path]);
-    }, 150);
-  }
-
-  // 🎯 Simulation de clic à l'extérieur du menu
-  private simulateOutsideClick() {
+    // 🎯 Clic brutal sur le backdrop pour fermer le menu
     try {
-      // Chercher le backdrop du menu
-      const backdrop = document.querySelector('ion-backdrop, .menu-backdrop');
+      const backdrop = document.querySelector('ion-backdrop');
       if (backdrop) {
         (backdrop as HTMLElement).click();
-        return;
+      } else {
+        // Si pas de backdrop, fermeture directe
+        this.menuCtrl.close('main-menu');
       }
-
-      // Simuler un clic sur le contenu principal
-      const mainContent = document.querySelector('#main-content');
-      if (mainContent) {
-        const clickEvent = new MouseEvent('click', {
-          view: window,
-          bubbles: true,
-          cancelable: true
-        });
-        mainContent.dispatchEvent(clickEvent);
-        return;
-      }
-
-      // Fallback: fermeture classique
-      this.menuCtrl.close('main-menu');
     } catch (error) {
-      console.log('Simulation échouée, fermeture classique');
       this.menuCtrl.close('main-menu');
     }
+    
+    // Navigation
+    setTimeout(() => {
+      this.route.navigate([path]);
+    }, 100);
   }
 
   scrollToServices() {

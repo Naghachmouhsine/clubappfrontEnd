@@ -171,11 +171,11 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## Liens Utiles
 
 - **📖 Documentation** : [Guide Utilisateur](docs/user-guide.md)
-- **🐛 Signaler un bug** : ytangara2003@gmail.com
-- **💡 Demande de fonctionnalité** : ytangara2003@gmail.com
-- **🔒 Sécurité** : ytangara2003@gmail.com
+- **🐛 Signaler un bug** : ytangara2003@gmail.com // naghachmouhsine@gmail.com
+- **💡 Demande de fonctionnalité** : ytangara2003@gmail.com // naghachmouhsine@gmail.com
+- **🔒 Sécurité** : ytangara2003@gmail.com // naghachmouhsine@gmail.com
 
 ---
 
-*Dernière mise à jour : 11 décembre 2024*  
-*© 2024 Royal Tennis Club de Fès - Tous droits réservés*
+*Dernière mise à jour : 12 juillet 2025*  
+*© 2025 Royal Tennis Club de Fès - Tous droits réservés*

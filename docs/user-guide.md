@@ -607,8 +607,8 @@ Fès, Maroc
 ### 👨‍💻 Équipe Technique
 
 #### **🛠️ Support Technique**
-- **Email** : ytangara2003@gmail.com
-- **Développeur Principal** : Youssouf Tangara
+- **Email** : Naghachmouhsine@gmail.com // ytangara2003@gmail.com
+- **Développeur Principal** : Youssouf Tangara et Naghach Mouhsine
 - **Heures de support** : Lundi-Vendredi 9h-17h
 
 ---

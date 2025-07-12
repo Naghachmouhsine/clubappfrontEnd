@@ -278,6 +278,7 @@ ionic capacitor build android
   - Email: ytangara2003@gmail.com
   - Responsable: Architecture frontend, UI/UX, Intégration
 - **Naghach Mouhsine** - Développeur Principal
+  -Emaail: naghach.mouhsine@gmail.com
   - Responsable: Backend API, Base de données, Sécurité
 
 ### **Processus de Contribution**
@@ -305,13 +306,13 @@ ionic capacitor build android
 
 ### **Contact Légal**
 Pour toute question concernant la licence ou l'utilisation :
-- **Email**: ytangara2003@gmail.com
+- **Email**: Naghachmouhsine@gmail.com // ytangara2003@gmail.com
 - **Projet**: Royal Tennis Club de Fès - Application de Gestion
 
 ## 📞 Support
 
 ### **Support Technique**
-- **Email**: ytangara2003@gmail.com
+- **Email**: ytangara2003@gmail.com // naghach.mouhsine@gmail.com
 - **Repository**: [GitHub - clubappfrontEnd](https://github.com/Naghachmouhsine/clubappfrontEnd)
 
 ### **Documentation**

@@ -569,7 +569,7 @@ export class AppModule {}
 ### Obtenir de l'Aide
 
 #### Canaux de Communication
-- **📧 Email** : ytangara2003@gmail.com
+- **📧 Email** : ytangara2003@gmail.com // naghachmouhsine@gmail.com
 - **💬 Issues GitHub** : Pour les bugs et demandes de fonctionnalités
 - **📚 Documentation** : Consultez d'abord la documentation existante
 
@@ -683,5 +683,5 @@ Merci de contribuer au succès du Royal Tennis Club de Fès ! 🎾
 
 ---
 
-*Document mis à jour le : 11 décembre 2024*  
-*© 2024 Royal Tennis Club de Fès - Tous droits réservés*
+*Document mis à jour le : 12 juillet 2025*  
+*© 2025 Royal Tennis Club de Fès - Tous droits réservés*

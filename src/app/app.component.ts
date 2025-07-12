@@ -91,121 +91,82 @@ export class AppComponent implements OnInit, OnDestroy {
 async navigateTo(path: string) {
   this.isDashboardOpen = false;
   
-  try {
-    // 🎯 Essayer plusieurs méthodes pour fermer le menu
-    await this.forceCloseMenu();
-    
-    // Attendre un peu que le menu se ferme
-    setTimeout(() => {
-      this.router.navigate([path]);
-    }, 200);
-  } catch (error) {
-    console.error('Erreur lors de la navigation:', error);
+  // 🎯 Approche multiple pour fermer le menu
+  await this.closeMenuWithMultipleMethods();
+  
+  // Navigation
+  setTimeout(() => {
     this.router.navigate([path]);
-  }
+  }, 150);
 }
 
-// 🎯 Méthode principale pour forcer la fermeture du menu
-private async forceCloseMenu() {
-  // Méthode 1: Simulation de clic à l'extérieur
-  this.simulateOutsideClick();
+// 🎯 Méthode avec plusieurs approches simultanées
+private async closeMenuWithMultipleMethods() {
+  console.log('🎯 Fermeture menu avec méthodes multiples');
   
-  // Méthode 2: Manipulation directe du DOM
-  setTimeout(() => {
-    this.manipulateMenuDOM();
-  }, 50);
+  // Méthode 1: Simulation de clic
+  this.forceMenuCloseWithClick();
   
-  // Méthode 3: Fermeture classique en backup
+  // Méthode 2: Fermeture directe
+  this.menuCtrl.close('main-menu');
+  
+  // Méthode 3: Désactiver temporairement
   setTimeout(() => {
-    this.menuCtrl.close('main-menu');
-  }, 100);
+    this.menuCtrl.enable(false, 'main-menu');
+    setTimeout(() => {
+      this.menuCtrl.enable(true, 'main-menu');
+    }, 50);
+  }, 10);
 }
 
-// 🎯 Manipulation directe du DOM du menu
-private manipulateMenuDOM() {
+// 🎯 Méthode brutale pour fermer le menu avec simulation de clic
+private forceMenuCloseWithClick() {
   try {
-    const menuElement = document.querySelector('ion-menu[menu-id="main-menu"]');
-    if (menuElement) {
-      // Forcer la classe de fermeture
-      menuElement.classList.remove('show-menu');
-      menuElement.classList.add('menu-hidden');
-      
-      // Déclencher l'événement de fermeture
-      const closeEvent = new CustomEvent('ionMenuDidClose', {
-        detail: { menuId: 'main-menu' }
-      });
-      menuElement.dispatchEvent(closeEvent);
-    }
+    console.log('🎯 Tentative de fermeture du menu...');
     
-    // Supprimer l'overlay/backdrop s'il existe
-    const backdrop = document.querySelector('.menu-backdrop, ion-backdrop');
-    if (backdrop) {
-      backdrop.remove();
-    }
-  } catch (error) {
-    console.log('Manipulation DOM échouée');
-  }
-}
-
-// 🎯 Méthode pour simuler un clic à l'extérieur du menu
-private simulateOutsideClick() {
-  try {
-    // Méthode 1: Simuler un clic sur le backdrop du menu
+    // 1. Essayer de cliquer sur le backdrop
     const backdrop = document.querySelector('ion-backdrop');
     if (backdrop) {
+      console.log('✅ Backdrop trouvé, simulation du clic');
       (backdrop as HTMLElement).click();
       return;
     }
 
-    // Méthode 2: Simuler un clic sur le contenu principal
-    const mainContent = document.querySelector('#main-content');
-    if (mainContent) {
-      const clickEvent = new MouseEvent('click', {
-        view: window,
-        bubbles: true,
-        cancelable: true
-      });
-      mainContent.dispatchEvent(clickEvent);
+    // 2. Essayer de cliquer sur l'overlay du menu
+    const menuOverlay = document.querySelector('.menu-backdrop, ion-menu-backdrop');
+    if (menuOverlay) {
+      console.log('✅ Menu overlay trouvé, simulation du clic');
+      (menuOverlay as HTMLElement).click();
       return;
     }
 
-    // Méthode 3: Simuler un tap/touch sur l'overlay
-    const overlay = document.querySelector('ion-menu ion-backdrop, .menu-backdrop');
-    if (overlay) {
-      const touchEvent = new TouchEvent('touchstart', {
-        bubbles: true,
-        cancelable: true
-      });
-      overlay.dispatchEvent(touchEvent);
-      return;
-    }
-
-    // Méthode 4: Forcer la fermeture via MenuController
-    this.menuCtrl.close('main-menu');
-  } catch (error) {
-    console.log('Simulation de clic échouée, fermeture classique');
-    this.menuCtrl.close('main-menu');
-  }
-}
-
-// 🎯 Méthode alternative : forcer la fermeture avec événement personnalisé
-private forceMenuClose() {
-  try {
-    // Émettre un événement personnalisé pour fermer le menu
-    const closeEvent = new CustomEvent('menuClose', {
-      detail: { menuId: 'main-menu' },
-      bubbles: true
+    // 3. Simuler un clic en dehors du menu sur le body
+    console.log('🎯 Simulation clic sur body');
+    const clickEvent = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      clientX: window.innerWidth - 10, // Clic à droite de l'écran
+      clientY: 10
     });
-    document.dispatchEvent(closeEvent);
+    document.body.dispatchEvent(clickEvent);
     
-    // Backup: fermeture classique
+    // 4. Force brutale : désactiver et réactiver le menu
     setTimeout(() => {
-      this.menuCtrl.close('main-menu');
-    }, 50);
+      console.log('🔧 Force brutale : disable/enable menu');
+      this.menuCtrl.enable(false, 'main-menu');
+      setTimeout(() => {
+        this.menuCtrl.enable(true, 'main-menu');
+      }, 10);
+    }, 30);
+    
   } catch (error) {
+    console.log('❌ Erreur simulation clic, fermeture directe');
     this.menuCtrl.close('main-menu');
   }
 }
+
+
 
 
   toggleDashboardSubmenu() {

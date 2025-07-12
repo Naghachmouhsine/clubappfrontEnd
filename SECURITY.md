@@ -24,7 +24,7 @@ Nous prenons la sécurité très au sérieux. Voici les versions actuellement su
 
 Pour signaler une vulnérabilité de sécurité, **NE PAS** utiliser les issues publiques GitHub. Contactez-nous directement :
 
-- **Email Principal** : ytangara2003@gmail.com
+- **Email Principal** : Naghachmouhsine@gmail.com // ytangara2003@gmail.com
 - **Objet** : `[SÉCURITÉ CRITIQUE] Royal Tennis Club - Vulnérabilité`
 - **Chiffrement** : Utilisez notre clé PGP si disponible
 
@@ -293,7 +293,7 @@ eslint --ext .ts,.js src/
 ### 📞 Contacts d'Urgence
 
 #### **Équipe de Sécurité**
-- **👨‍💻 Responsable Sécurité** : Youssouf Tangara (ytangara2003@gmail.com)
+- **👨‍💻 Responsable Sécurité** : Naghachmouhsine@gmail.com // ytangara2003@gmail.com
 - **🔧 Support Technique** : Équipe de développement
 - **🏢 Direction** : Royal Tennis Club de Fès
 
@@ -380,7 +380,7 @@ Cette politique de sécurité est revue et mise à jour :
 
 | Version | Date | Changements Principaux |
 |---------|------|----------------------|
-| 1.0 | 2024-12-11 | Version initiale |
+| 1.0 | 2025-07-04 | Version initiale |
 
 ---
 
@@ -388,5 +388,5 @@ Cette politique de sécurité est revue et mise à jour :
 
 ---
 
-*Document mis à jour le : 11 décembre 2024*  
-*© 2024 Royal Tennis Club de Fès - Tous droits réservés*
+*Document mis à jour le : 12 juillet 2025*  
+*© 2025 Royal Tennis Club de Fès - Tous droits réservés*
