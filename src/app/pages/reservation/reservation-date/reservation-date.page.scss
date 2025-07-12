@@ -14,6 +14,12 @@
 
 
 
+:host {
+  ion-content.reservation-content {
+    --padding-bottom: 120px;
+    --padding-top: 10px;
+  }
+}
 
 
 // Styles spécifiques à cette page uniquement

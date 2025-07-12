@@ -92,7 +92,8 @@ export class ReservationDatePage implements OnInit {
     }
     console.log(this.user)
     const infoResult = await this.informationReservation(session);
-    // if (!infoResult || !infoResult.valid) return;*   
+    // if (!infoResult || !infoResult.valid) return;*  
+    console.log(infoResult)
     let reservation = {
       "id_installation": session.id_installation,
       "nbr_installation_reserver": session.nbr - infoResult.nombre_installations,//modification nombre d'installation apres reservation
@@ -115,6 +116,7 @@ export class ReservationDatePage implements OnInit {
     }
     else {
       const payResult = await this.openModalPyement(this.user.role); // modal pour choisir user la methode de payement
+      console.log(payResult)
       if (payResult) {
         if (payResult.method === "stripe")
           this.stripPayement(reservation)
@@ -171,8 +173,9 @@ async paypalePayement(reservation: any) {
   try {
   
 const order = await this.http.post<any>('http://localhost:3000/api/create-paypal-order',{ reservation }).toPromise();
-
+    console.log(order)
     const container = document.getElementById('paypal-container');
+    console.log("1")
     if (!container) {
       console.error("Le conteneur PayPal n'existe pas dans le DOM.");
       return;
@@ -180,6 +183,7 @@ const order = await this.http.post<any>('http://localhost:3000/api/create-paypal
     container.innerHTML = '';
 paypal.Buttons({
   createOrder: (data: any, actions: any) => {
+    console.log("2")
 
     return order.orderID;
   },
@@ -196,15 +200,6 @@ paypal.Buttons({
   onError: (err: any) => console.error("[!] erreur PayPal", err)
 })
 .render(container);
-  // setTimeout(() => {
-  //     const button = container.querySelector('iframe')?.parentElement as HTMLElement;
-  //     if (button) {
-  //       console.log("➡️ Clic simulé sur le bouton PayPal");
-  //       button.click();
-  //     } else {
-  //       console.error("❌ Bouton PayPal non trouvé dans le DOM");
-  //     }
-  //   }, 1000);
 
   } catch (err) {
     console.error("Erreur lors du processus PayPal :", err);
