@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { IonicModule, MenuController, PopoverController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
@@ -73,13 +73,18 @@ export class AppComponent implements OnInit, OnDestroy {
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       if (this.theme === 'auto') {
-        this.applyTheme(this.getSystemTheme());
+        this.themeService.applyTheme(this.theme);
       }
     });
 
-    // Gestion du menu selon route
-    this.router.events.subscribe(() => {
+    // Gestion du menu selon route + fermeture automatique
+    this.router.events.subscribe((event) => {
       this.menuCtrl.enable(this.router.url !== '/login');
+      
+      // 🎯 Fermer le menu automatiquement lors de navigation
+      if (event instanceof NavigationEnd) {
+        this.forceCloseMenuOnNavigation();
+      }
     });
   }
 
@@ -91,88 +96,73 @@ export class AppComponent implements OnInit, OnDestroy {
 async navigateTo(path: string) {
   this.isDashboardOpen = false;
   
-  // 🎯 Approche multiple pour fermer le menu
-  await this.closeMenuWithMultipleMethods();
+  // 🎯 SOLUTION RADICALE : Fermeture immédiate et navigation
+  this.forceCloseMenuRadical();
   
-  // Navigation
-  setTimeout(() => {
-    this.router.navigate([path]);
-  }, 150);
+  // Navigation immédiate
+  this.router.navigate([path]);
 }
 
-// 🎯 Méthode avec plusieurs approches simultanées
-private async closeMenuWithMultipleMethods() {
-  console.log('🎯 Fermeture menu avec méthodes multiples');
-  
-  // Méthode 1: Simulation de clic
-  this.forceMenuCloseWithClick();
-  
-  // Méthode 2: Fermeture directe
-  this.menuCtrl.close('main-menu');
-  
-  // Méthode 3: Désactiver temporairement
-  setTimeout(() => {
-    this.menuCtrl.enable(false, 'main-menu');
-    setTimeout(() => {
-      this.menuCtrl.enable(true, 'main-menu');
-    }, 50);
-  }, 10);
-}
-
-// 🎯 Méthode brutale pour fermer le menu avec simulation de clic
-private forceMenuCloseWithClick() {
+// 🎯 SOLUTION RADICALE : Force la fermeture par manipulation directe
+private forceCloseMenuRadical() {
   try {
-    console.log('🎯 Tentative de fermeture du menu...');
+    // 1. Fermeture directe du menu
+    this.menuCtrl.close('main-menu');
     
-    // 1. Essayer de cliquer sur le backdrop
-    const backdrop = document.querySelector('ion-backdrop');
-    if (backdrop) {
-      console.log('✅ Backdrop trouvé, simulation du clic');
-      (backdrop as HTMLElement).click();
-      return;
+    // 2. Manipulation directe du DOM
+    const menu = document.querySelector('ion-menu[menu-id="main-menu"]') as HTMLElement;
+    if (menu) {
+      // Supprimer toutes les classes d'ouverture
+      menu.classList.remove('show-menu', 'menu-open');
+      menu.classList.add('menu-closed');
+      
+      // Forcer l'attribut fermé
+      menu.setAttribute('aria-hidden', 'true');
+      menu.style.transform = 'translateX(-100%)';
     }
-
-    // 2. Essayer de cliquer sur l'overlay du menu
-    const menuOverlay = document.querySelector('.menu-backdrop, ion-menu-backdrop');
-    if (menuOverlay) {
-      console.log('✅ Menu overlay trouvé, simulation du clic');
-      (menuOverlay as HTMLElement).click();
-      return;
-    }
-
-    // 3. Simuler un clic en dehors du menu sur le body
-    console.log('🎯 Simulation clic sur body');
-    const clickEvent = new MouseEvent('click', {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-      clientX: window.innerWidth - 10, // Clic à droite de l'écran
-      clientY: 10
-    });
-    document.body.dispatchEvent(clickEvent);
     
-    // 4. Force brutale : désactiver et réactiver le menu
+    // 3. Supprimer tous les overlays/backdrops
+    const overlays = document.querySelectorAll('ion-backdrop, .menu-backdrop, ion-menu-backdrop');
+    overlays.forEach(overlay => overlay.remove());
+    
+    // 4. Nettoyer le body
+    document.body.classList.remove('menu-open');
+    document.body.style.overflow = '';
+    
+    // 5. Reset après navigation
     setTimeout(() => {
-      console.log('🔧 Force brutale : disable/enable menu');
-      this.menuCtrl.enable(false, 'main-menu');
-      setTimeout(() => {
-        this.menuCtrl.enable(true, 'main-menu');
-      }, 10);
-    }, 30);
+      if (menu) {
+        menu.style.transform = '';
+        menu.classList.remove('menu-closed');
+      }
+    }, 300);
     
   } catch (error) {
-    console.log('❌ Erreur simulation clic, fermeture directe');
+    // Fallback silencieux
     this.menuCtrl.close('main-menu');
   }
 }
 
-
-
+// 🎯 Force la fermeture du menu lors de navigation automatique
+private forceCloseMenuOnNavigation() {
+  this.isDashboardOpen = false;
+  this.menuCtrl.close('main-menu');
+  
+  // Force la fermeture visuelle
+  setTimeout(() => {
+    const menu = document.querySelector('ion-menu[menu-id="main-menu"]') as HTMLElement;
+    if (menu) {
+      menu.classList.remove('show-menu', 'menu-open');
+    }
+  }, 10);
+}
 
   toggleDashboardSubmenu() {
     this.isDashboardOpen = !this.isDashboardOpen;
-    // Ne pas fermer le menu lors du toggle du sous-menu
   }
+
+
+
 
   async openProfileMenu(event: MouseEvent) {
     const popover = await this.popoverController.create({

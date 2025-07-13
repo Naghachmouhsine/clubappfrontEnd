@@ -111,23 +111,21 @@ async openProfileMenu(event: MouseEvent) {
 
 
   async navigateTo(path: string) {
-    // 🎯 Clic brutal sur le backdrop pour fermer le menu
-    try {
-      const backdrop = document.querySelector('ion-backdrop');
-      if (backdrop) {
-        (backdrop as HTMLElement).click();
-      } else {
-        // Si pas de backdrop, fermeture directe
-        this.menuCtrl.close('main-menu');
-      }
-    } catch (error) {
-      this.menuCtrl.close('main-menu');
+    // 🎯 Fermeture radicale et navigation immédiate
+    this.menuCtrl.close('main-menu');
+    
+    // Manipulation directe pour forcer la fermeture
+    const menu = document.querySelector('ion-menu[menu-id="main-menu"]') as HTMLElement;
+    if (menu) {
+      menu.classList.remove('show-menu', 'menu-open');
+      menu.style.transform = 'translateX(-100%)';
+      setTimeout(() => {
+        menu.style.transform = '';
+      }, 200);
     }
     
-    // Navigation
-    setTimeout(() => {
-      this.route.navigate([path]);
-    }, 100);
+    // Navigation immédiate
+    this.route.navigate([path]);
   }
 
   scrollToServices() {

@@ -78,21 +78,11 @@ body.theme-dark ion-card.card-royal {
 /**On commente ici si on veux avoir les background different pour chaque role , design clair , 
 ==>actuel design est bordure gauche coloré different pour chaque role ****/
 ion-row.user-row {
-  transition: box-shadow 0.2s, background 0.2s;
+    transition: box-shadow 0.2s, background 0.2s;
   box-shadow: 0 2px 8px 0 rgba(63, 167, 255, 0.07);
-  background: rgba(255,255,255,0.85);
   border-radius: 1.2rem;
   margin-bottom: 0.7rem;
   align-items: center;
-}
-
-body.theme-dark ion-row.user-row {
-  background: rgba(30,34,54,0.92);
-}
-
-ion-row.user-row:hover {
-  box-shadow: 0 4px 16px 0 rgba(63, 167, 255, 0.18);
-  background: linear-gradient(90deg, #3fa7ff11 0%, #ffd70011 100%);
 }
 
 .user-cell.user-data {
@@ -190,129 +180,6 @@ ion-row.fw-bold {
   }
 }
 
-/* Styles spécifiques pour le mode sombre premium */
-body.theme-dark ion-card.card-royal,
-body.theme-dark ion-card,
-body.theme-dark ion-card-title.services-title,
-body.theme-dark ion-row.fw-bold,
-body.theme-dark ion-row.user-row,
-body.theme-dark ion-row.activites-row,
-body.theme-dark ion-row.installation-row,
-body.theme-dark ion-row.creneaux-row {
-  /* Fond et titres dorés premium en dark mode */
-  background: linear-gradient(90deg, #2d2d2d 0%, #1a1a1a 100%) !important;
-  color: #ffd700 !important;
-  -webkit-text-fill-color: #ffd700 !important;
-  border-color: #ffd70099 !important;
-}
-body.theme-dark ion-card-title.services-title,
-body.theme-dark ion-row.fw-bold {
-  color: #ffd700 !important;
-  -webkit-text-fill-color: #ffd700 !important;
-  text-shadow: 0 2px 8px #ffd70044;
-}
-body.theme-dark ion-badge,
-body.theme-dark ion-badge.user-data {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
-  color: #222 !important;
-  box-shadow: 0 2px 8px 0 #ffd70033;
-}
-body.theme-dark .user-cell.user-data,
-body.theme-dark .activites-cell,
-body.theme-dark .installation-cell,
-body.theme-dark .creneaux-cell {
-  color: #ffd700 !important;
-}
-body.theme-dark ion-button.btn-gold {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
-  color: #222 !important;
-}
-body.theme-dark ion-button.btn-gold:hover {
-  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%) !important;
-  color: #222 !important;
-}
-body.theme-dark ion-button[fill="outline"] {
-  border: 2px solid #ffd700 !important;
-  color: #ffd700 !important;
-}
-body.theme-dark ion-button[fill="outline"]:hover {
-  border: 2px solid #3fa7ff !important;
-  color: #3fa7ff !important;
-}
-
-/* Unification et surcharge du dark mode premium sur la page utilisateurs */
-body.theme-dark ion-card.card-royal,
-body.dark-theme ion-card.card-royal,
-html[class*='dark'] ion-card.card-royal {
-  background: linear-gradient(90deg, #232323 0%, #181818 100%) !important;
-  color: #ffd700 !important;
-  border-color: #ffd70099 !important;
-}
-body.theme-dark ion-row.user-row,
-body.dark-theme ion-row.user-row,
-html[class*='dark'] ion-row.user-row,
-body.theme-dark .bg-white,
-body.dark-theme .bg-white,
-html[class*='dark'] .bg-white,
-body.theme-dark .bg-light,
-body.dark-theme .bg-light,
-html[class*='dark'] .bg-light {
-  background: #181818 !important;
-  color: #ffd700 !important;
-}
-body.theme-dark ion-card-title.services-title,
-body.dark-theme ion-card-title.services-title,
-html[class*='dark'] ion-card-title.services-title {
-  color: #ffd700 !important;
-  -webkit-text-fill-color: #ffd700 !important;
-  text-shadow: 0 2px 8px #ffd70044;
-}
-body.theme-dark ion-row.fw-bold,
-body.dark-theme ion-row.fw-bold,
-html[class*='dark'] ion-row.fw-bold {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
-  color: #222 !important;
-}
-body.theme-dark ion-badge.user-data,
-body.dark-theme ion-badge.user-data,
-html[class*='dark'] ion-badge.user-data {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
-  color: #222 !important;
-  box-shadow: 0 2px 8px 0 #ffd70033;
-}
-body.theme-dark .user-cell.user-data,
-body.dark-theme .user-cell.user-data,
-html[class*='dark'] .user-cell.user-data {
-  color: #ffd700 !important;
-}
-body.theme-dark ion-button.btn-gold,
-body.dark-theme ion-button.btn-gold,
-html[class*='dark'] ion-button.btn-gold {
-  background: linear-gradient(90deg, #ffd700 0%, #3fa7ff 100%) !important;
-  color: #222 !important;
-}
-body.theme-dark ion-button.btn-gold:hover,
-body.dark-theme ion-button.btn-gold:hover,
-html[class*='dark'] ion-button.btn-gold:hover {
-  background: linear-gradient(90deg, #3fa7ff 0%, #ffd700 100%) !important;
-  color: #222 !important;
-}
-body.theme-dark ion-button[fill="outline"],
-body.dark-theme ion-button[fill="outline"],
-html[class*='dark'] ion-button[fill="outline"] {
-  border: 2px solid #ffd700 !important;
-  color: #ffd700 !important;
-}
-body.theme-dark ion-button[fill="outline"]:hover,
-body.dark-theme ion-button[fill="outline"]:hover,
-html[class*='dark'] ion-button[fill="outline"]:hover {
-  border: 2px solid #3fa7ff !important;
-  color: #3fa7ff !important;
-}
-
-
-
-
 // Style premium sportif pour tous les boutons .button-solid sur la page Activités
 :host ::ng-deep .button-solid, :host ::ng-deep ion-button.button-solid {
   --background: linear-gradient(90deg, #FFD700 0%, #23272F 0.5);
@@ -384,4 +251,20 @@ body.theme-dark .role-admin {
 body.theme-dark .role-user {
   background: linear-gradient(135deg, #333333, #555555);
   color: #cfcfcf;
+}
+
+:host {
+  ion-select {
+    --background: transparent !important;
+    --placeholder-color: var(--ion-color-medium);
+    --color: var(--ion-color-light); // si tu veux forcer une couleur de texte
+    background: transparent !important;
+    border: none !important;
+  }
+
+  // Désactive la règle dark-theme globale uniquement ici
+  body.dark-theme & ion-select {
+    background: transparent !important;
+    color: black !important; // pour éviter le texte transparent
+  }
 }
