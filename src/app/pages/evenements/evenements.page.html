@@ -1,4 +1,4 @@
-<app-header nomPage="Événements" [showProfilePicture]="true"></app-header>
+<app-header [nomPage]="'events.title' | translate" [showProfilePicture]="true"></app-header>
 
 <ion-content class="ion-padding section-alt">
 
@@ -6,22 +6,22 @@
   <ng-container *ngIf="role === 'admin'; else publicView">
     <ion-card class="card-royal p-4">
       <ion-card-header>
-        <ion-card-title class="services-title mb-3">📅 Liste des événements</ion-card-title>
+        <ion-card-title class="services-title mb-3">📅 {{ 'events.list' | translate }}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
         <ion-button class="ion-margin btn-gold btn-lg shadow" expand="block" (click)="ouvrirFormulaire()">
           <ion-icon slot="start" name="add-circle-outline"></ion-icon>
-          Ajouter un événement
+          {{ 'events.add' | translate }}
         </ion-button>
 
         <ion-grid>
           <ion-row class="ion-text-center fw-bold rounded-3 shadow-sm mb-2 py-2 bg-gold-contrast">
-            <ion-col class="text-dark">Nom</ion-col>
-            <ion-col class="text-dark">Description</ion-col>
-            <ion-col class="text-dark">Date</ion-col>
-            <ion-col class="text-dark">Lieu</ion-col>
-            <ion-col class="text-dark">Actions</ion-col>
+            <ion-col class="text-dark">{{ 'events.name' | translate }}</ion-col>
+            <ion-col class="text-dark">{{ 'events.description' | translate }}</ion-col>
+            <ion-col class="text-dark">{{ 'events.date' | translate }}</ion-col>
+            <ion-col class="text-dark">{{ 'events.location' | translate }}</ion-col>
+            <ion-col class="text-dark">{{ 'events.actions' | translate }}</ion-col>
           </ion-row>
 
           <ion-row *ngFor="let evenement of evenements" class="ion-text-center activites-row align-items-center rounded-3 mb-2 py-2">
@@ -45,8 +45,8 @@
         <!-- ✅ Confirmation suppression -->
         <ion-alert
           [isOpen]="alertDelete.show"
-          header="Confirmation"
-          message="Voulez-vous vraiment supprimer cet évènement ?"
+          [header]="'events.confirmation' | translate"
+          [message]="'events.delete_confirm' | translate"
           [buttons]="alertButtons"
           (didDismiss)="alertDelete.show = false">
         </ion-alert>
@@ -56,15 +56,15 @@
           <ng-template>
             <ion-header translucent>
               <ion-toolbar>
-                <ion-title>{{ selectedEvenement ? 'Modifier' : 'Ajouter' }} un événement</ion-title>
+                <ion-title>{{ selectedEvenement ? ('events.edit' | translate) : ('events.add' | translate) }}</ion-title>
                 <ion-buttons slot="end">
-                  <ion-button (click)="fermerFormulaire()">Fermer</ion-button>
+                  <ion-button (click)="fermerFormulaire()">{{ 'events.close' | translate }}</ion-button>
                 </ion-buttons>
               </ion-toolbar>
             </ion-header>
             <ion-content class="ion-padding">
               <ion-item>
-                <ion-label position="floating">Nom de l'événement *</ion-label>
+                <ion-label position="floating">{{ 'events.name_required' | translate }}</ion-label>
                 <ion-input [(ngModel)]="formEvenement.nom"></ion-input>
               </ion-item>
               <ion-item>
@@ -78,19 +78,19 @@
           </div>
 
               <ion-item>
-                <ion-label position="floating">Description</ion-label>
+                <ion-label position="floating">{{ 'events.description' | translate }}</ion-label>
                 <ion-input [(ngModel)]="formEvenement.description"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-label position="floating">Date *</ion-label>
+                <ion-label position="floating">{{ 'events.date_required' | translate }}</ion-label>
                 <ion-input type="datetime-local" [(ngModel)]="formEvenement.date"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-label position="floating">Lieu</ion-label>
+                <ion-label position="floating">{{ 'events.location' | translate }}</ion-label>
                 <ion-input [(ngModel)]="formEvenement.lieu"></ion-input>
               </ion-item>
               <ion-button expand="block" class="ion-margin-top" (click)="soumettreFormulaire()">
-                {{ selectedEvenement ? 'Enregistrer les modifications' : 'Ajouter' }}
+                {{ selectedEvenement ? ('events.save' | translate) : ('events.add_button' | translate) }}
               </ion-button>
             </ion-content>
           </ng-template>
@@ -105,7 +105,7 @@
   <!-- ========== PUBLIC VIEW (adhérent, visiteur) ========== -->
 <ng-template #publicView>
   <div class="ion-padding">
-    <h2 class="text-center mb-4 fw-bold text-white">📆 Nos Événements</h2>
+    <h2 class="text-center mb-4 fw-bold text-white">📆 {{ 'events.our_events' | translate }}</h2>
 
     <ion-row class="ion-justify-content-center" *ngIf="evenements && evenements.length > 0">
       <ion-col size="12" size-md="6" size-lg="4" *ngFor="let evenement of evenements" class="mb-4">
@@ -131,24 +131,24 @@
           </ion-card-header>
 
           <ion-card-content>
-            <p class="mb-3 text-secondary">{{ evenement.description || 'Pas de description disponible.' }}</p>
-            <p class="fw-semibold">📍 Lieu : {{ evenement.lieu || 'Non précisé' }}</p>
+            <p class="mb-3 text-secondary">{{ evenement.description || ('events.no_description' | translate) }}</p>
+            <p class="fw-semibold">📍 {{ 'events.location' | translate }} : {{ evenement.lieu || ('events.no_location' | translate) }}</p>
 
             <div *ngIf="role !== 'admin'">
               <ng-container *ngIf="role === 'adherent'; else notAdherent">
                 <ion-button expand="block" color="primary" (click)="participerEvenement(evenement)">
-                  🎟️ Participer
+                  🎟️ {{ 'events.participate' | translate }}
                 </ion-button>
               </ng-container>
               <ng-template #notAdherent>
                 <p class="text-danger fst-italic mt-3">
-                  Vous devez être adhérent pour participer à cet événement.
+                  {{ 'events.must_be_member' | translate }}
                 </p>
               </ng-template>
             </div>
 
             <div *ngIf="role === 'admin'" class="text-center text-muted fst-italic mt-2">
-              (Vous êtes administrateur, participation désactivée)
+              {{ 'events.admin_participation_disabled' | translate }}
             </div>
           </ion-card-content>
         </ion-card>
@@ -156,7 +156,7 @@
     </ion-row>
 
     <div *ngIf="evenements.length === 0" class="text-center text-light mt-5">
-      Aucun événement à venir pour le moment. Restez connecté pour les prochaines actualités !
+      {{ 'events.no_events' | translate }}
     </div>
   </div>
 </ng-template>

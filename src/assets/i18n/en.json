@@ -86,6 +86,28 @@
       "Arts Martiaux": "Martial Arts"
     }
   },
+  "activities": {
+    "title": "Activities",
+    "list": "List of activities",
+    "add": "Add an activity",
+    "name": "Name",
+    "description": "Description",
+    "type": "Type",
+    "actions": "Actions",
+    "title_column": "Title",
+    "coach_assigned": "Assigned Coach",
+    "installation": "Facility",
+    "empty": "No activities found",
+    "dashboard_title": "Dashboard - Activities",
+    "our_activities": "Our Activities",
+    "participate": "Participate",
+    "coach": "Coach",
+    "must_be_member": "You must be a member to participate in this activity.",
+    "admin_participation_disabled": "(You are an administrator, participation disabled)",
+    "no_activities": "No upcoming activities at the moment. Stay connected for the latest news!",
+    "no_description": "No description available.",
+    "details": "Activity details"
+  },
   "creneaux": {
     "title": "Dashboard - Slots",
     "list": "List of slots",
@@ -95,9 +117,26 @@
     "end_time": "End time",
     "installation": "Facility",
     "available": "Available",
+    "disponibilite": "Availability",
     "actions": "Actions",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "details": "Slot details",
+    "time_error": "End time must be after start time."
+  },
+  "installation": {
+    "title": "Dashboard - Facilities",
+    "list": "List of facilities",
+    "add": "Add a facility",
+    "nom": "Name",
+    "type": "Type",
+    "statut": "Status",
+    "actions": "Actions",
+    "details": "Details",
+    "edit": "Edit",
+    "empty": "No facilities registered at the moment.",
+    "capacity": "Capacity",
+    "available": "Available"
   },
   "utilisateur": {
     "title": "Dashboard - Users",
@@ -108,12 +147,22 @@
     "phone": "Phone",
     "role": "Role",
     "actions": "Actions",
+    "details": "Details",
+    "change_role": "Change user role",
+    "view_details": "View user details",
     "roles": {
       "adherent": "Member",
       "coach": "Coach",
       "responsable": "Manager",
       "admin": "Admin",
       "user": "User"
+    },
+    "role_options": {
+      "user": "User",
+      "adherent": "Member",
+      "coach": "Coach",
+      "responsable": "Manager",
+      "admin": "Admin"
     }
   },
   "menu": {
@@ -126,7 +175,16 @@
     "installations": "Facilities",
     "slots": "Slots",
     "reservation": "Reservation",
-    "contact": "Contact"
+    "contact": "Contact",
+    "adherants": "Members",
+    "historique-reservation": "My reservations",
+    "events": "Events",
+    "team": "Team",
+    "rewards": "Rewards",
+    "clubhouse": "Club House",
+    "participate-activity": "Participate in activities",
+    "history-participation": "Participation history",
+    "statistics": "Statistics"
   },
   "about": {
     "title": "About us",
@@ -147,7 +205,23 @@
     "email_placeholder": "Your email",
     "message": "Message",
     "message_placeholder": "Your message",
-    "send": "Send"
+    "send": "Send",
+    "full_name": "Full name *",
+    "email_required": "Email *",
+    "subject": "Subject",
+    "message_required": "Message",
+    "send_message": "Send us a message and we will respond as soon as possible",
+    "subjects": {
+      "general": "General question",
+      "reservation": "Reservation",
+      "membership": "Membership",
+      "other": "Other"
+    },
+    "staff": {
+      "message_button": "Message",
+      "call_button": "Call",
+      "more_button": "See more"
+    }
   },
   "footer": {
     "club": "Royal Tennis Club of Fès",
@@ -187,7 +261,15 @@
     "birth_date": "Birth date",
     "edit": "Edit profile",
     "change_password": "Change password",
-    "delete_account": "Delete account"
+    "delete_account": "Delete account",
+    "nom": "Last name",
+    "prenom": "First name",
+    "genre": "Gender",
+    "subscription_status": "Subscription status",
+    "registration_date": "Registration date",
+    "renew_required": "Your subscription is inactive. Please proceed with annual re-registration.",
+    "specialite": "Specialty",
+    "department": "Department"
   },
   "settings": {
     "title": "Settings",
@@ -226,6 +308,8 @@
   },
   "reservation": {
     "list": "Reservation List",
+    "dashboard_title": "Dashboard - Reservations",
+    "my_reservations": "My Reservations",
     "utilisateur_nom": "User Name",
     "utilisateur_email": "Email",
     "date_reservation": "Reservation Date",
@@ -237,6 +321,243 @@
     "statut_en_attente": "Pending",
     "statut_confirmee": "Confirmed",
     "statut_annulee": "Cancelled",
-    "empty": "No reservations found."
+    "empty": "No reservations found.",
+    "installation": "Facility",
+    "booking_for": "Booking for",
+    "club_name": "My Sports Club",
+    "selected_activity": "Selected activity",
+    "click_to_book": "Click on an available slot to book",
+    "capacity": "Capacity",
+    "available_facilities": "Available facilities",
+    "no_slots_available": "No slots available at the moment",
+    "football_renovation": "Sorry for the inconvenience. The football fields are under renovation and will be available again next season.",
+    "confirmation_title": "Booking confirmation",
+    "slot_selection": "Slot selection",
+    "date_selection": "Date selection"
+  },
+  "events": {
+    "title": "Events",
+    "list": "List of events",
+    "add": "Add an event",
+    "edit": "Edit an event",
+    "name": "Name",
+    "description": "Description",
+    "date": "Date",
+    "location": "Location",
+    "actions": "Actions",
+    "close": "Close",
+    "save": "Save changes",
+    "add_button": "Add",
+    "delete_confirm": "Do you really want to delete this event?",
+    "confirmation": "Confirmation",
+    "participate": "Participate",
+    "photo": "Event photo",
+    "preview": "Preview",
+    "name_required": "Event name *",
+    "date_required": "Date *",
+    "no_description": "No description available.",
+    "no_location": "Not specified",
+    "must_be_member": "You must be a member to participate in this event.",
+    "admin_participation_disabled": "(You are an administrator, participation disabled)",
+    "no_events": "No upcoming events at the moment. Stay connected for the latest news!",
+    "our_events": "Our Events",
+    "save_changes": "Save changes",
+    "required": "required",
+    "add_event": "Add an event",
+    "edit_event": "Edit an event"
+  },
+  "adherent": {
+    "title": "Member management",
+    "list": "List of members",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "subscription_status": "Status",
+    "registration_date": "Registration",
+    "details": "Details",
+    "total_points": "Total Points",
+    "actions": "Actions",
+    "reinscribe": "Reinscribe member",
+    "edit": "Edit member"
+  },
+  "forgot": {
+    "title": "Forgot password",
+    "subtitle": "Enter your email address to receive a reset link.",
+    "email": "Email address",
+    "email_placeholder": "example@domain.com",
+    "send_link": "Send link",
+    "back_login": "← Back to login"
+  },
+  "clubhouse": {
+    "title": "Club House",
+    "welcome": "Welcome to the Club House",
+    "description": "A friendly space to relax after the effort.",
+    "services": "Available services",
+    "restaurant": "Restaurant",
+    "bar": "Bar",
+    "lounge": "Lounge",
+    "terrace": "Terrace"
+  },
+  "team": {
+    "title": "Our Team",
+    "management": "Management",
+    "coaches": "Coaches",
+    "staff": "Staff",
+    "contact_member": "Contact",
+    "view_profile": "View profile"
+  },
+  "rewards": {
+    "title": "Loyalty Rewards",
+    "your_rewards": "Your Rewards",
+    "total_points": "Total: {{points}} points",
+    "points_unit": "points",
+    "obtain": "Obtain",
+    "obtained": "Obtained",
+    "max_obtained": "Obtained ({{max}})",
+    "not_enough_points": "Insufficient points",
+    "congratulations": "Congratulations!",
+    "reward_obtained": "Reward obtained successfully"
+  },
+  "participation_history": {
+    "title": "Participation History",
+    "dashboard_title": "Dashboard - Participations",
+    "events": "Events",
+    "activities": "Activities",
+    "event_list": "List of Events",
+    "activity_list": "List of Activities",
+    "event_name": "Event",
+    "date": "Date",
+    "location": "Location",
+    "description": "Description",
+    "title_column": "Title",
+    "type": "Type",
+    "participation_date": "Participation date",
+    "participation_time": "Participation time",
+    "assigned_coach": "Assigned Coach",
+    "installation": "Facility",
+    "no_events_found": "No events found",
+    "no_activities_found": "No activities found"
+  },
+  "statistics": {
+    "title": "Statistics",
+    "dashboard_title": "Dashboard - Statistics",
+    "overview": "Overview",
+    "users": "Users",
+    "reservations": "Reservations",
+    "activities": "Activities",
+    "events": "Events",
+    "total": "Total",
+    "active": "Active",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "cancelled": "Cancelled",
+    "general_stats": "General statistics",
+    "members": "Members",
+    "installations": "Facilities"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "all": "All",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information"
+  },
+  "modals": {
+    "creneau": {
+      "title": "Add slot",
+      "edit_title": "Edit slot",
+      "date": "Date",
+      "start_time": "Start time",
+      "end_time": "End time",
+      "installation": "Facility",
+      "available": "Available"
+    },
+    "activite": {
+      "title": "Add activity",
+      "edit_title": "Edit activity",
+      "titre": "Title",
+      "description": "Description",
+      "type": "Type",
+      "coach": "Coach",
+      "coach_assigne": "Assigned Coach",
+      "installation": "Facility"
+    },
+    "installation": {
+      "title": "Add facility",
+      "edit_title": "Edit facility",
+      "nom": "Name",
+      "type": "Type",
+      "capacity": "Capacity",
+      "available": "Available"
+    },
+    "user": {
+      "title": "Add user",
+      "edit_title": "Edit user",
+      "details_title": "User details",
+      "id": "ID",
+      "nom": "Last name",
+      "prenom": "First name",
+      "email": "Email",
+      "telephone": "Phone",
+      "role": "Role"
+    },
+    "participation": {
+      "title": "Participation",
+      "date": "Date",
+      "time": "Time"
+    },
+    "payment": {
+      "title": "Choose your payment method",
+      "stripe": "Stripe",
+      "paypal": "PayPal",
+      "cmi": "CMI",
+      "cash": "Cash",
+      "confirm": "Confirm Payment"
+    },
+      "reservation": {
+      "title": "Number of facilities to reserve",
+      "facilities_count": "Number of facilities to reserve",
+      "people_count": "Number of people" ,
+      "my_reservations": "My Reservations",
+      "list": "Reservation List",
+      "date_reservation": "Reservation Date",
+      "date_creneau": "Slot Date",
+      "heure_debut": "Start Time",
+      "heure_fin": "End Time",
+      "statut": "Status",
+      "installation": "Facility",
+      "empty": "No reservations found."
+    }
+  },
+  "reset_password": {
+    "title": "Reset Password",
+    "new_password": "New password",
+    "confirm_password": "Confirm password",
+    "password_mismatch": "Passwords do not match.",
+    "reset_button": "Reset",
+    "password_placeholder": "••••••••"
+  },
+  "reinscription": {
+    "title": "Renewal Type",
+    "types": {
+      "couple": "Couple",
+      "adulte_seul": "Single Adult",
+      "couple_senior": "Senior Couple",
+      "senior_seul": "Single Senior",
+      "etudiant": "Student",
+      "jeune": "Youth",
+      "enfant": "Child",
+      "nounou": "Nanny"
+    }
   }
 }

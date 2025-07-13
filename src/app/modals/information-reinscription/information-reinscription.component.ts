@@ -14,14 +14,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class InformationReinscriptionComponent  {
     typesReinscription = [
-        'Couple',
-        'Adulte seul',
-        'Couple senior',
-        'Senior seul',
-        'Étudiant',
-        'Jeune',
-        'Enfant',
-        'Nounou'
+        { key: 'couple', label: 'reinscription.types.couple' },
+        { key: 'adulte_seul', label: 'reinscription.types.adulte_seul' },
+        { key: 'couple_senior', label: 'reinscription.types.couple_senior' },
+        { key: 'senior_seul', label: 'reinscription.types.senior_seul' },
+        { key: 'etudiant', label: 'reinscription.types.etudiant' },
+        { key: 'jeune', label: 'reinscription.types.jeune' },
+        { key: 'enfant', label: 'reinscription.types.enfant' },
+        { key: 'nounou', label: 'reinscription.types.nounou' }
       ];
   
  typeSelected: string = '';

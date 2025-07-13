@@ -1,10 +1,10 @@
 <ion-header >
   <ion-toolbar color="primary">
     <ion-title  class="ion-padding" >
-      {{ mode === 'add' ? 'Ajouter un créneau' : (mode === 'edit' ? 'Éditer un créneau' : 'Détails du créneau') }}
+      {{ mode === 'add' ? ('modals.creneau.title' | translate) : (mode === 'edit' ? ('modals.creneau.edit_title' | translate) : ('creneaux.details' | translate)) }}
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Annuler</ion-button>
+      <ion-button (click)="close()">{{ 'common.cancel' | translate }}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -13,7 +13,7 @@
   <form [formGroup]="creneauForm" (ngSubmit)="submit()">
 
     <ion-item>
-      <ion-label position="floating">Date</ion-label>
+      <ion-label position="floating">{{ 'modals.creneau.date' | translate }}</ion-label>
       <ion-input
         type="date"
         formControlName="date"
@@ -23,7 +23,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Heure début</ion-label>
+      <ion-label position="floating">{{ 'modals.creneau.start_time' | translate }}</ion-label>
       <ion-input
         type="time"
         formControlName="heure_debut"
@@ -33,7 +33,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Heure fin</ion-label>
+      <ion-label position="floating">{{ 'modals.creneau.end_time' | translate }}</ion-label>
       <ion-input
         type="time"
         formControlName="heure_fin"
@@ -43,24 +43,24 @@
         "
       ></ion-input>
       <ion-note slot="error" color="danger" *ngIf="creneauForm.hasError('invalidTime')">
-        L'heure de fin doit être après l'heure de début.
+        {{ 'creneaux.time_error' | translate }}
       </ion-note>
     </ion-item>
 
     <ion-item>
-      <ion-label>Installation</ion-label>
+      <ion-label>{{ 'modals.creneau.installation' | translate }}</ion-label>
       <ion-select formControlName="installation_id" interface="popover" required>
         <ion-select-option *ngFor="let inst of installations" [value]="inst.id">{{ inst.nom }} - {{ inst.type }}</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-label>Disponible</ion-label>
+      <ion-label>{{ 'modals.creneau.available' | translate }}</ion-label>
       <ion-toggle formControlName="disponible"></ion-toggle>
     </ion-item>
 
     <ion-button expand="block" type="submit" color="primary" [disabled]="creneauForm.invalid || mode === 'detail'">
-      {{ mode === 'add' ? 'Ajouter' : 'Modifier' }}
+      {{ mode === 'add' ? ('common.add' | translate) : ('common.edit' | translate) }}
     </ion-button>
   </form>
 </ion-content>

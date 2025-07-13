@@ -86,6 +86,28 @@
       "Arts Martiaux": "فنون قتالية"
     }
   },
+  "activities": {
+    "title": "الأنشطة",
+    "list": "قائمة الأنشطة",
+    "add": "إضافة نشاط",
+    "name": "الاسم",
+    "description": "الوصف",
+    "type": "النوع",
+    "actions": "إجراءات",
+    "title_column": "العنوان",
+    "coach_assigned": "المدرب المعين",
+    "installation": "المنشأة",
+    "empty": "لم يتم العثور على أنشطة",
+    "dashboard_title": "لوحة التحكم - الأنشطة",
+    "our_activities": "أنشطتنا",
+    "participate": "المشاركة",
+    "coach": "المدرب",
+    "must_be_member": "يجب أن تكون عضوًا للمشاركة في هذا النشاط.",
+    "admin_participation_disabled": "(أنت مدير، المشاركة معطلة)",
+    "no_activities": "لا توجد أنشطة قادمة في الوقت الحالي. ابق متصلاً للحصول على آخر الأخبار!",
+    "no_description": "لا يوجد وصف متاح.",
+    "details": "تفاصيل النشاط"
+  },
   "creneaux": {
     "title": "لوحة التحكم - الفترات الزمنية",
     "list": "قائمة الفترات الزمنية",
@@ -95,9 +117,26 @@
     "end_time": "نهاية الوقت",
     "installation": "المنشأة",
     "available": "متاح",
+    "disponibilite": "التوفر",
     "actions": "إجراءات",
     "yes": "نعم",
-    "no": "لا"
+    "no": "لا",
+    "details": "تفاصيل الفترة الزمنية",
+    "time_error": "يجب أن يكون وقت النهاية بعد وقت البداية."
+  },
+  "installation": {
+    "title": "لوحة التحكم - المنشآت",
+    "list": "قائمة المنشآت",
+    "add": "إضافة منشأة",
+    "nom": "الاسم",
+    "type": "النوع",
+    "statut": "الحالة",
+    "actions": "إجراءات",
+    "details": "التفاصيل",
+    "edit": "تعديل",
+    "empty": "لا توجد منشآت مسجلة في الوقت الحالي.",
+    "capacity": "السعة",
+    "available": "متاح"
   },
   "utilisateur": {
     "title": "لوحة التحكم - المستخدمون",
@@ -108,12 +147,22 @@
     "phone": "الهاتف",
     "role": "الدور",
     "actions": "إجراءات",
+    "details": "التفاصيل",
+    "change_role": "تغيير دور المستخدم",
+    "view_details": "عرض تفاصيل المستخدم",
     "roles": {
       "adherent": "عضو",
       "coach": "مدرب",
       "responsable": "مسؤول",
       "admin": "مشرف",
       "user": "مستخدم"
+    },
+    "role_options": {
+      "user": "مستخدم",
+      "adherent": "عضو",
+      "coach": "مدرب",
+      "responsable": "مسؤول",
+      "admin": "مشرف"
     }
   },
   "menu": {
@@ -126,7 +175,16 @@
     "installations": "المنشآت",
     "slots": "الفترات الزمنية",
     "reservation": "الحجز",
-    "contact": "اتصل بنا"
+    "contact": "اتصل بنا",
+    "adherants": "الأعضاء",
+    "historique-reservation": "حجوزاتي",
+    "events": "الفعاليات",
+    "team": "الفريق",
+    "rewards": "المكافآت",
+    "clubhouse": "كلوب هاوس",
+    "participate-activity": "المشاركة في الأنشطة",
+    "history-participation": "تاريخ المشاركة",
+    "statistics": "الإحصائيات"
   },
   "about": {
     "title": "من نحن",
@@ -147,7 +205,23 @@
     "email_placeholder": "بريدك الإلكتروني",
     "message": "رسالة",
     "message_placeholder": "رسالتك",
-    "send": "إرسال"
+    "send": "إرسال",
+    "full_name": "الاسم الكامل *",
+    "email_required": "البريد الإلكتروني *",
+    "subject": "الموضوع",
+    "message_required": "رسالة",
+    "send_message": "أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن",
+    "subjects": {
+      "general": "سؤال عام",
+      "reservation": "حجز",
+      "membership": "عضوية",
+      "other": "أخرى"
+    },
+    "staff": {
+      "message_button": "رسالة",
+      "call_button": "اتصال",
+      "more_button": "المزيد"
+    }
   },
   "footer": {
     "club": "النادي الملكي للتنس بفاس",
@@ -189,7 +263,13 @@
     "change_password": "تغيير كلمة المرور",
     "delete_account": "حذف الحساب",
     "nom": "الاسم",
-    "prenom": "اللقب"
+    "prenom": "اللقب",
+    "genre": "الجنس",
+    "subscription_status": "حالة الاشتراك",
+    "registration_date": "تاريخ التسجيل",
+    "renew_required": "اشتراكك غير نشط. يرجى المتابعة مع إعادة التسجيل السنوي.",
+    "specialite": "التخصص",
+    "department": "القسم"
   },
   "settings": {
     "title": "الإعدادات",
@@ -228,6 +308,8 @@
   },
   "reservation": {
     "list": "قائمة الحجوزات",
+    "dashboard_title": "لوحة التحكم - الحجوزات",
+    "my_reservations": "حجوزاتي",
     "utilisateur_nom": "اسم المستخدم",
     "utilisateur_email": "البريد الإلكتروني",
     "date_reservation": "تاريخ الحجز",
@@ -239,6 +321,231 @@
     "statut_en_attente": "قيد الانتظار",
     "statut_confirmee": "مؤكد",
     "statut_annulee": "ملغى",
-    "empty": "لا توجد حجوزات."
+    "empty": "لا توجد حجوزات.",
+    "installation": "المنشأة",
+    "booking_for": "حجز لـ",
+    "club_name": "ناديي الرياضي",
+    "selected_activity": "النشاط المحدد",
+    "click_to_book": "انقر على فترة متاحة للحجز",
+    "capacity": "السعة",
+    "available_facilities": "المرافق المتاحة",
+    "no_slots_available": "لا توجد فترات متاحة في الوقت الحالي",
+    "football_renovation": "نعتذر عن الإزعاج. ملاعب كرة القدم قيد التجديد وستكون متاحة مرة أخرى في الموسم القادم.",
+    "confirmation_title": "تأكيد الحجز",
+    "slot_selection": "اختيار الفترة الزمنية",
+    "date_selection": "اختيار التاريخ"
+  },
+  "events": {
+    "title": "الفعاليات",
+    "list": "قائمة الفعاليات",
+    "add": "إضافة فعالية",
+    "edit": "تعديل فعالية",
+    "name": "الاسم",
+    "description": "الوصف",
+    "date": "التاريخ",
+    "location": "المكان",
+    "actions": "إجراءات",
+    "close": "إغلاق",
+    "save": "حفظ التغييرات",
+    "add_button": "إضافة",
+    "delete_confirm": "هل تريد حقًا حذف هذه الفعالية؟",
+    "confirmation": "تأكيد",
+    "participate": "المشاركة",
+    "photo": "صورة الفعالية",
+    "preview": "معاينة",
+    "name_required": "اسم الفعالية *",
+    "date_required": "التاريخ *",
+    "no_description": "لا يوجد وصف متاح.",
+    "no_location": "غير محدد",
+    "must_be_member": "يجب أن تكون عضوًا للمشاركة في هذه الفعالية.",
+    "admin_participation_disabled": "(أنت مدير، المشاركة معطلة)",
+    "no_events": "لا توجد فعاليات قادمة في الوقت الحالي. ابق متصلاً للحصول على آخر الأخبار!",
+    "our_events": "فعالياتنا"
+  },
+  "adherent": {
+    "title": "إدارة الأعضاء",
+    "list": "قائمة الأعضاء",
+    "name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "subscription_status": "الحالة",
+    "registration_date": "التسجيل",
+    "details": "التفاصيل",
+    "total_points": "إجمالي النقاط",
+    "actions": "إجراءات",
+    "reinscribe": "إعادة تسجيل العضو",
+    "edit": "تعديل العضو"
+  },
+  "forgot": {
+    "title": "نسيت كلمة المرور",
+    "subtitle": "أدخل عنوان بريدك الإلكتروني لتلقي رابط إعادة التعيين.",
+    "email": "عنوان البريد الإلكتروني",
+    "email_placeholder": "example@domain.com",
+    "send_link": "إرسال الرابط",
+    "back_login": "← العودة إلى تسجيل الدخول"
+  },
+  "clubhouse": {
+    "title": "كلوب هاوس",
+    "welcome": "مرحبا بكم في كلوب هاوس",
+    "description": "مساحة ودية للاسترخاء بعد الجهد.",
+    "services": "الخدمات المتاحة",
+    "restaurant": "مطعم",
+    "bar": "بار",
+    "lounge": "صالة",
+    "terrace": "تراس"
+  },
+  "team": {
+    "title": "فريقنا",
+    "management": "الإدارة",
+    "coaches": "المدربون",
+    "staff": "الموظفون",
+    "contact_member": "اتصال",
+    "view_profile": "عرض الملف الشخصي"
+  },
+  "rewards": {
+    "title": "مكافآت الولاء",
+    "your_rewards": "مكافآتك",
+    "total_points": "المجموع: {{points}} نقطة",
+    "points_unit": "نقاط",
+    "obtain": "الحصول على",
+    "obtained": "تم الحصول عليها",
+    "max_obtained": "تم الحصول عليها ({{max}})",
+    "not_enough_points": "نقاط غير كافية",
+    "congratulations": "تهانينا!",
+    "reward_obtained": "تم الحصول على المكافأة بنجاح"
+  },
+  "participation_history": {
+    "title": "تاريخ المشاركة",
+    "dashboard_title": "لوحة التحكم - المشاركات",
+    "events": "الفعاليات",
+    "activities": "الأنشطة",
+    "event_list": "قائمة الفعاليات",
+    "activity_list": "قائمة الأنشطة",
+    "event_name": "الفعالية",
+    "date": "التاريخ",
+    "location": "المكان",
+    "description": "الوصف",
+    "title_column": "العنوان",
+    "type": "النوع",
+    "participation_date": "تاريخ المشاركة",
+    "participation_time": "وقت المشاركة",
+    "assigned_coach": "المدرب المعين",
+    "installation": "المنشأة",
+    "no_events_found": "لم يتم العثور على فعاليات",
+    "no_activities_found": "لم يتم العثور على أنشطة"
+  },
+  "statistics": {
+    "title": "الإحصائيات",
+    "dashboard_title": "لوحة التحكم - الإحصائيات",
+    "overview": "نظرة عامة",
+    "users": "المستخدمون",
+    "reservations": "الحجوزات",
+    "activities": "الأنشطة",
+    "events": "الفعاليات",
+    "total": "المجموع",
+    "active": "نشط",
+    "pending": "قيد الانتظار",
+    "confirmed": "مؤكد",
+    "cancelled": "ملغى",
+    "general_stats": "الإحصائيات العامة",
+    "members": "الأعضاء",
+    "installations": "المنشآت"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "add": "إضافة",
+    "close": "إغلاق",
+    "confirm": "تأكيد",
+    "yes": "نعم",
+    "no": "لا",
+    "all": "الكل",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "warning": "تحذير",
+    "info": "معلومات"
+  },
+  "modals": {
+    "creneau": {
+      "title": "إضافة فترة زمنية",
+      "edit_title": "تعديل الفترة الزمنية",
+      "date": "التاريخ",
+      "start_time": "وقت البداية",
+      "end_time": "وقت النهاية",
+      "installation": "المنشأة",
+      "available": "متاح"
+    },
+    "activite": {
+      "title": "إضافة نشاط",
+      "edit_title": "تعديل النشاط",
+      "titre": "العنوان",
+      "description": "الوصف",
+      "type": "النوع",
+      "coach": "المدرب",
+      "coach_assigne": "المدرب المعين",
+      "installation": "المنشأة"
+    },
+    "installation": {
+      "title": "إضافة منشأة",
+      "edit_title": "تعديل المنشأة",
+      "nom": "الاسم",
+      "type": "النوع",
+      "capacity": "السعة",
+      "available": "متاح"
+    },
+    "user": {
+      "title": "إضافة مستخدم",
+      "edit_title": "تعديل المستخدم",
+      "details_title": "تفاصيل المستخدم",
+      "id": "المعرف",
+      "nom": "الاسم",
+      "prenom": "اللقب",
+      "email": "البريد الإلكتروني",
+      "telephone": "الهاتف",
+      "role": "الدور"
+    },
+    "participation": {
+      "title": "المشاركة",
+      "date": "التاريخ",
+      "time": "الوقت"
+    },
+    "payment": {
+      "title": "اختر طريقة الدفع",
+      "stripe": "سترايب",
+      "paypal": "باي بال",
+      "cmi": "سي إم آي",
+      "cash": "نقدًا",
+      "confirm": "تأكيد الدفع"
+    },
+        "reservation": {
+      "title": "عدد المنشآت المراد حجزها",
+      "facilities_count": "عدد المنشآت المراد حجزها",
+      "people_count": "عدد الأشخاص"
+    }
+  },
+  "reset_password": {
+    "title": "إعادة تعيين كلمة المرور",
+    "new_password": "كلمة المرور الجديدة",
+    "confirm_password": "تأكيد كلمة المرور",
+    "password_mismatch": "كلمات المرور غير متطابقة.",
+    "reset_button": "إعادة تعيين",
+    "password_placeholder": "••••••••"
+  },
+
+  "reinscription": {
+    "title": "نوع التجديد",
+    "types": {
+      "couple": "زوجان",
+      "adulte_seul": "بالغ واحد",
+      "couple_senior": "زوجان كبار السن",
+      "senior_seul": "كبير السن واحد",
+      "etudiant": "طالب",
+      "jeune": "شاب",
+      "enfant": "طفل",
+      "nounou": "مربية"
+    }
   }
 }

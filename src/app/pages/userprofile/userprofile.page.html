@@ -6,15 +6,15 @@
       </button>
 
       <div class="profile-header mb-3 text-center">
-<!-- Si l'utilisateur a une photo -->
-<img *ngIf="user.photoUrl" class="profile-avatar mb-2 animate__animated animate__pulse"
-     [src]="user.photoUrl"
-     alt="User image" />
+  <!-- Si l'utilisateur a une photo -->
+    <img *ngIf="user.photoUrl" class="profile-avatar mb-2 animate__animated animate__pulse"
+        [src]="user.photoUrl"
+        alt="User image" />
 
-<!-- Sinon, afficher les initiales dans un avatar stylé -->
-<div *ngIf="!user.photoUrl" class="profile-avatar initials-avatar animate__animated animate__pulse">
-  {{ getInitials(user.prenom, user.nom) }}
-</div>
+    <!-- Sinon, afficher les initiales dans un avatar stylé -->
+    <div *ngIf="!user.photoUrl" class="profile-avatar initials-avatar animate__animated animate__pulse">
+      {{ getInitials(user.prenom, user.nom) }}
+    </div>
 
         <div class="profile-name user-data">
           <strong class="text-gold">{{ 'profil.nom' | translate }} :</strong> {{ user.nom }}<br>

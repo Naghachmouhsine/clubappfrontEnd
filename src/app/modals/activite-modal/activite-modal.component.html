@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title class="ion-padding">
-      {{ mode === 'add' ? 'Ajouter une activité' : (mode === 'edit' ? 'Éditer une activité' : 'Détails de l\'activité')
+      {{ mode === 'add' ? ('modals.activite.title' | translate) : (mode === 'edit' ? ('modals.activite.edit_title' | translate) : ('activities.details' | translate))
       }}
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Annuler</ion-button>
+      <ion-button (click)="close()">{{ 'common.cancel' | translate }}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,25 +14,25 @@
   <form [formGroup]="activiteForm" (ngSubmit)="submit()">
 
     <ion-item>
-      <ion-label position="floating">Titre</ion-label>
+      <ion-label position="floating">{{ 'modals.activite.titre' | translate }}</ion-label>
       <ion-input type="text" formControlName="titre" required
         [attr.aria-invalid]="activiteForm.get('titre')?.invalid ? 'true' : 'false'"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Description</ion-label>
+      <ion-label position="floating">{{ 'modals.activite.description' | translate }}</ion-label>
       <ion-textarea formControlName="description"
         [attr.aria-invalid]="activiteForm.get('description')?.invalid ? 'true' : 'false'"></ion-textarea>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Type</ion-label>
+      <ion-label position="floating">{{ 'modals.activite.type' | translate }}</ion-label>
       <ion-input type="text" formControlName="type" required
         [attr.aria-invalid]="activiteForm.get('type')?.invalid ? 'true' : 'false'"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Coach assigné</ion-label>
+      <ion-label>{{ 'modals.activite.coach_assigne' | translate }}</ion-label>
       <ion-select formControlName="coach_assigne" interface="popover" required>
         <ion-select-option *ngFor="let coach of coaches" [value]="coach.id">
           {{ coach.nom }} {{ coach.prenom }} {{ coach.specialite }}
@@ -40,7 +40,7 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Installation</ion-label>
+      <ion-label>{{ 'modals.activite.installation' | translate }}</ion-label>
       <ion-select formControlName="installation" interface="popover" required>
         <ion-select-option *ngFor="let inst of installation" [value]="inst.id">
           {{ inst.nom }}
@@ -48,7 +48,7 @@
       </ion-select>
     </ion-item>
     <ion-button expand="block" type="submit" color="primary" [disabled]="activiteForm.invalid || mode === 'detail'">
-      {{ mode === 'add' ? 'Ajouter' : 'Modifier' }}
+      {{ mode === 'add' ? ('common.add' | translate) : ('common.edit' | translate) }}
     </ion-button>
   </form>
 </ion-content>

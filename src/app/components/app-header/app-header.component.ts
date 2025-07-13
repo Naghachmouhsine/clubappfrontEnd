@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, PopoverController } from '@ionic/angular';
+import { IonicModule, PopoverController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -47,7 +47,8 @@ export class AppHeaderComponent implements OnInit {
     private langService: LangService,
     private popoverController: PopoverController,
     private servicePoints: RecempenseService,
-    private serviceAuth: AuthService
+    private serviceAuth: AuthService,
+    private menuCtrl: MenuController
   ) {}
 
   ngOnInit(): void {
@@ -109,8 +110,24 @@ async openProfileMenu(event: MouseEvent) {
 }
 
 
-  navigateTo(path: string) {
-    this.route.navigate([path]);
+  async navigateTo(path: string) {
+    // 🎯 Clic brutal sur le backdrop pour fermer le menu
+    try {
+      const backdrop = document.querySelector('ion-backdrop');
+      if (backdrop) {
+        (backdrop as HTMLElement).click();
+      } else {
+        // Si pas de backdrop, fermeture directe
+        this.menuCtrl.close('main-menu');
+      }
+    } catch (error) {
+      this.menuCtrl.close('main-menu');
+    }
+    
+    // Navigation
+    setTimeout(() => {
+      this.route.navigate([path]);
+    }, 100);
   }
 
   scrollToServices() {

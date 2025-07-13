@@ -1,10 +1,10 @@
-<app-header [nomPage]="'Récompenses Fidélité'"></app-header>
+<app-header [nomPage]="'rewards.title' | translate"></app-header>
 
 <ion-content class="ion-padding">
   <ion-card>
     <ion-card-header>
-      <ion-card-title class="text-center">🎁 Vos Récompenses</ion-card-title>
-      <ion-card-subtitle class="text-center">Total : {{ userPoints }} points</ion-card-subtitle>
+      <ion-card-title class="text-center">🎁 {{ 'rewards.your_rewards' | translate }}</ion-card-title>
+      <ion-card-subtitle class="text-center">{{ 'rewards.total_points' | translate:{ points: userPoints } }}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
@@ -14,14 +14,14 @@
             <ion-card [class.disabled]="!r.actif" class="recomp-card">
               <ion-card-header>
                 <ion-card-title>{{ r.titre }}</ion-card-title>
-                <ion-card-subtitle>{{ r.seuil }} points</ion-card-subtitle>
+                <ion-card-subtitle>{{ r.seuil }} {{ 'rewards.points_unit' | translate }}</ion-card-subtitle>
               </ion-card-header>
               <ion-card-content *ngIf="r.description">
                 <p>{{ r.description }}</p>
               </ion-card-content>
               <ion-button expand="block" [color]="r.obtenu ? 'success' : 'primary'" [disabled]="!r.actif || r.obtenu"
                 (click)="obtenirRecompense(r)">
-                {{ !r.obtenu ? 'Obtenue (' + r.maxObtenable + ')' : 'Obtenir' }}
+                {{ r.obtenu ? ('rewards.max_obtained' | translate:{ max: r.maxObtenable }) : ('rewards.obtain' | translate) }}
               </ion-button>
 
             </ion-card>

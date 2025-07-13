@@ -7,6 +7,7 @@ import { AppHeaderComponent } from 'src/app/components/app-header/app-header.com
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
+  standalone: true,
   selector: 'app-historique-reservation',
   templateUrl: './historique-reservation.page.html',
   styleUrls: ['./historique-reservation.page.scss'],

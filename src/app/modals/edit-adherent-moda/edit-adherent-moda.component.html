@@ -1,8 +1,8 @@
 <ion-header >
   <ion-toolbar>
-    <ion-title>Modifier Adhérent</ion-title>
+    <ion-title>{{ 'adherent.edit' | translate }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="cancel()">Fermer</ion-button>
+      <ion-button (click)="cancel()">{{ 'common.close' | translate }}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -32,9 +32,9 @@
   </ion-item> -->
 
   <ion-item>
-    <ion-label position="floating">Total Points</ion-label>
+    <ion-label position="floating">{{ 'adherent.total_points' | translate }}</ion-label>
     <ion-input type="number" [(ngModel)]="adherent.totalPoints"></ion-input>
   </ion-item>
 
-  <ion-button expand="block" color="primary" (click)="save()">Enregistrer</ion-button>
+  <ion-button expand="block" color="primary" (click)="save()">{{ 'common.save' | translate }}</ion-button>
 </ion-content>

@@ -3,13 +3,14 @@ import { IonicModule, ModalController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-creneau-modal',
   templateUrl: './creneau-modal.component.html',
   styleUrls: ['./creneau-modal.component.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [IonicModule, FormsModule, CommonModule, ReactiveFormsModule, TranslateModule],
 })
 export class CreneauModalComponent implements OnInit {
   @Input() mode: 'add' | 'edit' | 'detail' = 'add';

@@ -29,7 +29,6 @@ export class AppComponent implements OnInit, OnDestroy {
   isDashboardOpen = false;
   theme: ThemeType = 'auto';
   loginIn: boolean = false;
-  private menuSub?: Subscription;
   private authSub?: Subscription;
   private userSub?: Subscription;
 
@@ -85,23 +84,94 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.menuSub?.unsubscribe();
     this.authSub?.unsubscribe();
     this.userSub?.unsubscribe();
   }
 
-  toggleMenu() {
-    this.menuCtrl.toggle();
-  }
-
-  navigateTo(path: string) {
-    this.menuCtrl.close();
-    this.isDashboardOpen=false
+async navigateTo(path: string) {
+  this.isDashboardOpen = false;
+  
+  // 🎯 Approche multiple pour fermer le menu
+  await this.closeMenuWithMultipleMethods();
+  
+  // Navigation
+  setTimeout(() => {
     this.router.navigate([path]);
+  }, 150);
+}
+
+// 🎯 Méthode avec plusieurs approches simultanées
+private async closeMenuWithMultipleMethods() {
+  console.log('🎯 Fermeture menu avec méthodes multiples');
+  
+  // Méthode 1: Simulation de clic
+  this.forceMenuCloseWithClick();
+  
+  // Méthode 2: Fermeture directe
+  this.menuCtrl.close('main-menu');
+  
+  // Méthode 3: Désactiver temporairement
+  setTimeout(() => {
+    this.menuCtrl.enable(false, 'main-menu');
+    setTimeout(() => {
+      this.menuCtrl.enable(true, 'main-menu');
+    }, 50);
+  }, 10);
+}
+
+// 🎯 Méthode brutale pour fermer le menu avec simulation de clic
+private forceMenuCloseWithClick() {
+  try {
+    console.log('🎯 Tentative de fermeture du menu...');
+    
+    // 1. Essayer de cliquer sur le backdrop
+    const backdrop = document.querySelector('ion-backdrop');
+    if (backdrop) {
+      console.log('✅ Backdrop trouvé, simulation du clic');
+      (backdrop as HTMLElement).click();
+      return;
+    }
+
+    // 2. Essayer de cliquer sur l'overlay du menu
+    const menuOverlay = document.querySelector('.menu-backdrop, ion-menu-backdrop');
+    if (menuOverlay) {
+      console.log('✅ Menu overlay trouvé, simulation du clic');
+      (menuOverlay as HTMLElement).click();
+      return;
+    }
+
+    // 3. Simuler un clic en dehors du menu sur le body
+    console.log('🎯 Simulation clic sur body');
+    const clickEvent = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      clientX: window.innerWidth - 10, // Clic à droite de l'écran
+      clientY: 10
+    });
+    document.body.dispatchEvent(clickEvent);
+    
+    // 4. Force brutale : désactiver et réactiver le menu
+    setTimeout(() => {
+      console.log('🔧 Force brutale : disable/enable menu');
+      this.menuCtrl.enable(false, 'main-menu');
+      setTimeout(() => {
+        this.menuCtrl.enable(true, 'main-menu');
+      }, 10);
+    }, 30);
+    
+  } catch (error) {
+    console.log('❌ Erreur simulation clic, fermeture directe');
+    this.menuCtrl.close('main-menu');
   }
+}
+
+
+
 
   toggleDashboardSubmenu() {
     this.isDashboardOpen = !this.isDashboardOpen;
+    // Ne pas fermer le menu lors du toggle du sous-menu
   }
 
   async openProfileMenu(event: MouseEvent) {
