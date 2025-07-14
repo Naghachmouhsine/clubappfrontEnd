@@ -1,7 +1,9 @@
-<app-header [nomPage]="'reservation.my_reservations' | translate"></app-header>
+<app-header nomPage="Dashboard - Réservation"></app-header>
 
 <ion-content class="ion-padding">
-  <ion-card>
+
+  <!-- Affichage desktop -->
+  <ion-card class="desktop-table">
     <ion-card-header>
       <ion-card-title class="ion-padding reservation-title">{{ 'reservation.list' | translate }}</ion-card-title>
     </ion-card-header>
@@ -21,8 +23,8 @@
           <ion-col>{{ res.creneau_date | date:'dd/MM/yyyy' }}</ion-col>
           <ion-col>{{ res.heure_debut }}</ion-col>
           <ion-col>{{ res.heure_fin }}</ion-col>
-          <ion-col>{{res.statut}}</ion-col>
-          <ion-col> {{res.installation}} </ion-col>
+          <ion-col>{{ res.statut }}</ion-col>
+          <ion-col>{{ res.installation }}</ion-col>
         </ion-row>
         <ion-row *ngIf="!reservations.length" class="ion-text-center">
           <ion-col size="12">{{ 'reservation.empty' | translate }}</ion-col>
@@ -30,4 +32,25 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
+
+  <!-- Affichage mobile -->
+  <div class="mobile-card">
+    <ion-card *ngFor="let res of reservations" class="ion-margin-bottom" [ngClass]="getStatutColor(res.statut)">
+      <ion-card-header>
+        <ion-card-title>{{ 'reservation.installation' | translate }} : {{ res.installation }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>{{ 'reservation.date_reservation' | translate }} :</strong> {{ res.date_jour_reservation | date:'dd/MM/yyyy HH:mm:s' }}</p>
+        <p><strong>{{ 'reservation.date_creneau' | translate }} :</strong> {{ res.creneau_date | date:'dd/MM/yyyy' }}</p>
+        <p><strong>{{ 'reservation.heure_debut' | translate }} :</strong> {{ res.heure_debut }}</p>
+        <p><strong>{{ 'reservation.heure_fin' | translate }} :</strong> {{ res.heure_fin }}</p>
+        <p><strong>{{ 'reservation.statut' | translate }} :</strong> {{ res.statut }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="!reservations.length">
+      <ion-card-content>{{ 'reservation.empty' | translate }}</ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>

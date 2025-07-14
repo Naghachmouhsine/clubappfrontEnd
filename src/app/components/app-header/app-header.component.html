@@ -1,5 +1,5 @@
-<ion-toolbar  [ngClass]="!isLoggedIn ? 'ion-padding-start' : 'no-padding'">
-  <ion-buttons slot="start" *ngIf="isLoggedIn"  >
+<ion-toolbar [ngClass]="!isLoggedIn ? 'ion-padding-start' : 'no-padding'">
+  <ion-buttons slot="start" *ngIf="isLoggedIn">
     <ion-menu-button menu="main-menu" color="light"></ion-menu-button>
   </ion-buttons>
   <ion-title class="ion-text-start header-title  " (click)="goHome()" style="cursor:pointer;">
@@ -25,9 +25,12 @@
       <span>{{ t('header.services') }}</span>
     </ion-button>
     <ion-button *ngIf="showProfilePicture  && isLoggedIn " (click)="openProfileMenu($event)" class="profile-btn">
-      <span class="profile-btn-img-wrapper">
+      <span *ngIf="user.photoUrl" class="profile-btn-img-wrapper">
         <img [src]="getProfilePictureUrl()" alt="Profil" class="header-profile-img" />
       </span>
+      <div *ngIf="!user.photoUrl" class="profile-avatar initials-avatar animate__animated animate__pulse">
+        {{ getInitials(user.prenom, user.nom) }}
+      </div>
     </ion-button>
     <ion-button *ngIf="showProfileText && !showProfilePicture && isLoggedIn " (click)="openProfileMenu($event)"
       class="profile-btn">

@@ -108,7 +108,11 @@ async openProfileMenu(event: MouseEvent) {
     this.route.navigate(['/login']);  // ou n'importe quelle action
   }
 }
-
+  getInitials(prenom: string, nom: string): string {
+  const firstNameInitial = prenom?.charAt(0)?.toUpperCase() || '';
+  const lastNameInitial = nom?.charAt(0)?.toUpperCase() || '';
+  return firstNameInitial + lastNameInitial;
+}
 
   async navigateTo(path: string) {
     // 🎯 Fermeture radicale et navigation immédiate

@@ -63,3 +63,23 @@ ion-row {
     font-size: 1.05rem;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .desktop-table {
+    display: none;
+  }
+
+  .mobile-card {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .desktop-table {
+    display: block;
+  }
+
+  .mobile-card {
+    display: none;
+  }
+}
