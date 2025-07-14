@@ -1,22 +1,58 @@
+:host {
+  display: block;
+  overflow-x: hidden;
+}
+
+#services {
+  width: 100%;
+}
+
 .service-card {
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: none;
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--ion-text-color, #000);
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
   }
 
-  h5, p {
+  h5 {
     color: var(--ion-text-color, #000);
   }
 
-  i {
-    transition: transform 0.3s ease;
+  p {
+    color: var(--ion-text-color-step-600, #666);
+    font-size: 0.9rem;
+  }
+}
+
+.icon-service {
+  font-size: 2.5rem;
+  color: var(--color-gold);
+  max-width: 100%;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 575px) {
+  .icon-service {
+    font-size: 2rem;
   }
 
-  &:hover i {
-    transform: scale(1.1);
+  .service-card {
+    padding: 1.25rem;
+  }
+
+  .service-card p {
+    font-size: 0.85rem;
   }
 }

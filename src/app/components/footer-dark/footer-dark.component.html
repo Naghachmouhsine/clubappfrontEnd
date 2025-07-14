@@ -1,18 +1,39 @@
 <footer class="footer-dark mt-5">
-  <div class="container">
+  <div class="container-fluid px-3">
     <div class="row">
-      <div class="col-md-6 mb-3">
-        <h5 class="fw-bold">{{ 'footer.club' | translate }}</h5>
-        <p>{{ 'footer.address' | translate }}<br>{{ 'footer.phone' | translate }}<br>{{ 'footer.email' | translate }}</p>
-      </div>
-      <div class="col-md-6 text-md-end">
-        <a href="#" class="me-3">{{ 'footer.home' | translate }}</a>
-        <a href="#">{{ 'footer.services' | translate }}</a>
-        <a href="/contact">{{ 'footer.contact' | translate }}</a>
+      <!-- Infos du club -->
+   <div class="col-md-6 mb-4">
+      <h5 class="fw-bold">RTCF / FCC</h5>
+      <ul class="list-unstyled footer-info">
+        <li>Complexe Sportif El Merja</li>
+        <li>Fès Country Club (Ex Henri Leconte)</li>
+        <li>30000 Fès, Maroc</li>
+        <li><strong>Tél :</strong> +212 535 655 836</li>
+        <li><strong>Email :</strong> royaltennisclubdefes&#64;gmail.com</li>
+      </ul>
+
+      <div class="map-responsive rounded-4 shadow">
+        <iframe
+          src="https://www.google.com/maps?q=2XQ4%2BX53%2C+F%C3%A8s+30000&output=embed"
+          width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
     </div>
-    <div class="text-center mt-3 small">
-      {{ 'footer.copyright' | translate }}
+
+
+      <!-- Liens rapides -->
+      <div class="col-md-6 text-md-end d-flex flex-column justify-content-center">
+        <div class="footer-links mb-3">
+          <a href="#">{{ 'footer.home' | translate }}</a>
+          <a href="#services">{{ 'footer.services' | translate }}</a>
+          <a href="/contact">{{ 'footer.contact' | translate }}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4 small">
+      © 2025 Royal Tennis Club de Fès — Tous droits réservés.
     </div>
   </div>
 </footer>

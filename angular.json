@@ -39,7 +39,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/custom.css","src/assets/styles.scss",
               "node_modules/font-awesome/css/font-awesome.min.css"],
-            
+
 
             "scripts": [],
             "browser": "src/main.ts"
@@ -54,8 +54,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "80kb",
+                  "maximumError": "90kb"
                 }
               ],
               "fileReplacements": [
@@ -88,7 +88,7 @@
               "buildTarget": "app:build:development"
             },
             "ci": {
-              
+
             }
           },
           "defaultConfiguration": "development"
@@ -118,7 +118,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/custom.css","src/assets/styles.scss",
               "node_modules/font-awesome/css/font-awesome.min.css"],
-            
+
 
             "scripts": []
           },

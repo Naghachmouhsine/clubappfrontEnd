@@ -1,11 +1,53 @@
-/* Custom styles for gallery section if needed */
 
-.gallery-img-wrapper {
+.section-gallery {
+  overflow-x: hidden; /* Empêche tout scroll horizontal */
+  background-color: #eaf5ef; /* Couleur de fond inspirée de votre thème green */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  .gallery-title {
+    font-size: 2rem;
+    color: var(--ion-text-color, #000);
+    margin-bottom: 1.5rem;
+  }
+
+  .gallery-img-wrapper {
   aspect-ratio: 1/1;
   transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  height: 200px;   /* Hauteur fixe pour un rendu uniforme */
+  position: relative;
   cursor: pointer;
   &:hover {
     transform: scale(1.04);
     box-shadow: 0 8px 32px rgba(0,66,37,0.18);
   }
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* Pour couvrir le conteneur sans étirement */
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-img:hover {
+    transform: scale(1.05); /* Zoom léger au survol */
+  }
 }
+
+/* Adaptation pour les petits écrans */
+@media (max-width: 576px) {
+  .section-gallery {
+    padding: 1.5rem 1rem;
+    
+    .gallery-title {
+      font-size: 1.6rem;
+    }
+
+    .gallery-img-wrapper {
+      height: 150px;  /* Réduit la hauteur pour de petits écrans */
+    }
+  }
+}
+

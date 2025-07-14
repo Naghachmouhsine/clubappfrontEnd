@@ -20,10 +20,10 @@
       <ion-select-option value="en">en</ion-select-option>
       <ion-select-option value="ar">ar</ion-select-option>
     </ion-select>
-    <ion-button *ngIf="showServicesText" (click)="scrollToServices()" class="services-btn">
+    <!-- <ion-button *ngIf="showServicesText" (click)="scrollToServices()" class="services-btn">
       <ion-icon name="star-outline" slot="start" color="warning"></ion-icon>
       <span>{{ t('header.services') }}</span>
-    </ion-button>
+    </ion-button> -->
     <ion-button *ngIf="showProfilePicture  && isLoggedIn " (click)="openProfileMenu($event)" class="profile-btn">
       <span *ngIf="user.photoUrl" class="profile-btn-img-wrapper">
         <img [src]="getProfilePictureUrl()" alt="Profil" class="header-profile-img" />
