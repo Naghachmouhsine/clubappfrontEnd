@@ -274,10 +274,13 @@ ionic capacitor build android
 ## 🤝 Contribution
 
 ### **Équipe de Développement**
-- **Youssouf Tangara** - Développeur Principal
+- **Mahmoud Benjelloun Jbina** - Développeur Principal
+  -Emaail: mahmoud.benji99@gmail.com
+  - Responsable: Conception , Backend - FrontEnd , Base de données, Sécurité
+- **Youssouf Tangara** - Développeur Secondaire
   - Email: ytangara2003@gmail.com
   - Responsable: Architecture frontend, UI/UX, Intégration
-- **Naghach Mouhsine** - Développeur Principal
+- **Naghach Mouhsine** - Développeur Secondaire
   -Emaail: naghach.mouhsine@gmail.com
   - Responsable: Backend API, Base de données, Sécurité
 
